@@ -10,7 +10,7 @@
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function() {
       OneSignal.init({
-        appId: "BURAYA_KENDİ_APP_ID_Nİ_YAZ",
+        appId: "dd3df325-4ad6-4f0f-a511-9c20019abd24",
         notifyButton: {
           enable: true,
         },
