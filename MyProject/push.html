@@ -7,6 +7,9 @@
   <script>
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function() {
+      OneSignal.SERVICE_WORKER_UPDATER_PATH = 'OneSignalSDKUpdaterWorker.js';
+      OneSignal.SERVICE_WORKER_PATH = 'OneSignalSDKWorker.js';
+
       OneSignal.init({
         appId: "dd3df325-4ad6-4f0f-a511-9c20019abd24",
         notifyButton: {
@@ -26,6 +29,18 @@
           }
         }
       });
+
+      OneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
+        if (isEnabled) {
+          document.getElementById("status").innerHTML = "📢 Bildirimler etkin!";
+          OneSignal.getUserId().then(function(userId) {
+            document.getElementById("playerId").innerHTML = userId;
+            console.log("Player ID:", userId);
+          });
+        } else {
+          document.getElementById("status").innerHTML = "❌ Bildirimler etkin değil.";
+        }
+      });
     });
 
     function showPrompt() {
@@ -34,8 +49,9 @@
   </script>
 </head>
 <body>
-  <h2>📢 Bildirim Test Sayfası</h2>
-  <p>Bildirim izni vermek için aşağıdaki düğmeye tıklayın:</p>
-  <button onclick="showPrompt()">🔔 Bildirim İzni İste</button>
+  <h2>🔔 Bildirim İzni Sayfası</h2>
+  <button onclick="showPrompt()">İzin İste</button>
+  <p id="status">Durum: kontrol ediliyor...</p>
+  <p><strong>📱 Player ID:</strong> <span id="playerId">Henüz alınmadı.</span></p>
 </body>
 </html>
