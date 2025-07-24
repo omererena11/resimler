@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Push Test</title>
-
-  <!-- OneSignal SDK -->
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
   <script>
     window.OneSignal = window.OneSignal || [];
@@ -18,7 +16,7 @@
           slidedown: {
             prompts: [{
               type: "push",
-              autoPrompt: true,
+              autoPrompt: false,
               text: {
                 actionMessage: "Bildirim almak ister misiniz?",
                 acceptButton: "Evet",
@@ -29,9 +27,15 @@
         }
       });
     });
+
+    function showPrompt() {
+      OneSignal.showSlidedownPrompt();
+    }
   </script>
 </head>
 <body>
-  <h2>Bildirim Test Sayfası</h2>
+  <h2>📢 Bildirim Test Sayfası</h2>
+  <p>Bildirim izni vermek için aşağıdaki düğmeye tıklayın:</p>
+  <button onclick="showPrompt()">🔔 Bildirim İzni İste</button>
 </body>
 </html>
