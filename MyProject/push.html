@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Bildirim Test</title>
+  <title>Bildirim Test - Butonlu</title>
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
   <script>
     window.OneSignal = window.OneSignal || [];
@@ -12,39 +12,30 @@
 
       OneSignal.init({
         appId: "dd3df325-4ad6-4f0f-a511-9c20019abd24",
-        notifyButton: {
-          enable: false
-        },
-        promptOptions: {
-          slidedown: {
-            prompts: [{
-              type: "push",
-              autoPrompt: true,
-              text: {
-                actionMessage: "Bildirim almak ister misiniz?",
-                acceptButton: "Evet",
-                cancelButton: "Hayır"
-              }
-            }]
-          }
-        }
+        notifyButton: { enable: false }
       });
 
       OneSignal.on('subscriptionChange', function(isSubscribed) {
         if (isSubscribed) {
           OneSignal.getUserId().then(function(userId) {
-            document.getElementById("status").innerHTML = "🎉 Abone oldunuz!<br><br>📱 Player ID:<br>" + userId;
-            console.log("Player ID:", userId);
+            document.getElementById("playerId").textContent = userId;
+            document.getElementById("status").textContent = "🎉 Abone oldunuz!";
           });
         } else {
-          document.getElementById("status").innerHTML = "❌ Abonelik başarısız. Tarayıcı izinlerini kontrol edin.";
+          document.getElementById("status").textContent = "❌ Abonelik başarısız.";
         }
       });
     });
+
+    function showPrompt() {
+      OneSignal.showSlidedownPrompt();
+    }
   </script>
 </head>
 <body>
-  <h2>🔔 Bildirim Aboneliği</h2>
-  <p id="status">🔄 Abonelik durumu bekleniyor...</p>
+  <h2>📲 OneSignal Bildirim Test (Butonlu)</h2>
+  <button onclick="showPrompt()">🔔 Bildirim İzni Ver</button>
+  <p id="status">⏳ Abonelik durumu bekleniyor...</p>
+  <p><strong>📱 Player ID:</strong> <span id="playerId">Henüz alınmadı.</span></p>
 </body>
 </html>
