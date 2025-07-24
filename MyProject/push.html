@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Push Test</title>
+
+  <!-- OneSignal SDK -->
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "BURAYA_KENDİ_APP_ID_Nİ_YAZ",
+        notifyButton: {
+          enable: true,
+        },
+        promptOptions: {
+          slidedown: {
+            prompts: [{
+              type: "push",
+              autoPrompt: true,
+              text: {
+                actionMessage: "Bildirim almak ister misiniz?",
+                acceptButton: "Evet",
+                cancelButton: "Hayır"
+              }
+            }]
+          }
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <h2>Bildirim Test Sayfası</h2>
+</body>
+</html>
