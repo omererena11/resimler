@@ -1,12 +1,12 @@
-A101-https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/BIM/Long_Brochures/bim1/a6912888-1c00-4b23-baa0-5ef34f02fb76.pdf
-BIM-https://resimler-211.pages.dev/Brochures/Brochures/BIM/AllOfBim/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-ÇAĞRI-https://resimler-211.pages.dev/Brochures/Brochures/CAGRI/AllOfCagri/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-CARREFOUR-https://resimler-211.pages.dev/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-GRATIS-https://resimler-211.pages.dev/Brochures/Brochures/GRATIS/AllOfGratis/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-HAKMAR-https://resimler-211.pages.dev/Brochures/Brochures/HAKMAR/AllOfHakmar/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-HAPPY CENTER-https://resimler-211.pages.dev/Brochures/Brochures/HAPPY%2520CENTER/AllOfHappyCenter/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-METRO-https://resimler-211.pages.dev/Brochures/Brochures/METRO/AllOfMetro/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-MIGROS-https://resimler-211.pages.dev/Brochures/Brochures/MIGROS/AllOfMigros/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-ÖZ KURUŞLAR-https://resimler-211.pages.dev/Brochures/Brochures/OZKURUSLAR/AllOfOzkuruslar/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-ŞOK-https://resimler-211.pages.dev/Brochures/Brochures/SOK/AllOfSok/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
-TÜRKİYE TARIM KREDİ KOOP.-https://resimler-211.pages.dev/Brochures/Brochures/TARIM%2520KREDI%2520KOOP/AllOfTarimKredi/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+A101--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/BIM/Long_Brochures/bim1/a6912888-1c00-4b23-baa0-5ef34f02fb76.pdf
+BIM--https://resimler-211.pages.dev/Brochures/Brochures/BIM/AllOfBim/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+ÇAĞRI--https://resimler-211.pages.dev/Brochures/Brochures/CAGRI/AllOfCagri/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+CARREFOUR--https://resimler-211.pages.dev/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+GRATIS--https://resimler-211.pages.dev/Brochures/Brochures/GRATIS/AllOfGratis/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+HAKMAR--https://resimler-211.pages.dev/Brochures/Brochures/HAKMAR/AllOfHakmar/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+HAPPY CENTER--https://resimler-211.pages.dev/Brochures/Brochures/HAPPY%2520CENTER/AllOfHappyCenter/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+METRO--https://resimler-211.pages.dev/Brochures/Brochures/METRO/AllOfMetro/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+MIGROS--https://resimler-211.pages.dev/Brochures/Brochures/MIGROS/AllOfMigros/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+ÖZ KURUŞLAR--https://resimler-211.pages.dev/Brochures/Brochures/OZKURUSLAR/AllOfOzkuruslar/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+ŞOK--https://resimler-211.pages.dev/Brochures/Brochures/SOK/AllOfSok/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
+TÜRKİYE TARIM KREDİ KOOP.--https://resimler-211.pages.dev/Brochures/Brochures/TARIM%2520KREDI%2520KOOP/AllOfTarimKredi/5ee7b895-1085-4717-86c5-88a927922453%2520%281%29.pdf
