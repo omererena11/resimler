@@ -1,5 +1,5 @@
 A101--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/omererena11/resimler/main/Brochures/Brochures/A101/AllOfA101/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-BİM--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/omererena11/resimler/main/Brochures/Brochures/BIM/AllOfBim/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
+CİM--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/omererena11/resimler/main/Brochures/Brochures/BIM/AllOfBim/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
 ÇAĞRI--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/omererena11/resimler/main/Brochures/Brochures/CAGRI/AllOfCagri/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
 CARREFOUR--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/omererena11/resimler/main/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/5ee7b895-1085-4717-86c5-88a927922453%20
 GRATIS--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/omererena11/resimler/main/Brochures/Brochures/GRATIS/AllOfGratis/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
