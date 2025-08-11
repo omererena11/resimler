@@ -1,12 +1,12 @@
-A101--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/A101/AllOfA101/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-BİM--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/BIM/AllOfBim/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-ÇAĞRI--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/CAGRI/AllOfCagri/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-CARREFOURSA--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-GRATIS--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/GRATIS/AllOfGratis/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-HAKMAR--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/HAKMAR/AllOfHakmar/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-HAPPY CENTER--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/HAPPY%20CENTER/AllOfHappyCenter/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-METRO--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/METRO/AllOfMetro/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-MİGROS--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/MIGROS/AllOfMigros/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-ÖZ KURUŞLAR--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/OZKURUSLAR/AllOfOzkuruslar/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-ŞOK--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/SOK/AllOfSok/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
-TÜRKİYE TARIM KREDİ KOOP.--https://mozilla.github.io/pdf.js/web/viewer.html?file=https://resimler-211.pages.dev/Brochures/Brochures/TARIM%20KREDI%20KOOP/AllOfTarimKredi/5ee7b895-1085-4717-86c5-88a927922453%20(1).pdf
+A101--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/A101/AllOfA101/A101ALL.pdf?v=
+BİM--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/BIM/AllOfBim/BIMALL.pdf?v=
+ÇAĞRI--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/CAGRI/AllOfCagri/CAGRIALL.pdf?v=
+CARREFOURSA--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/CARREFOUR_ALL.pdf?v=
+GRATIS--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/GRATIS/AllOfGratis/GRATIS_ALL.pdf?v=
+HAKMAR--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/HAKMAR/AllOfHakmar/HAKMAR_ALL.pdf?v=
+HAPPY CENTER--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/HAPPY_CENTER/AllOfHappyCenter/HAPPYCENTER_ALL.pdf?v=
+METRO--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/METRO/AllOfMetro/METRO_ALL.pdf?v=
+MİGROS--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/MIGROS/AllOfMigros/MIGROS_ALL.pdf?v=
+ÖZ KURUŞLAR--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/OZKURUSLAR/AllOfOzkuruslar/OZKURUSLAR_ALL.pdf?v=
+ŞOK--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/SOK/AllOfSok/SOK_ALL.pdf?v=
+TÜRKİYE TARIM KREDİ KOOP.--https://docs.google.com/gview?embedded=true&url=https://www.oeappstudio.com/Brochures/Brochures/TARIM_KREDI_KOOP/AllOfTarimKredi/TARIM_ALL.pdf?v=
