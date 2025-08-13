@@ -1,12 +1,12 @@
-A101--https://oeappstudio.b-cdn.net/Brochures/Brochures/A101/AllOfA101/A101ALL.pdf?v=
-BİM--https://oeappstudio.b-cdn.net/Brochures/Brochures/BIM/AllOfBim/BIMALL.pdf?v=
-ÇAĞRI--https://oeappstudio.b-cdn.net/Brochures/Brochures/CAGRI/AllOfCagri/CAGRIALL.pdf?v=
-CARREFOURSA--https://oeappstudio.b-cdn.net/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/CARREFOUR_ALL.pdf?v=
-GRATIS--https://oeappstudio.b-cdn.net/Brochures/Brochures/GRATIS/AllOfGratis/GRATIS_ALL.pdf?v=
-HAKMAR--https://oeappstudio.b-cdn.net/Brochures/Brochures/HAKMAR/AllOfHakmar/HAKMAR_ALL.pdf?v=
-HAPPY CENTER--https://oeappstudio.b-cdn.net/Brochures/Brochures/HAPPY_CENTER/AllOfHappyCenter/HAPPYCENTER_ALL.pdf?v=
-METRO--https://oeappstudio.b-cdn.net/Brochures/Brochures/METRO/AllOfMetro/METRO_ALL.pdf?v=
-MİGROS--https://oeappstudio.b-cdn.net/Brochures/Brochures/MIGROS/AllOfMigros/MIGROS_ALL.pdf?v=
-ÖZ KURUŞLAR--https://oeappstudio.b-cdn.net/Brochures/Brochures/OZKURUSLAR/AllOfOzkuruslar/OZKURUSLAR_ALL.pdf?v=
-BİZİM TOPTAN MARKET--https://oeappstudio.b-cdn.net/Brochures/Brochures/BIZIM_TOPTAN/AllOfBIZIM/BIZIM_ALL.pdf?v=
-SOK--https://oeappstudio.b-cdn.net/Brochures/Brochures/SOK/AllOfSok/SOK_ALL.pdf?v=
+A101--https://oeappstudio.b-cdn.net/Brochures/Brochures/A101/AllOfA101/A101ALL.pdf
+BİM--https://oeappstudio.b-cdn.net/Brochures/Brochures/BIM/AllOfBim/BIMALL.pdf
+ÇAĞRI--https://oeappstudio.b-cdn.net/Brochures/Brochures/CAGRI/AllOfCagri/CAGRIALL.pdf
+CARREFOURSA--https://oeappstudio.b-cdn.net/Brochures/Brochures/CARREFOURSA/AllOfCarrefoursa/CARREFOUR_ALL.pdf
+GRATIS--https://oeappstudio.b-cdn.net/Brochures/Brochures/GRATIS/AllOfGratis/GRATIS_ALL.pdf
+HAKMAR--https://oeappstudio.b-cdn.net/Brochures/Brochures/HAKMAR/AllOfHakmar/HAKMAR_ALL.pdf
+HAPPY CENTER--https://oeappstudio.b-cdn.net/Brochures/Brochures/HAPPY_CENTER/AllOfHappyCenter/HAPPYCENTER_ALL.pdf
+METRO--https://oeappstudio.b-cdn.net/Brochures/Brochures/METRO/AllOfMetro/METRO_ALL.pdf
+MİGROS--https://oeappstudio.b-cdn.net/Brochures/Brochures/MIGROS/AllOfMigros/MIGROS_ALL.pdf
+ÖZ KURUŞLAR--https://oeappstudio.b-cdn.net/Brochures/Brochures/OZKURUSLAR/AllOfOzkuruslar/OZKURUSLAR_ALL.pdf
+BİZİM TOPTAN MARKET--https://oeappstudio.b-cdn.net/Brochures/Brochures/BIZIM_TOPTAN/AllOfBIZIM/BIZIM_ALL.pdf
+SOK--https://oeappstudio.b-cdn.net/Brochures/Brochures/SOK/AllOfSok/SOK_ALL.pdf
