@@ -3,6 +3,7 @@ https://oeappstudio.b-cdn.net/Brochures/Brochures/A101/a101_2/A101_2.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/A101/a101_3/A101_3.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/BIM/bim1/BIM_1.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/BIM/bim2/BIM_2.webp?v=
+https://oeappstudio.b-cdn.net/Brochures/Brochures/BIM/bim3/BIM_3.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/BIZIM_TOPTAN/BIZIM.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/CAGRI/cagri1/CAGRI_1.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/CAGRI/cagri2/CAGRI_2.webp?v=
@@ -21,5 +22,4 @@ https://oeappstudio.b-cdn.net/Brochures/Brochures/OZKURUSLAR/ozkuruslar1/OZKURUS
 https://oeappstudio.b-cdn.net/Brochures/Brochures/OZKURUSLAR/ozkuruslar2/OZKURUSLAR_2.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/SOK/sok1/SOK_1.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/SOK/sok2/SOK_2.webp?v=
-https://oeappstudio.b-cdn.net/Brochures/Brochures/SOK/sok3/SOK_3.webp?v=
 https://oeappstudio.b-cdn.net/Brochures/Brochures/SOK/sok3/SOK_3.webp?v=
