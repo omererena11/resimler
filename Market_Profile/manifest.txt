@@ -1,5 +1,5 @@
-https://resimler-211.pages.dev/Market_Profile/A101.png?v=20250831185916
-https://resimler-211.pages.dev/Market_Profile/bim.png?v=20250831185916
-https://resimler-211.pages.dev/Market_Profile/metro.png?v=20250831185916
-https://resimler-211.pages.dev/Market_Profile/migros.png?v=20250831185916
-https://resimler-211.pages.dev/Market_Profile/sok.png?v=20250831185916
+https://resimler-211.pages.dev/Market_Profile/A101.png
+https://resimler-211.pages.dev/Market_Profile/bim.png
+https://resimler-211.pages.dev/Market_Profile/metro.png
+https://resimler-211.pages.dev/Market_Profile/migros.png
+https://resimler-211.pages.dev/Market_Profile/sok.png
