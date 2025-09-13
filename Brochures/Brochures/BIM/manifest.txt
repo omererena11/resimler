@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/9aef5c2c-8dbb-4649-9014-1a64ae4ee1bd.webp?v=1757745832
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/9b246071-3451-43f9-945d-ff0ea42d5c11.webp?v=1757745842
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/b736e8b4-051a-4462-a77c-3c8852ca3f18.webp?v=1757745832
@@ -50,7 +49,6 @@ https://resimler-211.pages.dev/Brochures/Brochures/BIM/afisler.aspx_042.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/afisler.aspx_043.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/afisler.aspx_044.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/afisler.aspx_045.jpg
-=======
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto,quality=85/https://cdn1.bim.com.tr/uploads/afisler/e1456355-233e-4e2c-8a57-b3e04a70ad3e.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto,quality=85/https://cdn1.bim.com.tr/uploads/afisler/cbc2f25b-c893-4c5c-8458-a3fa41e9233f.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto,quality=85/https://cdn1.bim.com.tr/uploads/afisler/0565388b-6c65-466b-9265-66b1ad29f29c.jpg
@@ -97,4 +95,3 @@ https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto,quality=85/https://cdn1.bim.com.tr/uploads/afisler/a9346aa6-9858-4dce-b766-a7f40ecdba62.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto,quality=85/https://cdn1.bim.com.tr/uploads/afisler/4587bc86-fbee-4ef6-a0dd-5eae0b5281bd.jpg
 https://resimler-211.pages.dev/Brochures/Brochures/BIM/cdn-cgi/image/format=auto,quality=85/https://cdn1.bim.com.tr/uploads/afisler/155a4ae3-cc62-4b2d-9fac-9942187aa30f.jpg
->>>>>>> d34b1109ef85371c686db1da4600ab55b9e7f612
