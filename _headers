@@ -1,0 +1,10 @@
+/Brochures/Brochures/*/*.webp
+  Cache-Control: public, max-age=0, must-revalidate
+
+# jpg/png de varsa aç:
+# /Brochures/Brochures/*/*.jpg
+#   Cache-Control: public, max-age=0, must-revalidate
+# /Brochures/Brochures/*/*.jpeg
+#   Cache-Control: public, max-age=0, must-revalidate
+# /Brochures/Brochures/*/*.png
+#   Cache-Control: public, max-age=0, must-revalidate
