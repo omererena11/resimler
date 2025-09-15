@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gizlilik Politikası - Güncel Market Bültenleri</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+    h1, h2 { color: #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>Gizlilik Politikası</h1>
+  <p><strong>MarketBülteni</strong> uygulaması OE Apps Studio tarafından geliştirilmiştir. Bu gizlilik politikası, uygulamamızın kullanıcılarından hangi verileri topladığını, nasıl kullandığını ve koruduğunu açıklamaktadır.</p>
+
+  <h2>Toplanan Veriler</h2>
+  <ul>
+    <li>Cihaz bilgileri (işletim sistemi, cihaz modeli vb.)</li>
+    <li>Google AdMob aracılığıyla reklam verileri</li>
+    <li>OneSignal / Firebase aracılığıyla bildirim için cihaz kimliği</li>
+  </ul>
+
+  <h2>Verilerin Kullanımı</h2>
+  <ul>
+    <li>Kullanıcı deneyimini geliştirmek</li>
+    <li>Güncellemeler ve kampanyalar hakkında bildirim göndermek</li>
+    <li>Uygulama içi reklamları göstermek</li>
+  </ul>
+
+  <h2>Verilerin Paylaşımı</h2>
+  <p>Toplanan veriler yalnızca üçüncü taraf hizmet sağlayıcılarla (Google AdMob, Google Firebase, OneSignal) paylaşılmaktadır. Bu hizmetler kendi gizlilik politikalarına tabidir.</p>
+
+  <h2>Güvenlik</h2>
+  <p>Kullanıcı verileri yetkisiz erişime karşı korunmaktadır. Biz kullanıcıların kişisel verilerini üçüncü kişilere satmayız.</p>
+
+  <h2>Çocukların Gizliliği</h2>
+  <p>Uygulama genel kitle için tasarlanmıştır. Çocuklardan bilerek kişisel veri toplamayız. Eğer yanlışlıkla veri toplandığını düşünüyorsanız bizimle iletişime geçebilirsiniz.</p>
+
+  <h2>İletişim</h2>
+  <p>Herhangi bir sorunuz olursa lütfen bizimle iletişime geçin: <br>
+  📧 <a href="mailto:omereren1@gmail.com">omereren1@gmail.com</a></p>
+</body>
+</html>
