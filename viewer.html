@@ -19,15 +19,21 @@
       scroll-snap-align:start; background:#000;
     }
     .page img{ max-width:100%; max-height:100%; object-fit:contain; }
+
+    /* --- YAMA: ilk görsel hazır olana kadar tamamen gizle --- */
+    body.hide { visibility: hidden; }             /* sayfa ilk anda görünmez */
+    .page img { opacity: 0; transition: opacity .12s linear; }
+    .page img.ready { opacity: 1; }               /* yüklenen görseller nazikçe görünür */
+
     #counter{
       position:fixed; left:50%; bottom:12px; transform:translateX(-50%);
       background:rgba(0,0,0,.55); color:#fff;
       font:500 14px system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      padding:6px 10px; border-radius:999px;
+      padding:6px 10px; border-radius:999px; z-index: 10;
     }
   </style>
 </head>
-<body>
+<body class="hide">
   <div id="viewer"></div>
   <div id="counter">- / -</div>
 
@@ -39,22 +45,20 @@
   const xjParam = qs.get('xj') || '';    // JSON listesi
   const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10));
 
-  const viewer = document.getElementById('viewer');
+  const viewer  = document.getElementById('viewer');
   const counter = document.getElementById('counter');
+
   const decodePlus = s => decodeURIComponent((s || '').replace(/\+/g, '%20'));
 
-  // Metni satırlara böl
   function normalizeLines(txt){
     return txt.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
               .map(s => s.trim()).filter(Boolean);
   }
-  // x= için: hem "|" hem satır sonu destekle
   function splitExtraFromX(txt){
     const t = decodePlus(txt).trim();
     if(!t) return [];
     return t.split(/\r?\n|\|/).map(s => s.trim()).filter(Boolean);
   }
-  // xj= için JSON liste
   function parseJsonList(txt){
     if(!txt) return [];
     try{
@@ -63,16 +67,13 @@
     }catch{ return []; }
   }
 
-  // URL’leri birleştirirken tekrarları elerken kullanılacak anahtar:
-  // host + path (query ve hash görmezden gelinir)
+  // Aynı görseli (farklı ?v=… olsa da) tek saymak için host+path anahtarı
   function canonicalKey(u){
     try{
       const x = new URL(u);
       return (x.protocol + '//' + x.host + x.pathname).toLowerCase();
     }catch{ return (u||'').trim().toLowerCase(); }
   }
-
-  // Listeyi temizle: http/https dışını at, boşları at, tekrarları kaldır (ilk görüleni koru)
   function dedupeKeepFirst(arr){
     const out = [];
     const seen = new Set();
@@ -101,19 +102,54 @@
 
   function buildPages(urls){
     viewer.innerHTML = '';
-    urls.forEach(u => {
+
+    let firstShown = false;
+    const showAllIfStuck = setTimeout(() => {
+      // ola ki ilk resim hiç yüklenmezse, 1.5 sn sonra yine de göster
+      if (!firstShown) document.body.classList.remove('hide');
+    }, 1500);
+
+    urls.forEach((u, i) => {
       const page = document.createElement('div');
       page.className = 'page';
       const img = document.createElement('img');
-      img.loading = 'lazy';
-      img.decoding = 'async';
+
+      // YAMA: ilk hazır görsel geldiğinde tüm sayfayı görünür yap
+      img.onload = () => {
+        img.classList.add('ready');
+        if (!firstShown) {
+          firstShown = true;
+          document.body.classList.remove('hide');
+          clearTimeout(showAllIfStuck);
+        }
+      };
+      img.onerror = () => {
+        // hata durumunda da ilk hatada sayfayı kapalı tutmayalım
+        if (!firstShown) {
+          firstShown = true;
+          document.body.classList.remove('hide');
+          clearTimeout(showAllIfStuck);
+        }
+      };
+
+      // ilk sayfayı (startPage) "eager", diğerlerini lazy yükle
+      const eagerIndex = Math.min(Math.max(1, startPage), urls.length) - 1;
+      if (i === eagerIndex) {
+        img.loading = 'eager';
+        img.decoding = 'async';
+      } else {
+        img.loading = 'lazy';
+        img.decoding = 'async';
+      }
+
       img.src = u;
       page.appendChild(img);
       viewer.appendChild(page);
     });
+
     updateCounter();
     const idx = Math.min(Math.max(1, startPage), urls.length) - 1;
-    if(viewer.children[idx]) viewer.children[idx].scrollIntoView({behavior:'instant'});
+    if (viewer.children[idx]) viewer.children[idx].scrollIntoView({behavior:'instant'});
   }
 
   function updateCounter(){
@@ -125,18 +161,19 @@
   viewer.addEventListener('scroll', () => requestAnimationFrame(updateCounter), {passive:true});
 
   (async function init(){
-    // 1) Uygulamadan gelen ekler (HOMEPAGE_LIST2 → x/xj)
+    // 1) Uygulamadan gelen ekstra linkler (öncelik)
     const extrasJson = parseJsonList(xjParam);
     const extrasText = splitExtraFromX(xParam);
     const extras = dedupeKeepFirst([ ...extrasJson, ...extrasText ]);
 
-    // 2) Manifest satırları (BIM_MANIFEST → m)
+    // 2) Manifest satırları
     const lines = dedupeKeepFirst(await getManifestLines(mParam));
 
-    // 3) Birleştir: önce extras, sonra manifest; sonra tekrar bir dedupe
+    // 3) Birleştir: extras → manifest
     const urls = dedupeKeepFirst([ ...extras, ...lines ]);
 
     if(!urls.length){
+      document.body.classList.remove('hide');  // boş durumda karartmayı kaldır
       viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya link yok.</span></div>';
       updateCounter();
       return;
