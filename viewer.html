@@ -35,6 +35,14 @@
     animation:pulse 1.2s ease-in-out infinite;
   }
   @keyframes pulse{50%{filter:brightness(1.15)}}
+
+  /* Sayfa sayacı */
+  #counter{
+    position:fixed; left:12px; bottom:12px; z-index:10;
+    background:#111a; color:#ddd; padding:6px 10px; border-radius:10px;
+    font-size:14px; letter-spacing:.03em; backdrop-filter:blur(3px);
+  }
+
   #err{
     position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none;
   }
@@ -42,12 +50,14 @@
 </head>
 <body>
   <div id="viewer"></div>
+  <div id="counter" hidden>— / —</div>
   <div id="err"></div>
 
 <script>
 (function(){
   const $ = sel => document.querySelector(sel);
   const viewer = $("#viewer");
+  const counter = $("#counter");
   const errBox = $("#err");
 
   // ---------- Yardımcılar ----------
@@ -71,18 +81,18 @@
     console.warn(msg);
   }
 
-  // App Inventor / Kodular / Niotron WebViewString desteği (opsiyonel)
-  function getWVStr(){
-    try{
-      if (window.AppInventor && typeof window.AppInventor.getWebViewString === "function"){
-        return String(window.AppInventor.getWebViewString() || "");
-      }
-    }catch(e){}
-    return "";
+  function dedupe(arr){
+    const out=[]; const seen=new Set();
+    for(const u of arr){
+      const k = u.trim();
+      if(!k) continue;
+      if(!seen.has(k)){ seen.add(k); out.push(k); }
+    }
+    return out;
   }
 
   async function readManifest(src){
-    // src bir URL ise çek; değilse satır satır liste kabul et
+    // src URL ise çek; değilse satır satır liste kabul et
     if (isLink(src)) {
       try{
         const resp = await fetch(src, {cache:"no-store", mode:"cors"});
@@ -99,19 +109,10 @@
     }
   }
 
-  function dedupe(arr){
-    const out=[]; const seen=new Set();
-    for(const u of arr){
-      const k = u.trim();
-      if(!k) continue;
-      if(!seen.has(k)){ seen.add(k); out.push(k); }
-    }
-    return out;
-  }
-
-  function makePage(url){
+  function makePage(url, idx){
     const page = document.createElement("div");
     page.className = "page";
+    page.dataset.index = idx;
     const pz = document.createElement("div"); pz.className="pz";
     const sk = document.createElement("div"); sk.className="skel";
     const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
@@ -119,39 +120,64 @@
     return {page, img, sk};
   }
 
-  function lazyLoad(img, sk, io){
-    img.onload = ()=>{ sk.remove(); img.classList.add("ready"); };
-    img.onerror = ()=>{ sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
-    io.observe(img);
+  function loadImageAt(index){
+    const page = viewer.querySelector(`.page[data-index="${index}"]`);
+    if(!page) return;
+    const img = page.querySelector(".img");
+    const sk  = page.querySelector(".skel");
+    if(img.dataset.loaded) return; // zaten yüklendi
+    const src = img.getAttribute("data-src");
+    img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
+    img.onerror = ()=>{ sk && sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
+    img.src = src;
+    img.dataset.loaded = "1";
   }
 
-  // Kaydırma bittiğinde en yakın sayfaya oturt (fazla atlamayı engeller)
-  function attachSnapFix(){
-    let t; viewer.addEventListener("scroll", ()=>{
-      clearTimeout(t);
-      t = setTimeout(()=>{
-        const w = viewer.clientWidth;
-        const target = Math.round(viewer.scrollLeft / w) * w;
-        viewer.scrollTo({left:target, behavior:"smooth"});
-      }, 80);
-    });
+  function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+
+  // Görünür sayfayı bulup o ve komşularını yükle + sayacı güncelle
+  let total = 0;
+  function updateVisible(){
+    const w = viewer.clientWidth || 1;
+    const idx = clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
+    // aktif + komşular
+    loadImageAt(idx);
+    loadImageAt(idx-1);
+    loadImageAt(idx+1);
+    // sayaç
+    counter.hidden = false;
+    counter.textContent = `${idx+1} / ${total}`;
+  }
+
+  // Kaydırma bitince yakın sayfaya oturt (fazla atlamayı engeller)
+  let snapTimer;
+  function onScroll(){
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(()=>{
+      const w = viewer.clientWidth;
+      const target = Math.round(viewer.scrollLeft / w) * w;
+      viewer.scrollTo({left: target, behavior:"smooth"});
+      updateVisible();
+    }, 80);
   }
 
   // ---------- Başlat ----------
   (async function init(){
     let list = [];
+
     if (manifestURL) {
       list = await readManifest(manifestURL);
     } else {
-      // App side'dan WebViewString gelebilir (URL ya da satır listesi)
-      const wvs = getWVStr();
+      // WebViewString fallback: URL ya da satır listesi gelebilir
+      const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
+                    ? String(window.AppInventor.getWebViewString()||"")
+                    : "";
       if (wvs){
         try{
           const d = JSON.parse(wvs);
           if (d && d.manifest) list = await readManifest(String(d.manifest));
           if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
         }catch{
-          // JSON değilse düz metin/URL olarak dene
           if (isLink(wvs)) list = await readManifest(wvs);
           else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
         }
@@ -163,36 +189,29 @@
 
     if (!list.length){
       showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
-      // En azından boş bir sayfa olsun:
-      viewer.innerHTML = '<div class="page"><div class="pz"><div class="skel"></div></div></div>';
-      attachSnapFix();
+      // En azından boş bir sayfa
+      viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
+      total = 1;
+      updateVisible();
       return;
     }
 
-    // DOM’a ekle ve lazy-load hazırla
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const img = e.target;
-          io.unobserve(img);
-          const src = img.getAttribute("data-src");
-          // “önceki resim gözüktü” sorununu engellemek için src’yi tam bu anda veriyoruz
-          img.src = src;
-        }
-      });
-    }, {root:viewer, rootMargin:"50px", threshold:0.15});
-
+    // DOM’a ekle
     const frag = document.createDocumentFragment();
-    for(const url of list){
-      const {page, img, sk} = makePage(url);
+    list.forEach((url, i)=>{
+      const {page} = makePage(url, i);
       frag.appendChild(page);
-      lazyLoad(img, sk, io);
-    }
+    });
     viewer.appendChild(frag);
+    total = list.length;
 
-    attachSnapFix();
+    // İlk yüklemeler
+    updateVisible();
+
+    // Olaylar
+    viewer.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", ()=>{ updateVisible(); });
   })();
-
 })();
 </script>
 </body>
