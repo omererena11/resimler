@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Viewer</title>
   <style>
     html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; }
@@ -20,16 +23,16 @@
     }
     .page img{ max-width:100%; max-height:100%; object-fit:contain; }
 
-    /* --- YAMA: ilk görsel hazır olana kadar tamamen gizle --- */
-    body.hide { visibility: hidden; }             /* sayfa ilk anda görünmez */
-    .page img { opacity: 0; transition: opacity .12s linear; }
-    .page img.ready { opacity: 1; }               /* yüklenen görseller nazikçe görünür */
+    /* İlk görsel hazır olana kadar tamamen gizle (eski görüntü hiç görünmez) */
+    body.hide { visibility:hidden; }
+    .page img { opacity:0; transition:opacity .12s linear; }
+    .page img.ready { opacity:1; }
 
     #counter{
       position:fixed; left:50%; bottom:12px; transform:translateX(-50%);
       background:rgba(0,0,0,.55); color:#fff;
       font:500 14px system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      padding:6px 10px; border-radius:999px; z-index: 10;
+      padding:6px 10px; border-radius:999px; z-index:10;
     }
   </style>
 </head>
@@ -40,9 +43,9 @@
 <script>
 (function(){
   const qs = new URLSearchParams(location.search);
-  const mParam  = qs.get('m')  || '';    // manifest URL
-  const xParam  = qs.get('x')  || '';    // pipe veya satır satır metin
-  const xjParam = qs.get('xj') || '';    // JSON listesi
+  const mParam  = qs.get('m')  || '';
+  const xParam  = qs.get('x')  || '';
+  const xjParam = qs.get('xj') || '';
   const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10));
 
   const viewer  = document.getElementById('viewer');
@@ -66,114 +69,99 @@
       return Array.isArray(arr) ? arr.map(v => String(v||'').trim()).filter(Boolean) : [];
     }catch{ return []; }
   }
-
-  // Aynı görseli (farklı ?v=… olsa da) tek saymak için host+path anahtarı
   function canonicalKey(u){
     try{
       const x = new URL(u);
       return (x.protocol + '//' + x.host + x.pathname).toLowerCase();
     }catch{ return (u||'').trim().toLowerCase(); }
   }
-  function dedupeKeepFirst(arr){
-    const out = [];
-    const seen = new Set();
+  function dedupe(arr){
+    const out=[], seen=new Set();
     for(const raw of arr){
-      const u = (raw || '').trim();
+      const u=(raw||'').trim();
       if(!u || !/^https?:\/\//i.test(u)) continue;
-      const key = canonicalKey(u);
-      if(seen.has(key)) continue;
-      seen.add(key);
-      out.push(u);
+      const k=canonicalKey(u);
+      if(seen.has(k)) continue;
+      seen.add(k); out.push(u);
     }
     return out;
   }
-
   async function getManifestLines(url){
     if(!url) return [];
     try{
       const res = await fetch(url, {cache:'no-store'});
       const txt = await res.text();
       return normalizeLines(txt);
-    }catch(e){
-      console.error('Manifest alınamadı:', e);
-      return [];
-    }
+    }catch{ return []; }
+  }
+
+  function notifyReady(){
+    // App Inventor WebViewer'a "ready" sinyali gönder
+    try { if (window.AppInventor && window.AppInventor.setWebViewString)
+            window.AppInventor.setWebViewString("ready"); } catch(e){}
   }
 
   function buildPages(urls){
     viewer.innerHTML = '';
 
     let firstShown = false;
-    const showAllIfStuck = setTimeout(() => {
-      // ola ki ilk resim hiç yüklenmezse, 1.5 sn sonra yine de göster
-      if (!firstShown) document.body.classList.remove('hide');
+    const safety = setTimeout(() => {
+      if(!firstShown){ document.body.classList.remove('hide'); notifyReady(); }
     }, 1500);
 
-    urls.forEach((u, i) => {
-      const page = document.createElement('div');
-      page.className = 'page';
-      const img = document.createElement('img');
+    const eagerIdx = Math.min(Math.max(1, startPage), urls.length) - 1;
 
-      // YAMA: ilk hazır görsel geldiğinde tüm sayfayı görünür yap
-      img.onload = () => {
+    urls.forEach((u,i)=>{
+      const page=document.createElement('div'); page.className='page';
+      const img=document.createElement('img');
+
+      img.onload=()=>{
         img.classList.add('ready');
-        if (!firstShown) {
-          firstShown = true;
+        if(!firstShown){
+          firstShown=true;
           document.body.classList.remove('hide');
-          clearTimeout(showAllIfStuck);
+          notifyReady();
+          clearTimeout(safety);
         }
       };
-      img.onerror = () => {
-        // hata durumunda da ilk hatada sayfayı kapalı tutmayalım
-        if (!firstShown) {
-          firstShown = true;
+      img.onerror=()=>{
+        if(!firstShown){
+          firstShown=true;
           document.body.classList.remove('hide');
-          clearTimeout(showAllIfStuck);
+          notifyReady();
+          clearTimeout(safety);
         }
       };
 
-      // ilk sayfayı (startPage) "eager", diğerlerini lazy yükle
-      const eagerIndex = Math.min(Math.max(1, startPage), urls.length) - 1;
-      if (i === eagerIndex) {
-        img.loading = 'eager';
-        img.decoding = 'async';
-      } else {
-        img.loading = 'lazy';
-        img.decoding = 'async';
-      }
+      img.decoding='async';
+      img.loading = (i===eagerIdx)?'eager':'lazy';
+      img.src=u;
 
-      img.src = u;
       page.appendChild(img);
       viewer.appendChild(page);
     });
 
     updateCounter();
-    const idx = Math.min(Math.max(1, startPage), urls.length) - 1;
-    if (viewer.children[idx]) viewer.children[idx].scrollIntoView({behavior:'instant'});
+    const el=viewer.children[eagerIdx];
+    if(el) el.scrollIntoView({behavior:'instant'});
   }
 
   function updateCounter(){
-    const pageWidth = viewer.clientWidth || 1;
-    const idx = Math.round(viewer.scrollLeft / pageWidth) + 1;
-    const total = viewer.children.length;
-    counter.textContent = total ? (idx + ' / ' + total) : '- / -';
+    const pw=viewer.clientWidth||1;
+    const idx=Math.round(viewer.scrollLeft/pw)+1;
+    const total=viewer.children.length;
+    counter.textContent = total ? (idx+' / '+total) : '- / -';
   }
-  viewer.addEventListener('scroll', () => requestAnimationFrame(updateCounter), {passive:true});
+  viewer.addEventListener('scroll', ()=>requestAnimationFrame(updateCounter), {passive:true});
 
   (async function init(){
-    // 1) Uygulamadan gelen ekstra linkler (öncelik)
-    const extrasJson = parseJsonList(xjParam);
-    const extrasText = splitExtraFromX(xParam);
-    const extras = dedupeKeepFirst([ ...extrasJson, ...extrasText ]);
-
-    // 2) Manifest satırları
-    const lines = dedupeKeepFirst(await getManifestLines(mParam));
-
-    // 3) Birleştir: extras → manifest
-    const urls = dedupeKeepFirst([ ...extras, ...lines ]);
+    const extras = dedupe([ ...parseJsonList(xjParam), ...splitExtraFromX(xParam) ]);
+    const lines  = dedupe(await getManifestLines(mParam));
+    const urls   = dedupe([ ...extras, ...lines ]);
 
     if(!urls.length){
-      document.body.classList.remove('hide');  // boş durumda karartmayı kaldır
+      document.body.classList.remove('hide');
+      notifyReady();
       viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya link yok.</span></div>';
       updateCounter();
       return;
