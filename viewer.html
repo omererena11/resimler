@@ -4,25 +4,18 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer • Carousel + Pinch Zoom v3</title>
+<title>Viewer • Carousel + Pinch Zoom (Stable)</title>
 <style>
   html,body{margin:0;height:100%;background:#000;color:#ddd;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-user-select:none;user-select:none;overflow:hidden}
   .app{position:relative;height:100%;width:100%}
-
-  /* görünür alan */
   .frame{position:absolute;inset:0;overflow:hidden;background:#000}
-
-  /* scroll yok, translateX ile sayfa değiştiriyoruz */
   .track{height:100%;display:flex;will-change:transform;transform:translateX(0);transition:transform .28s ease}
   .dragging .track{transition:none}
   .slide{min-width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;background:#000;position:relative;overflow:hidden;touch-action:none}
-
   .ph{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%, #1a1a1a 0 20%, #0a0a0a 60%);animation:pulse 1.2s ease-in-out infinite}
   @keyframes pulse{50%{filter:brightness(1.15)}}
-
   .img{max-width:100%;max-height:100%;object-fit:contain;background:#000;opacity:0;transition:opacity .2s ease;-webkit-user-drag:none;user-drag:none;will-change:transform;transform-origin:center center}
   .img.ready{opacity:1}
-
   .hud{position:absolute;left:12px;bottom:12px;background:#111a;border-radius:10px;padding:6px 10px;font-size:14px;backdrop-filter:blur(3px);z-index:5}
   .btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:64px;border:none;border-radius:12px;background:#111a;color:#ddd;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:5}
   .btn:active{filter:brightness(1.2)}
@@ -49,23 +42,74 @@
   const btnPrev = $("#btnPrev");
   const btnNext = $("#btnNext");
 
-  // -------- manifest --------
+  // ---------- Parametre / Veri Kaynağı ----------
   const qp = new URLSearchParams(location.search);
-  const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
-  const manifestURL = rawM ? safeDecode(rawM) : "";
-  function safeDecode(s){ try{ return decodeURIComponent(s);}catch{ return s||"";} }
+  const rawM   = qp.get("m")    || qp.get("manifest") || qp.get("u") || qp.get("url");
+  const rawSrc = qp.get("src"); // tek görsel
+  const rawLst = qp.get("list");// JSON array (encode edilmiş)
+  function safeDecode(s){ try{ return decodeURIComponent(s);}catch{ return s||""; } }
   function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
-  async function readManifest(src){
-    if(isLink(src)){
-      const resp = await fetch(src,{cache:"no-store",mode:"cors"});
-      if(!resp.ok) throw new Error("HTTP "+resp.status);
-      return (await resp.text()).split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-    }else{
-      return (src||"").split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+
+  async function getUrls(){
+    // 1) ?list=[...] JSON
+    if(rawLst){
+      try{ const arr = JSON.parse(safeDecode(rawLst)); return arr.filter(isLink); }catch{}
     }
+    // 2) ?src= tek URL
+    if(rawSrc && isLink(safeDecode(rawSrc))) return [safeDecode(rawSrc)];
+    // 3) ?m= manifest URL ya da satır listesi
+    if(rawM){
+      const m = safeDecode(rawM);
+      if(isLink(m)){
+        // CORS gerekebilir; olmazsa WebViewString kullan
+        try{
+          const resp = await fetch(m,{cache:"no-store",mode:"cors"});
+          if(!resp.ok) throw new Error("HTTP "+resp.status);
+          const text = await resp.text();
+          return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+        }catch(e){
+          console.warn("Manifest fetch hatası:", e.message);
+          // CORS engeli varsa boş dön
+          return [];
+        }
+      }else{
+        // satır-satır URL
+        return m.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+      }
+    }
+    // 4) WebViewString
+    try{
+      if(window.AppInventor && typeof window.AppInventor.getWebViewString==="function"){
+        const wvs = String(window.AppInventor.getWebViewString()||"");
+        if(wvs){
+          try{
+            const d = JSON.parse(wvs);
+            if(Array.isArray(d.list)) return d.list.filter(isLink);
+            if(d.manifest){
+              if(isLink(d.manifest)){
+                const r = await fetch(d.manifest,{cache:"no-store",mode:"cors"});
+                if(r.ok){
+                  return (await r.text()).split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+                }
+              }else{
+                return String(d.manifest).split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+              }
+            }
+          }catch{
+            // satır-satır URL
+            return wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+          }
+        }
+      }
+    }catch{}
+    // 5) fallback örnek
+    return [
+      "https://via.placeholder.com/1200x1800?text=Sayfa+1",
+      "https://via.placeholder.com/1200x1800?text=Sayfa+2"
+    ];
   }
 
-  // -------- carousel state --------
+  // ---------- Carousel State ----------
   let urls = [];
   let idx = 0;
   let W = window.innerWidth;
@@ -86,13 +130,13 @@
       img.onload = ()=>{ ph.remove(); img.classList.add("ready"); };
       img.onerror = ()=>{ ph.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
       s.appendChild(ph); s.appendChild(img);
-      attachPinchZoom(s, img, i); // index'i parametreyle veriyoruz → doğru state
+      attachPinchZoom(s, img, i);
       frag.appendChild(s);
     });
     track.innerHTML = ""; track.appendChild(frag);
   }
 
-  // Lazy: aktif ve komşular
+  // lazy
   function lazyAt(i){
     const slide = track.children[i]; if(!slide) return;
     const img = slide.querySelector(".img");
@@ -109,16 +153,13 @@
     lazyAround(idx);
   }
 
-  // -------- swipe (scroll yok) sadece frame'de --------
+  // ---------- Swipe (scroll yok) ----------
   function currentZoom(){ return (zoomStates.get(idx)?.scale || 1); }
-
   frame.addEventListener("pointerdown", e=>{
-    // yalnızca bir parmak ve zoom=1 iken sayfa sürükleme başlasın
-    if(!e.isPrimary || currentZoom()>1) return;
+    if(!e.isPrimary || currentZoom()>1) return; // zoom açıkken swipe yok
     frame.setPointerCapture(e.pointerId);
     dragging = true; app.classList.add("dragging");
-    startX = currX = e.clientX;
-    baseOffset = targetOf(idx);
+    startX = currX = e.clientX; baseOffset = targetOf(idx);
   });
   frame.addEventListener("pointermove", e=>{
     if(!dragging) return;
@@ -135,150 +176,193 @@
     const delta = currX - startX;
     const abs = Math.abs(delta);
     const threshold = Math.max(60, W*0.15);
-    if(abs >= threshold){
-      goTo(idx + (delta<0 ? 1 : -1));
-    }else{
-      goTo(idx); // geri otur
-    }
+    if(abs >= threshold) goTo(idx + (delta<0 ? 1 : -1));
+    else goTo(idx);
   }
   frame.addEventListener("pointerup", endSwipe);
   frame.addEventListener("pointercancel", endSwipe);
   frame.addEventListener("pointerleave", endSwipe);
 
-  // Butonlar
   btnPrev.addEventListener("click", ()=> goTo(idx-1));
   btnNext.addEventListener("click", ()=> goTo(idx+1));
-
-  // Resize
   window.addEventListener("resize", ()=>{ W = window.innerWidth; goTo(idx,false); });
 
-  // -------- Pinch Zoom --------
-  const zoomStates = new Map(); // index -> {scale, tx, ty, ...}
+  // ---------- Pinch Zoom (Pointer + Touch fallback) ----------
+  const zoomStates = new Map();
   function getZoomState(i){
     if(!zoomStates.has(i)){
-      zoomStates.set(i, {scale:1, tx:0, ty:0, pointers:new Map(), pinching:false, baseDist:0, lastCx:0, lastCy:0});
+      zoomStates.set(i, {scale:1, tx:0, ty:0, dragging:false, lx:0, ly:0,
+                         pointers:new Map(), pinching:false, baseDist:0, lastCx:0, lastCy:0});
     }
     return zoomStates.get(i);
   }
 
   // hassasiyet/limitler
-  const STEP_CAP_IN  = 0.12;   // tek olayda max +%12
-  const STEP_CAP_OUT = 0.08;   // tek olayda max -%8 (zoom-out daha yumuşak)
-  const PINCH_DIV_IN   = 340;  // açılırken
-  const PINCH_DIV_OUT  = 460;  // kapanırken daha yumuşak
-  const PINCH_START_THRESHOLD = 16; // pinch başlamadan önce gerekli min fark (px)
+  const STEP_CAP_IN  = 0.12;  // olay başına max +%12
+  const STEP_CAP_OUT = 0.08;  // olay başına max -%8 (zoom-out daha yumuşak)
+  const PINCH_DIV_IN   = 340; // açılırken
+  const PINCH_DIV_OUT  = 480; // kapanırken daha yumuşak
+  const PINCH_START_THRESHOLD = 16; // pinch başlama eşiği (px)
 
-  function attachPinchZoom(container, img, index){
-    function apply(z){
-      img.style.transform = `translate(${z.tx}px, ${z.ty}px) scale(${z.scale})`;
-    }
-    function clampTranslate(z){
-      const rect = container.getBoundingClientRect();
-      const vw = rect.width, vh = rect.height;
-      const extraX = (z.scale - 1) * (vw/2);
-      const extraY = (z.scale - 1) * (vh/2);
-      z.tx = clamp(z.tx, -extraX, extraX);
-      z.ty = clamp(z.ty, -extraY, extraY);
-      apply(z);
-    }
-
-    container.addEventListener("pointerdown", (e)=>{
-      // Pinch/zoom olayları slide içinde; swipe ile çakışmaması için,
-      // ikinci parmak geldiyse swipe başlamasın:
-      const z = getZoomState(index);
-      z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
-      if(z.pointers.size===2){
-        const [a,b] = Array.from(z.pointers.values());
-        z.baseDist = Math.hypot(b.x - a.x, b.y - a.y);
-        z.pinching = false; // eşik aşılana dek zoom yok
-        // frame'deki swipe'ın başlamasını engelle
-        e.stopPropagation();
-      }
-      // tek parmak + zoom>1 → pan
-      if(z.pointers.size===1 && z.scale>1){
-        z.dragging = true; z.lx = e.clientX; z.ly = e.clientY;
-        e.stopPropagation();
-      }
-    });
-
-    container.addEventListener("pointermove", (e)=>{
-      const z = getZoomState(index);
-      if(z.pointers.has(e.pointerId)){
-        z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
-      }
-
-      // Pinch (iki parmak)
-      if(z.pointers.size===2){
-        const [a,b] = Array.from(z.pointers.values());
-        const dx = b.x - a.x, dy = b.y - a.y;
-        const dist = Math.hypot(dx,dy);
-        const deltaAbs = Math.abs(dist - z.baseDist);
-
-        if(!z.pinching){
-          if (deltaAbs >= PINCH_START_THRESHOLD){
-            z.pinching = true;
-            z.lastDist = dist;
-            const rect = container.getBoundingClientRect();
-            z.lastCx = (a.x + b.x)/2 - rect.left - rect.width/2 + z.tx;
-            z.lastCy = (a.y + b.y)/2 - rect.top  - rect.height/2 + z.ty;
-          } else {
-            e.stopPropagation(); // pinch hazırlığı, swipe tetiklenmesin
-            return;
-          }
-        }
-
-        const delta = dist - (z.lastDist ?? dist);
-        z.lastDist = dist;
-
-        const prev = z.scale;
-        const isOut = delta < 0;
-        const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
-        const rawFactor = 1 + (delta / divisor);
-        const cap       = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
-        const factor    = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
-        const next      = clamp(prev * factor, 1, 4);
-        if(next !== prev){
-          z.tx = z.lastCx - (z.lastCx - z.tx) * (next/prev);
-          z.ty = z.lastCy - (z.lastCy - z.ty) * (next/prev);
-          z.scale = next;
-          apply(z); clampTranslate(z);
-        }
-        e.stopPropagation(); // pinch varken swipe yok
-      }
-
-      // Pan (tek parmak) — yalnız zoom>1
-      if(z.dragging && z.scale>1){
-        const dx = e.clientX - z.lx;
-        const dy = e.clientY - z.ly;
-        z.lx = e.clientX; z.ly = e.clientY;
-        z.tx += dx; z.ty += dy;
-        clampTranslate(z);
-        e.stopPropagation();
-      }
-    });
-
-    function endPointer(e){
-      const z = getZoomState(index);
-      if(z.pointers.has(e.pointerId)) z.pointers.delete(e.pointerId);
-      if(z.pointers.size<2){ z.pinching = false; z.lastDist = null; }
-      if(z.dragging){
-        z.dragging = false;
-        clampTranslate(z);
-      }
-      if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; apply(z); }
-    }
-    container.addEventListener("pointerup", endPointer);
-    container.addEventListener("pointercancel", endPointer);
-    container.addEventListener("pointerleave", endPointer);
+  function applyTransform(img, z){ img.style.transform = `translate(${z.tx}px, ${z.ty}px) scale(${z.scale})`; }
+  function clampTranslate(container, img, z){
+    const rect = container.getBoundingClientRect();
+    const vw = rect.width, vh = rect.height;
+    const extraX = (z.scale - 1) * (vw/2);
+    const extraY = (z.scale - 1) * (vh/2);
+    z.tx = clamp(z.tx, -extraX, extraX);
+    z.ty = clamp(z.ty, -extraY, extraY);
+    applyTransform(img,z);
   }
 
-  // -------- init --------
-  (async function init(){
-    try{
-      urls = await readManifest(manifestURL);
-    }catch(e){
-      urls = []; console.warn(e);
+  function attachPinchZoom(container, img, index){
+    if ('PointerEvent' in window) {
+      // ----- POINTER EVENTS -----
+      container.addEventListener("pointerdown", (e)=>{
+        container.setPointerCapture(e.pointerId);
+        const z = getZoomState(index);
+        z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+        if(z.pointers.size===2){
+          const [a,b] = Array.from(z.pointers.values());
+          z.baseDist = Math.hypot(b.x - a.x, b.y - a.y);
+          z.pinching = false; // eşik aşılmadan zoom yok
+        }
+        if(z.pointers.size===1 && z.scale>1){
+          z.dragging = true; z.lx = e.clientX; z.ly = e.clientY;
+        }
+      });
+
+      container.addEventListener("pointermove", (e)=>{
+        const z = getZoomState(index);
+        if(z.pointers.has(e.pointerId)){
+          z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+        }
+        // Pinch
+        if(z.pointers.size===2){
+          const [a,b] = Array.from(z.pointers.values());
+          const dx=b.x-a.x, dy=b.y-a.y, dist=Math.hypot(dx,dy);
+          const deltaAbs = Math.abs(dist - z.baseDist);
+          if(!z.pinching){
+            if(deltaAbs >= PINCH_START_THRESHOLD){
+              z.pinching = true; z.lastDist = dist;
+              const r = container.getBoundingClientRect();
+              z.lastCx = (a.x+b.x)/2 - r.left - r.width/2 + z.tx;
+              z.lastCy = (a.y+b.y)/2 - r.top  - r.height/2 + z.ty;
+            } else { return; }
+          }
+          const delta = dist - (z.lastDist ?? dist);
+          z.lastDist = dist;
+          const prev = z.scale;
+          const isOut = delta < 0;
+          const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
+          const rawFactor = 1 + (delta / divisor);
+          const cap = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
+          const factor = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+          const next = clamp(prev * factor, 1, 4);
+          if(next !== prev){
+            z.tx = z.lastCx - (z.lastCx - z.tx) * (next/prev);
+            z.ty = z.lastCy - (z.lastCy - z.ty) * (next/prev);
+            z.scale = next;
+            applyTransform(img,z); clampTranslate(container,img,z);
+          }
+        }
+        // Pan
+        if(z.dragging && z.scale>1){
+          const dx=e.clientX - z.lx, dy=e.clientY - z.ly;
+          z.lx=e.clientX; z.ly=e.clientY;
+          z.tx += dx; z.ty += dy;
+          clampTranslate(container,img,z);
+        }
+      });
+
+      function endPtr(e){
+        const z = getZoomState(index);
+        if(z.pointers.has(e.pointerId)) z.pointers.delete(e.pointerId);
+        if(z.pointers.size<2){ z.pinching=false; z.lastDist=null; }
+        if(z.dragging){ z.dragging=false; clampTranslate(container,img,z); }
+        if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; applyTransform(img,z); }
+      }
+      container.addEventListener("pointerup", endPtr);
+      container.addEventListener("pointercancel", endPtr);
+      container.addEventListener("pointerleave", endPtr);
+
+    } else {
+      // ----- TOUCH EVENTS FALLBACK -----
+      let touches = [];
+      container.addEventListener("touchstart", (e)=>{
+        if(e.targetTouches.length===1){
+          const z = getZoomState(index);
+          if(z.scale>1){
+            z.dragging=true; z.lx=e.targetTouches[0].clientX; z.ly=e.targetTouches[0].clientY;
+          }
+        } else if(e.targetTouches.length===2){
+          const t0=e.targetTouches[0], t1=e.targetTouches[1];
+          const z = getZoomState(index);
+          z.baseDist = Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
+          z.pinching=false;
+          e.preventDefault();
+        }
+      }, {passive:false});
+
+      container.addEventListener("touchmove", (e)=>{
+        if(e.targetTouches.length===2){
+          const t0=e.targetTouches[0], t1=e.targetTouches[1];
+          const dist=Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
+          const z = getZoomState(index);
+          const deltaAbs=Math.abs(dist - z.baseDist);
+          if(!z.pinching){
+            if(deltaAbs >= PINCH_START_THRESHOLD){
+              z.pinching=true; z.lastDist=dist;
+              const r = container.getBoundingClientRect();
+              z.lastCx = (t0.clientX+t1.clientX)/2 - r.left - r.width/2 + z.tx;
+              z.lastCy = (t0.clientY+t1.clientY)/2 - r.top  - r.height/2 + z.ty;
+            } else { return; }
+          }
+          const delta = dist - (z.lastDist ?? dist);
+          z.lastDist = dist;
+          const prev = z.scale;
+          const isOut = delta < 0;
+          const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
+          const rawFactor = 1 + (delta / divisor);
+          const cap = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
+          const factor = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+          const next = clamp(prev * factor, 1, 4);
+          if(next !== prev){
+            z.tx = z.lastCx - (z.lastCx - z.tx) * (next/prev);
+            z.ty = z.lastCy - (z.lastCy - z.ty) * (next/prev);
+            z.scale = next;
+            applyTransform(img,z); clampTranslate(container,img,z);
+          }
+          e.preventDefault();
+        } else if(e.targetTouches.length===1){
+          const z = getZoomState(index);
+          if(z.dragging && z.scale>1){
+            const t=e.targetTouches[0];
+            const dx=t.clientX - z.lx, dy=t.clientY - z.ly;
+            z.lx=t.clientX; z.ly=t.clientY;
+            z.tx += dx; z.ty += dy;
+            clampTranslate(container,img,z);
+            e.preventDefault();
+          }
+        }
+      }, {passive:false});
+
+      container.addEventListener("touchend", ()=>{
+        const z = getZoomState(index);
+        z.dragging=false; z.pinching=false; z.lastDist=null;
+        if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; applyTransform(img,z); }
+      });
+      container.addEventListener("touchcancel", ()=>{
+        const z = getZoomState(index);
+        z.dragging=false; z.pinching=false; z.lastDist=null;
+        if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; applyTransform(img,z); }
+      });
     }
+  }
+
+  // ---------- Başlat ----------
+  (async function init(){
+    urls = await getUrls();
     if(!urls.length){
       track.innerHTML = '<div class="slide"><div class="ph"></div></div>';
       counter.textContent = "0 / 0";
@@ -287,14 +371,14 @@
     }
     buildSlides(urls);
 
-    // İlk görseli hemen yükle (ilk ekranda boş kalmasın)
-    const firstImg = track.querySelector(".slide .img");
-    if(firstImg && !firstImg.dataset.loaded){
-      firstImg.src = firstImg.dataset.src; firstImg.dataset.loaded="1";
-      firstImg.addEventListener("load", ()=> firstImg.classList.add("ready"));
+    // İLK SAYFA → HEMEN YÜKLE (tıklama beklemeden) ✅
+    const first = track.querySelector(".slide .img");
+    if(first && !first.dataset.loaded){
+      first.src = first.dataset.src; first.dataset.loaded = "1";
+      first.addEventListener("load", ()=> first.classList.add("ready"));
     }
 
-    goTo(0,false); // hizala ve komşuları lazy-yükle
+    goTo(0,false); // hizala + komşuları lazy yükle
   })();
 })();
 </script>
