@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer • Carousel + Pinch Zoom</title>
+<title>Viewer • Carousel + Pinch Zoom v3</title>
 <style>
   html,body{margin:0;height:100%;background:#000;color:#ddd;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-user-select:none;user-select:none;overflow:hidden}
   .app{position:relative;height:100%;width:100%}
@@ -12,10 +12,10 @@
   /* görünür alan */
   .frame{position:absolute;inset:0;overflow:hidden;background:#000}
 
-  /* scroll yok: slide’lar translateX ile ilerler */
+  /* scroll yok, translateX ile sayfa değiştiriyoruz */
   .track{height:100%;display:flex;will-change:transform;transform:translateX(0);transition:transform .28s ease}
   .dragging .track{transition:none}
-  .slide{min-width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;background:#000;position:relative;overflow:hidden;touch-action:none} /* tüm kontrol bizde */
+  .slide{min-width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;background:#000;position:relative;overflow:hidden;touch-action:none}
 
   .ph{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%, #1a1a1a 0 20%, #0a0a0a 60%);animation:pulse 1.2s ease-in-out infinite}
   @keyframes pulse{50%{filter:brightness(1.15)}}
@@ -27,13 +27,11 @@
   .btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:64px;border:none;border-radius:12px;background:#111a;color:#ddd;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:5}
   .btn:active{filter:brightness(1.2)}
   .prev{left:8px}.next{right:8px}
-
-  /* zoom’da sayfa okları istersen kapatabilirsin; şimdilik hep açık */
 </style>
 </head>
 <body>
 <div class="app" id="app">
-  <div class="frame">
+  <div class="frame" id="frame">
     <div class="track" id="track"></div>
   </div>
   <button class="btn prev" id="btnPrev" aria-label="Önceki">‹</button>
@@ -44,13 +42,14 @@
 <script>
 (function(){
   const $ = s => document.querySelector(s);
-  const app = $("#app");
+  const app   = $("#app");
+  const frame = $("#frame");
   const track = $("#track");
   const counter = $("#counter");
   const btnPrev = $("#btnPrev");
   const btnNext = $("#btnNext");
 
-  // -------- manifest alma --------
+  // -------- manifest --------
   const qp = new URLSearchParams(location.search);
   const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
   const manifestURL = rawM ? safeDecode(rawM) : "";
@@ -71,6 +70,7 @@
   let idx = 0;
   let W = window.innerWidth;
   let dragging = false, startX=0, currX=0, baseOffset=0;
+
   const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
   const setCounter = ()=> counter.textContent = `${(idx+1)} / ${urls.length}`;
   const setTransform = (x)=> track.style.transform = `translateX(${x}px)`;
@@ -86,12 +86,13 @@
       img.onload = ()=>{ ph.remove(); img.classList.add("ready"); };
       img.onerror = ()=>{ ph.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
       s.appendChild(ph); s.appendChild(img);
-      attachPinchZoom(s, img);   // <— her slide’a pinch-zoom bağla
+      attachPinchZoom(s, img, i); // index'i parametreyle veriyoruz → doğru state
       frag.appendChild(s);
     });
     track.innerHTML = ""; track.appendChild(frag);
   }
 
+  // Lazy: aktif ve komşular
   function lazyAt(i){
     const slide = track.children[i]; if(!slide) return;
     const img = slide.querySelector(".img");
@@ -108,25 +109,27 @@
     lazyAround(idx);
   }
 
-  // -------- swipe (scroll yok) --------
-  function onDown(clientX){
-    // aktif slide zoom’da ise sayfa kaydırma devre dışı
-    const z = getZoomState(idx);
-    if (z.scale > 1) return;  // zoom açıkken sayfa kaydırma yok
+  // -------- swipe (scroll yok) sadece frame'de --------
+  function currentZoom(){ return (zoomStates.get(idx)?.scale || 1); }
+
+  frame.addEventListener("pointerdown", e=>{
+    // yalnızca bir parmak ve zoom=1 iken sayfa sürükleme başlasın
+    if(!e.isPrimary || currentZoom()>1) return;
+    frame.setPointerCapture(e.pointerId);
     dragging = true; app.classList.add("dragging");
-    startX = currX = clientX;
+    startX = currX = e.clientX;
     baseOffset = targetOf(idx);
-  }
-  function onMove(clientX){
+  });
+  frame.addEventListener("pointermove", e=>{
     if(!dragging) return;
-    currX = clientX;
+    currX = e.clientX;
     const delta = currX - startX;
     const atStart = (idx===0 && delta>0);
     const atEnd   = (idx===urls.length-1 && delta<0);
     const damp = (atStart || atEnd) ? 0.35 : 1;
     setTransform(baseOffset + delta * damp);
-  }
-  function onUp(){
+  });
+  function endSwipe(){
     if(!dragging) return;
     dragging = false; app.classList.remove("dragging");
     const delta = currX - startX;
@@ -135,44 +138,37 @@
     if(abs >= threshold){
       goTo(idx + (delta<0 ? 1 : -1));
     }else{
-      goTo(idx); // geri oturt
+      goTo(idx); // geri otur
     }
   }
+  frame.addEventListener("pointerup", endSwipe);
+  frame.addEventListener("pointercancel", endSwipe);
+  frame.addEventListener("pointerleave", endSwipe);
 
-  // pointer eventleri track üzerinde
-  track.addEventListener("pointerdown", e=>{ track.setPointerCapture(e.pointerId); onDown(e.clientX); });
-  track.addEventListener("pointermove", e=> onMove(e.clientX));
-  track.addEventListener("pointerup",   onUp);
-  track.addEventListener("pointercancel", onUp);
-  track.addEventListener("pointerleave", onUp);
-
-  // butonlar
+  // Butonlar
   btnPrev.addEventListener("click", ()=> goTo(idx-1));
   btnNext.addEventListener("click", ()=> goTo(idx+1));
 
-  // resize
+  // Resize
   window.addEventListener("resize", ()=>{ W = window.innerWidth; goTo(idx,false); });
 
-  // -------- Pinch Zoom (yalnız parmakla) --------
-  // her slide için ayrı state
-  const zoomStates = new Map();
+  // -------- Pinch Zoom --------
+  const zoomStates = new Map(); // index -> {scale, tx, ty, ...}
   function getZoomState(i){
     if(!zoomStates.has(i)){
       zoomStates.set(i, {scale:1, tx:0, ty:0, pointers:new Map(), pinching:false, baseDist:0, lastCx:0, lastCy:0});
     }
     return zoomStates.get(i);
   }
+
   // hassasiyet/limitler
-  const STEP_CAP_IN  = 0.12;  // tek olayda en fazla +%12
-  const STEP_CAP_OUT = 0.08;  // tek olayda en fazla -%8 (daha yumuşak out)
-  const PINCH_DIV_IN   = 340; // açılırken
-  const PINCH_DIV_OUT  = 460; // kapanırken daha yumuşak
-  const PINCH_START_THRESHOLD = 16; // pinch başlaması için gereken min fark (px)
+  const STEP_CAP_IN  = 0.12;   // tek olayda max +%12
+  const STEP_CAP_OUT = 0.08;   // tek olayda max -%8 (zoom-out daha yumuşak)
+  const PINCH_DIV_IN   = 340;  // açılırken
+  const PINCH_DIV_OUT  = 460;  // kapanırken daha yumuşak
+  const PINCH_START_THRESHOLD = 16; // pinch başlamadan önce gerekli min fark (px)
 
-  function attachPinchZoom(container, img){
-    const index = Array.prototype.indexOf.call(track.children, container);
-
-    // apply & clamp
+  function attachPinchZoom(container, img, index){
     function apply(z){
       img.style.transform = `translate(${z.tx}px, ${z.ty}px) scale(${z.scale})`;
     }
@@ -187,17 +183,21 @@
     }
 
     container.addEventListener("pointerdown", (e)=>{
-      container.setPointerCapture(e.pointerId);
+      // Pinch/zoom olayları slide içinde; swipe ile çakışmaması için,
+      // ikinci parmak geldiyse swipe başlamasın:
       const z = getZoomState(index);
       z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
       if(z.pointers.size===2){
         const [a,b] = Array.from(z.pointers.values());
         z.baseDist = Math.hypot(b.x - a.x, b.y - a.y);
-        z.pinching = false; // eşik aşılmadan zoom yok
+        z.pinching = false; // eşik aşılana dek zoom yok
+        // frame'deki swipe'ın başlamasını engelle
+        e.stopPropagation();
       }
-      // tek parmak ve zoom>1 ise: pan başlar
+      // tek parmak + zoom>1 → pan
       if(z.pointers.size===1 && z.scale>1){
         z.dragging = true; z.lx = e.clientX; z.ly = e.clientY;
+        e.stopPropagation();
       }
     });
 
@@ -207,23 +207,22 @@
         z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
       }
 
-      // pinch
+      // Pinch (iki parmak)
       if(z.pointers.size===2){
         const [a,b] = Array.from(z.pointers.values());
         const dx = b.x - a.x, dy = b.y - a.y;
         const dist = Math.hypot(dx,dy);
         const deltaAbs = Math.abs(dist - z.baseDist);
 
-        // eşik: parmaklar belirgin açılmadan/kapanmadan zoom yok
         if(!z.pinching){
           if (deltaAbs >= PINCH_START_THRESHOLD){
             z.pinching = true;
             z.lastDist = dist;
-            // pinch merkezi (ekranda sabitlenmek istenen nokta)
             const rect = container.getBoundingClientRect();
             z.lastCx = (a.x + b.x)/2 - rect.left - rect.width/2 + z.tx;
             z.lastCy = (a.y + b.y)/2 - rect.top  - rect.height/2 + z.ty;
           } else {
+            e.stopPropagation(); // pinch hazırlığı, swipe tetiklenmesin
             return;
           }
         }
@@ -235,39 +234,37 @@
         const isOut = delta < 0;
         const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
         const rawFactor = 1 + (delta / divisor);
-        const cap = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
-        const factor = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
-        const next = clamp(prev * factor, 1, 4);
+        const cap       = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
+        const factor    = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+        const next      = clamp(prev * factor, 1, 4);
         if(next !== prev){
-          // pinch merkezini sabit tutacak translasyon
           z.tx = z.lastCx - (z.lastCx - z.tx) * (next/prev);
           z.ty = z.lastCy - (z.lastCy - z.ty) * (next/prev);
           z.scale = next;
           apply(z); clampTranslate(z);
         }
+        e.stopPropagation(); // pinch varken swipe yok
       }
 
-      // pan (tek parmak) — sadece zoom>1
+      // Pan (tek parmak) — yalnız zoom>1
       if(z.dragging && z.scale>1){
         const dx = e.clientX - z.lx;
         const dy = e.clientY - z.ly;
         z.lx = e.clientX; z.ly = e.clientY;
         z.tx += dx; z.ty += dy;
         clampTranslate(z);
+        e.stopPropagation();
       }
     });
 
     function endPointer(e){
       const z = getZoomState(index);
       if(z.pointers.has(e.pointerId)) z.pointers.delete(e.pointerId);
-      if(z.pointers.size<2){
-        z.pinching = false; z.lastDist = null;
-      }
+      if(z.pointers.size<2){ z.pinching = false; z.lastDist = null; }
       if(z.dragging){
         z.dragging = false;
         clampTranslate(z);
       }
-      // zoom 1’e dönmüşse merkezlemeyi sıfırla
       if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; apply(z); }
     }
     container.addEventListener("pointerup", endPointer);
@@ -289,7 +286,15 @@
       return;
     }
     buildSlides(urls);
-    goTo(0,false);
+
+    // İlk görseli hemen yükle (ilk ekranda boş kalmasın)
+    const firstImg = track.querySelector(".slide .img");
+    if(firstImg && !firstImg.dataset.loaded){
+      firstImg.src = firstImg.dataset.src; firstImg.dataset.loaded="1";
+      firstImg.addEventListener("load", ()=> firstImg.classList.add("ready"));
+    }
+
+    goTo(0,false); // hizala ve komşuları lazy-yükle
   })();
 })();
 </script>
