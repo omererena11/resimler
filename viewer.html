@@ -1,173 +1,198 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Viewer</title>
-  <style>
-    html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; }
-    #viewer{
-      display:flex; width:100%; height:100%;
-      overflow-x:auto; overflow-y:hidden;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      scroll-behavior:smooth;
-    }
-    .page{
-      min-width:100vw; height:100vh;
-      display:flex; justify-content:center; align-items:center;
-      scroll-snap-align:start; background:#000;
-    }
-    .page img{ max-width:100%; max-height:100%; object-fit:contain; }
-
-    /* İlk görsel hazır olana kadar tamamen gizle (eski görüntü hiç görünmez) */
-    body.hide { visibility:hidden; }
-    .page img { opacity:0; transition:opacity .12s linear; }
-    .page img.ready { opacity:1; }
-
-    #counter{
-      position:fixed; left:50%; bottom:12px; transform:translateX(-50%);
-      background:rgba(0,0,0,.55); color:#fff;
-      font:500 14px system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      padding:6px 10px; border-radius:999px; z-index:10;
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes"/>
+<meta name="referrer" content="no-referrer"/>
+<title>Viewer</title>
+<style>
+  html, body{
+    margin:0; padding:0; height:100%; background:#000; overflow:hidden;
+    overscroll-behavior-x:contain; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  }
+  #viewer{
+    display:flex; width:100%; height:100%;
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth; position:relative;
+  }
+  .page{
+    min-width:100vw; height:100vh;
+    display:flex; justify-content:center; align-items:center;
+    scroll-snap-align:start; scroll-snap-stop:always; /* 👈 tek tek yakala */
+    background:#000; position:relative; overflow:hidden;
+  }
+  .pz{ width:100%; height:100%; display:flex; justify-content:center; align-items:center; position:relative; touch-action:none; }
+  .img{
+    max-width:100%; max-height:100%; object-fit:contain; background:#000;
+    opacity:0; transition:opacity .18s ease; /* önceki resmin “flash”ını engeller */
+  }
+  .img.ready{ opacity:1; }
+  .skel{
+    position:absolute; inset:0; background:
+      radial-gradient(circle at 50% 45%, #1a1a1a 0 20%, #0a0a0a 60%);
+    animation:pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse{50%{filter:brightness(1.15)}}
+  #err{
+    position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none;
+  }
+</style>
 </head>
-<body class="hide">
+<body>
   <div id="viewer"></div>
-  <div id="counter">- / -</div>
+  <div id="err"></div>
 
 <script>
 (function(){
-  const qs = new URLSearchParams(location.search);
-  const mParam  = qs.get('m')  || '';
-  const xParam  = qs.get('x')  || '';
-  const xjParam = qs.get('xj') || '';
-  const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10));
+  const $ = sel => document.querySelector(sel);
+  const viewer = $("#viewer");
+  const errBox = $("#err");
 
-  const viewer  = document.getElementById('viewer');
-  const counter = document.getElementById('counter');
+  // ---------- Yardımcılar ----------
+  const qp = new URLSearchParams(location.search);
+  const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
+  const rawX = qp.get("x") || qp.get("extra") || "";
+  const manifestURL = rawM ? safeDecode(rawM) : "";
+  const extraList = splitList(safeDecode(rawX));
 
-  const decodePlus = s => decodeURIComponent((s || '').replace(/\+/g, '%20'));
-
-  function normalizeLines(txt){
-    return txt.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
-              .map(s => s.trim()).filter(Boolean);
+  function safeDecode(s){ try{ return decodeURIComponent(s); }catch{ return s||""; } }
+  function splitList(s){
+    if(!s) return [];
+    return s.split(/\r?\n|\|/g).join(",").split(",")
+            .map(t=>t.trim()).filter(isLink);
   }
-  function splitExtraFromX(txt){
-    const t = decodePlus(txt).trim();
-    if(!t) return [];
-    return t.split(/\r?\n|\|/).map(s => s.trim()).filter(Boolean);
+  function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
+
+  function showErr(msg){
+    errBox.textContent = msg;
+    errBox.style.display = "block";
+    console.warn(msg);
   }
-  function parseJsonList(txt){
-    if(!txt) return [];
+
+  // App Inventor / Kodular / Niotron WebViewString desteği (opsiyonel)
+  function getWVStr(){
     try{
-      const arr = JSON.parse(decodePlus(txt));
-      return Array.isArray(arr) ? arr.map(v => String(v||'').trim()).filter(Boolean) : [];
-    }catch{ return []; }
+      if (window.AppInventor && typeof window.AppInventor.getWebViewString === "function"){
+        return String(window.AppInventor.getWebViewString() || "");
+      }
+    }catch(e){}
+    return "";
   }
-  function canonicalKey(u){
-    try{
-      const x = new URL(u);
-      return (x.protocol + '//' + x.host + x.pathname).toLowerCase();
-    }catch{ return (u||'').trim().toLowerCase(); }
+
+  async function readManifest(src){
+    // src bir URL ise çek; değilse satır satır liste kabul et
+    if (isLink(src)) {
+      try{
+        const resp = await fetch(src, {cache:"no-store", mode:"cors"});
+        if(!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+        return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+      }catch(e){
+        showErr("Manifest okunamadı: " + e.message);
+        return [];
+      }
+    } else {
+      // satır satır metin
+      return src.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+    }
   }
+
   function dedupe(arr){
-    const out=[], seen=new Set();
-    for(const raw of arr){
-      const u=(raw||'').trim();
-      if(!u || !/^https?:\/\//i.test(u)) continue;
-      const k=canonicalKey(u);
-      if(seen.has(k)) continue;
-      seen.add(k); out.push(u);
+    const out=[]; const seen=new Set();
+    for(const u of arr){
+      const k = u.trim();
+      if(!k) continue;
+      if(!seen.has(k)){ seen.add(k); out.push(k); }
     }
     return out;
   }
-  async function getManifestLines(url){
-    if(!url) return [];
-    try{
-      const res = await fetch(url, {cache:'no-store'});
-      const txt = await res.text();
-      return normalizeLines(txt);
-    }catch{ return []; }
+
+  function makePage(url){
+    const page = document.createElement("div");
+    page.className = "page";
+    const pz = document.createElement("div"); pz.className="pz";
+    const sk = document.createElement("div"); sk.className="skel";
+    const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
+    pz.appendChild(sk); pz.appendChild(img); page.appendChild(pz);
+    return {page, img, sk};
   }
 
-  function notifyReady(){
-    // App Inventor WebViewer'a "ready" sinyali gönder
-    try { if (window.AppInventor && window.AppInventor.setWebViewString)
-            window.AppInventor.setWebViewString("ready"); } catch(e){}
+  function lazyLoad(img, sk, io){
+    img.onload = ()=>{ sk.remove(); img.classList.add("ready"); };
+    img.onerror = ()=>{ sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
+    io.observe(img);
   }
 
-  function buildPages(urls){
-    viewer.innerHTML = '';
-
-    let firstShown = false;
-    const safety = setTimeout(() => {
-      if(!firstShown){ document.body.classList.remove('hide'); notifyReady(); }
-    }, 1500);
-
-    const eagerIdx = Math.min(Math.max(1, startPage), urls.length) - 1;
-
-    urls.forEach((u,i)=>{
-      const page=document.createElement('div'); page.className='page';
-      const img=document.createElement('img');
-
-      img.onload=()=>{
-        img.classList.add('ready');
-        if(!firstShown){
-          firstShown=true;
-          document.body.classList.remove('hide');
-          notifyReady();
-          clearTimeout(safety);
-        }
-      };
-      img.onerror=()=>{
-        if(!firstShown){
-          firstShown=true;
-          document.body.classList.remove('hide');
-          notifyReady();
-          clearTimeout(safety);
-        }
-      };
-
-      img.decoding='async';
-      img.loading = (i===eagerIdx)?'eager':'lazy';
-      img.src=u;
-
-      page.appendChild(img);
-      viewer.appendChild(page);
+  // Kaydırma bittiğinde en yakın sayfaya oturt (fazla atlamayı engeller)
+  function attachSnapFix(){
+    let t; viewer.addEventListener("scroll", ()=>{
+      clearTimeout(t);
+      t = setTimeout(()=>{
+        const w = viewer.clientWidth;
+        const target = Math.round(viewer.scrollLeft / w) * w;
+        viewer.scrollTo({left:target, behavior:"smooth"});
+      }, 80);
     });
-
-    updateCounter();
-    const el=viewer.children[eagerIdx];
-    if(el) el.scrollIntoView({behavior:'instant'});
   }
 
-  function updateCounter(){
-    const pw=viewer.clientWidth||1;
-    const idx=Math.round(viewer.scrollLeft/pw)+1;
-    const total=viewer.children.length;
-    counter.textContent = total ? (idx+' / '+total) : '- / -';
-  }
-  viewer.addEventListener('scroll', ()=>requestAnimationFrame(updateCounter), {passive:true});
-
+  // ---------- Başlat ----------
   (async function init(){
-    const extras = dedupe([ ...parseJsonList(xjParam), ...splitExtraFromX(xParam) ]);
-    const lines  = dedupe(await getManifestLines(mParam));
-    const urls   = dedupe([ ...extras, ...lines ]);
+    let list = [];
+    if (manifestURL) {
+      list = await readManifest(manifestURL);
+    } else {
+      // App side'dan WebViewString gelebilir (URL ya da satır listesi)
+      const wvs = getWVStr();
+      if (wvs){
+        try{
+          const d = JSON.parse(wvs);
+          if (d && d.manifest) list = await readManifest(String(d.manifest));
+          if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
+        }catch{
+          // JSON değilse düz metin/URL olarak dene
+          if (isLink(wvs)) list = await readManifest(wvs);
+          else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+        }
+      }
+    }
 
-    if(!urls.length){
-      document.body.classList.remove('hide');
-      notifyReady();
-      viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya link yok.</span></div>';
-      updateCounter();
+    // x param ile gelen ekstra linkleri başa ekle → kopyaları sil
+    list = dedupe(extraList.concat(list));
+
+    if (!list.length){
+      showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
+      // En azından boş bir sayfa olsun:
+      viewer.innerHTML = '<div class="page"><div class="pz"><div class="skel"></div></div></div>';
+      attachSnapFix();
       return;
     }
-    buildPages(urls);
+
+    // DOM’a ekle ve lazy-load hazırla
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const img = e.target;
+          io.unobserve(img);
+          const src = img.getAttribute("data-src");
+          // “önceki resim gözüktü” sorununu engellemek için src’yi tam bu anda veriyoruz
+          img.src = src;
+        }
+      });
+    }, {root:viewer, rootMargin:"50px", threshold:0.15});
+
+    const frag = document.createDocumentFragment();
+    for(const url of list){
+      const {page, img, sk} = makePage(url);
+      frag.appendChild(page);
+      lazyLoad(img, sk, io);
+    }
+    viewer.appendChild(frag);
+
+    attachSnapFix();
   })();
+
 })();
 </script>
 </body>
