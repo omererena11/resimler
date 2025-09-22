@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer (Zoom + Pan + Counter)</title>
+<title>Viewer (Soft Pinch/Wheel Zoom)</title>
 <style>
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
@@ -32,8 +32,7 @@
     width:100%; height:100%;
     display:flex; justify-content:center; align-items:center;
     position:relative;
-    /* zoom kapalıyken doğal scroll’u engellemeyelim */
-    touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y; /* zoom yokken doğal kaydırma */
     cursor: default;
   }
   .img{
@@ -191,22 +190,35 @@
   btnPrev.addEventListener("click", ()=>go(-1));
   btnNext.addEventListener("click", ()=>go(1));
 
-  // -------- Zoom + Pan (yumuşak) --------
+  // -------- Zoom + Pan (çok daha yumuşak & gecikmeli pinch) --------
   function attachZoomPan(container, img){
     const state = {
       scale: 1, min: 1, max: 4,
       tx: 0, ty: 0,
       dragging: false, lx: 0, ly: 0,
       pointers: new Map(),
-      lastTap: 0
+      lastTap: 0,
+
+      // animasyonlu hedef
+      targetScale: 1,
+      animFrame: 0,
+
+      // pinch başlangıç kontrolü
+      pinching: false,
+      baseDist: 0
     };
 
-    // HASSASİYET SABİTLERİ
-    const WHEEL_SENS = 0.0012;   // teker hassasiyeti (küçük = daha yumuşak)
-    const WHEEL_DEAD = 3;        // |deltaY| bundan küçükse yok say
-    const STEP_CAP   = 0.12;     // tek olayda azami ±%12 değişim
-    const PINCH_DIV  = 300;      // pinch hassasiyeti (büyürse daha yumuşak)
-    const USE_CTRL_WHEEL = false;// true => sadece Ctrl+Wheel ile zoom
+    // HASSASİYET & EŞİKLER
+    const WHEEL_SENS_IN  = 0.0012; // wheel zoom-in
+    const WHEEL_SENS_OUT = 0.0009; // wheel zoom-out (daha yumuşak)
+    const WHEEL_DEAD     = 3;      // küçük teker hareketlerini yok say
+    const STEP_CAP_IN    = 0.12;   // olay başına max +%12
+    const STEP_CAP_OUT   = 0.08;   // olay başına max -%8  (daha yumuşak out)
+    const PINCH_DIV_IN   = 340;    // pinch-in (açılma) hassasiyeti
+    const PINCH_DIV_OUT  = 420;    // pinch-out (kapanma) daha yumuşak
+    const PINCH_START_THRESHOLD = 14; // pinch başlatmadan önce gerekli mesafe (px)
+    const PINCH_END_HYST = 10;        // bitirme eşiği
+    const LERP = 0.18;                // hedefe yumuşak ilerleme
 
     function apply(){
       img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
@@ -233,10 +245,26 @@
       img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
     }
 
-    // Mouse wheel zoom (yumuşak)
+    function animateToTarget(){
+      cancelAnimationFrame(state.animFrame);
+      const step = ()=>{
+        const prev = state.scale;
+        // lerp
+        state.scale = prev + (state.targetScale - prev) * LERP;
+        // yakınsayınca sabitle
+        if (Math.abs(state.targetScale - state.scale) < 0.002) {
+          state.scale = state.targetScale;
+        } else {
+          state.animFrame = requestAnimationFrame(step);
+        }
+        apply(); clampTranslate();
+      };
+      state.animFrame = requestAnimationFrame(step);
+    }
+
+    // Mouse wheel zoom — out daha yumuşak
     container.addEventListener("wheel", (e)=>{
       e.preventDefault();
-      if (USE_CTRL_WHEEL && !e.ctrlKey) return;
       if (Math.abs(e.deltaY) < WHEEL_DEAD) return;
 
       const rect = container.getBoundingClientRect();
@@ -244,31 +272,44 @@
       const cy = e.clientY - rect.top  - rect.height/2 + state.ty;
 
       const prev = state.scale;
-      const raw = Math.exp(-e.deltaY * WHEEL_SENS);
-      const factor = Math.min(Math.max(raw, 1-STEP_CAP), 1+STEP_CAP);
-      const next = clamp(prev * factor, state.min, state.max);
+      const isOut = e.deltaY > 0;
+      const sens  = isOut ? WHEEL_SENS_OUT : WHEEL_SENS_IN;
+      const raw   = Math.exp(-e.deltaY * sens);
+      const cap   = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
+      const factor= Math.min(Math.max(raw, 1-cap), 1+cap);
+      const next  = clamp(prev * factor, state.min, state.max);
       if (next === prev) return;
 
       state.tx = cx - (cx - state.tx) * (next/prev);
       state.ty = cy - (cy - state.ty) * (next/prev);
-      state.scale = next;
-      apply(); clampTranslate();
+      state.targetScale = next;
+      animateToTarget();
     }, {passive:false});
 
-    // Pointer yönetimi (pinch + pan)
+    // Pointer yönetimi
     container.addEventListener("pointerdown", (e)=>{
       container.setPointerCapture(e.pointerId);
       state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+
+      // İki parmak dokununca hemen zoom başlatma: baseDist’i al, pinching=false
+      if(state.pointers.size===2){
+        const [a,b] = Array.from(state.pointers.values());
+        state.baseDist = Math.hypot(b.x - a.x, b.y - a.y);
+        state.pinching = false; // eşik aşılana kadar zoom yok
+        container._lastDist = state.baseDist;
+      }
+
       if(state.pointers.size===1 && state.scale>1){
         state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
         container.style.cursor = "grabbing";
       }
-      // Çift dokun/çift tık: 1.0 <-> 1.6
+
+      // Çift dokun/çift tık: 1.0 <-> 1.6 (yumuşak)
       const now = Date.now();
       if(now - state.lastTap < 300){
-        state.scale = (state.scale>1) ? 1 : 1.6;
+        state.targetScale = (state.scale>1) ? 1 : 1.6;
         state.tx = state.ty = 0;
-        apply();
+        animateToTarget();
       }
       state.lastTap = now;
     });
@@ -278,13 +319,24 @@
         state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
       }
 
-      // Pinch (2 parmak)
+      // Pinch (2 parmak) — eşik aşılmadan çalışmaz
       if(state.pointers.size===2){
         const [a,b] = Array.from(state.pointers.values());
         const dx = b.x - a.x, dy = b.y - a.y;
         const dist = Math.hypot(dx,dy);
-        if(!container._lastDist){ container._lastDist = dist; return; }
-        const delta = dist - container._lastDist;
+        const deltaAbs = Math.abs(dist - state.baseDist);
+
+        // Eşik: parmaklar belirgin açılmadan/ kapanmadan zoom yok
+        if(!state.pinching){
+          if (deltaAbs >= PINCH_START_THRESHOLD){
+            state.pinching = true;
+            container._lastDist = dist; // başlangıç noktası
+          } else {
+            return; // henüz başlamadı
+          }
+        }
+
+        const delta = dist - (container._lastDist ?? dist);
         container._lastDist = dist;
 
         const rect = container.getBoundingClientRect();
@@ -292,15 +344,18 @@
         const cy = (a.y + b.y)/2 - rect.top  - rect.height/2 + state.ty;
 
         const prev = state.scale;
-        const rawFactor = 1 + (delta / PINCH_DIV);
-        const factor = Math.min(Math.max(rawFactor, 1-STEP_CAP), 1+STEP_CAP);
-        const next = clamp(prev * factor, state.min, state.max);
+        const isOut = delta < 0; // kapanma → out
+        const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
+        const rawFactor = 1 + (delta / divisor);
+        const cap       = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
+        const factor    = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+        const next      = clamp(prev * factor, state.min, state.max);
         if (next === prev) return;
 
         state.tx = cx - (cx - state.tx) * (next/prev);
         state.ty = cy - (cy - state.ty) * (next/prev);
-        state.scale = next;
-        apply(); clampTranslate();
+        state.targetScale = next;
+        animateToTarget();
       }
 
       // Pan (tek parmak/mouse sürükle) — sadece zoom>1 iken
@@ -315,7 +370,15 @@
 
     function endPointer(e){
       if(state.pointers.has(e.pointerId)) state.pointers.delete(e.pointerId);
-      if(state.pointers.size<2){ container._lastDist = null; }
+
+      // Pinch bitirme histerezisi: parmaklar toplandığında kolayca sıfırlanmasın
+      if(state.pointers.size<2){
+        if (state.pinching) {
+          // mesafe eşik altına indiğinde pinch’i bırak
+          state.pinching = false;
+        }
+        container._lastDist = null;
+      }
       if(state.dragging){
         state.dragging = false;
         container.style.cursor = (state.scale>1) ? "grab" : "default";
