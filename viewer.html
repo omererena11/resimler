@@ -18,7 +18,6 @@
     -webkit-overflow-scrolling:touch;
     scroll-behavior:smooth; position:relative;
   }
-  /* Zoom aktifken snap’i kilitle */
   #viewer.lock{ scroll-snap-type:none; }
 
   .page{
@@ -52,14 +51,11 @@
   }
   @keyframes pulse{50%{filter:brightness(1.15)}}
 
-  /* Sayaç */
   #counter{
     position:fixed; left:12px; bottom:12px; z-index:10;
     background:#111a; color:#ddd; padding:6px 10px; border-radius:10px;
     font-size:14px; letter-spacing:.03em; backdrop-filter:blur(3px);
   }
-
-  /* İleri/Geri */
   .navbtn{
     position:fixed; top:50%; transform:translateY(-50%);
     width:42px; height:64px; z-index:11; border:none; border-radius:12px;
@@ -107,7 +103,6 @@
   function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
   function showErr(msg){ errBox.textContent = msg; errBox.style.display = "block"; console.warn(msg); }
 
-  // -------- Manifest okuma --------
   async function readManifest(src){
     if (isLink(src)) {
       try{
@@ -126,7 +121,6 @@
     return out;
   }
 
-  // -------- DOM üretim --------
   function makePage(url, idx){
     const page = document.createElement("div");
     page.className = "page"; page.dataset.index = idx;
@@ -153,7 +147,6 @@
 
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
 
-  // -------- Sayaç --------
   let total = 0;
   function currentIndex(){
     const w = viewer.clientWidth || 1;
@@ -166,7 +159,6 @@
     counter.textContent = `${idx+1} / ${total}`;
   }
 
-  // -------- Snap fixer --------
   let snapTimer;
   function onScroll(){
     clearTimeout(snapTimer);
@@ -178,7 +170,6 @@
     }, 80);
   }
 
-  // -------- İleri/Geri --------
   function go(delta){
     const w = viewer.clientWidth;
     const idx = currentIndex();
@@ -196,11 +187,10 @@
       scale: 1, min: 1, max: 4,
       tx: 0, ty: 0,
       dragging: false, lx: 0, ly: 0,
-      pointers: new Map(),
-      lastTap: 0
+      pointers: new Map()
     };
 
-    // HASSASİYET SABİTLERİ (in = out aynı)
+    // Hassasiyet sabitleri
     const WHEEL_SENS_IN  = 0.0009;
     const WHEEL_SENS_OUT = 0.0009;
     const STEP_CAP_IN    = 0.08;
@@ -208,6 +198,7 @@
     const PINCH_DIV_IN   = 480;
     const PINCH_DIV_OUT  = 480;
     const WHEEL_DEAD     = 3;
+    const PINCH_START_THRESHOLD = 16;
     const USE_CTRL_WHEEL = false;
 
     function apply(){
@@ -224,7 +215,6 @@
         img.style.transform = `translate(0px, 0px) scale(1)`;
       }
     }
-
     function clampTranslate(){
       const rect = container.getBoundingClientRect();
       const vw = rect.width, vh = rect.height;
@@ -235,7 +225,7 @@
       img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
     }
 
-    // Wheel zoom
+    // Mouse wheel zoom
     container.addEventListener("wheel", (e)=>{
       e.preventDefault();
       if (USE_CTRL_WHEEL && !e.ctrlKey) return;
@@ -268,13 +258,7 @@
         state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
         container.style.cursor = "grabbing";
       }
-      const now = Date.now();
-      if(now - state.lastTap < 300){
-        state.scale = (state.scale>1) ? 1 : 1.6;
-        state.tx = state.ty = 0;
-        apply();
-      }
-      state.lastTap = now;
+      // double-tap zoom devre dışı bırakıldı
     });
 
     container.addEventListener("pointermove", (e)=>{
@@ -287,9 +271,21 @@
         const [a,b] = Array.from(state.pointers.values());
         const dx = b.x - a.x, dy = b.y - a.y;
         const dist = Math.hypot(dx,dy);
-        if(!container._lastDist){ container._lastDist = dist; return; }
-        const delta = dist - container._lastDist;
-        container._lastDist = dist;
+
+        if(state._pinchBaseDist == null){
+          state._pinchBaseDist = dist;
+          state._pinchActive   = false;
+          return;
+        }
+        const deltaAbs = Math.abs(dist - state._pinchBaseDist);
+        if(!state._pinchActive){
+          if(deltaAbs < PINCH_START_THRESHOLD) return;
+          state._pinchActive = true;
+          state._lastDist = dist;
+        }
+
+        const delta = dist - (state._lastDist ?? dist);
+        state._lastDist = dist;
 
         const rect = container.getBoundingClientRect();
         const cx = (a.x + b.x)/2 - rect.left - rect.width/2 + state.tx;
@@ -322,7 +318,11 @@
 
     function endPointer(e){
       if(state.pointers.has(e.pointerId)) state.pointers.delete(e.pointerId);
-      if(state.pointers.size<2){ container._lastDist = null; }
+      if(state.pointers.size<2){
+        state._pinchBaseDist = null;
+        state._pinchActive   = false;
+        state._lastDist      = null;
+      }
       if(state.dragging){
         state.dragging = false;
         container.style.cursor = (state.scale>1) ? "grab" : "default";
@@ -334,38 +334,20 @@
     container.addEventListener("pointerleave", endPointer);
   }
 
-  // -------- Başlat --------
   (async function init(){
     let list = [];
-
     if (manifestURL) {
       list = await readManifest(manifestURL);
-    } else {
-      const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
-                    ? String(window.AppInventor.getWebViewString()||"")
-                    : "";
-      if (wvs){
-        try{
-          const d = JSON.parse(wvs);
-          if (d && d.manifest) list = await readManifest(String(d.manifest));
-          if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
-        }catch{
-          if (isLink(wvs)) list = await readManifest(wvs);
-          else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-        }
-      }
     }
-
     list = dedupe(extraList.concat(list));
 
     if (!list.length){
-      showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
+      showErr("Gösterilecek resim bulunamadı.");
       viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
       total = 1;
       updateVisible();
       return;
     }
-
     const frag = document.createDocumentFragment();
     list.forEach((url, i)=>{
       const {page} = makePage(url, i);
@@ -373,7 +355,6 @@
     });
     viewer.appendChild(frag);
     total = list.length;
-
     updateVisible();
     viewer.addEventListener("scroll", onScroll);
     window.addEventListener("resize", updateVisible);
