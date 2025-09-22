@@ -1,174 +1,67 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Viewer</title>
-  <style>
-    html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; }
-    #viewer{
-      display:flex; width:100%; height:100%;
-      overflow-x:auto; overflow-y:hidden;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      scroll-behavior:smooth;
-    }
-    .page{
-      min-width:100vw; height:100vh;
-      display:flex; justify-content:center; align-items:center;
-      scroll-snap-align:start; background:#000;
-    }
-    .page img{ max-width:100%; max-height:100%; object-fit:contain; }
-
-    /* İlk görsel hazır olana kadar tamamen gizle (eski görüntü hiç görünmez) */
-    body.hide { visibility:hidden; }
-    .page img { opacity:0; transition:opacity .12s linear; }
-    .page img.ready { opacity:1; }
-
-    #counter{
-      position:fixed; left:50%; bottom:12px; transform:translateX(-50%);
-      background:rgba(0,0,0,.55); color:#fff;
-      font:500 14px system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      padding:6px 10px; border-radius:999px; z-index:10;
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes"/>
+<title>Viewer</title>
+<style>
+  html, body {
+    margin:0; padding:0; height:100%;
+    background:#000;
+    overflow:hidden;
+    overscroll-behavior-x:contain;
+    font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  }
+  #viewer {
+    display:flex;
+    width:100%; height:100%;
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+    position:relative;
+  }
+  .page {
+    min-width:100vw; height:100vh;
+    display:flex; justify-content:center; align-items:center;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;   /* 👈 Tek tek yakala */
+    background:#000;
+    position:relative;
+    overflow:hidden;
+  }
+  .pz {
+    width:100%; height:100%;
+    display:flex; justify-content:center; align-items:center;
+    position:relative; touch-action:none;
+  }
+  .pz img {
+    max-width:100%; max-height:100%;
+    object-fit:contain;
+    background:#000;
+  }
+</style>
 </head>
-<body class="hide">
-  <div id="viewer"></div>
-  <div id="counter">- / -</div>
+<body>
+  <div id="viewer">
+    <!-- Örnek sayfalar -->
+    <div class="page"><div class="pz"><img src="https://via.placeholder.com/600x800?text=Sayfa+1"></div></div>
+    <div class="page"><div class="pz"><img src="https://via.placeholder.com/600x800?text=Sayfa+2"></div></div>
+    <div class="page"><div class="pz"><img src="https://via.placeholder.com/600x800?text=Sayfa+3"></div></div>
+  </div>
 
-<script>
-(function(){
-  const qs = new URLSearchParams(location.search);
-  const mParam  = qs.get('m')  || '';
-  const xParam  = qs.get('x')  || '';
-  const xjParam = qs.get('xj') || '';
-  const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10));
+  <script>
+    const viewer = document.getElementById("viewer");
+    let snapTimer;
 
-  const viewer  = document.getElementById('viewer');
-  const counter = document.getElementById('counter');
-
-  const decodePlus = s => decodeURIComponent((s || '').replace(/\+/g, '%20'));
-
-  function normalizeLines(txt){
-    return txt.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
-              .map(s => s.trim()).filter(Boolean);
-  }
-  function splitExtraFromX(txt){
-    const t = decodePlus(txt).trim();
-    if(!t) return [];
-    return t.split(/\r?\n|\|/).map(s => s.trim()).filter(Boolean);
-  }
-  function parseJsonList(txt){
-    if(!txt) return [];
-    try{
-      const arr = JSON.parse(decodePlus(txt));
-      return Array.isArray(arr) ? arr.map(v => String(v||'').trim()).filter(Boolean) : [];
-    }catch{ return []; }
-  }
-  function canonicalKey(u){
-    try{
-      const x = new URL(u);
-      return (x.protocol + '//' + x.host + x.pathname).toLowerCase();
-    }catch{ return (u||'').trim().toLowerCase(); }
-  }
-  function dedupe(arr){
-    const out=[], seen=new Set();
-    for(const raw of arr){
-      const u=(raw||'').trim();
-      if(!u || !/^https?:\/\//i.test(u)) continue;
-      const k=canonicalKey(u);
-      if(seen.has(k)) continue;
-      seen.add(k); out.push(u);
-    }
-    return out;
-  }
-  async function getManifestLines(url){
-    if(!url) return [];
-    try{
-      const res = await fetch(url, {cache:'no-store'});
-      const txt = await res.text();
-      return normalizeLines(txt);
-    }catch{ return []; }
-  }
-
-  function notifyReady(){
-    // App Inventor WebViewer'a "ready" sinyali gönder
-    try { if (window.AppInventor && window.AppInventor.setWebViewString)
-            window.AppInventor.setWebViewString("ready"); } catch(e){}
-  }
-
-  function buildPages(urls){
-    viewer.innerHTML = '';
-
-    let firstShown = false;
-    const safety = setTimeout(() => {
-      if(!firstShown){ document.body.classList.remove('hide'); notifyReady(); }
-    }, 1500);
-
-    const eagerIdx = Math.min(Math.max(1, startPage), urls.length) - 1;
-
-    urls.forEach((u,i)=>{
-      const page=document.createElement('div'); page.className='page';
-      const img=document.createElement('img');
-
-      img.onload=()=>{
-        img.classList.add('ready');
-        if(!firstShown){
-          firstShown=true;
-          document.body.classList.remove('hide');
-          notifyReady();
-          clearTimeout(safety);
-        }
-      };
-      img.onerror=()=>{
-        if(!firstShown){
-          firstShown=true;
-          document.body.classList.remove('hide');
-          notifyReady();
-          clearTimeout(safety);
-        }
-      };
-
-      img.decoding='async';
-      img.loading = (i===eagerIdx)?'eager':'lazy';
-      img.src=u;
-
-      page.appendChild(img);
-      viewer.appendChild(page);
+    viewer.addEventListener("scroll", () => {
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(() => {
+        const pageWidth = viewer.clientWidth;
+        const target = Math.round(viewer.scrollLeft / pageWidth) * pageWidth;
+        viewer.scrollTo({left: target, behavior:"smooth"});
+      }, 80); // kaydırma bitince 80ms sonra düzelt
     });
-
-    updateCounter();
-    const el=viewer.children[eagerIdx];
-    if(el) el.scrollIntoView({behavior:'instant'});
-  }
-
-  function updateCounter(){
-    const pw=viewer.clientWidth||1;
-    const idx=Math.round(viewer.scrollLeft/pw)+1;
-    const total=viewer.children.length;
-    counter.textContent = total ? (idx+' / '+total) : '- / -';
-  }
-  viewer.addEventListener('scroll', ()=>requestAnimationFrame(updateCounter), {passive:true});
-
-  (async function init(){
-    const extras = dedupe([ ...parseJsonList(xjParam), ...splitExtraFromX(xParam) ]);
-    const lines  = dedupe(await getManifestLines(mParam));
-    const urls   = dedupe([ ...extras, ...lines ]);
-
-    if(!urls.length){
-      document.body.classList.remove('hide');
-      notifyReady();
-      viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya link yok.</span></div>';
-      updateCounter();
-      return;
-    }
-    buildPages(urls);
-  })();
-})();
-</script>
+  </script>
 </body>
 </html>
