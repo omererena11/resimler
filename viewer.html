@@ -18,6 +18,7 @@
     -webkit-overflow-scrolling:touch;
     scroll-behavior:smooth; position:relative;
   }
+  /* Zoom aktifken snap’i kilitle */
   #viewer.lock{ scroll-snap-type:none; }
 
   .page{
@@ -31,6 +32,7 @@
     width:100%; height:100%;
     display:flex; justify-content:center; align-items:center;
     position:relative;
+    /* zoom kapalıyken doğal scroll’u engellemeyelim */
     touch-action: pan-x pan-y;
     cursor: default;
   }
@@ -51,15 +53,16 @@
   }
   @keyframes pulse{50%{filter:brightness(1.15)}}
 
-  /* Sayaç: alt ortada, büyük ve bold */
+  /* Sayaç — sadece boyut ve kalınlık arttı */
   #counter{
-    position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
-    z-index:10;
-    background:#111a; color:#fff; padding:10px 16px; border-radius:12px;
-    font-size:28px; font-weight:bold; letter-spacing:.05em;
-    backdrop-filter:blur(4px);
+    position:fixed; left:12px; bottom:12px; z-index:10;
+    background:#111a; color:#ddd; padding:10px 14px; border-radius:10px;
+    font-size:28px;            /* 14px → 28px (2x) */
+    font-weight:700;           /* bold */
+    letter-spacing:.03em; backdrop-filter:blur(3px);
   }
 
+  /* İleri/Geri (opsiyonel) */
   .navbtn{
     position:fixed; top:50%; transform:translateY(-50%);
     width:42px; height:64px; z-index:11; border:none; border-radius:12px;
@@ -91,59 +94,307 @@
   const btnNext = $("#next");
   const errBox = $("#err");
 
+  // -------- Parametreler --------
+  const qp = new URLSearchParams(location.search);
+  const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
+  const rawX = qp.get("x") || qp.get("extra") || "";
+  const manifestURL = rawM ? safeDecode(rawM) : "";
+  const extraList = splitList(safeDecode(rawX));
+
+  function safeDecode(s){ try{ return decodeURIComponent(s); }catch{ return s||""; } }
+  function splitList(s){
+    if(!s) return [];
+    return s.split(/\r?\n|\|/g).join(",").split(",")
+            .map(t=>t.trim()).filter(isLink);
+  }
+  function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
+  function showErr(msg){ errBox.textContent = msg; errBox.style.display = "block"; console.warn(msg); }
+
+  // -------- Manifest okuma --------
+  async function readManifest(src){
+    if (isLink(src)) {
+      try{
+        const resp = await fetch(src, {cache:"no-store", mode:"cors"});
+        if(!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+        return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+      }catch(e){ showErr("Manifest okunamadı: " + e.message); return []; }
+    } else {
+      return src.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+    }
+  }
+  function dedupe(arr){
+    const out=[]; const seen=new Set();
+    for(const u of arr){ const k=u.trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
+    return out;
+  }
+
+  // -------- DOM üretim --------
+  function makePage(url, idx){
+    const page = document.createElement("div");
+    page.className = "page"; page.dataset.index = idx;
+    const pz = document.createElement("div"); pz.className="pz";
+    const sk = document.createElement("div"); sk.className="skel";
+    const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
+    pz.appendChild(sk); pz.appendChild(img); page.appendChild(pz);
+    attachZoomPan(pz, img);
+    return {page, img, sk};
+  }
+
+  function loadImageAt(index){
+    const page = viewer.querySelector(`.page[data-index="${index}"]`);
+    if(!page) return;
+    const img = page.querySelector(".img");
+    const sk  = page.querySelector(".skel");
+    if(img.dataset.loaded) return;
+    const src = img.getAttribute("data-src");
+    img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
+    img.onerror = ()=>{ sk && sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
+    img.src = src;
+    img.dataset.loaded = "1";
+  }
+
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
 
+  // -------- Sayfa hesap + sayaç --------
   let total = 0;
-
   function currentIndex(){
     const w = viewer.clientWidth || 1;
     return clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
   }
-
   function updateVisible(){
     const idx = currentIndex();
+    loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
     counter.hidden = false;
     counter.textContent = `${idx+1} / ${total}`;
-
-    // Ok görünürlüğü
-    btnPrev.style.display = (idx === 0) ? "none" : "flex";
-    btnNext.style.display = (idx === total-1) ? "none" : "flex";
   }
 
+  // -------- Snap fixer --------
+  let snapTimer;
+  function onScroll(){
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(()=>{
+      const w = viewer.clientWidth;
+      const target = Math.round(viewer.scrollLeft / w) * w;
+      viewer.scrollTo({left: target, behavior:"smooth"});
+      updateVisible();
+    }, 80);
+  }
+
+  // -------- İleri/Geri --------
   function go(delta){
     const w = viewer.clientWidth;
     const idx = currentIndex();
     const targetIdx = clamp(idx + delta, 0, total - 1);
     viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
+    loadImageAt(targetIdx); loadImageAt(targetIdx-1); loadImageAt(targetIdx+1);
     counter.textContent = `${targetIdx+1} / ${total}`;
-    btnPrev.style.display = (targetIdx === 0) ? "none" : "flex";
-    btnNext.style.display = (targetIdx === total-1) ? "none" : "flex";
   }
-
   btnPrev.addEventListener("click", ()=>go(-1));
   btnNext.addEventListener("click", ()=>go(1));
 
-  // -------- Örnek başlangıç --------
-  const list = [
-    "https://via.placeholder.com/1200x1800?text=Sayfa+1",
-    "https://via.placeholder.com/1200x1800?text=Sayfa+2",
-    "https://via.placeholder.com/1200x1800?text=Sayfa+3"
-  ];
-  total = list.length;
-  const frag = document.createDocumentFragment();
-  list.forEach((url, i)=>{
-    const page = document.createElement("div");
-    page.className = "page"; page.dataset.index = i;
-    const pz = document.createElement("div"); pz.className="pz";
-    const img = document.createElement("img"); img.className="img ready"; img.src = url;
-    pz.appendChild(img); page.appendChild(pz);
-    frag.appendChild(page);
-  });
-  viewer.appendChild(frag);
+  // -------- Zoom + Pan (yumuşak) --------
+  function attachZoomPan(container, img){
+    const state = {
+      scale: 1, min: 1, max: 4,
+      tx: 0, ty: 0,
+      dragging: false, lx: 0, ly: 0,
+      pointers: new Map()
+    };
 
-  updateVisible();
-  viewer.addEventListener("scroll", ()=>setTimeout(updateVisible,100));
-  window.addEventListener("resize", updateVisible);
+    // HASSASİYET SABİTLERİ (in = out aynı) + pinch eşiği
+    const WHEEL_SENS_IN  = 0.0009;
+    const WHEEL_SENS_OUT = 0.0009;
+    const STEP_CAP_IN    = 0.08;
+    const STEP_CAP_OUT   = 0.08;
+    const PINCH_DIV_IN   = 480;
+    const PINCH_DIV_OUT  = 480;
+    const WHEEL_DEAD     = 3;
+    const PINCH_START_THRESHOLD = 16;
+    const USE_CTRL_WHEEL = false;
+
+    function apply(){
+      img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+      if(state.scale > 1){
+        viewer.classList.add("lock");
+        container.style.touchAction = "none";
+        container.style.cursor = "grab";
+      }else{
+        viewer.classList.remove("lock");
+        container.style.touchAction = "pan-x pan-y";
+        container.style.cursor = "default";
+        state.tx = 0; state.ty = 0;
+        img.style.transform = `translate(0px, 0px) scale(1)`;
+      }
+    }
+
+    function clampTranslate(){
+      const rect = container.getBoundingClientRect();
+      const vw = rect.width, vh = rect.height;
+      const extraX = (state.scale - 1) * (vw/2);
+      const extraY = (state.scale - 1) * (vh/2);
+      state.tx = clamp(state.tx, -extraX, extraX);
+      state.ty = clamp(state.ty, -extraY, extraY);
+      img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+    }
+
+    // Mouse wheel zoom (yumuşak)
+    container.addEventListener("wheel", (e)=>{
+      e.preventDefault();
+      if (USE_CTRL_WHEEL && !e.ctrlKey) return;
+      if (Math.abs(e.deltaY) < WHEEL_DEAD) return;
+
+      const rect = container.getBoundingClientRect();
+      const cx = e.clientX - rect.left - rect.width/2 + state.tx;
+      const cy = e.clientY - rect.top  - rect.height/2 + state.ty;
+
+      const prev = state.scale;
+      const isOut = e.deltaY > 0;
+      const sens  = isOut ? WHEEL_SENS_OUT : WHEEL_SENS_IN;
+      const cap   = isOut ? STEP_CAP_OUT   : STEP_CAP_IN;
+      const raw   = Math.exp(-e.deltaY * sens);
+      const factor= Math.min(Math.max(raw, 1-cap), 1+cap);
+      const next  = clamp(prev * factor, state.min, state.max);
+      if (next === prev) return;
+
+      state.tx = cx - (cx - state.tx) * (next/prev);
+      state.ty = cy - (cy - state.ty) * (next/prev);
+      state.scale = next;
+      apply(); clampTranslate();
+    }, {passive:false});
+
+    // Pointer yönetimi (pinch + pan)
+    container.addEventListener("pointerdown", (e)=>{
+      container.setPointerCapture(e.pointerId);
+      state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+      if(state.pointers.size===1 && state.scale>1){
+        state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
+        container.style.cursor = "grabbing";
+      }
+      // double-tap devre dışı (yanlışlıkla 1x'e sıfırlamasın)
+    });
+
+    container.addEventListener("pointermove", (e)=>{
+      if(state.pointers.has(e.pointerId)){
+        state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+      }
+
+      // Pinch (2 parmak) — eşiği aşmadan başlamaz
+      if(state.pointers.size===2){
+        const [a,b] = Array.from(state.pointers.values());
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.hypot(dx,dy);
+
+        if(state._pinchBaseDist == null){
+          state._pinchBaseDist = dist;
+          state._pinchActive   = false;
+          return;
+        }
+        const deltaAbs = Math.abs(dist - state._pinchBaseDist);
+        if(!state._pinchActive){
+          if(deltaAbs < PINCH_START_THRESHOLD) return;
+          state._pinchActive = true;
+          state._lastDist = dist;
+        }
+
+        const delta = dist - (state._lastDist ?? dist);
+        state._lastDist = dist;
+
+        const rect = container.getBoundingClientRect();
+        const cx = (a.x + b.x)/2 - rect.left - rect.width/2 + state.tx;
+        const cy = (a.y + b.y)/2 - rect.top  - rect.height/2 + state.ty;
+
+        const prev = state.scale;
+        const isOut = delta < 0;
+        const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
+        const cap     = isOut ? STEP_CAP_OUT  : STEP_CAP_IN;
+        const rawFactor = 1 + (delta / divisor);
+        const factor    = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+        const next      = clamp(prev * factor, state.min, state.max);
+        if (next === prev) return;
+
+        state.tx = cx - (cx - state.tx) * (next/prev);
+        state.ty = cy - (cy - state.ty) * (next/prev);
+        state.scale = next;
+        apply(); clampTranslate();
+      }
+
+      // Pan (tek parmak/mouse sürükle) — sadece zoom>1 iken
+      if(state.dragging && state.scale>1){
+        const dx = e.clientX - state.lx;
+        const dy = e.clientY - state.ly;
+        state.lx = e.clientX; state.ly = e.clientY;
+        state.tx += dx; state.ty += dy;
+        clampTranslate();
+      }
+    });
+
+    function endPointer(e){
+      if(state.pointers.has(e.pointerId)) state.pointers.delete(e.pointerId);
+      if(state.pointers.size<2){
+        // pinch ölçümlerini sıfırla
+        state._pinchBaseDist = null;
+        state._pinchActive   = false;
+        state._lastDist      = null;
+      }
+      if(state.dragging){
+        state.dragging = false;
+        container.style.cursor = (state.scale>1) ? "grab" : "default";
+        clampTranslate();
+      }
+    }
+    container.addEventListener("pointerup", endPointer);
+    container.addEventListener("pointercancel", endPointer);
+    container.addEventListener("pointerleave", endPointer);
+  }
+
+  // -------- Başlat --------
+  (async function init(){
+    let list = [];
+
+    if (manifestURL) {
+      list = await readManifest(manifestURL);
+    } else {
+      const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
+                    ? String(window.AppInventor.getWebViewString()||"")
+                    : "";
+      if (wvs){
+        try{
+          const d = JSON.parse(wvs);
+          if (d && d.manifest) list = await readManifest(String(d.manifest));
+          if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
+        }catch{
+          if (isLink(wvs)) list = await readManifest(wvs);
+          else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+        }
+      }
+    }
+
+    list = dedupe(extraList.concat(list));
+
+    if (!list.length){
+      showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
+      viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
+      total = 1;
+      updateVisible();
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+    list.forEach((url, i)=>{
+      const {page} = makePage(url, i);
+      frag.appendChild(page);
+    });
+    viewer.appendChild(frag);
+    total = list.length;
+
+    // İlk ekranda aktif + komşuları yükle
+    updateVisible();
+
+    // Olaylar
+    viewer.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", updateVisible);
+  })();
 })();
 </script>
 </body>
