@@ -2,8 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
   <title>Viewer</title>
   <style>
     html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; }
@@ -19,10 +18,7 @@
       display:flex; justify-content:center; align-items:center;
       scroll-snap-align:start; background:#000;
     }
-    .page img{
-      max-width:100%; max-height:100%;
-      object-fit:contain;
-    }
+    .page img{ max-width:100%; max-height:100%; object-fit:contain; }
     #counter{
       position:fixed; left:50%; bottom:12px; transform:translateX(-50%);
       background:rgba(0,0,0,.55); color:#fff;
@@ -38,54 +34,55 @@
 <script>
 (function(){
   const qs = new URLSearchParams(location.search);
+  const mParam  = qs.get('m')  || '';    // manifest URL
+  const xParam  = qs.get('x')  || '';    // pipe veya satır satır metin
+  const xjParam = qs.get('xj') || '';    // JSON listesi
+  const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10));
 
-  // m: manifest URL, x: pipe/satır-listesi, xj: JSON liste
-  const mParam  = qs.get('m')  || '';
-  const xParam  = qs.get('x')  || '';
-  const xjParam = qs.get('xj') || '';
-  const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10)); // 1-based
-
-  const viewer  = document.getElementById('viewer');
+  const viewer = document.getElementById('viewer');
   const counter = document.getElementById('counter');
-
-  // --- Yardımcılar ---
   const decodePlus = s => decodeURIComponent((s || '').replace(/\+/g, '%20'));
 
+  // Metni satırlara böl
   function normalizeLines(txt){
     return txt.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
               .map(s => s.trim()).filter(Boolean);
   }
-
+  // x= için: hem "|" hem satır sonu destekle
   function splitExtraFromX(txt){
     const t = decodePlus(txt).trim();
     if(!t) return [];
-    // Hem | hem de satır sonu desteklenir
     return t.split(/\r?\n|\|/).map(s => s.trim()).filter(Boolean);
   }
-
+  // xj= için JSON liste
   function parseJsonList(txt){
     if(!txt) return [];
     try{
-      const raw = decodePlus(txt);
-      const arr = JSON.parse(raw);
-      if(Array.isArray(arr)){
-        return arr.map(v => String(v || '').trim()).filter(Boolean);
-      }
-    }catch(e){ /* yut */ }
-    return [];
+      const arr = JSON.parse(decodePlus(txt));
+      return Array.isArray(arr) ? arr.map(v => String(v||'').trim()).filter(Boolean) : [];
+    }catch{ return []; }
   }
 
-  function sanitizeUrls(arr){
-    // boşları at, kopyaları kaldır, http(s) dışını at
-    const seen = new Set();
+  // URL’leri birleştirirken tekrarları elerken kullanılacak anahtar:
+  // host + path (query ve hash görmezden gelinir)
+  function canonicalKey(u){
+    try{
+      const x = new URL(u);
+      return (x.protocol + '//' + x.host + x.pathname).toLowerCase();
+    }catch{ return (u||'').trim().toLowerCase(); }
+  }
+
+  // Listeyi temizle: http/https dışını at, boşları at, tekrarları kaldır (ilk görüleni koru)
+  function dedupeKeepFirst(arr){
     const out = [];
-    for(const u of arr){
-      const s = (u || '').trim();
-      if(!s) continue;
-      if(!/^https?:\/\//i.test(s)) continue;
-      if(seen.has(s)) continue;
-      seen.add(s);
-      out.push(s);
+    const seen = new Set();
+    for(const raw of arr){
+      const u = (raw || '').trim();
+      if(!u || !/^https?:\/\//i.test(u)) continue;
+      const key = canonicalKey(u);
+      if(seen.has(key)) continue;
+      seen.add(key);
+      out.push(u);
     }
     return out;
   }
@@ -116,9 +113,7 @@
     });
     updateCounter();
     const idx = Math.min(Math.max(1, startPage), urls.length) - 1;
-    if(viewer.children[idx]){
-      viewer.children[idx].scrollIntoView({behavior:'instant'});
-    }
+    if(viewer.children[idx]) viewer.children[idx].scrollIntoView({behavior:'instant'});
   }
 
   function updateCounter(){
@@ -127,30 +122,25 @@
     const total = viewer.children.length;
     counter.textContent = total ? (idx + ' / ' + total) : '- / -';
   }
-
-  viewer.addEventListener('scroll', () => {
-    requestAnimationFrame(updateCounter);
-  }, {passive:true});
+  viewer.addEventListener('scroll', () => requestAnimationFrame(updateCounter), {passive:true});
 
   (async function init(){
-    // 1) Uygulamadan gelen ekstra liste:
-    //    Tercih: xj (JSON liste). Alternatif: x (pipe/satır).
-    const extrasFromJson = parseJsonList(xjParam);
-    const extrasFromText = splitExtraFromX(xParam);
-    const extras = sanitizeUrls([ ...extrasFromJson, ...extrasFromText ]);
+    // 1) Uygulamadan gelen ekler (HOMEPAGE_LIST2 → x/xj)
+    const extrasJson = parseJsonList(xjParam);
+    const extrasText = splitExtraFromX(xParam);
+    const extras = dedupeKeepFirst([ ...extrasJson, ...extrasText ]);
 
-    // 2) Manifest (varsa)
-    const lines = sanitizeUrls(await getManifestLines(mParam));
+    // 2) Manifest satırları (BIM_MANIFEST → m)
+    const lines = dedupeKeepFirst(await getManifestLines(mParam));
 
-    // 3) Birleştir (önce extras, sonra manifest)
-    const urls = [ ...extras, ...lines ];
+    // 3) Birleştir: önce extras, sonra manifest; sonra tekrar bir dedupe
+    const urls = dedupeKeepFirst([ ...extras, ...lines ]);
 
     if(!urls.length){
-      viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya ekstra link gelmedi.</span></div>';
+      viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya link yok.</span></div>';
       updateCounter();
       return;
     }
-
     buildPages(urls);
   })();
 })();
