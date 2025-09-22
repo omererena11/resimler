@@ -32,7 +32,6 @@
     width:100%; height:100%;
     display:flex; justify-content:center; align-items:center;
     position:relative;
-    /* zoom kapalıyken doğal scroll’u engellemeyelim */
     touch-action: pan-x pan-y;
     cursor: default;
   }
@@ -60,7 +59,7 @@
     font-size:14px; letter-spacing:.03em; backdrop-filter:blur(3px);
   }
 
-  /* İleri/Geri (opsiyonel) */
+  /* İleri/Geri */
   .navbtn{
     position:fixed; top:50%; transform:translateY(-50%);
     width:42px; height:64px; z-index:11; border:none; border-radius:12px;
@@ -154,7 +153,7 @@
 
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
 
-  // -------- Sayfa hesap + sayaç --------
+  // -------- Sayaç --------
   let total = 0;
   function currentIndex(){
     const w = viewer.clientWidth || 1;
@@ -191,7 +190,7 @@
   btnPrev.addEventListener("click", ()=>go(-1));
   btnNext.addEventListener("click", ()=>go(1));
 
-  // -------- Zoom + Pan (yumuşak) --------
+  // -------- Zoom + Pan --------
   function attachZoomPan(container, img){
     const state = {
       scale: 1, min: 1, max: 4,
@@ -201,12 +200,15 @@
       lastTap: 0
     };
 
-    // HASSASİYET SABİTLERİ
-    const WHEEL_SENS = 0.0012;   // teker hassasiyeti (küçük = daha yumuşak)
-    const WHEEL_DEAD = 3;        // |deltaY| bundan küçükse yok say
-    const STEP_CAP   = 0.12;     // tek olayda azami ±%12 değişim
-    const PINCH_DIV  = 300;      // pinch hassasiyeti (büyürse daha yumuşak)
-    const USE_CTRL_WHEEL = false;// true => sadece Ctrl+Wheel ile zoom
+    // HASSASİYET SABİTLERİ (in = out aynı)
+    const WHEEL_SENS_IN  = 0.0009;
+    const WHEEL_SENS_OUT = 0.0009;
+    const STEP_CAP_IN    = 0.08;
+    const STEP_CAP_OUT   = 0.08;
+    const PINCH_DIV_IN   = 480;
+    const PINCH_DIV_OUT  = 480;
+    const WHEEL_DEAD     = 3;
+    const USE_CTRL_WHEEL = false;
 
     function apply(){
       img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
@@ -233,7 +235,7 @@
       img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
     }
 
-    // Mouse wheel zoom (yumuşak)
+    // Wheel zoom
     container.addEventListener("wheel", (e)=>{
       e.preventDefault();
       if (USE_CTRL_WHEEL && !e.ctrlKey) return;
@@ -244,9 +246,12 @@
       const cy = e.clientY - rect.top  - rect.height/2 + state.ty;
 
       const prev = state.scale;
-      const raw = Math.exp(-e.deltaY * WHEEL_SENS);
-      const factor = Math.min(Math.max(raw, 1-STEP_CAP), 1+STEP_CAP);
-      const next = clamp(prev * factor, state.min, state.max);
+      const isOut = e.deltaY > 0;
+      const sens  = isOut ? WHEEL_SENS_OUT : WHEEL_SENS_IN;
+      const cap   = isOut ? STEP_CAP_OUT   : STEP_CAP_IN;
+      const raw   = Math.exp(-e.deltaY * sens);
+      const factor= Math.min(Math.max(raw, 1-cap), 1+cap);
+      const next  = clamp(prev * factor, state.min, state.max);
       if (next === prev) return;
 
       state.tx = cx - (cx - state.tx) * (next/prev);
@@ -255,7 +260,7 @@
       apply(); clampTranslate();
     }, {passive:false});
 
-    // Pointer yönetimi (pinch + pan)
+    // Pointer pinch + pan
     container.addEventListener("pointerdown", (e)=>{
       container.setPointerCapture(e.pointerId);
       state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
@@ -263,7 +268,6 @@
         state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
         container.style.cursor = "grabbing";
       }
-      // Çift dokun/çift tık: 1.0 <-> 1.6
       const now = Date.now();
       if(now - state.lastTap < 300){
         state.scale = (state.scale>1) ? 1 : 1.6;
@@ -278,7 +282,7 @@
         state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
       }
 
-      // Pinch (2 parmak)
+      // Pinch
       if(state.pointers.size===2){
         const [a,b] = Array.from(state.pointers.values());
         const dx = b.x - a.x, dy = b.y - a.y;
@@ -292,9 +296,12 @@
         const cy = (a.y + b.y)/2 - rect.top  - rect.height/2 + state.ty;
 
         const prev = state.scale;
-        const rawFactor = 1 + (delta / PINCH_DIV);
-        const factor = Math.min(Math.max(rawFactor, 1-STEP_CAP), 1+STEP_CAP);
-        const next = clamp(prev * factor, state.min, state.max);
+        const isOut = delta < 0;
+        const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
+        const cap     = isOut ? STEP_CAP_OUT  : STEP_CAP_IN;
+        const rawFactor = 1 + (delta / divisor);
+        const factor    = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+        const next      = clamp(prev * factor, state.min, state.max);
         if (next === prev) return;
 
         state.tx = cx - (cx - state.tx) * (next/prev);
@@ -303,7 +310,7 @@
         apply(); clampTranslate();
       }
 
-      // Pan (tek parmak/mouse sürükle) — sadece zoom>1 iken
+      // Pan
       if(state.dragging && state.scale>1){
         const dx = e.clientX - state.lx;
         const dy = e.clientY - state.ly;
@@ -367,10 +374,7 @@
     viewer.appendChild(frag);
     total = list.length;
 
-    // İlk ekranda aktif + komşuları yükle
     updateVisible();
-
-    // Olaylar
     viewer.addEventListener("scroll", onScroll);
     window.addEventListener("resize", updateVisible);
   })();
