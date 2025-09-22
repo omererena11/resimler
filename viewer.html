@@ -2,166 +2,157 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes" />
-  <title>Brochure Viewer</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Viewer</title>
   <style>
-    html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    .wrap{ position:relative; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; }
-
-    /* Görsel sahnesi (tek yapı bozulmadan + bir overlay) */
-    .stage{ position:relative; width:100%; height:100%; }
-    .stage img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
-    .hidden{ display:none; }
-
-    /* Animasyonlar (slide + fade birlikte) */
-    .anim{ transition: transform .28s ease-out, opacity .28s ease-out; will-change: transform, opacity; }
-
-    /* Overlay */
-    .hud{ position:absolute; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.6rem .8rem; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 35%, rgba(0,0,0,.8) 100%); color:#fff; user-select:none; }
-    .btn{ display:inline-flex; align-items:center; justify-content:center; min-width:42px; height:42px; padding:0 .6rem; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); font-weight:600; cursor:pointer; }
-    .btn:active{ transform:scale(.98); }
-    .btn[disabled]{ opacity:.35; pointer-events:none; }
-    .ctr{ font-weight:700; letter-spacing:.3px; padding:0 .4rem; min-width:92px; text-align:center; }
-
-    /* Top toast */
-    .toast{ position:absolute; top:.6rem; left:50%; transform:translateX(-50%); background:rgba(0,0,0,.65); color:#fff; padding:.4rem .7rem; border-radius:8px; font-size:.9rem; display:none; }
-
-    /* Tap zones for mobile (optional) */
-    .zone{ position:absolute; top:0; bottom:0; width:33.3333%; }
-    .left{ left:0; }
-    .right{ right:0; }
+    html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; }
+    #viewer{
+      display:flex; width:100%; height:100%;
+      overflow-x:auto; overflow-y:hidden;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      scroll-behavior:smooth;
+    }
+    .page{
+      min-width:100vw; height:100vh;
+      display:flex; justify-content:center; align-items:center;
+      scroll-snap-align:start; background:#000;
+    }
+    .page img{
+      max-width:100%; max-height:100%;
+      object-fit:contain;
+    }
+    #counter{
+      position:fixed; left:50%; bottom:12px; transform:translateX(-50%);
+      background:rgba(0,0,0,.55); color:#fff;
+      font:500 14px system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      padding:6px 10px; border-radius:999px;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap" id="wrap">
-    <div class="stage" id="stage">
-      <img id="page" alt="Broşür" />
-      <img id="ghost" class="hidden" alt="Geçiş" />
-    </div>
-
-    <!-- quick tap zones for phones -->
-    <div class="zone left" id="zl" aria-hidden="true"></div>
-    <div class="zone right" id="zr" aria-hidden="true"></div>
-
-    <div class="hud">
-      <button id="btnPrev" class="btn" aria-label="Geri">⟵</button>
-      <div id="counter" class="ctr">– / –</div>
-      <button id="btnNext" class="btn" aria-label="İleri">⟶</button>
-    </div>
-    <div class="toast" id="toast"></div>
-  </div>
+  <div id="viewer"></div>
+  <div id="counter">- / -</div>
 
 <script>
 (function(){
   const qs = new URLSearchParams(location.search);
-  const manifestUrl = qs.get('m'); // manifest url (required)
-  let startIndex = parseInt(qs.get('p') || '1', 10) - 1; // optional start page (1-based)
 
-  const img = document.getElementById('page');
-  const ghost = document.getElementById('ghost');
+  // m: manifest URL, x: pipe/satır-listesi, xj: JSON liste
+  const mParam  = qs.get('m')  || '';
+  const xParam  = qs.get('x')  || '';
+  const xjParam = qs.get('xj') || '';
+  const startPage = Math.max(1, parseInt(qs.get('p') || '1', 10)); // 1-based
+
+  const viewer  = document.getElementById('viewer');
   const counter = document.getElementById('counter');
-  const btnPrev = document.getElementById('btnPrev');
-  const btnNext = document.getElementById('btnNext');
-  const toast = document.getElementById('toast');
-  const zl = document.getElementById('zl');
-  const zr = document.getElementById('zr');
 
-  let urls = [];
-  let i = 0;
-  let animating = false;
+  // --- Yardımcılar ---
+  const decodePlus = s => decodeURIComponent((s || '').replace(/\+/g, '%20'));
 
-  if(!manifestUrl){ showToast('Manifest parametresi eksik: ?m=ENCODED_URL'); return; }
-
-  // Helpers
-  function showToast(t){ toast.textContent = t; toast.style.display='block'; clearTimeout(showToast._t); showToast._t = setTimeout(()=>toast.style.display='none', 1600); }
-  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
-
-  function updateHUD(){
-    counter.textContent = `${urls.length ? (i+1) : '–'} / ${urls.length || '–'}`;
-    btnPrev.disabled = (i<=0);
-    btnNext.disabled = (i>=urls.length-1);
+  function normalizeLines(txt){
+    return txt.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
+              .map(s => s.trim()).filter(Boolean);
   }
 
-  function preload(idx){ if(idx>i && idx<urls.length){ const im = new Image(); im.src = urls[idx]; } }
-
-  function instantShow(idx){
-    i = clamp(idx, 0, urls.length-1);
-    img.src = urls[i];
-    updateHUD();
-    preload(i+1);
+  function splitExtraFromX(txt){
+    const t = decodePlus(txt).trim();
+    if(!t) return [];
+    // Hem | hem de satır sonu desteklenir
+    return t.split(/\r?\n|\|/).map(s => s.trim()).filter(Boolean);
   }
 
-  function transitionTo(newIdx, dir){
-    if(animating) return; if(newIdx<0 || newIdx>=urls.length) return; animating=true;
-
-    // dir: +1 ileri (yeni sağdan girsin), -1 geri (yeni soldan girsin)
-    const offIn  = (dir>0? 'translateX(100%)' : 'translateX(-100%)');
-    const offOut = (dir>0? 'translateX(-100%)' : 'translateX(100%)');
-
-    // ghost yeni resmi taşıyacak
-    ghost.src = urls[newIdx];
-    ghost.classList.remove('hidden');
-
-    // başlangıç pozisyonları
-    ghost.style.transform = offIn;  ghost.style.opacity = 0;  ghost.classList.remove('anim');
-    img.style.transform   = 'translateX(0)'; img.style.opacity   = 1; img.classList.remove('anim');
-    // reflow
-    void ghost.offsetWidth; void img.offsetWidth;
-
-    // animasyon başla
-    ghost.classList.add('anim'); img.classList.add('anim');
-    ghost.style.transform = 'translateX(0)'; ghost.style.opacity = 1;     // yeni sayfa fade+slide içeri
-    img.style.transform   = offOut;             img.style.opacity   = 0;   // eski sayfa fade+slide dışarı
-
-    const onDone = ()=>{
-      ghost.removeEventListener('transitionend', onDone);
-      // yeni artık ana img olsun
-      img.src = ghost.src;
-      img.style.transform = 'translateX(0)'; img.style.opacity = 1; img.classList.remove('anim');
-      ghost.classList.add('hidden'); ghost.classList.remove('anim');
-      i = newIdx; updateHUD(); preload(i+1); animating=false;
-    };
-    ghost.addEventListener('transitionend', onDone);
-  }
-
-  async function load(){
+  function parseJsonList(txt){
+    if(!txt) return [];
     try{
-      const res = await fetch(manifestUrl, { cache:'no-store' });
-      const text = await res.text();
-      urls = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).filter(s=>/\.(webp|jpg|jpeg|png)$/i.test(s));
-      if(!urls.length){ showToast('Manifest boş veya geçersiz.'); return; }
-      if(!(startIndex>=0 && startIndex<urls.length)) startIndex = 0;
-      instantShow(startIndex);
-    }catch(e){ console.error(e); showToast('Manifest indirilemedi.'); }
+      const raw = decodePlus(txt);
+      const arr = JSON.parse(raw);
+      if(Array.isArray(arr)){
+        return arr.map(v => String(v || '').trim()).filter(Boolean);
+      }
+    }catch(e){ /* yut */ }
+    return [];
   }
 
-  // Controls
-  btnPrev.addEventListener('click', ()=> transitionTo(i-1, -1));
-  btnNext.addEventListener('click', ()=> transitionTo(i+1, +1));
-  zl.addEventListener('click', ()=> transitionTo(i-1, -1));
-  zr.addEventListener('click', ()=> transitionTo(i+1, +1));
-  document.addEventListener('keydown', (ev)=>{
-    if(ev.key==='ArrowLeft') transitionTo(i-1, -1);
-    else if(ev.key==='ArrowRight') transitionTo(i+1, +1);
-  });
-
-  // Basic swipe (horizontal)
-  let sx=0, sy=0, dx=0, dy=0, tracking=false;
-  const SWIPE_X = 30; // px
-  const SWIPE_Y = 60; // vertical tolerance
-  document.addEventListener('touchstart', (e)=>{ const t=e.touches[0]; sx=t.clientX; sy=t.clientY; tracking=true; });
-  document.addEventListener('touchmove',  (e)=>{ if(!tracking) return; const t=e.touches[0]; dx=t.clientX-sx; dy=t.clientY-sy; });
-  document.addEventListener('touchend',   ()=>{
-    if(tracking){
-      if(Math.abs(dx)>SWIPE_X && Math.abs(dy)<SWIPE_Y){ if(dx<0) transitionTo(i+1, +1); else transitionTo(i-1, -1); }
+  function sanitizeUrls(arr){
+    // boşları at, kopyaları kaldır, http(s) dışını at
+    const seen = new Set();
+    const out = [];
+    for(const u of arr){
+      const s = (u || '').trim();
+      if(!s) continue;
+      if(!/^https?:\/\//i.test(s)) continue;
+      if(seen.has(s)) continue;
+      seen.add(s);
+      out.push(s);
     }
-    tracking=false; dx=dy=0;
-  });
+    return out;
+  }
 
-  // Expose a tiny API for App Inventor/Niotron to jump pages if needed
-  window.goTo = function(page1){ const idx = clamp((parseInt(page1,10)||1)-1, 0, urls.length-1); transitionTo(idx, (idx>i?+1:-1)); };
+  async function getManifestLines(url){
+    if(!url) return [];
+    try{
+      const res = await fetch(url, {cache:'no-store'});
+      const txt = await res.text();
+      return normalizeLines(txt);
+    }catch(e){
+      console.error('Manifest alınamadı:', e);
+      return [];
+    }
+  }
 
-  load();
+  function buildPages(urls){
+    viewer.innerHTML = '';
+    urls.forEach(u => {
+      const page = document.createElement('div');
+      page.className = 'page';
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.src = u;
+      page.appendChild(img);
+      viewer.appendChild(page);
+    });
+    updateCounter();
+    const idx = Math.min(Math.max(1, startPage), urls.length) - 1;
+    if(viewer.children[idx]){
+      viewer.children[idx].scrollIntoView({behavior:'instant'});
+    }
+  }
+
+  function updateCounter(){
+    const pageWidth = viewer.clientWidth || 1;
+    const idx = Math.round(viewer.scrollLeft / pageWidth) + 1;
+    const total = viewer.children.length;
+    counter.textContent = total ? (idx + ' / ' + total) : '- / -';
+  }
+
+  viewer.addEventListener('scroll', () => {
+    requestAnimationFrame(updateCounter);
+  }, {passive:true});
+
+  (async function init(){
+    // 1) Uygulamadan gelen ekstra liste:
+    //    Tercih: xj (JSON liste). Alternatif: x (pipe/satır).
+    const extrasFromJson = parseJsonList(xjParam);
+    const extrasFromText = splitExtraFromX(xParam);
+    const extras = sanitizeUrls([ ...extrasFromJson, ...extrasFromText ]);
+
+    // 2) Manifest (varsa)
+    const lines = sanitizeUrls(await getManifestLines(mParam));
+
+    // 3) Birleştir (önce extras, sonra manifest)
+    const urls = [ ...extras, ...lines ];
+
+    if(!urls.length){
+      viewer.innerHTML = '<div class="page"><span style="color:#fff">Manifest boş veya ekstra link gelmedi.</span></div>';
+      updateCounter();
+      return;
+    }
+
+    buildPages(urls);
+  })();
 })();
 </script>
 </body>
