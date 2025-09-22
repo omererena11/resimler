@@ -55,12 +55,20 @@
 
   /* Sayaç — sadece boyut ve kalınlık arttı */
   #counter{
-    position:fixed; left:12px; bottom:12px; z-index:10;
-    background:#111a; color:#ddd; padding:10px 14px; border-radius:10px;
-    font-size:28px;            /* 14px → 28px (2x) */
-    font-weight:700;           /* bold */
-    letter-spacing:.03em; backdrop-filter:blur(3px);
-  }
+  position:fixed; 
+  left:50%;              /* yatayda ortaya al */
+  bottom:20px;           /* alttan biraz yukarı */
+  transform:translateX(-50%); /* tam ortalama */
+  z-index:10;
+  background:#111a; 
+  color:#fff; 
+  padding:10px 14px; 
+  border-radius:12px;
+  font-size:28px;        /* 2 kat büyütülmüş */
+  font-weight:700;       /* bold */
+  letter-spacing:.05em; 
+  backdrop-filter:blur(3px);
+}
 
   /* İleri/Geri (opsiyonel) */
   .navbtn{
