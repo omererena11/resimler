@@ -2,16 +2,19 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-<meta name="referrer" content="no-referrer"/>
-<title>Viewer • Carousel + Pinch Zoom (Stable)</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+/>
+<title>Compat Viewer (Touch-Only, No-Scroll)</title>
+<meta name="referrer" content="no-referrer" />
 <style>
   html,body{margin:0;height:100%;background:#000;color:#ddd;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;-webkit-user-select:none;user-select:none;overflow:hidden}
   .app{position:relative;height:100%;width:100%}
   .frame{position:absolute;inset:0;overflow:hidden;background:#000}
   .track{height:100%;display:flex;will-change:transform;transform:translateX(0);transition:transform .28s ease}
   .dragging .track{transition:none}
-  .slide{min-width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;background:#000;position:relative;overflow:hidden;touch-action:none}
+  .slide{min-width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;background:#000;position:relative;overflow:hidden}
   .ph{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%, #1a1a1a 0 20%, #0a0a0a 60%);animation:pulse 1.2s ease-in-out infinite}
   @keyframes pulse{50%{filter:brightness(1.15)}}
   .img{max-width:100%;max-height:100%;object-fit:contain;background:#000;opacity:0;transition:opacity .2s ease;-webkit-user-drag:none;user-drag:none;will-change:transform;transform-origin:center center}
@@ -20,10 +23,13 @@
   .btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:64px;border:none;border-radius:12px;background:#111a;color:#ddd;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:5}
   .btn:active{filter:brightness(1.2)}
   .prev{left:8px}.next{right:8px}
+  /* Basit debug kutusu (gerekirse görünür yap) */
+  #dbg{position:absolute;left:8px;top:8px;background:#111a;color:#9ad;padding:6px 8px;font-size:12px;border-radius:8px;max-width:70vw;max-height:30vh;overflow:auto;display:none;z-index:6}
 </style>
 </head>
 <body>
 <div class="app" id="app">
+  <div id="dbg"></div>
   <div class="frame" id="frame">
     <div class="track" id="track"></div>
   </div>
@@ -41,345 +47,220 @@
   const counter = $("#counter");
   const btnPrev = $("#btnPrev");
   const btnNext = $("#btnNext");
+  const dbgBox  = $("#dbg");
 
-  // ---------- Parametre / Veri Kaynağı ----------
+  // ===== Yardımcılar =====
   const qp = new URLSearchParams(location.search);
-  const rawM   = qp.get("m")    || qp.get("manifest") || qp.get("u") || qp.get("url");
-  const rawSrc = qp.get("src"); // tek görsel
-  const rawLst = qp.get("list");// JSON array (encode edilmiş)
-  function safeDecode(s){ try{ return decodeURIComponent(s);}catch{ return s||""; } }
-  function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
+  const rawSrcs = qp.get("src") || "";
+  const urls = rawSrcs.split(",").map(s=>decodeURIComponent(s.trim())).filter(u=>/^https?:\/\//.test(u) || /^file:\/\/\/android_asset\//.test(u));
 
-  async function getUrls(){
-    // 1) ?list=[...] JSON
-    if(rawLst){
-      try{ const arr = JSON.parse(safeDecode(rawLst)); return arr.filter(isLink); }catch{}
-    }
-    // 2) ?src= tek URL
-    if(rawSrc && isLink(safeDecode(rawSrc))) return [safeDecode(rawSrc)];
-    // 3) ?m= manifest URL ya da satır listesi
-    if(rawM){
-      const m = safeDecode(rawM);
-      if(isLink(m)){
-        // CORS gerekebilir; olmazsa WebViewString kullan
-        try{
-          const resp = await fetch(m,{cache:"no-store",mode:"cors"});
-          if(!resp.ok) throw new Error("HTTP "+resp.status);
-          const text = await resp.text();
-          return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-        }catch(e){
-          console.warn("Manifest fetch hatası:", e.message);
-          // CORS engeli varsa boş dön
-          return [];
-        }
-      }else{
-        // satır-satır URL
-        return m.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-      }
-    }
-    // 4) WebViewString
-    try{
-      if(window.AppInventor && typeof window.AppInventor.getWebViewString==="function"){
-        const wvs = String(window.AppInventor.getWebViewString()||"");
-        if(wvs){
-          try{
-            const d = JSON.parse(wvs);
-            if(Array.isArray(d.list)) return d.list.filter(isLink);
-            if(d.manifest){
-              if(isLink(d.manifest)){
-                const r = await fetch(d.manifest,{cache:"no-store",mode:"cors"});
-                if(r.ok){
-                  return (await r.text()).split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-                }
-              }else{
-                return String(d.manifest).split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-              }
-            }
-          }catch{
-            // satır-satır URL
-            return wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-          }
-        }
-      }
-    }catch{}
-    // 5) fallback örnek
-    return [
+  function dbg(m){ /* gerekirse aç: */ /* dbgBox.style.display='block'; dbgBox.textContent = String(m) + "\n" + dbgBox.textContent; */ }
+
+  if(!urls.length){
+    // örnek doldur
+    urls.push(
       "https://via.placeholder.com/1200x1800?text=Sayfa+1",
       "https://via.placeholder.com/1200x1800?text=Sayfa+2"
-    ];
+    );
   }
 
-  // ---------- Carousel State ----------
-  let urls = [];
+  // ===== Carousel State (scroll yok, translateX) =====
   let idx = 0;
   let W = window.innerWidth;
   let dragging = false, startX=0, currX=0, baseOffset=0;
 
   const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
-  const setCounter = ()=> counter.textContent = `${(idx+1)} / ${urls.length}`;
-  const setTransform = (x)=> track.style.transform = `translateX(${x}px)`;
-  const targetOf = (i)=> -i * W;
+  const posOf = (i)=> -i * W;
+  const setX = (x)=> track.style.transform = `translateX(${x}px)`;
+  const setCounter = ()=> counter.textContent = `${idx+1} / ${urls.length}`;
 
-  function buildSlides(list){
-    const frag = document.createDocumentFragment();
-    list.forEach((u,i)=>{
-      const s = document.createElement("div");
-      s.className = "slide";
-      const ph = document.createElement("div"); ph.className="ph";
-      const img = document.createElement("img"); img.className="img"; img.dataset.src = u;
-      img.onload = ()=>{ ph.remove(); img.classList.add("ready"); };
-      img.onerror = ()=>{ ph.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
-      s.appendChild(ph); s.appendChild(img);
-      attachPinchZoom(s, img, i);
-      frag.appendChild(s);
-    });
-    track.innerHTML = ""; track.appendChild(frag);
+  // ===== Zoom state (slide başına) =====
+  const zoomStates = []; // {scale, tx, ty, dragging, lx, ly, pinching, baseDist, lastDist, lastCx,lastCy}
+  function z(i){
+    if(!zoomStates[i]) zoomStates[i] = {scale:1, tx:0, ty:0, dragging:false, lx:0, ly:0, pinching:false, baseDist:0, lastDist:null, lastCx:0, lastCy:0};
+    return zoomStates[i];
+  }
+  function applyTransform(img, zz){ img.style.transform = `translate(${zz.tx}px, ${zz.ty}px) scale(${zz.scale})`; }
+  function clampTranslate(container, img, zz){
+    const rect = container.getBoundingClientRect();
+    const vw = rect.width, vh = rect.height;
+    const extraX = (zz.scale - 1) * (vw/2);
+    const extraY = (zz.scale - 1) * (vh/2);
+    zz.tx = clamp(zz.tx, -extraX, extraX);
+    zz.ty = clamp(zz.ty, -extraY, extraY);
+    applyTransform(img, zz);
   }
 
-  // lazy
-  function lazyAt(i){
-    const slide = track.children[i]; if(!slide) return;
-    const img = slide.querySelector(".img");
+  // Hassasiyet & Eşikler (yumuşak, isteklerine göre):
+  const STEP_CAP_IN  = 0.12;
+  const STEP_CAP_OUT = 0.08;
+  const PINCH_DIV_IN  = 340;
+  const PINCH_DIV_OUT = 480;
+  const PINCH_START_THRESHOLD = 16;
+
+  // ===== DOM kur =====
+  function build(){
+    const frag = document.createDocumentFragment();
+    urls.forEach((u,i)=>{
+      const slide = document.createElement("div");
+      slide.className = "slide";
+
+      const ph = document.createElement("div"); ph.className="ph";
+      const img = document.createElement("img"); img.className="img"; img.dataset.src=u;
+      img.onload = ()=>{ ph.remove(); img.classList.add("ready"); };
+      img.onerror = ()=>{ ph.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
+
+      slide.appendChild(ph); slide.appendChild(img);
+      attachPinchZoom(slide, img, i);
+      frag.appendChild(slide);
+    });
+    track.innerHTML = ""; track.appendChild(frag);
+
+    // İlk sayfayı HEMEN yükle (sorunun ana kaynağı buydu)
+    const first = track.querySelector(".slide .img");
+    if(first && !first.dataset.loaded){ first.src = first.dataset.src; first.dataset.loaded="1"; }
+  }
+
+  function lazy(i){
+    const s = track.children[i]; if(!s) return;
+    const img = s.querySelector(".img");
     if(!img || img.dataset.loaded) return;
     img.src = img.dataset.src; img.dataset.loaded = "1";
   }
-  function lazyAround(i){ lazyAt(i); lazyAt(i-1); lazyAt(i+1); }
+  function lazyAround(i){ lazy(i); lazy(i-1); lazy(i+1); }
 
-  function goTo(i, animate=true){
+  function go(i, animate=true){
     idx = clamp(i, 0, urls.length-1);
     track.style.transition = animate ? "" : "none";
-    setTransform(targetOf(idx));
+    setX(posOf(idx));
     setCounter();
     lazyAround(idx);
   }
 
-  // ---------- Swipe (scroll yok) ----------
-  function currentZoom(){ return (zoomStates.get(idx)?.scale || 1); }
-  frame.addEventListener("pointerdown", e=>{
-    if(!e.isPrimary || currentZoom()>1) return; // zoom açıkken swipe yok
-    frame.setPointerCapture(e.pointerId);
+  // ===== Swipe: sadece zoom=1 iken, frame üzerinde =====
+  function currentZoom(){ return z(idx).scale; }
+
+  frame.addEventListener("touchstart", (e)=>{
+    if(e.targetTouches.length!==1) return;   // tek parmak
+    if(currentZoom()>1) return;              // zoom açıkken sayfa kaydırma yok
     dragging = true; app.classList.add("dragging");
-    startX = currX = e.clientX; baseOffset = targetOf(idx);
-  });
-  frame.addEventListener("pointermove", e=>{
-    if(!dragging) return;
-    currX = e.clientX;
+    startX = currX = e.targetTouches[0].clientX;
+    baseOffset = posOf(idx);
+  }, {passive:true});
+
+  frame.addEventListener("touchmove", (e)=>{
+    if(!dragging || e.targetTouches.length!==1) return;
+    currX = e.targetTouches[0].clientX;
     const delta = currX - startX;
     const atStart = (idx===0 && delta>0);
     const atEnd   = (idx===urls.length-1 && delta<0);
     const damp = (atStart || atEnd) ? 0.35 : 1;
-    setTransform(baseOffset + delta * damp);
-  });
+    setX(baseOffset + delta * damp);
+  }, {passive:true});
+
   function endSwipe(){
     if(!dragging) return;
     dragging = false; app.classList.remove("dragging");
-    const delta = currX - startX;
-    const abs = Math.abs(delta);
+    const delta = currX - startX, abs = Math.abs(delta);
     const threshold = Math.max(60, W*0.15);
-    if(abs >= threshold) goTo(idx + (delta<0 ? 1 : -1));
-    else goTo(idx);
+    if(abs >= threshold) go(idx + (delta<0 ? 1 : -1));
+    else go(idx);
   }
-  frame.addEventListener("pointerup", endSwipe);
-  frame.addEventListener("pointercancel", endSwipe);
-  frame.addEventListener("pointerleave", endSwipe);
+  frame.addEventListener("touchend", endSwipe);
+  frame.addEventListener("touchcancel", endSwipe);
 
-  btnPrev.addEventListener("click", ()=> goTo(idx-1));
-  btnNext.addEventListener("click", ()=> goTo(idx+1));
-  window.addEventListener("resize", ()=>{ W = window.innerWidth; goTo(idx,false); });
+  btnPrev.addEventListener("click", ()=> go(idx-1));
+  btnNext.addEventListener("click", ()=> go(idx+1));
+  window.addEventListener("resize", ()=>{ W=window.innerWidth; go(idx,false); });
 
-  // ---------- Pinch Zoom (Pointer + Touch fallback) ----------
-  const zoomStates = new Map();
-  function getZoomState(i){
-    if(!zoomStates.has(i)){
-      zoomStates.set(i, {scale:1, tx:0, ty:0, dragging:false, lx:0, ly:0,
-                         pointers:new Map(), pinching:false, baseDist:0, lastCx:0, lastCy:0});
-    }
-    return zoomStates.get(i);
-  }
-
-  // hassasiyet/limitler
-  const STEP_CAP_IN  = 0.12;  // olay başına max +%12
-  const STEP_CAP_OUT = 0.08;  // olay başına max -%8 (zoom-out daha yumuşak)
-  const PINCH_DIV_IN   = 340; // açılırken
-  const PINCH_DIV_OUT  = 480; // kapanırken daha yumuşak
-  const PINCH_START_THRESHOLD = 16; // pinch başlama eşiği (px)
-
-  function applyTransform(img, z){ img.style.transform = `translate(${z.tx}px, ${z.ty}px) scale(${z.scale})`; }
-  function clampTranslate(container, img, z){
-    const rect = container.getBoundingClientRect();
-    const vw = rect.width, vh = rect.height;
-    const extraX = (z.scale - 1) * (vw/2);
-    const extraY = (z.scale - 1) * (vh/2);
-    z.tx = clamp(z.tx, -extraX, extraX);
-    z.ty = clamp(z.ty, -extraY, extraY);
-    applyTransform(img,z);
-  }
-
+  // ===== Pinch Zoom + Pan (touch-only) =====
   function attachPinchZoom(container, img, index){
-    if ('PointerEvent' in window) {
-      // ----- POINTER EVENTS -----
-      container.addEventListener("pointerdown", (e)=>{
-        container.setPointerCapture(e.pointerId);
-        const z = getZoomState(index);
-        z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
-        if(z.pointers.size===2){
-          const [a,b] = Array.from(z.pointers.values());
-          z.baseDist = Math.hypot(b.x - a.x, b.y - a.y);
-          z.pinching = false; // eşik aşılmadan zoom yok
-        }
-        if(z.pointers.size===1 && z.scale>1){
-          z.dragging = true; z.lx = e.clientX; z.ly = e.clientY;
-        }
-      });
-
-      container.addEventListener("pointermove", (e)=>{
-        const z = getZoomState(index);
-        if(z.pointers.has(e.pointerId)){
-          z.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
-        }
-        // Pinch
-        if(z.pointers.size===2){
-          const [a,b] = Array.from(z.pointers.values());
-          const dx=b.x-a.x, dy=b.y-a.y, dist=Math.hypot(dx,dy);
-          const deltaAbs = Math.abs(dist - z.baseDist);
-          if(!z.pinching){
-            if(deltaAbs >= PINCH_START_THRESHOLD){
-              z.pinching = true; z.lastDist = dist;
-              const r = container.getBoundingClientRect();
-              z.lastCx = (a.x+b.x)/2 - r.left - r.width/2 + z.tx;
-              z.lastCy = (a.y+b.y)/2 - r.top  - r.height/2 + z.ty;
-            } else { return; }
-          }
-          const delta = dist - (z.lastDist ?? dist);
-          z.lastDist = dist;
-          const prev = z.scale;
-          const isOut = delta < 0;
-          const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
-          const rawFactor = 1 + (delta / divisor);
-          const cap = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
-          const factor = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
-          const next = clamp(prev * factor, 1, 4);
-          if(next !== prev){
-            z.tx = z.lastCx - (z.lastCx - z.tx) * (next/prev);
-            z.ty = z.lastCy - (z.lastCy - z.ty) * (next/prev);
-            z.scale = next;
-            applyTransform(img,z); clampTranslate(container,img,z);
-          }
-        }
-        // Pan
-        if(z.dragging && z.scale>1){
-          const dx=e.clientX - z.lx, dy=e.clientY - z.ly;
-          z.lx=e.clientX; z.ly=e.clientY;
-          z.tx += dx; z.ty += dy;
-          clampTranslate(container,img,z);
-        }
-      });
-
-      function endPtr(e){
-        const z = getZoomState(index);
-        if(z.pointers.has(e.pointerId)) z.pointers.delete(e.pointerId);
-        if(z.pointers.size<2){ z.pinching=false; z.lastDist=null; }
-        if(z.dragging){ z.dragging=false; clampTranslate(container,img,z); }
-        if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; applyTransform(img,z); }
+    container.addEventListener("touchstart", (e)=>{
+      const zz = z(index);
+      if(e.targetTouches.length===2){
+        const t0=e.targetTouches[0], t1=e.targetTouches[1];
+        zz.baseDist = Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
+        zz.pinching = false; zz.lastDist = null;
+        // pinch hazırlığı sırasında swipe’ı engelle
+        e.preventDefault();
+      } else if(e.targetTouches.length===1 && zz.scale>1){
+        const t=e.targetTouches[0];
+        zz.dragging = true; zz.lx=t.clientX; zz.ly=t.clientY;
+        e.preventDefault();
       }
-      container.addEventListener("pointerup", endPtr);
-      container.addEventListener("pointercancel", endPtr);
-      container.addEventListener("pointerleave", endPtr);
+    }, {passive:false});
 
-    } else {
-      // ----- TOUCH EVENTS FALLBACK -----
-      let touches = [];
-      container.addEventListener("touchstart", (e)=>{
-        if(e.targetTouches.length===1){
-          const z = getZoomState(index);
-          if(z.scale>1){
-            z.dragging=true; z.lx=e.targetTouches[0].clientX; z.ly=e.targetTouches[0].clientY;
-          }
-        } else if(e.targetTouches.length===2){
-          const t0=e.targetTouches[0], t1=e.targetTouches[1];
-          const z = getZoomState(index);
-          z.baseDist = Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
-          z.pinching=false;
-          e.preventDefault();
-        }
-      }, {passive:false});
+    container.addEventListener("touchmove", (e)=>{
+      const zz = z(index);
 
-      container.addEventListener("touchmove", (e)=>{
-        if(e.targetTouches.length===2){
-          const t0=e.targetTouches[0], t1=e.targetTouches[1];
-          const dist=Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
-          const z = getZoomState(index);
-          const deltaAbs=Math.abs(dist - z.baseDist);
-          if(!z.pinching){
-            if(deltaAbs >= PINCH_START_THRESHOLD){
-              z.pinching=true; z.lastDist=dist;
-              const r = container.getBoundingClientRect();
-              z.lastCx = (t0.clientX+t1.clientX)/2 - r.left - r.width/2 + z.tx;
-              z.lastCy = (t0.clientY+t1.clientY)/2 - r.top  - r.height/2 + z.ty;
-            } else { return; }
-          }
-          const delta = dist - (z.lastDist ?? dist);
-          z.lastDist = dist;
-          const prev = z.scale;
-          const isOut = delta < 0;
-          const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
-          const rawFactor = 1 + (delta / divisor);
-          const cap = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
-          const factor = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
-          const next = clamp(prev * factor, 1, 4);
-          if(next !== prev){
-            z.tx = z.lastCx - (z.lastCx - z.tx) * (next/prev);
-            z.ty = z.lastCy - (z.lastCy - z.ty) * (next/prev);
-            z.scale = next;
-            applyTransform(img,z); clampTranslate(container,img,z);
-          }
-          e.preventDefault();
-        } else if(e.targetTouches.length===1){
-          const z = getZoomState(index);
-          if(z.dragging && z.scale>1){
-            const t=e.targetTouches[0];
-            const dx=t.clientX - z.lx, dy=t.clientY - z.ly;
-            z.lx=t.clientX; z.ly=t.clientY;
-            z.tx += dx; z.ty += dy;
-            clampTranslate(container,img,z);
-            e.preventDefault();
+      // İki parmak: pinch
+      if(e.targetTouches.length===2){
+        const t0=e.targetTouches[0], t1=e.targetTouches[1];
+        const dist=Math.hypot(t1.clientX - t0.clientX, t1.clientY - t0.clientY);
+        const deltaAbs = Math.abs(dist - zz.baseDist);
+
+        if(!zz.pinching){
+          if(deltaAbs >= PINCH_START_THRESHOLD){
+            zz.pinching = true; zz.lastDist = dist;
+            const r = container.getBoundingClientRect();
+            zz.lastCx = (t0.clientX + t1.clientX)/2 - r.left - r.width/2 + zz.tx;
+            zz.lastCy = (t0.clientY + t1.clientY)/2 - r.top  - r.height/2 + zz.ty;
+          }else{
+            e.preventDefault(); // swipe tetiklenmesin
+            return;
           }
         }
-      }, {passive:false});
 
-      container.addEventListener("touchend", ()=>{
-        const z = getZoomState(index);
-        z.dragging=false; z.pinching=false; z.lastDist=null;
-        if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; applyTransform(img,z); }
-      });
-      container.addEventListener("touchcancel", ()=>{
-        const z = getZoomState(index);
-        z.dragging=false; z.pinching=false; z.lastDist=null;
-        if(z.scale<=1.0001){ z.scale=1; z.tx=0; z.ty=0; applyTransform(img,z); }
-      });
-    }
+        const delta = dist - (zz.lastDist ?? dist);
+        zz.lastDist = dist;
+
+        const prev = zz.scale;
+        const isOut = delta < 0;
+        const divisor = isOut ? PINCH_DIV_OUT : PINCH_DIV_IN;
+        const rawFactor = 1 + (delta / divisor);
+        const cap = isOut ? STEP_CAP_OUT : STEP_CAP_IN;
+        const factor = Math.min(Math.max(rawFactor, 1-cap), 1+cap);
+        const next = clamp(prev * factor, 1, 4);
+
+        if(next !== prev){
+          zz.tx = zz.lastCx - (zz.lastCx - zz.tx) * (next/prev);
+          zz.ty = zz.lastCy - (zz.lastCy - zz.ty) * (next/prev);
+          zz.scale = next;
+          applyTransform(img, zz); clampTranslate(container, img, zz);
+        }
+        e.preventDefault();
+        return;
+      }
+
+      // Tek parmak: pan (yalnız zoom>1)
+      if(e.targetTouches.length===1 && zz.dragging && zz.scale>1){
+        const t=e.targetTouches[0];
+        const dx=t.clientX - zz.lx, dy=t.clientY - zz.ly;
+        zz.lx=t.clientX; zz.ly=t.clientY;
+        zz.tx += dx; zz.ty += dy;
+        clampTranslate(container, img, zz);
+        e.preventDefault();
+      }
+    }, {passive:false});
+
+    container.addEventListener("touchend", ()=>{
+      const zz = z(index);
+      zz.dragging=false; zz.pinching=false; zz.lastDist=null;
+      if(zz.scale<=1.0001){ zz.scale=1; zz.tx=0; zz.ty=0; applyTransform(img, zz); }
+    }, {passive:true});
+
+    container.addEventListener("touchcancel", ()=>{
+      const zz = z(index);
+      zz.dragging=false; zz.pinching=false; zz.lastDist=null;
+      if(zz.scale<=1.0001){ zz.scale=1; zz.tx=0; zz.ty=0; applyTransform(img, zz); }
+    }, {passive:true});
   }
 
-  // ---------- Başlat ----------
-  (async function init(){
-    urls = await getUrls();
-    if(!urls.length){
-      track.innerHTML = '<div class="slide"><div class="ph"></div></div>';
-      counter.textContent = "0 / 0";
-      btnPrev.disabled = btnNext.disabled = true;
-      return;
-    }
-    buildSlides(urls);
-
-    // İLK SAYFA → HEMEN YÜKLE (tıklama beklemeden) ✅
-    const first = track.querySelector(".slide .img");
-    if(first && !first.dataset.loaded){
-      first.src = first.dataset.src; first.dataset.loaded = "1";
-      first.addEventListener("load", ()=> first.classList.add("ready"));
-    }
-
-    goTo(0,false); // hizala + komşuları lazy yükle
-  })();
+  // ===== Başlat =====
+  build();
+  setCounter();
+  // ilk hizalama & komşuları yükle
+  go(0, false);
 })();
 </script>
 </body>
