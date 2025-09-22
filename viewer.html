@@ -171,15 +171,12 @@
     return clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
   }
   function updateVisible(){
-  const idx = currentIndex();
-  loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
-  counter.hidden = false;
-  counter.textContent = `${idx+1} / ${total}`;
+    const idx = currentIndex();
+    loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
+    counter.hidden = false;
+    counter.textContent = `${idx+1} / ${total}`;
+  }
 
-  // 👇 ok görünürlüğü (ilk açılışta da çalışır)
-  btnPrev.style.display = (idx === 0) ? "none" : "flex";
-  btnNext.style.display = (idx === total-1) ? "none" : "flex";
-}
   // -------- Snap fixer --------
   let snapTimer;
   function onScroll(){
@@ -400,8 +397,7 @@
     total = list.length;
 
     // İlk ekranda aktif + komşuları yükle
-    updateVisible(); btnPrev.style.display = (targetIdx === 0) ? "none" : "flex";
-btnNext.style.display = (targetIdx === total-1) ? "none" : "flex";
+    updateVisible();
 
     // Olaylar
     viewer.addEventListener("scroll", onScroll);
