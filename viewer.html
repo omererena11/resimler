@@ -9,6 +9,7 @@
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
     overscroll-behavior-x:contain; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    -webkit-user-select:none; user-select:none;
   }
   #viewer{
     display:flex; width:100%; height:100%;
@@ -23,10 +24,17 @@
     scroll-snap-align:start; scroll-snap-stop:always; /* 👈 tek tek yakala */
     background:#000; position:relative; overflow:hidden;
   }
-  .pz{ width:100%; height:100%; display:flex; justify-content:center; align-items:center; position:relative; touch-action:none; }
+  .pz{
+    width:100%; height:100%;
+    display:flex; justify-content:center; align-items:center;
+    position:relative;
+    /* ÖNEMLİ: kaydırmayı serbest bırak */
+    touch-action: pan-x;             /* (gerekirse 'pan-x pan-y') */
+  }
   .img{
     max-width:100%; max-height:100%; object-fit:contain; background:#000;
-    opacity:0; transition:opacity .18s ease; /* önceki resmin “flash”ını engeller */
+    opacity:0; transition:opacity .18s ease;
+    -webkit-user-drag:none; user-drag:none; pointer-events:auto;
   }
   .img.ready{ opacity:1; }
   .skel{
@@ -36,12 +44,23 @@
   }
   @keyframes pulse{50%{filter:brightness(1.15)}}
 
-  /* Sayfa sayacı */
+  /* Sayaç */
   #counter{
     position:fixed; left:12px; bottom:12px; z-index:10;
     background:#111a; color:#ddd; padding:6px 10px; border-radius:10px;
     font-size:14px; letter-spacing:.03em; backdrop-filter:blur(3px);
   }
+
+  /* İleri/Geri butonları (opsiyonel) */
+  .navbtn{
+    position:fixed; top:50%; transform:translateY(-50%);
+    width:42px; height:64px; z-index:11; border:none; border-radius:12px;
+    background:#111a; color:#ddd; font-size:22px;
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(3px);
+  }
+  .navbtn:active{filter:brightness(1.2)}
+  #prev{ left:8px; }  #next{ right:8px; }
 
   #err{
     position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none;
@@ -50,6 +69,8 @@
 </head>
 <body>
   <div id="viewer"></div>
+  <button id="prev" class="navbtn" aria-label="Önceki">‹</button>
+  <button id="next" class="navbtn" aria-label="Sonraki">›</button>
   <div id="counter" hidden>— / —</div>
   <div id="err"></div>
 
@@ -58,9 +79,11 @@
   const $ = sel => document.querySelector(sel);
   const viewer = $("#viewer");
   const counter = $("#counter");
+  const btnPrev = $("#prev");
+  const btnNext = $("#next");
   const errBox = $("#err");
 
-  // ---------- Yardımcılar ----------
+  // ---------- Parametreler ----------
   const qp = new URLSearchParams(location.search);
   const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
   const rawX = qp.get("x") || qp.get("extra") || "";
@@ -74,82 +97,67 @@
             .map(t=>t.trim()).filter(isLink);
   }
   function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
+  function showErr(msg){ errBox.textContent = msg; errBox.style.display = "block"; console.warn(msg); }
 
-  function showErr(msg){
-    errBox.textContent = msg;
-    errBox.style.display = "block";
-    console.warn(msg);
-  }
-
-  function dedupe(arr){
-    const out=[]; const seen=new Set();
-    for(const u of arr){
-      const k = u.trim();
-      if(!k) continue;
-      if(!seen.has(k)){ seen.add(k); out.push(k); }
-    }
-    return out;
-  }
-
+  // ---------- Manifest okuma ----------
   async function readManifest(src){
-    // src URL ise çek; değilse satır satır liste kabul et
     if (isLink(src)) {
       try{
         const resp = await fetch(src, {cache:"no-store", mode:"cors"});
         if(!resp.ok) throw new Error("HTTP " + resp.status);
         const text = await resp.text();
         return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-      }catch(e){
-        showErr("Manifest okunamadı: " + e.message);
-        return [];
-      }
+      }catch(e){ showErr("Manifest okunamadı: " + e.message); return []; }
     } else {
-      // satır satır metin
       return src.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
     }
   }
+  function dedupe(arr){
+    const out=[]; const seen=new Set();
+    for(const u of arr){ const k=u.trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
+    return out;
+  }
 
+  // ---------- DOM ----------
   function makePage(url, idx){
     const page = document.createElement("div");
-    page.className = "page";
-    page.dataset.index = idx;
+    page.className = "page"; page.dataset.index = idx;
     const pz = document.createElement("div"); pz.className="pz";
     const sk = document.createElement("div"); sk.className="skel";
     const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
     pz.appendChild(sk); pz.appendChild(img); page.appendChild(pz);
     return {page, img, sk};
   }
-
   function loadImageAt(index){
     const page = viewer.querySelector(`.page[data-index="${index}"]`);
     if(!page) return;
     const img = page.querySelector(".img");
     const sk  = page.querySelector(".skel");
-    if(img.dataset.loaded) return; // zaten yüklendi
+    if(img.dataset.loaded) return;
     const src = img.getAttribute("data-src");
     img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
     img.onerror = ()=>{ sk && sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
     img.src = src;
     img.dataset.loaded = "1";
   }
+  function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
 
-  function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
-
-  // Görünür sayfayı bulup o ve komşularını yükle + sayacı güncelle
+  // ---------- Sayfa hesaplama + sayaç ----------
   let total = 0;
-  function updateVisible(){
+  function currentIndex(){
     const w = viewer.clientWidth || 1;
-    const idx = clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
-    // aktif + komşular
-    loadImageAt(idx);
-    loadImageAt(idx-1);
-    loadImageAt(idx+1);
-    // sayaç
+    return clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
+  }
+  function updateVisible(){
+    const idx = currentIndex();
+    loadImageAt(idx);       // aktif
+    loadImageAt(idx-1);     // komşu
+    loadImageAt(idx+1);     // komşu
     counter.hidden = false;
     counter.textContent = `${idx+1} / ${total}`;
   }
 
-  // Kaydırma bitince yakın sayfaya oturt (fazla atlamayı engeller)
+  // ---------- Snap fixer ----------
   let snapTimer;
   function onScroll(){
     clearTimeout(snapTimer);
@@ -161,6 +169,19 @@
     }, 80);
   }
 
+  // ---------- İleri/Geri butonları ----------
+  function go(delta){
+    const w = viewer.clientWidth;
+    const idx = currentIndex();
+    const targetIdx = clamp(idx + delta, 0, total - 1);
+    viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
+    // Hemen yükle
+    loadImageAt(targetIdx); loadImageAt(targetIdx-1); loadImageAt(targetIdx+1);
+    counter.textContent = `${targetIdx+1} / ${total}`;
+  }
+  btnPrev.addEventListener("click", ()=>go(-1));
+  btnNext.addEventListener("click", ()=>go(1));
+
   // ---------- Başlat ----------
   (async function init(){
     let list = [];
@@ -168,7 +189,7 @@
     if (manifestURL) {
       list = await readManifest(manifestURL);
     } else {
-      // WebViewString fallback: URL ya da satır listesi gelebilir
+      // WebViewString fallback (URL ya da satır listesi gelebilir)
       const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
                     ? String(window.AppInventor.getWebViewString()||"")
                     : "";
@@ -184,19 +205,16 @@
       }
     }
 
-    // x param ile gelen ekstra linkleri başa ekle → kopyaları sil
     list = dedupe(extraList.concat(list));
 
     if (!list.length){
       showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
-      // En azından boş bir sayfa
       viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
       total = 1;
       updateVisible();
       return;
     }
 
-    // DOM’a ekle
     const frag = document.createDocumentFragment();
     list.forEach((url, i)=>{
       const {page} = makePage(url, i);
@@ -205,12 +223,12 @@
     viewer.appendChild(frag);
     total = list.length;
 
-    // İlk yüklemeler
+    // ilk ekranda aktif + komşuları yükle
     updateVisible();
 
-    // Olaylar
+    // olaylar
     viewer.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", ()=>{ updateVisible(); });
+    window.addEventListener("resize", updateVisible);
   })();
 })();
 </script>
