@@ -1,102 +1,379 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Pinch Probe</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes"/>
+<meta name="referrer" content="no-referrer"/>
+<title>Viewer (Zoom + Pan + Counter)</title>
 <style>
-  html,body{margin:0;height:100%;background:#000;overflow:hidden}
-  #wrap{position:fixed;inset:0;touch-action:none;background:#000;display:flex;justify-content:center;align-items:center}
-  #img{max-width:100%;max-height:100%;object-fit:contain;will-change:transform;transform-origin:center center}
-  #hud{position:fixed;left:8px;bottom:8px;color:#9ad;background:#111a;padding:6px 8px;border-radius:8px;font:14px system-ui}
+  html, body{
+    margin:0; padding:0; height:100%; background:#000; overflow:hidden;
+    overscroll-behavior-x:contain; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    -webkit-user-select:none; user-select:none;
+  }
+  #viewer{
+    display:flex; width:100%; height:100%;
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth; position:relative;
+  }
+  /* Zoom aktifken snap’i kilitle */
+  #viewer.lock{ scroll-snap-type:none; }
+
+  .page{
+    min-width:100vw; height:100vh;
+    display:flex; justify-content:center; align-items:center;
+    scroll-snap-align:start; scroll-snap-stop:always;
+    background:#000; position:relative; overflow:hidden;
+  }
+
+  .pz{
+    width:100%; height:100%;
+    display:flex; justify-content:center; align-items:center;
+    position:relative;
+    /* zoom kapalıyken doğal scroll’u engellemeyelim */
+    touch-action: pan-x pan-y;
+    cursor: default;
+  }
+  .img{
+    max-width:100%; max-height:100%;
+    object-fit:contain; background:#000;
+    opacity:0; transition:opacity .18s ease;
+    -webkit-user-drag:none; user-drag:none; pointer-events:auto;
+    will-change:transform;
+    transform-origin:center center;
+  }
+  .img.ready{ opacity:1; }
+
+  .skel{
+    position:absolute; inset:0; background:
+      radial-gradient(circle at 50% 45%, #1a1a1a 0 20%, #0a0a0a 60%);
+    animation:pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse{50%{filter:brightness(1.15)}}
+
+  /* Sayaç */
+  #counter{
+    position:fixed; left:12px; bottom:12px; z-index:10;
+    background:#111a; color:#ddd; padding:6px 10px; border-radius:10px;
+    font-size:14px; letter-spacing:.03em; backdrop-filter:blur(3px);
+  }
+
+  /* İleri/Geri (opsiyonel) */
+  .navbtn{
+    position:fixed; top:50%; transform:translateY(-50%);
+    width:42px; height:64px; z-index:11; border:none; border-radius:12px;
+    background:#111a; color:#ddd; font-size:22px;
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(3px);
+  }
+  .navbtn:active{filter:brightness(1.2)}
+  #prev{ left:8px; }  #next{ right:8px; }
+
+  #err{
+    position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none;
+  }
 </style>
 </head>
 <body>
-<div id="wrap">
-  <!-- CORS derdini elemek için data URL de koyabilirsin; şimdilik HTTPS placeholder -->
-  <img id="img" src="https://via.placeholder.com/1200x1800?text=PINCH+ME">
-</div>
-<div id="hud">scale: 1.00</div>
+  <div id="viewer"></div>
+  <button id="prev" class="navbtn" aria-label="Önceki">‹</button>
+  <button id="next" class="navbtn" aria-label="Sonraki">›</button>
+  <div id="counter" hidden>— / —</div>
+  <div id="err"></div>
 
 <script>
 (function(){
-  const wrap = document.getElementById('wrap');
-  const img  = document.getElementById('img');
-  const hud  = document.getElementById('hud');
+  const $ = sel => document.querySelector(sel);
+  const viewer = $("#viewer");
+  const counter = $("#counter");
+  const btnPrev = $("#prev");
+  const btnNext = $("#next");
+  const errBox = $("#err");
 
-  const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
-  let scale=1, tx=0, ty=0, dragging=false, lx=0, ly=0;
-  let baseDist=0, pinching=false, lastDist=null, cx=0, cy=0;
+  // -------- Parametreler --------
+  const qp = new URLSearchParams(location.search);
+  const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
+  const rawX = qp.get("x") || qp.get("extra") || "";
+  const manifestURL = rawM ? safeDecode(rawM) : "";
+  const extraList = splitList(safeDecode(rawX));
 
-  function apply(){ img.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; hud.textContent = `scale: ${scale.toFixed(2)}`; }
-  function clampPan(){
-    const r = wrap.getBoundingClientRect();
-    const extraX = (scale-1)*(r.width/2);
-    const extraY = (scale-1)*(r.height/2);
-    tx = clamp(tx, -extraX, extraX);
-    ty = clamp(ty, -extraY, extraY);
+  function safeDecode(s){ try{ return decodeURIComponent(s); }catch{ return s||""; } }
+  function splitList(s){
+    if(!s) return [];
+    return s.split(/\r?\n|\|/g).join(",").split(",")
+            .map(t=>t.trim()).filter(isLink);
+  }
+  function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
+  function showErr(msg){ errBox.textContent = msg; errBox.style.display = "block"; console.warn(msg); }
+
+  // -------- Manifest okuma --------
+  async function readManifest(src){
+    if (isLink(src)) {
+      try{
+        const resp = await fetch(src, {cache:"no-store", mode:"cors"});
+        if(!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+        return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+      }catch(e){ showErr("Manifest okunamadı: " + e.message); return []; }
+    } else {
+      return src.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+    }
+  }
+  function dedupe(arr){
+    const out=[]; const seen=new Set();
+    for(const u of arr){ const k=u.trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
+    return out;
   }
 
-  wrap.addEventListener('touchstart', (e)=>{
-    if(e.touches.length===2){
-      const [t0,t1]=[e.touches[0],e.touches[1]];
-      baseDist = Math.hypot(t1.clientX-t0.clientX, t1.clientY-t0.clientY);
-      pinching=false; lastDist=null;
-      e.preventDefault();
-    }else if(e.touches.length===1 && scale>1){
-      const t=e.touches[0]; dragging=true; lx=t.clientX; ly=t.clientY; e.preventDefault();
-    }
-  }, {passive:false});
+  // -------- DOM üretim --------
+  function makePage(url, idx){
+    const page = document.createElement("div");
+    page.className = "page"; page.dataset.index = idx;
+    const pz = document.createElement("div"); pz.className="pz";
+    const sk = document.createElement("div"); sk.className="skel";
+    const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
+    pz.appendChild(sk); pz.appendChild(img); page.appendChild(pz);
+    attachZoomPan(pz, img);
+    return {page, img, sk};
+  }
 
-  wrap.addEventListener('touchmove', (e)=>{
-    if(e.touches.length===2){
-      const [t0,t1]=[e.touches[0],e.touches[1]];
-      const dist=Math.hypot(t1.clientX-t0.clientX, t1.clientY-t0.clientY);
-      const deltaAbs=Math.abs(dist-baseDist);
-      if(!pinching){
-        if(deltaAbs>=16){
-          pinching=true; lastDist=dist;
-          const r=wrap.getBoundingClientRect();
-          cx=(t0.clientX+t1.clientX)/2 - r.left - r.width/2 + tx;
-          cy=(t0.clientY+t1.clientY)/2 - r.top  - r.height/2 + ty;
-        } else { e.preventDefault(); return; }
+  function loadImageAt(index){
+    const page = viewer.querySelector(`.page[data-index="${index}"]`);
+    if(!page) return;
+    const img = page.querySelector(".img");
+    const sk  = page.querySelector(".skel");
+    if(img.dataset.loaded) return;
+    const src = img.getAttribute("data-src");
+    img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
+    img.onerror = ()=>{ sk && sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
+    img.src = src;
+    img.dataset.loaded = "1";
+  }
+
+  function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
+
+  // -------- Sayfa hesap + sayaç --------
+  let total = 0;
+  function currentIndex(){
+    const w = viewer.clientWidth || 1;
+    return clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
+  }
+  function updateVisible(){
+    const idx = currentIndex();
+    loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
+    counter.hidden = false;
+    counter.textContent = `${idx+1} / ${total}`;
+  }
+
+  // -------- Snap fixer --------
+  let snapTimer;
+  function onScroll(){
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(()=>{
+      const w = viewer.clientWidth;
+      const target = Math.round(viewer.scrollLeft / w) * w;
+      viewer.scrollTo({left: target, behavior:"smooth"});
+      updateVisible();
+    }, 80);
+  }
+
+  // -------- İleri/Geri --------
+  function go(delta){
+    const w = viewer.clientWidth;
+    const idx = currentIndex();
+    const targetIdx = clamp(idx + delta, 0, total - 1);
+    viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
+    loadImageAt(targetIdx); loadImageAt(targetIdx-1); loadImageAt(targetIdx+1);
+    counter.textContent = `${targetIdx+1} / ${total}`;
+  }
+  btnPrev.addEventListener("click", ()=>go(-1));
+  btnNext.addEventListener("click", ()=>go(1));
+
+  // -------- Zoom + Pan (yumuşak) --------
+  function attachZoomPan(container, img){
+    const state = {
+      scale: 1, min: 1, max: 4,
+      tx: 0, ty: 0,
+      dragging: false, lx: 0, ly: 0,
+      pointers: new Map(),
+      lastTap: 0
+    };
+
+    // HASSASİYET SABİTLERİ
+    const WHEEL_SENS = 0.0012;   // teker hassasiyeti (küçük = daha yumuşak)
+    const WHEEL_DEAD = 3;        // |deltaY| bundan küçükse yok say
+    const STEP_CAP   = 0.12;     // tek olayda azami ±%12 değişim
+    const PINCH_DIV  = 300;      // pinch hassasiyeti (büyürse daha yumuşak)
+    const USE_CTRL_WHEEL = false;// true => sadece Ctrl+Wheel ile zoom
+
+    function apply(){
+      img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+      if(state.scale > 1){
+        viewer.classList.add("lock");
+        container.style.touchAction = "none";
+        container.style.cursor = "grab";
+      }else{
+        viewer.classList.remove("lock");
+        container.style.touchAction = "pan-x pan-y";
+        container.style.cursor = "default";
+        state.tx = 0; state.ty = 0;
+        img.style.transform = `translate(0px, 0px) scale(1)`;
       }
-      const delta=dist-(lastDist??dist); lastDist=dist;
-      const isOut = delta<0;
-      const divisor = isOut ? 480 : 340; // out daha yumuşak
-      const cap     = isOut ? 0.08 : 0.12;
-      const raw = 1 + (delta/divisor);
-      const factor = Math.min(Math.max(raw, 1-cap), 1+cap);
-      const next = clamp(scale*factor, 1, 4);
-      if(next!==scale){
-        tx = cx - (cx - tx) * (next/scale);
-        ty = cy - (cy - ty) * (next/scale);
-        scale = next; clampPan(); apply();
-      }
+    }
+
+    function clampTranslate(){
+      const rect = container.getBoundingClientRect();
+      const vw = rect.width, vh = rect.height;
+      const extraX = (state.scale - 1) * (vw/2);
+      const extraY = (state.scale - 1) * (vh/2);
+      state.tx = clamp(state.tx, -extraX, extraX);
+      state.ty = clamp(state.ty, -extraY, extraY);
+      img.style.transform = `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`;
+    }
+
+    // Mouse wheel zoom (yumuşak)
+    container.addEventListener("wheel", (e)=>{
       e.preventDefault();
+      if (USE_CTRL_WHEEL && !e.ctrlKey) return;
+      if (Math.abs(e.deltaY) < WHEEL_DEAD) return;
+
+      const rect = container.getBoundingClientRect();
+      const cx = e.clientX - rect.left - rect.width/2 + state.tx;
+      const cy = e.clientY - rect.top  - rect.height/2 + state.ty;
+
+      const prev = state.scale;
+      const raw = Math.exp(-e.deltaY * WHEEL_SENS);
+      const factor = Math.min(Math.max(raw, 1-STEP_CAP), 1+STEP_CAP);
+      const next = clamp(prev * factor, state.min, state.max);
+      if (next === prev) return;
+
+      state.tx = cx - (cx - state.tx) * (next/prev);
+      state.ty = cy - (cy - state.ty) * (next/prev);
+      state.scale = next;
+      apply(); clampTranslate();
+    }, {passive:false});
+
+    // Pointer yönetimi (pinch + pan)
+    container.addEventListener("pointerdown", (e)=>{
+      container.setPointerCapture(e.pointerId);
+      state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+      if(state.pointers.size===1 && state.scale>1){
+        state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
+        container.style.cursor = "grabbing";
+      }
+      // Çift dokun/çift tık: 1.0 <-> 1.6
+      const now = Date.now();
+      if(now - state.lastTap < 300){
+        state.scale = (state.scale>1) ? 1 : 1.6;
+        state.tx = state.ty = 0;
+        apply();
+      }
+      state.lastTap = now;
+    });
+
+    container.addEventListener("pointermove", (e)=>{
+      if(state.pointers.has(e.pointerId)){
+        state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+      }
+
+      // Pinch (2 parmak)
+      if(state.pointers.size===2){
+        const [a,b] = Array.from(state.pointers.values());
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.hypot(dx,dy);
+        if(!container._lastDist){ container._lastDist = dist; return; }
+        const delta = dist - container._lastDist;
+        container._lastDist = dist;
+
+        const rect = container.getBoundingClientRect();
+        const cx = (a.x + b.x)/2 - rect.left - rect.width/2 + state.tx;
+        const cy = (a.y + b.y)/2 - rect.top  - rect.height/2 + state.ty;
+
+        const prev = state.scale;
+        const rawFactor = 1 + (delta / PINCH_DIV);
+        const factor = Math.min(Math.max(rawFactor, 1-STEP_CAP), 1+STEP_CAP);
+        const next = clamp(prev * factor, state.min, state.max);
+        if (next === prev) return;
+
+        state.tx = cx - (cx - state.tx) * (next/prev);
+        state.ty = cy - (cy - state.ty) * (next/prev);
+        state.scale = next;
+        apply(); clampTranslate();
+      }
+
+      // Pan (tek parmak/mouse sürükle) — sadece zoom>1 iken
+      if(state.dragging && state.scale>1){
+        const dx = e.clientX - state.lx;
+        const dy = e.clientY - state.ly;
+        state.lx = e.clientX; state.ly = e.clientY;
+        state.tx += dx; state.ty += dy;
+        clampTranslate();
+      }
+    });
+
+    function endPointer(e){
+      if(state.pointers.has(e.pointerId)) state.pointers.delete(e.pointerId);
+      if(state.pointers.size<2){ container._lastDist = null; }
+      if(state.dragging){
+        state.dragging = false;
+        container.style.cursor = (state.scale>1) ? "grab" : "default";
+        clampTranslate();
+      }
+    }
+    container.addEventListener("pointerup", endPointer);
+    container.addEventListener("pointercancel", endPointer);
+    container.addEventListener("pointerleave", endPointer);
+  }
+
+  // -------- Başlat --------
+  (async function init(){
+    let list = [];
+
+    if (manifestURL) {
+      list = await readManifest(manifestURL);
+    } else {
+      const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
+                    ? String(window.AppInventor.getWebViewString()||"")
+                    : "";
+      if (wvs){
+        try{
+          const d = JSON.parse(wvs);
+          if (d && d.manifest) list = await readManifest(String(d.manifest));
+          if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
+        }catch{
+          if (isLink(wvs)) list = await readManifest(wvs);
+          else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+        }
+      }
+    }
+
+    list = dedupe(extraList.concat(list));
+
+    if (!list.length){
+      showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
+      viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
+      total = 1;
+      updateVisible();
       return;
     }
 
-    if(e.touches.length===1 && dragging && scale>1){
-      const t=e.touches[0];
-      tx += (t.clientX-lx); ty += (t.clientY-ly);
-      lx=t.clientX; ly=t.clientY;
-      clampPan(); apply();
-      e.preventDefault();
-    }
-  }, {passive:false});
+    const frag = document.createDocumentFragment();
+    list.forEach((url, i)=>{
+      const {page} = makePage(url, i);
+      frag.appendChild(page);
+    });
+    viewer.appendChild(frag);
+    total = list.length;
 
-  wrap.addEventListener('touchend', ()=>{
-    dragging=false; pinching=false; lastDist=null;
-    if(scale<=1.0001){ scale=1; tx=0; ty=0; apply(); }
-  }, {passive:true});
-  wrap.addEventListener('touchcancel', ()=>{
-    dragging=false; pinching=false; lastDist=null;
-    if(scale<=1.0001){ scale=1; tx=0; ty=0; apply(); }
-  }, {passive:true});
+    // İlk ekranda aktif + komşuları yükle
+    updateVisible();
 
-  // ilk çizim
-  apply();
+    // Olaylar
+    viewer.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", updateVisible);
+  })();
 })();
 </script>
 </body>
