@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer (True Anchor Zoom • Any Point)</title>
+<title>Viewer (Stage Transform • Any-Point Zoom)</title>
 <style>
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
@@ -15,7 +15,7 @@
     display:flex; width:100%; height:100%;
     overflow-x:auto; overflow-y:hidden;
     scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
+    -webkit-overflow-scrolling:touch;   /* pinch/drag sırasında geçici AUTO yapılır */
     scroll-behavior:smooth; position:relative;
   }
   #viewer.lock{ scroll-snap-type:none; }
@@ -29,20 +29,25 @@
 
   .pz{
     width:100%; height:100%;
-    position:relative;    /* önemli: mutlak konumlamada referans */
-    touch-action: pan-x pan-y;
-    contain: paint;
+    position:relative;           /* stage için referans */
+    touch-action: pan-x pan-y;   /* pinch/drag sırasında JS none yapacak */
   }
-  .img{
-    position:absolute;    /* önemli: contain yerleşimi artık bizde */
-    left:0; top:0;
-    width:auto; height:auto;
-    object-fit:contain;   /* görsel kalitesi için sorun değil, boyutu biz set edeceğiz */
-    opacity:0; transition:opacity .18s ease;
-    -webkit-user-drag:none; user-drag:none;
-    will-change:transform, left, top, width, height;
-    transform-origin: 0 0;       /* KRİTİK: hesapları basitleştirir */
+
+  /* SAHNE: transform bunun üzerinde */
+  .stage{
+    position:absolute; inset:0;
+    transform-origin: 0 0;       /* hesap kolaylığı için sol-üst */
+    will-change: transform;
     backface-visibility:hidden;
+  }
+
+  .img{
+    position:absolute; inset:0;  /* stage’i tam doldur */
+    width:100%; height:100%;
+    object-fit: contain;          /* letterbox otomatik */
+    background:#000;
+    opacity:0; transition:opacity .18s ease;
+    -webkit-user-drag:none; user-drag:none; pointer-events:auto;
   }
   .img.ready{ opacity:1; }
 
@@ -129,11 +134,17 @@
   function makePage(url, idx){
     const page = document.createElement("div");
     page.className = "page"; page.dataset.index = idx;
+
     const pz = document.createElement("div"); pz.className="pz";
+    const stage = document.createElement("div"); stage.className="stage";
     const sk = document.createElement("div"); sk.className="skel";
     const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
-    pz.appendChild(sk); pz.appendChild(img); page.appendChild(pz);
-    attachZoomPan(pz, img);   // gerçek ankor zoom
+
+    stage.appendChild(img);
+    pz.appendChild(sk); pz.appendChild(stage);
+    page.appendChild(pz);
+
+    attachZoomPan(pz, stage);   // transform stage’e uygulanır
     return {page, img, sk};
   }
 
@@ -143,14 +154,8 @@
     const img = page.querySelector(".img");
     const sk  = page.querySelector(".skel");
     if(img.dataset.loaded) return;
-
     const src = img.getAttribute("data-src");
-    img.onload = ()=>{
-      // Görsel metriklerini hazırla
-      initImageMetrics(img);
-      sk && sk.remove();
-      img.classList.add("ready");
-    };
+    img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
     img.onerror = ()=>{ sk && sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
     img.src = src;
     img.dataset.loaded = "1";
@@ -198,50 +203,22 @@
   btnNext.addEventListener("click", ()=>go(1));
 
   // =======================
-  //   GÖRSEL METRİKLERİ
+  //   ZOOM + PAN (STAGE)
   // =======================
-  function initImageMetrics(img){
-    const container = img.parentElement; // .pz
-    const cw = container.clientWidth;
-    const ch = container.clientHeight;
-
-    const nw = img.naturalWidth || 1;
-    const nh = img.naturalHeight || 1;
-
-    const fit = Math.min(cw / nw, ch / nh);       // contain ölçeği
-    const vw = nw * fit;                           // görüntülenen genişlik
-    const vh = nh * fit;                           // görüntülenen yükseklik
-    const ox = (cw - vw) / 2;                      // soldan boşluk
-    const oy = (ch - vh) / 2;                      // yukarıdan boşluk
-
-    // img’i mutlak piksel boyutunda ve ofsette yerleştir
-    img.style.left   = `${ox}px`;
-    img.style.top    = `${oy}px`;
-    img.style.width  = `${vw}px`;
-    img.style.height = `${vh}px`;
-    img.style.transform = `translate(0px, 0px) scale(1)`;
-
-    // state’i img üzerinde sakla
-    img._zoomState = {
-      fit, ox, oy, nw, nh,
-      scale: 1,   // ek zoom (fit’in üstüne)
+  function attachZoomPan(container, stage){
+    const state = {
+      scale: 1, min: 1, max: 4,
       tx: 0, ty: 0,
-      dragging:false, lx:0, ly:0,
-      pinch:false, startDist:0, startScale:1
+      dragging: false, lx:0, ly:0,
+      rafPending:false, targetTransform:""
     };
+    const PINCH_START_THRESHOLD_PX = 10;
+    const STEP_CAP = 0.14;
+    const WHEEL_SENS = 0.0011;
 
-    // mevcut handler’ı varsa tekrar bağlama
-    if (!img._zoomBound) {
-      attachTrueAnchorZoom(container, img);
-      img._zoomBound = true;
-    }
-  }
+    const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
 
-  // =======================
-  //   TRUE ANCHOR ZOOM
-  // =======================
-  function attachTrueAnchorZoom(container, img){
-    const viewerPerfLock = (on)=>{
+    function perfLock(on){
       if(on){
         viewer.classList.add("lock");
         viewer.style.webkitOverflowScrolling = "auto";
@@ -251,100 +228,80 @@
         viewer.style.webkitOverflowScrolling = "touch";
         viewer.style.scrollBehavior = "smooth";
         container.style.touchAction = "pan-x pan-y";
-        const st = img._zoomState;
-        if (st && st.scale<=1.0001) viewer.classList.remove("lock");
+        if (state.scale<=1.0001) viewer.classList.remove("lock");
       }
-    };
-
-    function render(){
-      const st = img._zoomState;
-      img.style.transform = `translate(${st.tx}px, ${st.ty}px) scale(${st.scale})`;
     }
+
+    function schedule(){
+      if(state.rafPending) return;
+      state.rafPending = true;
+      requestAnimationFrame(()=>{ stage.style.transform = state.targetTransform; state.rafPending=false; });
+    }
+    function compose(){ return `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`; }
 
     function clampPan(){
-      const st = img._zoomState;
-      // Görüntü tabanı: width = vw, height = vh; transform-origin:0 0
-      const vw = parseFloat(img.style.width)  || 0;
-      const vh = parseFloat(img.style.height) || 0;
-      const cw = container.clientWidth;
-      const ch = container.clientHeight;
-
-      // ekstra alan (ekran yarıçapı mantığı değil, gerçek sınırlama)
-      const maxX = Math.max(0, (vw*st.scale - vw)/2 + vw*st.scale - cw + st.ox ?? 0);
-      const maxY = Math.max(0, (vh*st.scale - vh)/2 + vh*st.scale - ch + st.oy ?? 0);
-
-      // daha pratik ve stabil sınır: görüntünün kenarı ekran dışına sınırsız gitmesin
-      const exX = (vw*st.scale - cw);
-      const exY = (vh*st.scale - ch);
-      const minTx = -Math.max(0, exX) - st.ox;
-      const maxTx = Math.max(0, exX) + st.ox;
-      const minTy = -Math.max(0, exY) - st.oy;
-      const maxTy = Math.max(0, exY) + st.oy;
-
-      st.tx = clamp(st.tx, minTx, maxTx);
-      st.ty = clamp(st.ty, minTy, maxTy);
+      // stage, container kadar (inset:0). Ölçeklenince dışarı taşabilir; yumuşak sınırlar:
+      const cw = container.clientWidth, ch = container.clientHeight;
+      const exX = cw * state.scale - cw;
+      const exY = ch * state.scale - ch;
+      const minTx = -Math.max(0, exX);
+      const maxTx =  Math.max(0, exX);
+      const minTy = -Math.max(0, exY);
+      const maxTy =  Math.max(0, exY);
+      state.tx = clamp(state.tx, minTx, maxTx);
+      state.ty = clamp(state.ty, minTy, maxTy);
+      state.targetTransform = compose(); schedule();
     }
 
+    // Herhangi bir noktaya odaklı zoom (stage üzerinde)
     function zoomAt(clientX, clientY, nextScale){
-      const st = img._zoomState;
-      const cw = container.clientWidth;
-      const ch = container.clientHeight;
+      nextScale = clamp(nextScale, state.min, state.max);
+      const prev = state.scale;
+      if (Math.abs(nextScale - prev) < 1e-6) return;
 
-      nextScale = clamp(nextScale, 1, 4);
+      const rect = container.getBoundingClientRect();
+      const cx = clientX - rect.left;
+      const cy = clientY - rect.top;
 
-      // dünya noktası (görsel pikseli) — transform-origin:0 0 olduğu için kolay:
-      // world = (p - (ox,oy) - (tx,ty)) / (fit*scale)
-      const denomPrev = st.fit * st.scale;
-      const worldX = (clientX - container.getBoundingClientRect().left - st.ox - st.tx) / denomPrev;
-      const worldY = (clientY - container.getBoundingClientRect().top  - st.oy - st.ty) / denomPrev;
+      // world = (p - T) / S   →   T' = p - world * S'
+      const wx = (cx - state.tx) / prev;
+      const wy = (cy - state.ty) / prev;
 
-      // yeni ölçekte aynı noktayı parmak altında tut
-      const denomNext = st.fit * nextScale;
-      const targetDisplayX = clientX - container.getBoundingClientRect().left;
-      const targetDisplayY = clientY - container.getBoundingClientRect().top;
-
-      const newTx = targetDisplayX - st.ox - worldX * denomNext;
-      const newTy = targetDisplayY - st.oy - worldY * denomNext;
-
-      st.scale = nextScale;
-      st.tx = newTx;
-      st.ty = newTy;
+      state.scale = nextScale;
+      state.tx = cx - wx * nextScale;
+      state.ty = cy - wy * nextScale;
 
       clampPan();
-      render();
     }
 
-    // ---- MOUSE WHEEL (opsiyonel) ----
-    const WHEEL_SENS = 0.0012, STEP_CAP = 0.16;
+    // Wheel
     container.addEventListener("wheel", (e)=>{
       e.preventDefault();
-      const st = img._zoomState;
       const raw = Math.exp(-e.deltaY * WHEEL_SENS);
       const factor = clamp(raw, 1-STEP_CAP, 1+STEP_CAP);
-      zoomAt(e.clientX, e.clientY, st.scale * factor);
-      viewerPerfLock(st.scale>1.0001);
+      zoomAt(e.clientX, e.clientY, state.scale * factor);
+      perfLock(state.scale>1.0001);
       clearTimeout(container._wheelEndT);
-      container._wheelEndT = setTimeout(()=>{ if (st.scale<=1.0001) viewerPerfLock(false); }, 120);
+      container._wheelEndT = setTimeout(()=>{ if(state.scale<=1.0001) perfLock(false); }, 120);
     }, {passive:false});
 
-    // ---- POINTER / TOUCH birlikte ----
+    // Pointer
     let p1=null, p2=null, pinchActive=false, pinchStartDist=0, pinchStartScale=1;
 
     container.addEventListener("pointerdown", (e)=>{
       container.setPointerCapture(e.pointerId);
-      const st = img._zoomState;
       if (!p1) p1={id:e.pointerId,x:e.clientX,y:e.clientY};
       else if (!p2 && e.pointerId!==p1.id) p2={id:e.pointerId,x:e.clientX,y:e.clientY};
 
-      if (p1 && !p2 && st.scale>1){
-        st.dragging=true; st.lx=e.clientX; st.ly=e.clientY;
-        viewerPerfLock(true);
+      if (!p2 && state.scale>1){
+        state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
+        perfLock(true);
       }
       if (p1 && p2){
         pinchActive=false;
         pinchStartDist = Math.hypot(p2.x-p1.x, p2.y-p1.y);
-        pinchStartScale = st.scale;
-        viewerPerfLock(true);
+        pinchStartScale = state.scale;
+        perfLock(true);
       }
     });
 
@@ -352,103 +309,53 @@
       if (p1 && e.pointerId===p1.id){ p1.x=e.clientX; p1.y=e.clientY; }
       if (p2 && e.pointerId===p2.id){ p2.x=e.clientX; p2.y=e.clientY; }
 
-      const st = img._zoomState;
-
       // PINCH
       if (p1 && p2){
         e.preventDefault();
         const dist = Math.hypot(p2.x-p1.x, p2.y-p1.y);
         if (!pinchActive){
-          if (Math.abs(dist - pinchStartDist) < 10) return;
+          if (Math.abs(dist - pinchStartDist) < PINCH_START_THRESHOLD_PX) return;
           pinchActive = true;
           pinchStartDist = dist;
-          pinchStartScale = st.scale;
+          pinchStartScale = state.scale;
         }
-        const centroidX = (p1.x + p2.x)/2;
-        const centroidY = (p1.y + p2.y)/2;
-        const next = clamp(pinchStartScale * (dist / (pinchStartDist || 1)), 1, 4);
-        zoomAt(centroidX, centroidY, next);
+        const cx=(p1.x+p2.x)/2, cy=(p1.y+p2.y)/2;
+        const next = pinchStartScale * (dist / (pinchStartDist || 1));
+        zoomAt(cx, cy, next);
         return;
       }
 
-      // PAN — yalnızca zoom>1 iken
-      if (st.dragging && st.scale>1){
+      // PAN
+      if (state.dragging && state.scale>1){
         e.preventDefault();
-        const dx = e.clientX - st.lx;
-        const dy = e.clientY - st.ly;
-        st.lx = e.clientX; st.ly = e.clientY;
-        st.tx += dx; st.ty += dy;
-        clampPan(); render();
+        const dx = e.clientX - state.lx;
+        const dy = e.clientY - state.ly;
+        state.lx = e.clientX; state.ly = e.clientY;
+        state.tx += dx; state.ty += dy;
+        clampPan();
       }
     }, {passive:false});
 
     function endPointer(e){
-      const st = img._zoomState;
       if (p1 && e.pointerId===p1.id) p1=null;
       if (p2 && e.pointerId===p2.id) p2=null;
+
       if (!(p1&&p2)) pinchActive=false;
 
       if (!p1 && !p2){
-        st.dragging=false;
-        if (st.scale<=1.0001){
-          st.scale=1; st.tx=0; st.ty=0; render(); viewerPerfLock(false);
+        state.dragging=false;
+        if (state.scale<=1.0001){
+          state.scale=1; state.tx=0; state.ty=0;
+          state.targetTransform='translate(0px,0px) scale(1)'; schedule();
+          perfLock(false);
         }else{
-          viewerPerfLock(true);
+          perfLock(true);
         }
       }
     }
     container.addEventListener("pointerup", endPointer);
     container.addEventListener("pointercancel", endPointer);
     container.addEventListener("pointerleave", endPointer);
-
-    // TOUCH fallback (bazı cihazlarda)
-    container.addEventListener("touchstart", (e)=>{ if(e.touches.length>=2) viewerPerfLock(true); }, {passive:true});
-    container.addEventListener("touchmove", (e)=>{
-      const st = img._zoomState;
-      if (e.touches.length===2){
-        e.preventDefault();
-        const t0=e.touches[0], t1=e.touches[1];
-        const dist = Math.hypot(t1.clientX-t0.clientX, t1.clientY-t0.clientY);
-        if (!pinchActive){ pinchActive=true; pinchStartDist=dist; pinchStartScale=st.scale; }
-        const cx=(t0.clientX+t1.clientX)/2, cy=(t0.clientY+t1.clientY)/2;
-        const next = clamp(pinchStartScale * (dist / (pinchStartDist || 1)), 1, 4);
-        zoomAt(cx, cy, next);
-        return;
-      }
-      if (e.touches.length===1 && st.scale>1){
-        e.preventDefault();
-        const x=e.touches[0].clientX, y=e.touches[0].clientY;
-        if (!st.dragging){ st.dragging=true; st.lx=x; st.ly=y; return; }
-        const dx=x-st.lx, dy=y-st.ly; st.lx=x; st.ly=y;
-        st.tx += dx; st.ty += dy;
-        clampPan(); render();
-      }
-    }, {passive:false});
-    container.addEventListener("touchend", (e)=>{
-      const st = img._zoomState;
-      if (e.touches.length===0){
-        st.dragging=false; pinchActive=false;
-        if (st.scale<=1.0001){
-          st.scale=1; st.tx=0; st.ty=0; render(); viewerPerfLock(false);
-        }else{
-          viewerPerfLock(true);
-        }
-      }
-    }, {passive:true});
-
-    // yeniden boyutlandığında contain düzenini güncelle
-    window.addEventListener("resize", ()=>{
-      // mevcut dünya merkezini mümkün olduğunca koru
-      const st = img._zoomState;
-      const rect = container.getBoundingClientRect();
-      const centerX = rect.left + rect.width/2;
-      const centerY = rect.top  + rect.height/2;
-      const prevScale = st.scale;
-      initImageMetrics(img); // fit, ox/oy ve boyutlar reset
-      const st2 = img._zoomState;
-      st2.scale = prevScale;
-      zoomAt(centerX, centerY, st2.scale);
-    });
   }
 
   // -------- Başlat --------
