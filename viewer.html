@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer (Basit Yükleme • Any-Point Zoom)</title>
+<title>Viewer (Any-Point Zoom • Robust Source Loading)</title>
 <style>
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
@@ -29,8 +29,8 @@
 
   .pz{
     width:100%; height:100%;
-    position:relative;           /* stage referansı */
-    touch-action: pan-x pan-y;   /* pinch/drag sırasında JS none yapar */
+    position:relative;
+    touch-action: pan-x pan-y;   /* pinch/drag sırasında JS none yapacak */
   }
 
   /* Transform edilen sahne */
@@ -72,11 +72,12 @@
     display:flex; align-items:center; justify-content:center;
   }
   .navbtn:active{filter:brightness(1.2)}
-  #prev{ left:8px; display:none; }  /* ilk sayfada gizli */
+  #prev{ left:8px; display:none; }
   #next{ right:8px; }
 
   #err{
-    position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none;
+    position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none; max-width:min(92vw,800px);
+    white-space:pre-wrap; line-height:1.35;
   }
 </style>
 </head>
@@ -96,42 +97,74 @@
   const btnNext = $("#next");
   const errBox = $("#err");
 
-  // -------- Parametreler --------
+  // -------- Yardımcılar --------
   const qp = new URLSearchParams(location.search);
   const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
   const rawX = qp.get("x") || qp.get("extra") || "";
-  const manifestURL = rawM ? safeDecode(rawM) : "";
-  const extraList = splitList(safeDecode(rawX));
 
   function safeDecode(s){ try{ return decodeURIComponent(s); }catch{ return s||""; } }
-  function splitList(s){
-    if(!s) return [];
-    return s.split(/\r?\n|\|/g).join(",").split(",")
-            .map(t=>t.trim()).filter(isLink);
-  }
   function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
-  function showErr(msg){ errBox.textContent = msg; errBox.style.display = "block"; console.warn(msg); }
-
-  // -------- Manifest okuma --------
-  async function readManifest(src){
-    if (isLink(src)) {
-      try{
-        const resp = await fetch(src, {cache:"no-store", mode:"cors"});
-        if(!resp.ok) throw new Error("HTTP " + resp.status);
-        const text = await resp.text();
-        return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-      }catch(e){ showErr("Manifest okunamadı: " + e.message); return []; }
-    } else {
-      return src.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-    }
+  function endsLikeImage(u){ return /\.(avif|webp|jpe?g|png|gif|bmp|svg|heic|heif)(\?|#|$)/i.test(u); }
+  function splitMulti(s){
+    if(!s) return [];
+    return s.split(/\r?\n|\||,/g).map(t=>t.trim()).filter(Boolean);
+  }
+  function showErr(msg){
+    errBox.textContent = msg;
+    errBox.style.display = "block";
+    console.warn(msg);
   }
   function dedupe(arr){
     const out=[]; const seen=new Set();
-    for(const u of arr){ const k=u.trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
+    for(const u of arr){ const k=(u||"").trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
     return out;
   }
 
-  // -------- DOM üretim --------
+  // -------- Kaynak listesi çıkarma (CORS dayanıklı) --------
+  async function buildList(){
+    const extraList = splitMulti(safeDecode(rawX)).filter(isLink);
+    const m = safeDecode(rawM || "");
+
+    // 1) x/extra içindekileri topla
+    let list = [...extraList];
+
+    if (m){
+      // 2) m link ise…
+      if (isLink(m)){
+        // 2a) m zaten doğrudan görsel(ler) olabilir:
+        // - birden çok linki virgül/pipe/newline ile verdiyse: parçala
+        const parts = splitMulti(m).filter(isLink);
+        if (parts.length > 1) {
+          list = list.concat(parts);
+        } else if (endsLikeImage(m)) {
+          // 2b) tekil görsel linkiyse: doğrudan ekle (manifest fetch ETME!)
+          list.push(m);
+        } else {
+          // 2c) gerçekten manifest dosyasıysa: fetch dene; CORS olursa sessizce geç
+          try{
+            const resp = await fetch(m, {cache:"no-store", mode:"cors"});
+            if(!resp.ok) throw new Error("HTTP " + resp.status);
+            const text = await resp.text();
+            const lines = text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+            list = list.concat(lines);
+          }catch(e){
+            // CORS/403/404 olduysa, m'yi tekil görsel san ve ekle (son çare)
+            if (endsLikeImage(m)) list.push(m);
+            else showErr("Manifest okunamadı: " + e.message + "\nNot: m= parametresine doğrudan görsel URL’leri virgül/|/satırla tek satıra da yazabilirsin.");
+          }
+        }
+      } else {
+        // 3) m düz metinse (ör. birden çok URL tek param): parçalayıp ekle
+        const parts = splitMulti(m).filter(isLink);
+        list = list.concat(parts);
+      }
+    }
+
+    list = dedupe(list);
+    return list;
+  }
+
+  // -------- Sayfa üretimi --------
   function makePage(url, idx){
     const page = document.createElement("div");
     page.className = "page"; page.dataset.index = idx;
@@ -143,27 +176,45 @@
     img.setAttribute("data-src", url);
 
     stage.appendChild(img);
-    pz.appendChild(sk);            // iskelet altta
-    pz.appendChild(stage);         // görüntü üstte
+    pz.appendChild(sk);
+    pz.appendChild(stage);
     page.appendChild(pz);
 
-    attachZoomPan(pz, stage);      // transform stage’e
+    attachZoomPan(pz, stage);  // transform stage üzerinde (Maps tarzı)
     return {page, img, sk};
   }
 
-  // GARANTİ yükleyici: sadece burada img.src atanır
+  // -------- Yükleme (garanti) --------
   function loadImageAt(index){
     const page = viewer.querySelector(`.page[data-index="${index}"]`);
     if(!page) return;
     const img = page.querySelector(".img");
     const sk  = page.querySelector(".skel");
     if(!img || img.dataset.loaded) return;
+
     const src = img.getAttribute("data-src");
-    if(!src) return;
-    img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
-    img.onerror = ()=>{ sk && sk.remove(); img.classList.add("ready"); img.alt="Görüntü yüklenemedi"; };
-    img.src = src;                 // <-- isteği başlat
+    if(!src){ sk && sk.remove(); return; }
+
+    // Bazı sunucular "no-referrer" sevmez → refererPolicy'i varsayılan bırakıyoruz.
+    // Gerekirse: img.referrerPolicy = "no-referrer";
+
+    // onload/onerror + failsafe:
+    let done = false;
+    const markReady = ()=>{
+      if (done) return;
+      done = true;
+      sk && sk.remove();
+      img.classList.add("ready");
+    };
+
+    img.onload  = markReady;
+    img.onerror = (e)=>{ console.warn("IMG error:", src, e); markReady(); img.alt="Görüntü yüklenemedi"; };
+
+    img.src = src;                // isteği başlat
     img.dataset.loaded = "1";
+
+    // bazı webview/sunucu kombinasyonlarında onload tetiklenmeyebilir → failsafe
+    setTimeout(markReady, 1200);
   }
 
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
@@ -176,7 +227,6 @@
   }
   function updateVisible(){
     const idx = currentIndex();
-    // aktif + komşuları yükle
     loadImageAt(idx);
     loadImageAt(idx-1);
     loadImageAt(idx+1);
@@ -202,7 +252,6 @@
     const idx = currentIndex();
     const targetIdx = clamp(idx + delta, 0, total - 1);
     viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
-    // hedef ve komşularını da başlat
     loadImageAt(targetIdx);
     loadImageAt(targetIdx-1);
     loadImageAt(targetIdx+1);
@@ -369,58 +418,42 @@
 
   // -------- Başlat --------
   (async function init(){
-    let list = [];
-
-    if (manifestURL) {
-      list = await readManifest(manifestURL);
-    } else {
-      const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
-                    ? String(window.AppInventor.getWebViewString()||"")
-                    : "";
-      if (wvs){
-        try{
-          const d = JSON.parse(wvs);
-          if (d && d.manifest) list = await readManifest(String(d.manifest));
-          if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
-        }catch{
-          if (isLink(wvs)) list = await readManifest(wvs);
-          else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
-        }
-      }
-    }
-
-    list = dedupe(extraList.concat(list));
+    let list = await buildList();
 
     if (!list.length){
-      showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
+      showErr(
+        "Gösterilecek resim bulunamadı.\n" +
+        "Kullanım örnekleri:\n" +
+        "• ?u=https://site/img1.jpg|https://site/img2.jpg\n" +
+        "• ?x=https://a.com/1.jpg, https://b.com/2.png\n" +
+        "• ?m=https://site/manifest.txt   (satır satır URL)\n" +
+        "• ?m=https://site/1.jpg|https://site/2.jpg  (fetch yapmadan çoklu URL)"
+      );
+      // En azından tek boş sayfa göster
       viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
-      total = 1;
-      // yine de tek boş sayfayı “hazır” göster
       counter.hidden = false; counter.textContent = `1 / 1`;
       return;
     }
 
+    // DOM’a dök
     const frag = document.createDocumentFragment();
     list.forEach((url, i)=>{
       const {page} = makePage(url, i);
       frag.appendChild(page);
     });
     viewer.appendChild(frag);
-    total = list.length;
+    const total = list.length;
+    window.__TOTAL = total; // debug
+    // İlk 3 sayfayı garanti başlat
+    loadImageAt(0); loadImageAt(1); loadImageAt(2);
 
-    // GARANTİ: ilk 3 sayfayı hemen başlat
-    loadImageAt(0);
-    loadImageAt(1);
-    loadImageAt(2);
-
-    // Sayaç ve oklar
+    // Sayaç/oklar ve scroll dinleyicileri
     counter.hidden = false; counter.textContent = `1 / ${total}`;
     btnPrev.style.display = "none";
     btnNext.style.display = (total<=1) ? "none" : "flex";
 
-    // Scroll dinleyicileri
     viewer.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", ()=>{ /* gerekirse ek düzenleme yapılabilir */ });
+    window.addEventListener("resize", ()=>{ /* gerekirse */ });
   })();
 })();
 </script>
