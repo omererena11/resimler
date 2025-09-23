@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer (Maps-Style Pinch Zoom • Flicker Fix)</title>
+<title>Viewer (Maps-Style Pinch Zoom • Touch Fallback)</title>
 <style>
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
@@ -34,13 +34,13 @@
     position:relative;
     touch-action: pan-x pan-y;    /* pinch’te JS tarafı none yapacak */
     cursor: default;
-    contain: paint;               /* flicker’ı azaltır */
+    contain: paint;
   }
   .img{
     max-width:100%; max-height:100%;
     object-fit:contain; background:#000;
     opacity:0; transition:opacity .18s ease;
-    -webkit-user-drag:none; user-drag:none; pointer-events:auto;
+    -webkit-user-drag:none; user-drag:none;
     will-change:transform;
     transform-origin:center center;
     backface-visibility:hidden;
@@ -55,16 +55,14 @@
   }
   @keyframes pulse{50%{filter:brightness(1.15)}}
 
-  /* Sayaç — ortada, büyük ve kalın */
   #counter{
     position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
     z-index:10; background:#111a; color:#fff;
     padding:10px 14px; border-radius:12px;
     font-size:28px; font-weight:700; letter-spacing:.05em;
-    /* backdrop-filter:blur(3px);  // bazı cihazlarda flicker yapabiliyor */
+    /* backdrop-filter:blur(3px);  // bazı cihazlarda flicker yapabilir */
   }
 
-  /* İleri/Geri */
   .navbtn{
     position:fixed; top:50%; transform:translateY(-50%);
     width:42px; height:64px; z-index:11; border:none; border-radius:12px;
@@ -73,7 +71,7 @@
     /* backdrop-filter:blur(3px); */
   }
   .navbtn:active{filter:brightness(1.2)}
-  #prev{ left:8px; display:none; }   /* ilk ekranda sol ok gizli */
+  #prev{ left:8px; display:none; }
   #next{ right:8px; }
 
   #err{
@@ -140,7 +138,7 @@
     const sk = document.createElement("div"); sk.className="skel";
     const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
     pz.appendChild(sk); pz.appendChild(img); page.appendChild(pz);
-    attachZoomPan(pz, img);   // Maps tarzı zoom/pan + flicker fix
+    attachZoomPan(pz, img);   // Maps tarzı zoom/pan + touch fallback
     return {page, img, sk};
   }
 
@@ -201,47 +199,46 @@
   btnNext.addEventListener("click", ()=>go(1));
 
   // =======================
-  //   ZOOM + PAN (MAPS) + FLICKER FIX
+  //   ZOOM + PAN (MAPS) + TOUCH FALLBACK
   // =======================
   function attachZoomPan(container, img){
     const state = {
       scale: 1, min: 1, max: 4,
       tx: 0, ty: 0,
-      pointers: new Map(),
+      pointers: new Map(),   // pointer fallback
       dragging: false,
       rafPending: false,
       targetTransform: "",
+      // pinch (hem pointer hem touch için)
       pinchActive:false,
       pinchStartDist:0,
-      zoomMode:false,
+      pinchStartScale:1,
       lx:0, ly:0
     };
 
-    const PINCH_START_THRESHOLD_PX = 10;   // pinch eşiği
-    const STEP_CAP = 0.12;                 // kare başına max ölçek
-    const WHEEL_SENS = 0.0012;             // mouse wheel
+    const PINCH_START_THRESHOLD_PX = 10;
+    const STEP_CAP = 0.18;                // biraz artırdım; daha canlı his
+    const WHEEL_SENS = 0.0012;
 
     const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
 
-    // --- FLICKER HOTFIX: pinch sırasında touch→auto, bitince geri touch ---
-    function setScrollPerfLock(on){
+    // pinch sırasında flicker fix: touch→auto
+    function setPerfLock(on){
       if(on){
-        viewer.classList.add("lock");                   // snap kapansın
-        container.style.touchAction = "none";           // tarayıcı jestleri devre dışı
-        viewer.style.webkitOverflowScrolling = "auto";  // FLICKER FIX (kritik)
-        viewer.style.scrollBehavior = "auto";           // yumuşak scroll kapansın
+        viewer.classList.add("lock");
+        container.style.touchAction = "none";
+        viewer.style.webkitOverflowScrolling = "auto";
+        viewer.style.scrollBehavior = "auto";
         container.style.cursor = "grab";
       }else{
         container.style.touchAction = "pan-x pan-y";
-        viewer.style.webkitOverflowScrolling = "touch"; // geri aç
+        viewer.style.webkitOverflowScrolling = "touch";
         viewer.style.scrollBehavior = "smooth";
         container.style.cursor = "default";
         viewer.classList.remove("lock");
       }
-      state.zoomMode = on;
     }
 
-    // RAF’lı transform
     function schedule(){
       if(state.rafPending) return;
       state.rafPending = true;
@@ -267,7 +264,7 @@
       schedule();
     }
 
-    // Odak noktasına göre zoom (Google Maps mantığı)
+    // Odak noktasına göre zoom (mutlak formül)
     function zoomAt(p, nextScale){
       nextScale = clamp(nextScale, state.min, state.max);
       const prev = state.scale;
@@ -284,20 +281,20 @@
       clampTranslate();
     }
 
-    // ---- Mouse wheel (opsiyonel) ----
+    // ---------- Mouse wheel ----------
     container.addEventListener("wheel", (e)=>{
       e.preventDefault();
       const raw = Math.exp(-e.deltaY * WHEEL_SENS);
       const factor = clamp(raw, 1-STEP_CAP, 1+STEP_CAP);
       zoomAt({x:e.clientX, y:e.clientY}, state.scale * factor);
-      setScrollPerfLock(state.scale>1.0001);
+      setPerfLock(state.scale>1.0001);
       clearTimeout(container._wheelEndT);
       container._wheelEndT = setTimeout(()=>{
-        if (state.scale <= 1.0001) setScrollPerfLock(false);
+        if (state.scale <= 1.0001) setPerfLock(false);
       }, 120);
     }, {passive:false});
 
-    // ---- Pointerlar ----
+    // ---------- POINTER EVENTS ----------
     container.addEventListener("pointerdown", (e)=>{
       container.setPointerCapture(e.pointerId);
       state.pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
@@ -305,25 +302,26 @@
       if (state.pointers.size === 1 && state.scale>1){
         state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
         container.style.cursor = "grabbing";
-        setScrollPerfLock(true);
+        setPerfLock(true);
       }
       if (state.pointers.size === 2){
         const [a,b] = Array.from(state.pointers.values());
         const dx = b.x - a.x, dy = b.y - a.y;
-        state.pinchStartDist = Math.hypot(dx,dy);
-        state.pinchActive = false; // eşiği geçmeden aktif olma
-        setScrollPerfLock(true);
+        state.pinchStartDist  = Math.hypot(dx,dy);
+        state.pinchStartScale = state.scale;        // MUTLAK REFERANS
+        state.pinchActive     = false;
+        setPerfLock(true);
       }
     });
 
     container.addEventListener("pointermove", (e)=>{
       if(!state.pointers.has(e.pointerId)) return;
-      const p = state.pointers.get(e.pointerId);
-      p.x = e.clientX; p.y = e.clientY;
+      const ptr = state.pointers.get(e.pointerId);
+      ptr.x = e.clientX; ptr.y = e.clientY;
 
       // Pinch
       if (state.pointers.size === 2){
-        e.preventDefault(); // tarayıcı pinch/scroll jestlerini engelle
+        e.preventDefault();
         const [a,b] = Array.from(state.pointers.values());
         const dx = b.x - a.x, dy = b.y - a.y;
         const dist = Math.hypot(dx,dy);
@@ -331,18 +329,19 @@
         if(!state.pinchActive){
           if (Math.abs(dist - state.pinchStartDist) < PINCH_START_THRESHOLD_PX) return;
           state.pinchActive = true;
+          // eşik geçildiği anda referansları sıfırla
+          state.pinchStartScale = state.scale;
+          state.pinchStartDist  = dist;
         }
 
-        const factor = clamp(dist / (state.pinchStartDist || 1), 1-STEP_CAP, 1+STEP_CAP);
-        const next = clamp(state.scale * factor, state.min, state.max);
-
-        // iki parmağın ortasını odak al
+        // MUTLAK: startScale * (dist/startDist)
+        const next = clamp(state.pinchStartScale * (dist / (state.pinchStartDist || 1)), state.min, state.max);
         const centroid = { x:(a.x+b.x)/2, y:(a.y+b.y)/2 };
         zoomAt(centroid, next);
         return;
       }
 
-      // Pan — yalnızca zoom>1 iken
+      // Pan — yalnızca zoom>1
       if(state.dragging && state.scale>1){
         e.preventDefault();
         const dx = e.clientX - state.lx;
@@ -355,27 +354,100 @@
 
     function endPointer(e){
       if(state.pointers.has(e.pointerId)) state.pointers.delete(e.pointerId);
-
       if(state.pointers.size < 2) state.pinchActive = false;
 
       if(state.pointers.size === 0){
         state.dragging = false;
         container.style.cursor = (state.scale>1) ? "grab" : "default";
-        // jest bitti: 1x’e yakınsa tam 1x
         if (state.scale <= 1.0001){
           state.scale = 1; state.tx = 0; state.ty = 0;
           state.targetTransform = `translate(0px, 0px) scale(1)`;
           requestAnimationFrame(()=>{ img.style.transform = state.targetTransform; });
-          setScrollPerfLock(false);
+          setPerfLock(false);
         }else{
-          // zoom açık kalacaksa scroll kilidi açık kalsın (Maps benzeri)
-          setScrollPerfLock(true);
+          setPerfLock(true);
         }
       }
     }
     container.addEventListener("pointerup", endPointer);
     container.addEventListener("pointercancel", endPointer);
     container.addEventListener("pointerleave", endPointer);
+
+    // ---------- TOUCH EVENTS (fallback) ----------
+    // Bazı WebView’larda pointer events yok/bozuk → touch ile aynı mantık
+    let t_ids = [];
+    function getTouches(e){
+      const arr = [];
+      for(let i=0;i<e.touches.length;i++){
+        arr.push({x:e.touches[i].clientX, y:e.touches[i].clientY, id:e.touches[i].identifier});
+      }
+      return arr;
+    }
+
+    container.addEventListener("touchstart", (e)=>{
+      // browser jestlerini devre dışı bırak
+      if (e.touches.length>=1) e.preventDefault();
+      const ts = getTouches(e);
+      t_ids = ts.map(t=>t.id);
+
+      if (ts.length===1 && state.scale>1){
+        state.dragging = true; state.lx = ts[0].x; state.ly = ts[0].y;
+        setPerfLock(true);
+      }
+      if (ts.length===2){
+        const dx = ts[1].x - ts[0].x, dy = ts[1].y - ts[0].y;
+        state.pinchStartDist  = Math.hypot(dx,dy);
+        state.pinchStartScale = state.scale;
+        state.pinchActive     = false;
+        setPerfLock(true);
+      }
+    }, {passive:false});
+
+    container.addEventListener("touchmove", (e)=>{
+      const ts = getTouches(e);
+      if (ts.length===2){
+        e.preventDefault();
+        const dx = ts[1].x - ts[0].x, dy = ts[1].y - ts[0].y;
+        const dist = Math.hypot(dx,dy);
+
+        if(!state.pinchActive){
+          if (Math.abs(dist - state.pinchStartDist) < PINCH_START_THRESHOLD_PX) return;
+          state.pinchActive = true;
+          state.pinchStartScale = state.scale;
+          state.pinchStartDist  = dist;
+        }
+
+        const next = clamp(state.pinchStartScale * (dist / (state.pinchStartDist || 1)), state.min, state.max);
+        const centroid = { x:(ts[0].x+ts[1].x)/2, y:(ts[0].y+ts[1].y)/2 };
+        zoomAt(centroid, next);
+        return;
+      }
+
+      if (ts.length===1 && state.dragging && state.scale>1){
+        e.preventDefault();
+        const dx = ts[0].x - state.lx;
+        const dy = ts[0].y - state.ly;
+        state.lx = ts[0].x; state.ly = ts[0].y;
+        state.tx += dx; state.ty += dy;
+        clampTranslate();
+      }
+    }, {passive:false});
+
+    container.addEventListener("touchend", (e)=>{
+      const remain = e.touches.length;
+      if (remain < 2) state.pinchActive = false;
+      if (remain === 0){
+        state.dragging = false;
+        if (state.scale <= 1.0001){
+          state.scale = 1; state.tx = 0; state.ty = 0;
+          state.targetTransform = `translate(0px, 0px) scale(1)`;
+          requestAnimationFrame(()=>{ img.style.transform = state.targetTransform; });
+          setPerfLock(false);
+        }else{
+          setPerfLock(true);
+        }
+      }
+    }, {passive:false});
   }
 
   // -------- Başlat --------
