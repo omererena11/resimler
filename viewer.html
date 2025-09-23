@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer (Any-Point Zoom • Fast Load)</title>
+<title>Viewer (Basit Yükleme • Any-Point Zoom)</title>
 <style>
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
@@ -15,7 +15,7 @@
     display:flex; width:100%; height:100%;
     overflow-x:auto; overflow-y:hidden;
     scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;   /* pinch/drag sırasında kısa süre AUTO yapılır */
+    -webkit-overflow-scrolling:touch;
     scroll-behavior:smooth; position:relative;
   }
   #viewer.lock{ scroll-snap-type:none; }
@@ -25,27 +25,27 @@
     display:flex; justify-content:center; align-items:center;
     scroll-snap-align:start; scroll-snap-stop:always;
     background:#000; position:relative; overflow:hidden;
-    content-visibility:auto; contain:content;   /* render maliyetini düşürür */
   }
 
   .pz{
     width:100%; height:100%;
-    position:relative;           /* stage için referans */
+    position:relative;           /* stage referansı */
     touch-action: pan-x pan-y;   /* pinch/drag sırasında JS none yapar */
   }
 
-  /* Transform edilen SAHNE */
+  /* Transform edilen sahne */
   .stage{
     position:absolute; inset:0;
-    transform-origin: 0 0;       /* sol-üst referans */
+    transform-origin: 0 0;
     will-change: transform;
     backface-visibility:hidden;
+    transform: translate(0px,0px) scale(1);
   }
 
   .img{
-    position:absolute; inset:0;  /* stage’i tam doldur */
+    position:absolute; inset:0;
     width:100%; height:100%;
-    object-fit:contain;           /* letterbox’ı tarayıcı hesaplar */
+    object-fit:contain;
     background:#000;
     opacity:0; transition:opacity .18s ease;
     -webkit-user-drag:none; user-drag:none; pointer-events:auto;
@@ -96,7 +96,7 @@
   const btnNext = $("#next");
   const errBox = $("#err");
 
-  // -------- URL Parametreleri --------
+  // -------- Parametreler --------
   const qp = new URLSearchParams(location.search);
   const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
   const rawX = qp.get("x") || qp.get("extra") || "";
@@ -131,26 +131,6 @@
     return out;
   }
 
-  // -------- IntersectionObserver (önden ısıtma) --------
-  let io;
-  function ensureObserver(){
-    if (io) return;
-    io = new IntersectionObserver((entries)=>{
-      for (const e of entries){
-        if (!e.isIntersecting) continue;
-        const img = e.target.querySelector(".img");
-        const sk  = e.target.querySelector(".skel");
-        if (!img || img.dataset.loaded) continue;
-        const src = img.getAttribute("data-src");
-        // yüklemeyi başlat
-        img.src = src;
-        img.dataset.loaded = "1";
-        img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
-        img.onerror = ()=>{ sk && sk.remove(); img.classList.add("ready"); img.alt="Görüntü yüklenemedi"; };
-      }
-    }, { root: viewer, rootMargin: "80% 20%" }); // yaklaşan sayfayı erken başlat
-  }
-
   // -------- DOM üretim --------
   function makePage(url, idx){
     const page = document.createElement("div");
@@ -161,30 +141,29 @@
     const sk = document.createElement("div"); sk.className="skel";
     const img = document.createElement("img"); img.className="img";
     img.setAttribute("data-src", url);
-    img.decoding = "async";
-    img.loading = (idx === 0) ? "eager" : "lazy";
-    if (idx <= 2) img.fetchPriority = "high"; else img.fetchPriority = "low";
 
     stage.appendChild(img);
-    pz.appendChild(sk); pz.appendChild(stage);
+    pz.appendChild(sk);            // iskelet altta
+    pz.appendChild(stage);         // görüntü üstte
     page.appendChild(pz);
 
-    attachZoomPan(pz, stage);        // transform stage’e uygulanır
-    ensureObserver(); io.observe(page);
+    attachZoomPan(pz, stage);      // transform stage’e
     return {page, img, sk};
   }
 
+  // GARANTİ yükleyici: sadece burada img.src atanır
   function loadImageAt(index){
     const page = viewer.querySelector(`.page[data-index="${index}"]`);
     if(!page) return;
     const img = page.querySelector(".img");
     const sk  = page.querySelector(".skel");
-    if(img.dataset.loaded) return;
+    if(!img || img.dataset.loaded) return;
     const src = img.getAttribute("data-src");
-    img.src = src;
-    img.dataset.loaded = "1";
+    if(!src) return;
     img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
     img.onerror = ()=>{ sk && sk.remove(); img.classList.add("ready"); img.alt="Görüntü yüklenemedi"; };
+    img.src = src;                 // <-- isteği başlat
+    img.dataset.loaded = "1";
   }
 
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
@@ -197,8 +176,10 @@
   }
   function updateVisible(){
     const idx = currentIndex();
-    // aktif + komşuları garanti yükle
-    loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
+    // aktif + komşuları yükle
+    loadImageAt(idx);
+    loadImageAt(idx-1);
+    loadImageAt(idx+1);
     counter.hidden = false;
     counter.textContent = `${idx+1} / ${total}`;
     btnPrev.style.display = (idx === 0) ? "none" : "flex";
@@ -221,7 +202,10 @@
     const idx = currentIndex();
     const targetIdx = clamp(idx + delta, 0, total - 1);
     viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
-    loadImageAt(targetIdx); loadImageAt(targetIdx-1); loadImageAt(targetIdx+1);
+    // hedef ve komşularını da başlat
+    loadImageAt(targetIdx);
+    loadImageAt(targetIdx-1);
+    loadImageAt(targetIdx+1);
     counter.textContent = `${targetIdx+1} / ${total}`;
     btnPrev.style.display = (targetIdx === 0) ? "none" : "flex";
     btnNext.style.display = (targetIdx === total-1) ? "none" : "flex";
@@ -237,20 +221,20 @@
       scale: 1, min: 1, max: 4,
       tx: 0, ty: 0,
       dragging: false, lx:0, ly:0,
-      rafPending:false, targetTransform:""
+      rafPending:false, targetTransform:"translate(0px,0px) scale(1)"
     };
     const PINCH_START_THRESHOLD_PX = 10;
-    const STEP_CAP = 0.14;          // kare başına max ölçek değişimi
+    const STEP_CAP = 0.14;
     const WHEEL_SENS = 0.0011;
 
     const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
 
     function perfLock(on){
       if(on){
-        viewer.classList.add("lock");                  // snap kapansın
-        viewer.style.webkitOverflowScrolling = "auto"; // flicker fix
+        viewer.classList.add("lock");
+        viewer.style.webkitOverflowScrolling = "auto";
         viewer.style.scrollBehavior = "auto";
-        container.style.touchAction = "none";          // tarayıcı jestleri kapat
+        container.style.touchAction = "none";
       }else{
         viewer.style.webkitOverflowScrolling = "touch";
         viewer.style.scrollBehavior = "smooth";
@@ -279,7 +263,6 @@
       state.targetTransform = compose(); schedule();
     }
 
-    // Her noktaya odaklı zoom (Maps formülü)
     function zoomAt(clientX, clientY, nextScale){
       nextScale = clamp(nextScale, state.min, state.max);
       const prev = state.scale;
@@ -326,7 +309,7 @@
       if (p1 && p2){
         pinchActive=false;
         pinchStartDist = Math.hypot(p2.x-p1.x, p2.y-p1.y);
-        pinchStartScale = state.scale;  // MUTLAK referans
+        pinchStartScale = state.scale;
         perfLock(true);
       }
     });
@@ -337,7 +320,7 @@
 
       // PINCH
       if (p1 && p2){
-        e.preventDefault(); // sadece pinch sırasında
+        e.preventDefault();
         const dist = Math.hypot(p2.x-p1.x, p2.y-p1.y);
         if (!pinchActive){
           if (Math.abs(dist - pinchStartDist) < PINCH_START_THRESHOLD_PX) return;
@@ -412,16 +395,9 @@
       showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
       viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
       total = 1;
-      updateVisible();
+      // yine de tek boş sayfayı “hazır” göster
+      counter.hidden = false; counter.textContent = `1 / 1`;
       return;
-    }
-
-    // İlk görseli preload et (algılanan hızı iyileştirir)
-    const first = list[0];
-    if (first){
-      const l = document.createElement("link");
-      l.rel = "preload"; l.as = "image"; l.href = first;
-      document.head.appendChild(l);
     }
 
     const frag = document.createDocumentFragment();
@@ -432,10 +408,19 @@
     viewer.appendChild(frag);
     total = list.length;
 
-    // İlk sayfayı ve komşularını hemen başlat
-    updateVisible();
+    // GARANTİ: ilk 3 sayfayı hemen başlat
+    loadImageAt(0);
+    loadImageAt(1);
+    loadImageAt(2);
+
+    // Sayaç ve oklar
+    counter.hidden = false; counter.textContent = `1 / ${total}`;
+    btnPrev.style.display = "none";
+    btnNext.style.display = (total<=1) ? "none" : "flex";
+
+    // Scroll dinleyicileri
     viewer.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", updateVisible);
+    window.addEventListener("resize", ()=>{ /* gerekirse ek düzenleme yapılabilir */ });
   })();
 })();
 </script>
