@@ -3,23 +3,80 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no"/>
-<title>Viewer (Minimal • Diagnostics • Any-Point Zoom)</title>
+<meta name="referrer" content="no-referrer"/>
+<title>Viewer (Stage Transform • Any-Point Zoom)</title>
 <style>
-  html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif}
-  #viewer{display:flex;width:100%;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;position:relative}
-  #viewer.lock{scroll-snap-type:none}
-  .page{min-width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;scroll-snap-align:start;background:#000;position:relative;overflow:hidden}
-  .pz{width:100%;height:100%;position:relative;touch-action:pan-x pan-y}
-  .stage{position:absolute;inset:0;transform-origin:0 0;will-change:transform;backface-visibility:hidden;transform:translate(0,0) scale(1)}
-  .img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;opacity:0;transition:opacity .18s ease;-webkit-user-drag:none;user-drag:none}
-  .img.ready{opacity:1}
-  .skel{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#1a1a1a 0 20%,#0a0a0a 60%);animation:pulse 1.2s ease-in-out infinite}
+  html, body{
+    margin:0; padding:0; height:100%; background:#000; overflow:hidden;
+    overscroll-behavior-x:contain; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    -webkit-user-select:none; user-select:none;
+  }
+  #viewer{
+    display:flex; width:100%; height:100%;
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;   /* pinch/drag sırasında geçici AUTO yapılır */
+    scroll-behavior:smooth; position:relative;
+  }
+  #viewer.lock{ scroll-snap-type:none; }
+
+  .page{
+    min-width:100vw; height:100vh;
+    display:flex; justify-content:center; align-items:center;
+    scroll-snap-align:start; scroll-snap-stop:always;
+    background:#000; position:relative; overflow:hidden;
+  }
+
+  .pz{
+    width:100%; height:100%;
+    position:relative;           /* stage için referans */
+    touch-action: pan-x pan-y;   /* pinch/drag sırasında JS none yapacak */
+  }
+
+  /* SAHNE: transform bunun üzerinde */
+  .stage{
+    position:absolute; inset:0;
+    transform-origin: 0 0;       /* hesap kolaylığı için sol-üst */
+    will-change: transform;
+    backface-visibility:hidden;
+  }
+
+  .img{
+    position:absolute; inset:0;  /* stage’i tam doldur */
+    width:100%; height:100%;
+    object-fit: contain;          /* letterbox otomatik */
+    background:#000;
+    opacity:0; transition:opacity .18s ease;
+    -webkit-user-drag:none; user-drag:none; pointer-events:auto;
+  }
+  .img.ready{ opacity:1; }
+
+  .skel{
+    position:absolute; inset:0; background:
+      radial-gradient(circle at 50% 45%, #1a1a1a 0 20%, #0a0a0a 60%);
+    animation:pulse 1.2s ease-in-out infinite;
+  }
   @keyframes pulse{50%{filter:brightness(1.15)}}
-  #counter{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:10;background:#111a;color:#fff;padding:8px 12px;border-radius:10px;font-weight:700}
-  .navbtn{position:fixed;top:50%;transform:translateY(-50%);width:40px;height:60px;z-index:11;border:none;border-radius:12px;background:#111a;color:#ddd;font-size:22px;display:flex;align-items:center;justify-content:center}
-  #prev{left:8px;display:none} #next{right:8px}
-  #diag{position:fixed;top:8px;left:8px;right:8px;z-index:12;background:#111c;color:#eee;border:1px solid #333;border-radius:10px;padding:8px;max-height:40vh;overflow:auto;font-size:12px;line-height:1.35;white-space:pre-wrap}
-  .ok{color:#7fff7f} .err{color:#ff7f7f} .info{color:#9ecbff}
+
+  #counter{
+    position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
+    z-index:10; background:#111a; color:#fff;
+    padding:10px 14px; border-radius:12px; font-size:28px; font-weight:700;
+  }
+
+  .navbtn{
+    position:fixed; top:50%; transform:translateY(-50%);
+    width:42px; height:64px; z-index:11; border:none; border-radius:12px;
+    background:#111a; color:#ddd; font-size:22px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .navbtn:active{filter:brightness(1.2)}
+  #prev{ left:8px; display:none; }  /* ilk sayfada gizli */
+  #next{ right:8px; }
+
+  #err{
+    position:absolute; inset:auto 12px 12px 12px; color:#bbb; background:#111a; padding:8px 10px; border-radius:8px; font-size:14px; display:none;
+  }
 </style>
 </head>
 <body>
@@ -27,229 +84,323 @@
   <button id="prev" class="navbtn" aria-label="Önceki">‹</button>
   <button id="next" class="navbtn" aria-label="Sonraki">›</button>
   <div id="counter" hidden>— / —</div>
-  <div id="diag"></div>
+  <div id="err"></div>
 
 <script>
 (function(){
-  const $ = s=>document.querySelector(s);
-  const viewer=$("#viewer"), counter=$("#counter"), btnPrev=$("#prev"), btnNext=$("#next"), diag=$("#diag");
+  const $ = sel => document.querySelector(sel);
+  const viewer = $("#viewer");
+  const counter = $("#counter");
+  const btnPrev = $("#prev");
+  const btnNext = $("#next");
+  const errBox = $("#err");
 
-  // -------- utils --------
+  // -------- Parametreler --------
   const qp = new URLSearchParams(location.search);
-  const rawM = qp.get("m")||qp.get("manifest")||qp.get("u")||qp.get("url")||"";
-  const rawX = qp.get("x")||qp.get("extra")||"";
-  const debug = qp.get("debug") !== null; // ?debug varsa açık
+  const rawM = qp.get("m") || qp.get("manifest") || qp.get("u") || qp.get("url");
+  const rawX = qp.get("x") || qp.get("extra") || "";
+  const manifestURL = rawM ? safeDecode(rawM) : "";
+  const extraList = splitList(safeDecode(rawX));
 
-  function log(line, cls="info"){
-    const p=document.createElement("div"); p.className=cls; p.textContent=line; diag.appendChild(p);
+  function safeDecode(s){ try{ return decodeURIComponent(s); }catch{ return s||""; } }
+  function splitList(s){
+    if(!s) return [];
+    return s.split(/\r?\n|\|/g).join(",").split(",")
+            .map(t=>t.trim()).filter(isLink);
   }
-  function safeDecode(s){ try{return decodeURIComponent(s)}catch{return s||""} }
-  function splitMulti(s){ if(!s) return []; return s.split(/\r?\n|\||,/g).map(t=>t.trim()).filter(Boolean); }
   function isLink(t){ return /^https?:\/\//i.test(t) || /^file:\/\/\/android_asset\//i.test(t); }
+  function showErr(msg){ errBox.textContent = msg; errBox.style.display = "block"; console.warn(msg); }
 
-  // 1x1 gri png (base64) — hata yedeği
-  const PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=";
-
-  async function buildList(){
-    let list = [];
-    const extra = splitMulti(safeDecode(rawX)).filter(isLink);
-    let m = safeDecode(rawM);
-
-    list = list.concat(extra);
-
-    if (m) {
-      if (isLink(m)) {
-        const parts = splitMulti(m).filter(isLink);
-        if (parts.length>1) list=list.concat(parts);
-        else list.push(m);
-      } else {
-        list = list.concat(splitMulti(m).filter(isLink));
-      }
+  // -------- Manifest okuma --------
+  async function readManifest(src){
+    if (isLink(src)) {
+      try{
+        const resp = await fetch(src, {cache:"no-store", mode:"cors"});
+        if(!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+        return text.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+      }catch(e){ showErr("Manifest okunamadı: " + e.message); return []; }
+    } else {
+      return src.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
     }
-
-    // Varsayılan demo (hiç parametre yoksa)
-    if (!list.length){
-      list = [
-        "https://picsum.photos/seed/zoom1/1400/900",
-        "https://picsum.photos/seed/zoom2/1400/900",
-        "https://picsum.photos/seed/zoom3/1400/900"
-      ];
-      log("Parametre yok → demo görseller yüklenecek.", "info");
-    }
-
-    // tekilleştir
+  }
+  function dedupe(arr){
     const out=[]; const seen=new Set();
-    for(const u of list){ const k=u.trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
+    for(const u of arr){ const k=u.trim(); if(k && !seen.has(k)){ seen.add(k); out.push(k); } }
     return out;
   }
 
-  // -------- DOM --------
+  // -------- DOM üretim --------
   function makePage(url, idx){
-    const page=document.createElement("div"); page.className="page"; page.dataset.index=idx;
-    const pz=document.createElement("div"); pz.className="pz";
-    const stage=document.createElement("div"); stage.className="stage";
-    const sk=document.createElement("div"); sk.className="skel";
-    const img=document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
-    stage.appendChild(img); pz.appendChild(sk); pz.appendChild(stage); page.appendChild(pz);
-    attachZoomPan(pz, stage);
+    const page = document.createElement("div");
+    page.className = "page"; page.dataset.index = idx;
+
+    const pz = document.createElement("div"); pz.className="pz";
+    const stage = document.createElement("div"); stage.className="stage";
+    const sk = document.createElement("div"); sk.className="skel";
+    const img = document.createElement("img"); img.className="img"; img.setAttribute("data-src", url);
+
+    stage.appendChild(img);
+    pz.appendChild(sk); pz.appendChild(stage);
+    page.appendChild(pz);
+
+    attachZoomPan(pz, stage);   // transform stage’e uygulanır
     return {page, img, sk};
   }
 
-  // tek sorumlu yükleyici
   function loadImageAt(index){
-    const page=viewer.querySelector(`.page[data-index="${index}"]`); if(!page) return;
-    const img=page.querySelector(".img"), sk=page.querySelector(".skel");
-    if(!img || img.dataset.loaded) return;
-    const src = img.getAttribute("data-src"); if(!src){ sk&&sk.remove(); return; }
-
-    let finished=false;
-    const ok=()=>{ if(finished) return; finished=true; sk&&sk.remove(); img.classList.add("ready"); log(`OK  [${index+1}] ${src}`,"ok"); };
-    const err=()=>{ if(finished) return; finished=true; log(`ERR [${index+1}] ${src}`,"err"); img.src=PLACEHOLDER; sk&&sk.remove(); img.classList.add("ready"); };
-
-    img.onload=ok; img.onerror=err;
-    try{
-      img.src = src; img.dataset.loaded="1";
-      // bazı webview’larda onload tetiklenmeyebilir → failsafe
-      setTimeout(()=>{ if(!finished && img.complete && img.naturalWidth>0) ok(); else if(!finished) err(); }, 1800);
-    }catch(e){
-      err();
-    }
+    const page = viewer.querySelector(`.page[data-index="${index}"]`);
+    if(!page) return;
+    const img = page.querySelector(".img");
+    const sk  = page.querySelector(".skel");
+    if(img.dataset.loaded) return;
+    const src = img.getAttribute("data-src");
+    img.onload = ()=>{ sk && sk.remove(); img.classList.add("ready"); };
+    img.onerror = ()=>{ sk && sk.remove(); img.alt="Görüntü yüklenemedi"; img.classList.add("ready"); };
+    img.src = src;
+    img.dataset.loaded = "1";
   }
 
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
-  function currentIndex(){ const w=viewer.clientWidth||1; const t=viewer.scrollLeft/w; return clamp(Math.round(t), 0, Math.max(0,total-1)); }
 
+  // -------- Sayaç / gezinme --------
+  let total = 0;
+  function currentIndex(){
+    const w = viewer.clientWidth || 1;
+    return clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
+  }
   function updateVisible(){
-    const idx=currentIndex();
+    const idx = currentIndex();
     loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
-    counter.hidden=false; counter.textContent=`${idx+1} / ${total}`;
-    btnPrev.style.display = (idx===0)?"none":"flex";
-    btnNext.style.display = (idx===total-1)?"none":"flex";
+    counter.hidden = false;
+    counter.textContent = `${idx+1} / ${total}`;
+    btnPrev.style.display = (idx === 0) ? "none" : "flex";
+    btnNext.style.display = (idx === total-1) ? "none" : "flex";
   }
 
   let snapTimer;
   function onScroll(){
     clearTimeout(snapTimer);
-    snapTimer=setTimeout(()=>{
-      const w=viewer.clientWidth, target=Math.round(viewer.scrollLeft/w)*w;
-      viewer.scrollTo({left:target, behavior:"smooth"});
+    snapTimer = setTimeout(()=>{
+      const w = viewer.clientWidth;
+      const target = Math.round(viewer.scrollLeft / w) * w;
+      viewer.scrollTo({left: target, behavior:"smooth"});
       updateVisible();
     }, 80);
   }
+
   function go(delta){
-    const w=viewer.clientWidth, idx=currentIndex(), to=clamp(idx+delta,0,total-1);
-    viewer.scrollTo({left: to*w, behavior:"smooth"});
-    loadImageAt(to); loadImageAt(to-1); loadImageAt(to+1);
-    counter.textContent=`${to+1} / ${total}`;
-    btnPrev.style.display = (to===0)?"none":"flex";
-    btnNext.style.display = (to===total-1)?"none":"flex";
+    const w = viewer.clientWidth;
+    const idx = currentIndex();
+    const targetIdx = clamp(idx + delta, 0, total - 1);
+    viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
+    loadImageAt(targetIdx); loadImageAt(targetIdx-1); loadImageAt(targetIdx+1);
+    counter.textContent = `${targetIdx+1} / ${total}`;
+    btnPrev.style.display = (targetIdx === 0) ? "none" : "flex";
+    btnNext.style.display = (targetIdx === total-1) ? "none" : "flex";
   }
   btnPrev.addEventListener("click", ()=>go(-1));
   btnNext.addEventListener("click", ()=>go(1));
 
-  // -------- Zoom + Pan (stage, any-point) --------
+  // =======================
+  //   ZOOM + PAN (STAGE)
+  // =======================
   function attachZoomPan(container, stage){
-    const state={scale:1,min:1,max:4,tx:0,ty:0,drag:false,lx:0,ly:0,raf:false,tt:"translate(0,0) scale(1)"};
-    const STEP_CAP=0.14, WHEEL_SENS=0.0011, PINCH_THRESH=10;
-    const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+    const state = {
+      scale: 1, min: 1, max: 4,
+      tx: 0, ty: 0,
+      dragging: false, lx:0, ly:0,
+      rafPending:false, targetTransform:""
+    };
+    const PINCH_START_THRESHOLD_PX = 10;
+    const STEP_CAP = 0.14;
+    const WHEEL_SENS = 0.0011;
+
+    const clamp = (n,a,b)=>Math.max(a,Math.min(b,n));
 
     function perfLock(on){
       if(on){
         viewer.classList.add("lock");
-        viewer.style.webkitOverflowScrolling="auto";
-        viewer.style.scrollBehavior="auto";
-        container.style.touchAction="none";
+        viewer.style.webkitOverflowScrolling = "auto";
+        viewer.style.scrollBehavior = "auto";
+        container.style.touchAction = "none";
       }else{
-        viewer.style.webkitOverflowScrolling="touch";
-        viewer.style.scrollBehavior="smooth";
-        container.style.touchAction="pan-x pan-y";
-        if(state.scale<=1.0001) viewer.classList.remove("lock");
+        viewer.style.webkitOverflowScrolling = "touch";
+        viewer.style.scrollBehavior = "smooth";
+        container.style.touchAction = "pan-x pan-y";
+        if (state.scale<=1.0001) viewer.classList.remove("lock");
       }
     }
-    function schedule(){ if(state.raf) return; state.raf=true; requestAnimationFrame(()=>{ stage.style.transform=state.tt; state.raf=false; }); }
-    function compose(){ return `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`; }
-    function clampPan(){
-      const cw=container.clientWidth,ch=container.clientHeight;
-      const exX=cw*state.scale-cw, exY=ch*state.scale-ch;
-      state.tx=clamp(state.tx,-Math.max(0,exX), Math.max(0,exX));
-      state.ty=clamp(state.ty,-Math.max(0,exY), Math.max(0,exY));
-      state.tt=compose(); schedule();
+
+    function schedule(){
+      if(state.rafPending) return;
+      state.rafPending = true;
+      requestAnimationFrame(()=>{ stage.style.transform = state.targetTransform; state.rafPending=false; });
     }
-    function zoomAt(clientX, clientY, next){
-      next=clamp(next,state.min,state.max);
-      const prev=state.scale; if(Math.abs(next-prev)<1e-6) return;
-      const r=container.getBoundingClientRect(), cx=clientX-r.left, cy=clientY-r.top;
-      const wx=(cx-state.tx)/prev, wy=(cy-state.ty)/prev;
-      state.scale=next; state.tx=cx-wx*next; state.ty=cy-wy*next; clampPan();
+    function compose(){ return `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`; }
+
+    function clampPan(){
+      // stage, container kadar (inset:0). Ölçeklenince dışarı taşabilir; yumuşak sınırlar:
+      const cw = container.clientWidth, ch = container.clientHeight;
+      const exX = cw * state.scale - cw;
+      const exY = ch * state.scale - ch;
+      const minTx = -Math.max(0, exX);
+      const maxTx =  Math.max(0, exX);
+      const minTy = -Math.max(0, exY);
+      const maxTy =  Math.max(0, exY);
+      state.tx = clamp(state.tx, minTx, maxTx);
+      state.ty = clamp(state.ty, minTy, maxTy);
+      state.targetTransform = compose(); schedule();
     }
 
-    // wheel (desktop)
-    container.addEventListener("wheel",(e)=>{
+    // Herhangi bir noktaya odaklı zoom (stage üzerinde)
+    function zoomAt(clientX, clientY, nextScale){
+      nextScale = clamp(nextScale, state.min, state.max);
+      const prev = state.scale;
+      if (Math.abs(nextScale - prev) < 1e-6) return;
+
+      const rect = container.getBoundingClientRect();
+      const cx = clientX - rect.left;
+      const cy = clientY - rect.top;
+
+      // world = (p - T) / S   →   T' = p - world * S'
+      const wx = (cx - state.tx) / prev;
+      const wy = (cy - state.ty) / prev;
+
+      state.scale = nextScale;
+      state.tx = cx - wx * nextScale;
+      state.ty = cy - wy * nextScale;
+
+      clampPan();
+    }
+
+    // Wheel
+    container.addEventListener("wheel", (e)=>{
       e.preventDefault();
-      const raw=Math.exp(-e.deltaY*WHEEL_SENS), factor=clamp(raw,1-STEP_CAP,1+STEP_CAP);
-      zoomAt(e.clientX,e.clientY,state.scale*factor);
+      const raw = Math.exp(-e.deltaY * WHEEL_SENS);
+      const factor = clamp(raw, 1-STEP_CAP, 1+STEP_CAP);
+      zoomAt(e.clientX, e.clientY, state.scale * factor);
       perfLock(state.scale>1.0001);
-      clearTimeout(container._wheelEndT); container._wheelEndT=setTimeout(()=>{ if(state.scale<=1.0001) perfLock(false); },120);
+      clearTimeout(container._wheelEndT);
+      container._wheelEndT = setTimeout(()=>{ if(state.scale<=1.0001) perfLock(false); }, 120);
     }, {passive:false});
 
-    let p1=null,p2=null,pinch=false,baseDist=0,baseScale=1;
-    container.addEventListener("pointerdown",(e)=>{
+    // Pointer
+    let p1=null, p2=null, pinchActive=false, pinchStartDist=0, pinchStartScale=1;
+
+    container.addEventListener("pointerdown", (e)=>{
       container.setPointerCapture(e.pointerId);
-      if(!p1) p1={id:e.pointerId,x:e.clientX,y:e.clientY};
-      else if(!p2 && e.pointerId!==p1.id) p2={id:e.pointerId,x=e.clientX,y=e.clientY};
+      if (!p1) p1={id:e.pointerId,x:e.clientX,y:e.clientY};
+      else if (!p2 && e.pointerId!==p1.id) p2={id:e.pointerId,x:e.clientX,y:e.clientY};
 
-      if(!p2 && state.scale>1){ state.drag=true; state.lx=e.clientX; state.ly=e.clientY; perfLock(true); }
-      if(p1 && p2){ pinch=false; baseDist=Math.hypot(p2.x-p1.x,p2.y-p1.y); baseScale=state.scale; perfLock(true); }
+      if (!p2 && state.scale>1){
+        state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
+        perfLock(true);
+      }
+      if (p1 && p2){
+        pinchActive=false;
+        pinchStartDist = Math.hypot(p2.x-p1.x, p2.y-p1.y);
+        pinchStartScale = state.scale;
+        perfLock(true);
+      }
     });
-    container.addEventListener("pointermove",(e)=>{
-      if(p1 && e.pointerId===p1.id){ p1.x=e.clientX; p1.y=e.clientY; }
-      if(p2 && e.pointerId===p2.id){ p2.x=e.clientX; p2.y=e.clientY; }
 
-      if(p1 && p2){
+    container.addEventListener("pointermove", (e)=>{
+      if (p1 && e.pointerId===p1.id){ p1.x=e.clientX; p1.y=e.clientY; }
+      if (p2 && e.pointerId===p2.id){ p2.x=e.clientX; p2.y=e.clientY; }
+
+      // PINCH
+      if (p1 && p2){
         e.preventDefault();
-        const d=Math.hypot(p2.x-p1.x,p2.y-p1.y);
-        if(!pinch){ if(Math.abs(d-baseDist)<PINCH_THRESH) return; pinch=true; baseDist=d; baseScale=state.scale; }
+        const dist = Math.hypot(p2.x-p1.x, p2.y-p1.y);
+        if (!pinchActive){
+          if (Math.abs(dist - pinchStartDist) < PINCH_START_THRESHOLD_PX) return;
+          pinchActive = true;
+          pinchStartDist = dist;
+          pinchStartScale = state.scale;
+        }
         const cx=(p1.x+p2.x)/2, cy=(p1.y+p2.y)/2;
-        zoomAt(cx,cy, baseScale*(d/(baseDist||1)));
+        const next = pinchStartScale * (dist / (pinchStartDist || 1));
+        zoomAt(cx, cy, next);
         return;
       }
-      if(state.drag && state.scale>1){
+
+      // PAN
+      if (state.dragging && state.scale>1){
         e.preventDefault();
-        const dx=e.clientX-state.lx, dy=e.clientY-state.ly; state.lx=e.clientX; state.ly=e.clientY; state.tx+=dx; state.ty+=dy; clampPan();
+        const dx = e.clientX - state.lx;
+        const dy = e.clientY - state.ly;
+        state.lx = e.clientX; state.ly = e.clientY;
+        state.tx += dx; state.ty += dy;
+        clampPan();
       }
     }, {passive:false});
-    function up(e){
-      if(p1 && e.pointerId===p1.id) p1=null;
-      if(p2 && e.pointerId===p2.id) p2=null;
-      if(!p1 && !p2){ state.drag=false; if(state.scale<=1.0001){ state.scale=1; state.tx=0; state.ty=0; state.tt='translate(0,0) scale(1)'; schedule(); perfLock(false); } else { perfLock(true); } }
+
+    function endPointer(e){
+      if (p1 && e.pointerId===p1.id) p1=null;
+      if (p2 && e.pointerId===p2.id) p2=null;
+
+      if (!(p1&&p2)) pinchActive=false;
+
+      if (!p1 && !p2){
+        state.dragging=false;
+        if (state.scale<=1.0001){
+          state.scale=1; state.tx=0; state.ty=0;
+          state.targetTransform='translate(0px,0px) scale(1)'; schedule();
+          perfLock(false);
+        }else{
+          perfLock(true);
+        }
+      }
     }
-    container.addEventListener("pointerup", up);
-    container.addEventListener("pointercancel", up);
-    container.addEventListener("pointerleave", up);
+    container.addEventListener("pointerup", endPointer);
+    container.addEventListener("pointercancel", endPointer);
+    container.addEventListener("pointerleave", endPointer);
   }
 
-  // -------- init --------
-  let total=0;
+  // -------- Başlat --------
   (async function init(){
-    const list = await buildList();
-    log(`Kaynak sayısı: ${list.length}`, "info");
-    if(!list.length){ log("Hiç URL yok. ?u=... parametresiyle deneyin.", "err"); }
+    let list = [];
 
-    const frag=document.createDocumentFragment();
-    list.forEach((u,i)=>{ const {page}=makePage(u,i); frag.appendChild(page); });
+    if (manifestURL) {
+      list = await readManifest(manifestURL);
+    } else {
+      const wvs = (window.AppInventor && typeof window.AppInventor.getWebViewString==="function")
+                    ? String(window.AppInventor.getWebViewString()||"")
+                    : "";
+      if (wvs){
+        try{
+          const d = JSON.parse(wvs);
+          if (d && d.manifest) list = await readManifest(String(d.manifest));
+          if (Array.isArray(d.extra)) list = (d.extra.filter(isLink)).concat(list);
+        }catch{
+          if (isLink(wvs)) list = await readManifest(wvs);
+          else list = wvs.split(/\r?\n/).map(t=>t.trim()).filter(isLink);
+        }
+      }
+    }
+
+    list = dedupe(extraList.concat(list));
+
+    if (!list.length){
+      showErr("Gösterilecek resim bulunamadı. (Parametre: m / manifest / u / url veya WebViewString ile gönderin.)");
+      viewer.innerHTML = '<div class="page" data-index="0"><div class="pz"><div class="skel"></div></div></div>';
+      total = 1;
+      updateVisible();
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+    list.forEach((url, i)=>{
+      const {page} = makePage(url, i);
+      frag.appendChild(page);
+    });
     viewer.appendChild(frag);
-    total=list.length||1;
+    total = list.length;
 
-    // ilk 3 sayfayı başlat
-    loadImageAt(0); loadImageAt(1); loadImageAt(2);
-    counter.hidden=false; counter.textContent=`1 / ${total}`;
-    btnPrev.style.display="none"; btnNext.style.display=(total<=1)?"none":"flex";
-
+    updateVisible();
     viewer.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", ()=>{ /* gerekirse */ });
-
-    // ekstra: sayfa listesi yaz
-    list.forEach((u,i)=>log(`[${i+1}] ${u}`, "info"));
+    window.addEventListener("resize", updateVisible);
   })();
 })();
 </script>
