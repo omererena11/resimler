@@ -1,5 +1,5 @@
 https://www.oeappstudio.com/Market_Profile/A101.pngXhttps://www.oeappstudio.com/Brochures/Brochures/A101/manifest.txt
-https://www.oeappstudio.com/Market_Profile/bim.png
-https://www.oeappstudio.com/Market_Profile/metro.png
-https://www.oeappstudio.com/Market_Profile/migros.png
-https://www.oeappstudio.com/Market_Profile/sok.png
+https://www.oeappstudio.com/Market_Profile/bim.pngXhttps://www.oeappstudio.com/Brochures/Brochures/BIM/manifest.txt
+https://www.oeappstudio.com/Market_Profile/metro.pngXhttps://www.oeappstudio.com/Brochures/Brochures/CRFS/manifest.txt
+https://www.oeappstudio.com/Market_Profile/migros.pngXhttps://www.oeappstudio.com/Brochures/Brochures/MIGROS/manifest.txt
+https://www.oeappstudio.com/Market_Profile/sok.pngXhttps://www.oeappstudio.com/Brochures/Brochures/SOK/manifest.txt
