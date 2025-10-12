@@ -1,0 +1,38 @@
+{
+  "marketsIndex": [
+    {
+      "key": "A101",
+      "name": "A.101",
+      "logoUrl": "https://www.oeappstudio.com/Market_Profile/A101.png",
+      "manifestUrl": "https://www.oeappstudio.com/Brochures/Brochures/A101/manifest.txt"
+    },
+    {
+      "key": "BIM",
+      "name": "BİM",
+      "logoUrl": "https://www.oeappstudio.com/Market_Profile/bim.png",
+      "manifestUrl": "https://www.oeappstudio.com/Brochures/Brochures/BIM/manifest.txt"
+    },
+    {
+      "key": "CRFS",
+      "name": "CARREFOUR",
+      "logoUrl": "https://www.oeappstudio.com/Market_Profile/metro.png",
+      "manifestUrl": "https://www.oeappstudio.com/Brochures/Brochures/CRFS/manifest.txt"
+    },
+    {
+      "key": "MIGROS",
+      "name": "MİGROS",
+      "logoUrl": "https://www.oeappstudio.com/Market_Profile/migros.png",
+      "manifestUrl": "https://www.oeappstudio.com/Brochures/Brochures/MIGROS/manifest.txt"
+    },
+    {
+      "key": "SOK",
+      "name": "ŞOK",
+      "logoUrl": "https://www.oeappstudio.com/Market_Profile/sok.png",
+      "manifestUrl": "https://www.oeappstudio.com/Brochures/Brochures/SOK/manifest.txt"
+    }
+  ],
+  "ads": {
+    "bannerUnitId": "ca-app-pub-3940256099942544/6300978111",
+    "largeUnitId":  "ca-app-pub-3940256099942544/2934735716"
+  }
+}
