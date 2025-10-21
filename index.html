@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OE App Studio – Güncel Market Bültenleri</title>
+  <meta name="description" content="Güncel Market Bültenleri: A101, BİM, ŞOK ve daha fazlasının haftalık broşürleri.">
+  <link rel="icon" href="data:,"> <!-- basit boş favicon -->
+  <style>
+    :root { --bg:#0b0f17; --card:#111826; --text:#eef2ff; --muted:#9aa4b2; --accent:#60a5fa; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#0b0f17,#0e1726); color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial}
+    .wrap{max-width:820px;margin:0 auto;padding:32px 20px}
+    .card{background:var(--card); border:1px solid #1f2937; border-radius:16px; padding:28px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    h1{margin:0 0 10px; font-size:28px}
+    p{margin:8px 0 0; color:var(--muted)}
+    .grid{display:grid; gap:12px; margin-top:22px}
+    .btn{display:flex; align-items:center; justify-content:center; gap:8px;
+         padding:12px 14px; border-radius:12px; border:1px solid #233044;
+         background:#0f1b2e; color:#e5efff; text-decoration:none; font-weight:600}
+    .btn:hover{border-color:var(--accent); outline:2px solid rgba(96,165,250,.25)}
+    .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .links a{color:#cbd5e1; text-decoration:none; border-bottom:1px dashed #3b82f6}
+    .footer{margin-top:18px; font-size:13px; color:#94a3b8}
+    .tag{display:inline-block; padding:2px 8px; border:1px solid #334155; border-radius:999px; font-size:12px; color:#a5b4fc}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <span class="tag">OE App Studio</span>
+      <h1>Güncel Market Bültenleri</h1>
+      <p>Türkiye’deki büyük marketlerin haftalık broşürlerini tek yerde görüntüleyin.</p>
+
+      <div class="grid">
+        <!-- Play Store linkini hazır olunca güncelle -->
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.niotron.guncelmarketbultenlerieren" target="_blank" rel="noopener">Google Play mağaza sayfası</a>
+        <a class="btn" href="viewer.html">Web görüntüleyici (deneme)</a>
+      </div>
+
+      <div class="links">
+        <a href="privacy.html">Gizlilik Politikası</a>
+        <a href="/app-ads.txt">app-ads.txt</a>
+        <a href="mailto:oeappstudio.com@gmail.com">İletişim</a>
+      </div>
+
+      <div class="footer">
+        © <span id="yil"></span> OE App Studio. Tüm hakları saklıdır.
+      </div>
+    </div>
+  </div>
+  <script>document.getElementById('yil').textContent=new Date().getFullYear()</script>
+</body>
+</html>
