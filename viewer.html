@@ -4,26 +4,29 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=no"/>
 <meta name="referrer" content="no-referrer"/>
-<title>Viewer (Stage Transform • Any-Point Zoom)</title>
+<title>Viewer (Stage Transform • Any-Point Zoom • Vertical List)</title>
 <style>
   html, body{
     margin:0; padding:0; height:100%; background:#000; overflow:hidden;
-    overscroll-behavior-x:contain; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    overscroll-behavior-y:contain;
+    font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
     -webkit-user-select:none; user-select:none;
   }
-  #viewer{
-    display:flex; width:100%; height:100%;
-    overflow-x:auto; overflow-y:hidden;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;   /* pinch/drag sırasında geçici AUTO yapılır */
-    scroll-behavior:smooth; position:relative;
-  }
-  #viewer.lock{ scroll-snap-type:none; }
 
+  /* Artık normal dikey liste: scroll-snap yok */
+  #viewer{
+    width:100%; height:100%;
+    overflow-y:auto; overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
+    position:relative;
+  }
+  #viewer.lock{ /* snap yok ama class kalsa zararı yok */ }
+
+  /* Her broşür ekranı neredeyse tamamen kaplasın */
   .page{
-    min-width:100vw; height:100vh;
+    width:100vw; height:100vh;
     display:flex; justify-content:center; align-items:center;
-    scroll-snap-align:start; scroll-snap-stop:always;
     background:#000; position:relative; overflow:hidden;
   }
 
@@ -163,12 +166,15 @@
 
   function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
 
-  // -------- Sayaç / gezinme --------
+  // -------- Sayaç / gezinme (dikey liste) --------
   let total = 0;
+
   function currentIndex(){
-    const w = viewer.clientWidth || 1;
-    return clamp(Math.round(viewer.scrollLeft / w), 0, Math.max(0, total-1));
+    // Yaklaşık hesap: her page 100vh olduğundan scrollTop/clientHeight ile sayfa tahmini
+    const h = viewer.clientHeight || 1;
+    return clamp(Math.round(viewer.scrollTop / h), 0, Math.max(0, total-1));
   }
+
   function updateVisible(){
     const idx = currentIndex();
     loadImageAt(idx); loadImageAt(idx-1); loadImageAt(idx+1);
@@ -178,22 +184,16 @@
     btnNext.style.display = (idx === total-1) ? "none" : "flex";
   }
 
-  let snapTimer;
   function onScroll(){
-    clearTimeout(snapTimer);
-    snapTimer = setTimeout(()=>{
-      const w = viewer.clientWidth;
-      const target = Math.round(viewer.scrollLeft / w) * w;
-      viewer.scrollTo({left: target, behavior:"smooth"});
-      updateVisible();
-    }, 80);
+    // Artık snap yok, sadece hangi sayfadayız onu güncelliyoruz
+    updateVisible();
   }
 
   function go(delta){
-    const w = viewer.clientWidth;
+    const h = viewer.clientHeight;
     const idx = currentIndex();
     const targetIdx = clamp(idx + delta, 0, total - 1);
-    viewer.scrollTo({left: targetIdx * w, behavior:"smooth"});
+    viewer.scrollTo({top: targetIdx * h, behavior:"smooth"});
     loadImageAt(targetIdx); loadImageAt(targetIdx-1); loadImageAt(targetIdx+1);
     counter.textContent = `${targetIdx+1} / ${total}`;
     btnPrev.style.display = (targetIdx === 0) ? "none" : "flex";
@@ -240,7 +240,6 @@
     function compose(){ return `translate(${state.tx}px, ${state.ty}px) scale(${state.scale})`; }
 
     function clampPan(){
-      // stage, container kadar (inset:0). Ölçeklenince dışarı taşabilir; yumuşak sınırlar:
       const cw = container.clientWidth, ch = container.clientHeight;
       const exX = cw * state.scale - cw;
       const exY = ch * state.scale - ch;
@@ -253,7 +252,6 @@
       state.targetTransform = compose(); schedule();
     }
 
-    // Herhangi bir noktaya odaklı zoom (stage üzerinde)
     function zoomAt(clientX, clientY, nextScale){
       nextScale = clamp(nextScale, state.min, state.max);
       const prev = state.scale;
@@ -263,7 +261,6 @@
       const cx = clientX - rect.left;
       const cy = clientY - rect.top;
 
-      // world = (p - T) / S   →   T' = p - world * S'
       const wx = (cx - state.tx) / prev;
       const wy = (cy - state.ty) / prev;
 
@@ -291,7 +288,7 @@
     container.addEventListener("pointerdown", (e)=>{
       container.setPointerCapture(e.pointerId);
       if (!p1) p1={id:e.pointerId,x:e.clientX,y:e.clientY};
-      else if (!p2 && e.pointerId!==p1.id) p2={id:e.pointerId,x:e.clientX,y:e.clientY};
+      else if (!p2 && e.pointerId!==p1.id) p2={id:e.pointerId,x=e.clientX,y=e.clientY};
 
       if (!p2 && state.scale>1){
         state.dragging = true; state.lx = e.clientX; state.ly = e.clientY;
