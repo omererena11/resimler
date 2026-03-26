@@ -1,42 +1,342 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Gizlilik Politikası - Güncel Market Bültenleri</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gizlilik Politikası | OE Apps Studio</title>
+  <meta name="description" content="OE Apps Studio tarafından geliştirilen mobil uygulamalar için gizlilik politikası.">
+  <meta name="theme-color" content="#0b1120">
+  <link rel="icon" href="data:,">
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
-    h1, h2 { color: #2c3e50; }
+    :root{
+      --bg:#08111f;
+      --bg2:#0d1728;
+      --panel:rgba(13,21,38,.88);
+      --line:rgba(255,255,255,.08);
+      --text:#edf4ff;
+      --muted:#9aabc6;
+      --accent:#60a5fa;
+      --accent2:#8b5cf6;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:920px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100%;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 18%, rgba(96,165,250,.16), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(139,92,246,.12), transparent 24%),
+        linear-gradient(180deg, #07111f 0%, #0b1426 48%, #09111d 100%);
+      font:16px/1.7 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:auto}
+
+    .bg-grid,.orb{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+    }
+    .bg-grid{
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 92%);
+      opacity:.24;
+    }
+    .orb::before,.orb::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter:blur(72px);
+      opacity:.16;
+    }
+    .orb::before{background:#3b82f6; left:-80px; top:40px}
+    .orb::after{background:#8b5cf6; right:-80px; top:80px}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:blur(16px);
+      background:rgba(7,12,23,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:.6px;
+      color:white;
+      background:linear-gradient(135deg, #60a5fa, #2563eb 52%, #7c3aed);
+      box-shadow:0 12px 24px rgba(37,99,235,.32);
+      flex:0 0 auto;
+    }
+    .brand-title{font-size:16px; font-weight:800; line-height:1.1}
+    .brand-sub{font-size:12px; color:var(--muted); margin-top:3px}
+
+    .top-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 16px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.18s ease;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:#e9f1ff;
+    }
+    .btn:hover{transform:translateY(-2px); border-color:rgba(96,165,250,.35)}
+
+    main{padding:46px 0 70px}
+    .hero{
+      margin-bottom:22px;
+      padding:30px;
+      border-radius:28px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(96,165,250,.11);
+      border:1px solid rgba(96,165,250,.22);
+      color:#cfe3ff;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(30px, 5vw, 52px);
+      line-height:1.04;
+      letter-spacing:-1.2px;
+    }
+    .hero p{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:17px;
+      max-width:760px;
+    }
+
+    .card{
+      padding:28px;
+      border-radius:24px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+
+    h2{
+      margin:0 0 12px;
+      font-size:24px;
+      letter-spacing:-.4px;
+    }
+    p{
+      margin:0 0 14px;
+      color:#d9e6fb;
+    }
+    ul{
+      margin:0;
+      padding-left:20px;
+      color:#d9e6fb;
+    }
+    li{margin:0 0 10px}
+    .muted{color:var(--muted)}
+
+    .note{
+      padding:16px 18px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      color:#d8e4fa;
+    }
+
+    footer{
+      padding:0 0 50px;
+    }
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width: 720px){
+      .topbar-inner{min-height:68px}
+      .hero,.card{padding:22px}
+      .top-actions{width:100%}
+      .top-actions .btn{width:100%}
+    }
   </style>
 </head>
 <body>
-  <h1>Gizlilik Politikası</h1>
-  <p><strong>Güncel Market Bültenleri</strong> uygulaması OE Apps Studio tarafından geliştirilmiştir. Bu gizlilik politikası, uygulamamızın kullanıcılarından hangi verileri topladığını, nasıl kullandığını ve koruduğunu açıklamaktadır.</p>
+  <div class="orb"></div>
+  <div class="bg-grid"></div>
 
-  <h2>Toplanan Veriler</h2>
-  <ul>
-    <li>Cihaz bilgileri (işletim sistemi, cihaz modeli vb.)</li>
-    <li>Google AdMob aracılığıyla reklam verileri</li>
-    <li>OneSignal / Firebase aracılığıyla bildirim için cihaz kimliği</li>
-  </ul>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html" aria-label="OE Apps Studio ana sayfa">
+        <div class="brand-mark">OE</div>
+        <div>
+          <div class="brand-title">OE Apps Studio</div>
+          <div class="brand-sub">Mobil uygulamalar • oyunlar • entegrasyon • otomasyon</div>
+        </div>
+      </a>
 
-  <h2>Verilerin Kullanımı</h2>
-  <ul>
-    <li>Kullanıcı deneyimini geliştirmek</li>
-    <li>Güncellemeler ve kampanyalar hakkında bildirim göndermek</li>
-    <li>Uygulama içi reklamları göstermek</li>
-  </ul>
+      <div class="top-actions">
+        <a class="btn" href="index.html">Ana Sayfa</a>
+        <a class="btn" href="mailto:oeappstudio.com@gmail.com">İletişim</a>
+      </div>
+    </div>
+  </header>
 
-  <h2>Verilerin Paylaşımı</h2>
-  <p>Toplanan veriler yalnızca üçüncü taraf hizmet sağlayıcılarla (Google AdMob, Google Firebase, OneSignal) paylaşılmaktadır. Bu hizmetler kendi gizlilik politikalarına tabidir.</p>
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="eyebrow">Gizlilik Politikası</div>
+        <h1>OE Apps Studio Gizlilik Politikası</h1>
+        <p>
+          Bu gizlilik politikası, OE Apps Studio tarafından geliştirilen mobil uygulamalar ve dijital ürünler için geçerlidir.
+          Uygulamalarımızı kullanan kişilerin verilerinin nasıl işlendiğini, hangi hizmetlerin kullanılabildiğini ve kullanıcı bilgilerinin nasıl korunduğunu özetler.
+        </p>
+      </section>
 
-  <h2>Güvenlik</h2>
-  <p>Kullanıcı verileri yetkisiz erişime karşı korunmaktadır. Biz kullanıcıların kişisel verilerini üçüncü kişilere satmayız.</p>
+      <section class="card">
+        <h2>Kapsam</h2>
+        <p>
+          Bu politika, OE Apps Studio tarafından yayınlanan mobil uygulamalar, oyunlar ve bağlantılı dijital hizmetler için genel gizlilik çerçevesini kapsar.
+          Uygulamaların bazıları farklı teknik özellikler içerebilir; ancak veri işleme yaklaşımımız temel olarak sade, sınırlı ve kullanıcı güvenliğini önceleyen bir yapıdadır.
+        </p>
+      </section>
 
-  <h2>Çocukların Gizliliği</h2>
-  <p>Uygulama genel kitle için tasarlanmıştır. Çocuklardan bilerek kişisel veri toplamayız. Eğer yanlışlıkla veri toplandığını düşünüyorsanız bizimle iletişime geçebilirsiniz.</p>
+      <section class="card">
+        <h2>Toplanan bilgiler</h2>
+        <p>
+          Uygulamalarımız genel olarak kullanıcıdan doğrudan kişisel veri toplamayı hedeflemez. Çoğu uygulamada ad, adres, kimlik bilgisi veya benzeri özel veriler talep edilmez.
+        </p>
+        <div class="note">
+          Bazı uygulamalarda kullanılan üçüncü taraf hizmetler, teknik çalışmayı sağlamak veya reklam sunmak amacıyla sınırlı teknik veriler işleyebilir.
+        </div>
+      </section>
 
-  <h2>İletişim</h2>
-  <p>Herhangi bir sorunuz olursa lütfen bizimle iletişime geçin: <br>
-  📧 <a href="mailto:contact@oeappstudio.com">contact@oeappstudio.com</a></p>
+      <section class="card">
+        <h2>Kullanılabilecek üçüncü taraf hizmetler</h2>
+        <p>Uygulamalarımızın teknik yapısına göre aşağıdaki servisler kullanılabilir:</p>
+        <ul>
+          <li><strong>Google AdMob:</strong> Reklam gösterimi ve reklam performansının sağlanması için kullanılabilir.</li>
+          <li><strong>Firebase Cloud Messaging veya benzeri bildirim servisleri:</strong> Kullanıcılara bildirim iletmek için kullanılabilir.</li>
+          <li><strong>Analitik veya hata izleme servisleri:</strong> Uygulama kararlılığını artırmak amacıyla teknik kullanım verileri işlenebilir.</li>
+        </ul>
+        <p class="muted" style="margin-top:14px;">
+          Bu hizmetlerin veri işleme süreçleri kendi gizlilik politikalarına tabidir.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Verilerin kullanım amacı</h2>
+        <ul>
+          <li>Uygulamanın temel işlevlerini sunmak</li>
+          <li>Kullanıcı deneyimini geliştirmek</li>
+          <li>Bildirim gönderimi sağlamak</li>
+          <li>Teknik sorunları analiz etmek ve düzeltmek</li>
+          <li>Reklam destekli uygulamalarda reklam sunumunu yönetmek</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Veri paylaşımı</h2>
+        <p>
+          OE Apps Studio, kullanıcı verilerini satmaz, kiralamaz veya doğrudan üçüncü kişilerle ticari amaçla paylaşmaz.
+          Ancak uygulamalarda kullanılan reklam, bildirim veya analiz altyapıları teknik gereklilik kapsamında sınırlı veri işleyebilir.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Çocukların gizliliği</h2>
+        <p>
+          Uygulamalarımız bilinçli şekilde çocuklardan kişisel veri toplamak amacıyla tasarlanmamıştır.
+          Eğer bir ebeveyn veya yasal temsilci, bir çocuğa ait uygunsuz veri işlendiğini düşünüyorsa bizimle iletişime geçebilir.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Veri güvenliği</h2>
+        <p>
+          Kullanıcı güvenliğini önemseriz. Uygulamalarımızda gereksiz veri toplamamaya özen gösterir, kullanılan servisleri mümkün olduğunca sınırlı ve amaca uygun şekilde tercih ederiz.
+          Ancak internet üzerinden yapılan hiçbir veri aktarımının yüzde yüz güvenli olduğu garanti edilemez.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Politika güncellemeleri</h2>
+        <p>
+          Bu gizlilik politikası gerektiğinde güncellenebilir. Güncellenmiş sürüm bu sayfada yayınlandığı anda yürürlüğe girer.
+          Uygulamalarımızı kullanmaya devam etmeniz, güncel politikayı kabul ettiğiniz anlamına gelir.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>İletişim</h2>
+        <p>
+          Gizlilik politikası ile ilgili sorularınız için aşağıdaki e-posta adresi üzerinden iletişime geçebilirsiniz:
+        </p>
+        <p><strong>oeappstudio.com@gmail.com</strong></p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer">
+      <div>© <span id="year"></span> OE Apps Studio. Tüm hakları saklıdır.</div>
+      <div><a href="index.html">Ana Sayfa</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
