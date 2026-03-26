@@ -2,53 +2,869 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>OE Apps Studio – Güncel Market Bültenleri</title>
-  <meta name="description" content="Güncel Market Bültenleri: A101, BİM, ŞOK ve daha fazlasının haftalık broşürleri.">
-  <link rel="icon" href="data:,"> <!-- basit boş favicon -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OE Apps Studio | Mobile Apps and Games</title>
+  <meta name="description" content="OE Apps Studio – modern mobile apps, useful tools, automation systems and games.">
+  <meta name="theme-color" content="#0b1120">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="data:,">
   <style>
-    :root { --bg:#0b0f17; --card:#111826; --text:#eef2ff; --muted:#9aa4b2; --accent:#60a5fa; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0b0f17,#0e1726); color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial}
-    .wrap{max-width:820px;margin:0 auto;padding:32px 20px}
-    .card{background:var(--card); border:1px solid #1f2937; border-radius:16px; padding:28px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    h1{margin:0 0 10px; font-size:28px}
-    p{margin:8px 0 0; color:var(--muted)}
-    .grid{display:grid; gap:12px; margin-top:22px}
-    .btn{display:flex; align-items:center; justify-content:center; gap:8px;
-         padding:12px 14px; border-radius:12px; border:1px solid #233044;
-         background:#0f1b2e; color:#e5efff; text-decoration:none; font-weight:600}
-    .btn:hover{border-color:var(--accent); outline:2px solid rgba(96,165,250,.25)}
-    .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
-    .links a{color:#cbd5e1; text-decoration:none; border-bottom:1px dashed #3b82f6}
-    .footer{margin-top:18px; font-size:13px; color:#94a3b8}
-    .tag{display:inline-block; padding:2px 8px; border:1px solid #334155; border-radius:999px; font-size:12px; color:#a5b4fc}
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1426;
+      --panel:rgba(13,21,38,.72);
+      --panel-strong:rgba(16,25,46,.96);
+      --line:rgba(255,255,255,.08);
+      --text:#edf4ff;
+      --muted:#97a7c3;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100%;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(96,165,250,.18), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(139,92,246,.14), transparent 24%),
+        radial-gradient(circle at 50% 90%, rgba(34,197,94,.09), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #0a1324 45%, #09111d 100%);
+      font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+    body.locked{overflow:hidden}
+
+    a{color:inherit;text-decoration:none}
+    [data-lang]{display:none}
+    [data-lang].active{display:initial}
+
+    .noise,.bg-grid,.orb{position:fixed; inset:0; pointer-events:none}
+    .bg-grid{
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 92%);
+      opacity:.26;
+    }
+    .noise{
+      background-image: radial-gradient(rgba(255,255,255,.06) .7px, transparent .7px);
+      background-size:16px 16px;
+      opacity:.08;
+    }
+    .orb::before,.orb::after{
+      content:"";
+      position:absolute;
+      width:340px;
+      height:340px;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.16;
+    }
+    .orb::before{background:#3b82f6; left:-80px; top:40px}
+    .orb::after{background:#8b5cf6; right:-60px; top:100px}
+
+    .container{width:min(var(--max), calc(100% - 32px)); margin:auto}
+
+    .language-gate{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(3,8,17,.82);
+      backdrop-filter:blur(18px);
+    }
+    .language-gate.hidden{display:none}
+    .gate-card{
+      width:min(560px, 100%);
+      padding:30px;
+      border-radius:28px;
+      background:var(--panel-strong);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+    .gate-mark{
+      width:76px;
+      height:76px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 18px;
+      font-weight:900;
+      letter-spacing:.6px;
+      color:white;
+      font-size:26px;
+      background:linear-gradient(135deg, #60a5fa, #2563eb 52%, #7c3aed);
+      box-shadow:0 16px 34px rgba(37,99,235,.34);
+    }
+    .gate-card h1{
+      margin:0;
+      font-size:clamp(28px, 5vw, 42px);
+      line-height:1.06;
+      letter-spacing:-1px;
+    }
+    .gate-card p{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .gate-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:24px;
+    }
+    .gate-btn{
+      min-height:58px;
+      border:none;
+      border-radius:16px;
+      font:inherit;
+      font-weight:800;
+      color:white;
+      cursor:pointer;
+      transition:transform .18s ease, opacity .18s ease;
+    }
+    .gate-btn:hover{transform:translateY(-2px)}
+    .gate-btn.tr{background:linear-gradient(135deg, #2563eb, #1d4ed8)}
+    .gate-btn.en{background:linear-gradient(135deg, #8b5cf6, #6d28d9)}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:rgba(7,12,23,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      min-height:74px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0
+    }
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:.6px;
+      color:white;
+      background:linear-gradient(135deg, #60a5fa, #2563eb 52%, #7c3aed);
+      box-shadow:0 12px 24px rgba(37,99,235,.32);
+      flex:0 0 auto;
+    }
+    .brand-title{font-size:16px; font-weight:800; line-height:1.1}
+    .brand-sub{font-size:12px; color:var(--muted); margin-top:3px}
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a,.lang-toggle{
+      color:#dce7ff;
+      font-size:14px;
+      font-weight:600;
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.2s ease;
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-family:inherit;
+    }
+    .nav a:hover,.lang-toggle:hover{background:rgba(255,255,255,.06)}
+
+    .hero{padding:70px 0 34px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .hero-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+      padding:34px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(96,165,250,.11);
+      border:1px solid rgba(96,165,250,.22);
+      color:#cfe3ff;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+    .hero-title{
+      margin:0;
+      font-size:clamp(34px, 5vw, 64px);
+      line-height:1.03;
+      letter-spacing:-1.4px;
+    }
+    .hero p{
+      margin:16px 0 0;
+      font-size:18px;
+      color:var(--muted);
+      max-width:720px;
+    }
+    .hero-cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:0 18px;
+      border-radius:14px;
+      border:1px solid transparent;
+      font-weight:800;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg, #3b82f6, #2563eb 55%, #7c3aed);
+      box-shadow:0 14px 30px rgba(37,99,235,.32)
+    }
+    .btn-secondary{
+      color:#e4eeff;
+      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.08)
+    }
+    .btn-whatsapp{
+      color:white;
+      background:linear-gradient(135deg, #22c55e, #16a34a);
+      box-shadow:0 14px 28px rgba(22,163,74,.28)
+    }
+
+    .hero-mini{
+      display:grid;
+      gap:16px;
+      padding:22px;
+    }
+    .mini-stat{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06)
+    }
+    .mini-label{font-size:13px; color:var(--muted); margin-bottom:8px}
+    .mini-value{font-size:24px; font-weight:900; letter-spacing:-.6px}
+    .mini-note{font-size:13px; color:#b7c5dc; margin-top:5px}
+
+    section{padding:26px 0}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .section-title{
+      margin:0;
+      font-size:clamp(24px, 3vw, 38px);
+      letter-spacing:-.8px
+    }
+    .section-desc{
+      color:var(--muted);
+      margin:8px 0 0
+    }
+
+    .apps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
+    .app-card{
+      position:relative;
+      overflow:hidden;
+      padding:22px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      min-height:290px;
+    }
+    .app-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), transparent 40%);
+      pointer-events:none;
+    }
+    .app-icon{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:28px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 14px 30px rgba(0,0,0,.22);
+    }
+    .app-card h3{
+      margin:16px 0 8px;
+      font-size:25px;
+      letter-spacing:-.5px
+    }
+    .app-card p{margin:0; color:var(--muted)}
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:16px
+    }
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.06);
+      color:#d7e3f7;
+      font-size:12px;
+      font-weight:700
+    }
+    .app-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:20px
+    }
+    .app-link{
+      padding:10px 13px;
+      border-radius:12px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:14px;
+      font-weight:700;
+      color:#ebf3ff
+    }
+    .app-link:hover{border-color:rgba(96,165,250,.42)}
+    .zikr .app-icon{background:linear-gradient(135deg, #22c55e, #15803d)}
+    .market .app-icon{background:linear-gradient(135deg, #60a5fa, #2563eb)}
+    .game .app-icon{background:linear-gradient(135deg, #f59e0b, #ea580c)}
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:16px
+    }
+    .service{
+      padding:20px;
+      border-radius:20px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow)
+    }
+    .service .icon{font-size:28px; margin-bottom:10px}
+    .service h4{margin:0 0 8px; font-size:18px}
+    .service p{margin:0; color:var(--muted); font-size:15px}
+
+    .contact{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px
+    }
+    .contact-card{
+      padding:28px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow)
+    }
+    .contact-list{
+      display:grid;
+      gap:12px;
+      margin-top:18px
+    }
+    .contact-item{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 15px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06)
+    }
+    .contact-item strong{display:block; font-size:14px}
+    .contact-item span{display:block; color:var(--muted); font-size:14px}
+    .socials{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px
+    }
+    .socials a{
+      width:54px;
+      height:54px;
+      display:grid;
+      place-items:center;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      transition:.2s ease
+    }
+    .socials a:hover{
+      transform:translateY(-2px);
+      border-color:rgba(96,165,250,.4)
+    }
+    .socials svg{
+      width:24px;
+      height:24px;
+      fill:#eaf2ff
+    }
+
+    .whatsapp-box{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px;
+      border-radius:20px;
+      background:linear-gradient(135deg, rgba(34,197,94,.14), rgba(22,163,74,.1));
+      border:1px solid rgba(34,197,94,.24);
+      margin-top:18px
+    }
+    .whatsapp-box h4{margin:0 0 6px; font-size:18px}
+    .whatsapp-box p{margin:0; color:#cdebd7}
+
+    .floating-wa{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:120;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, #25d366, #128c7e);
+      box-shadow:0 18px 38px rgba(0,0,0,.35), 0 0 0 8px rgba(37,211,102,.12);
+      transition:transform .18s ease;
+    }
+    .floating-wa:hover{transform:translateY(-3px) scale(1.03)}
+    .floating-wa svg{width:30px; height:30px; fill:white}
+
+    footer{padding:34px 0 60px}
+    .footer-wrap{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:14px
+    }
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap
+    }
+    .footer-links a:hover{color:#dce9ff}
+
+    @media (max-width: 1180px){
+      .services{grid-template-columns:repeat(3, minmax(0,1fr))}
+    }
+    @media (max-width: 1040px){
+      .hero-grid,.contact{grid-template-columns:1fr}
+      .apps{grid-template-columns:1fr}
+      .services{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width: 720px){
+      .topbar-inner{min-height:68px}
+      .nav{display:none}
+      .hero{padding-top:42px}
+      .hero-card{padding:24px}
+      .section-head{display:block}
+      .services{grid-template-columns:1fr}
+      .contact-card{padding:22px}
+      .hero p{font-size:16px}
+      .btn{width:100%}
+      .app-actions .app-link{width:100%; text-align:center}
+      .gate-card{padding:24px 18px}
+      .gate-actions{grid-template-columns:1fr}
+      .floating-wa{right:14px; bottom:14px; width:58px; height:58px}
+      footer{padding-bottom:90px}
+    }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="card">
-      <span class="tag">OE Apps Studio</span>
-      <h1>Güncel Market Bültenleri</h1>
-      <p>Türkiye’deki büyük marketlerin haftalık broşürlerini tek yerde görüntüleyin.</p>
+<body class="locked">
+  <div class="orb"></div>
+  <div class="bg-grid"></div>
+  <div class="noise"></div>
 
-      <div class="grid">
-        <!-- Play Store linkini hazır olunca güncelle -->
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.niotron.guncelmarketbultenlerieren" target="_blank" rel="noopener">Google Play mağaza sayfası</a>
-        <a class="btn" href="viewer.html">Web görüntüleyici (deneme)</a>
-      </div>
-
-      <div class="links">
-        <a href="privacy.html">Gizlilik Politikası</a>
-        <a href="/app-ads.txt">app-ads.txt</a>
-        <a href="mailto:oeappstudio.com@gmail.com">İletişim</a>
-      </div>
-
-      <div class="footer">
-        © <span id="yil"></span> OE Apps Studio. Tüm hakları saklıdır.
+  <div class="language-gate" id="languageGate" aria-modal="true" role="dialog">
+    <div class="gate-card">
+      <div class="gate-mark">OE</div>
+      <h1>Select your language / Dilinizi seçin</h1>
+      <p>Choose your preferred language to enter the website.</p>
+      <div class="gate-actions">
+        <button class="gate-btn tr" type="button" onclick="setLanguage('tr')">Türkçe</button>
+        <button class="gate-btn en" type="button" onclick="setLanguage('en')">English</button>
       </div>
     </div>
   </div>
-  <script>document.getElementById('yil').textContent=new Date().getFullYear()</script>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#anasayfa" aria-label="OE Apps Studio home">
+        <div class="brand-mark">OE</div>
+        <div>
+          <div class="brand-title">OE Apps Studio</div>
+          <div class="brand-sub">
+            <span data-lang="tr">Mobil uygulamalar • oyunlar • entegrasyon • otomasyon</span>
+            <span data-lang="en">Mobile apps • games • integration • automation</span>
+          </div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Main menu">
+        <a href="#uygulamalar"><span data-lang="tr">Uygulamalar</span><span data-lang="en">Apps</span></a>
+        <a href="#hizmetler"><span data-lang="tr">Neler Yapıyorum</span><span data-lang="en">What I Do</span></a>
+        <a href="#iletisim"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
+        <button class="lang-toggle" type="button" onclick="toggleLanguage()">TR / EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="anasayfa">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">
+            <span data-lang="tr">Bağımsız geliştirici stüdyo</span>
+            <span data-lang="en">Independent developer studio</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span data-lang="tr">Modern mobil uygulamalar, sistem entegrasyonları ve dikkat çeken oyunlar geliştiriyorum.</span>
+            <span data-lang="en">I build modern mobile apps, system integrations and engaging games.</span>
+          </h1>
+
+          <p>
+            <span data-lang="tr">OE Apps Studio olarak faydalı günlük araçlar, kullanıcı dostu uygulamalar ve eğlenceli mobil oyunlar geliştiriyorum. Ürün geliştirme tarafında GitHub tabanlı iş akışları, Firebase Messaging entegrasyonları, uygulama içi sistem kurulumları ve Python ile otomasyon altyapıları üzerinde profesyonel seviyede çalışabiliyorum.</span>
+            <span data-lang="en">At OE Apps Studio, I build useful daily tools, user-friendly applications and engaging mobile games. On the product side, I also work professionally with GitHub-based workflows, Firebase Messaging integrations, in-app system implementation and Python-powered automation infrastructure.</span>
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#uygulamalar">
+              <span data-lang="tr">Projeleri Gör</span>
+              <span data-lang="en">View Projects</span>
+            </a>
+            <a class="btn btn-secondary" href="mailto:oeappstudio.com@gmail.com">
+              <span data-lang="tr">E-posta Gönder</span>
+              <span data-lang="en">Send Email</span>
+            </a>
+            <a class="btn btn-whatsapp" href="https://wa.me/905555555555?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20proje%2C%20entegrasyon%20veya%20i%C5%9F%20birli%C4%9Fi%20konusunu%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener">
+              <span data-lang="tr">WhatsApp ile Ulaş</span>
+              <span data-lang="en">Contact on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card hero-mini">
+          <div class="mini-stat">
+            <div class="mini-label"><span data-lang="tr">Odak alanı</span><span data-lang="en">Focus area</span></div>
+            <div class="mini-value"><span data-lang="tr">Mobil ürün geliştirme</span><span data-lang="en">Mobile product development</span></div>
+            <div class="mini-note"><span data-lang="tr">Kullanıcıya doğrudan değer veren uygulamalar, oyunlar ve bağlı servis yapıları</span><span data-lang="en">Apps, games and connected service structures that create direct value for users</span></div>
+          </div>
+
+          <div class="mini-stat">
+            <div class="mini-label"><span data-lang="tr">Teknik yetkinlik</span><span data-lang="en">Technical capability</span></div>
+            <div class="mini-value"><span data-lang="tr">GitHub • Firebase • Python</span><span data-lang="en">GitHub • Firebase • Python</span></div>
+            <div class="mini-note"><span data-lang="tr">Sürüm yönetimi, bildirim altyapısı, otomasyon ve uygulama entegrasyonlarında güçlü çalışma pratiği</span><span data-lang="en">Strong practical experience in version control, messaging infrastructure, automation and app integrations</span></div>
+          </div>
+
+          <div class="mini-stat">
+            <div class="mini-label"><span data-lang="tr">Çalışma yaklaşımı</span><span data-lang="en">Working approach</span></div>
+            <div class="mini-value"><span data-lang="tr">Seçili projelere destek</span><span data-lang="en">Selective project support</span></div>
+            <div class="mini-note"><span data-lang="tr">Hâlihazırda kendi projelerim üzerinde çalışıyorum. Uygun olduğum dönemlerde yeni taleplere de destek verebilirim.</span><span data-lang="en">I am actively working on my own products. When timing aligns, I also support selected new requests.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="uygulamalar">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title"><span data-lang="tr">Öne çıkan projeler</span><span data-lang="en">Featured projects</span></h2>
+            <p class="section-desc"><span data-lang="tr">Farklı ihtiyaçlara hitap eden uygulamalar, araçlar ve oyunlar tek çatı altında.</span><span data-lang="en">Apps, tools and games built for different user needs under one roof.</span></p>
+          </div>
+        </div>
+
+        <div class="apps">
+          <article class="app-card zikr">
+            <div class="app-icon">☪</div>
+            <h3>Zikirmatik</h3>
+            <p>
+              <span data-lang="tr">Dijital tesbih deneyimini sade, modern ve kullanışlı bir yapıyla sunan mobil uygulama. Günlük zikir takibi, sayaç kullanımı ve odaklı deneyim için tasarlandı.</span>
+              <span data-lang="en">A mobile app that delivers a clean, modern and practical digital tasbih experience. Built for daily dhikr tracking, counting and focus.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Tasbih Counter</span>
+              <span class="chip">Dhikr Tracking</span>
+              <span class="chip">Minimal UI</span>
+            </div>
+            <div class="app-actions">
+              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.oeappstudio.tasbih" target="_blank" rel="noopener">Play Store</a>
+            </div>
+          </article>
+
+          <article class="app-card market">
+            <div class="app-icon">🛒</div>
+            <h3>
+              <span data-lang="tr">Güncel Market Bültenleri</span>
+              <span data-lang="en">Current Market Flyers</span>
+            </h3>
+            <p>
+              <span data-lang="tr">A101, BİM, ŞOK ve benzeri marketlerin güncel broşürlerini kullanıcıya hızlı ve düzenli biçimde sunan pratik takip uygulaması.</span>
+              <span data-lang="en">A practical tracking app that lets users quickly browse the latest weekly flyers from A101, BİM, ŞOK and similar markets.</span>
+            </p>
+            <div class="chips">
+              <span class="chip"><span data-lang="tr">Haftalık Broşürler</span><span data-lang="en">Weekly Flyers</span></span>
+              <span class="chip"><span data-lang="tr">Kolay Takip</span><span data-lang="en">Easy Tracking</span></span>
+              <span class="chip"><span data-lang="tr">Market Odaklı</span><span data-lang="en">Market Focused</span></span>
+            </div>
+            <div class="app-actions">
+              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.niotron.guncelmarketbultenlerieren" target="_blank" rel="noopener">Play Store</a>
+              <a class="app-link" href="viewer.html">
+                <span data-lang="tr">Web Görüntüleyici</span>
+                <span data-lang="en">Web Viewer</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="app-card game">
+            <div class="app-icon">🎮</div>
+            <h3>
+              <span data-lang="tr">Tetris Benzeri Oyun</span>
+              <span data-lang="en">Tetris-Style Game</span>
+            </h3>
+            <p>
+              <span data-lang="tr">Hızlı tempolu, görsel olarak güçlü ve mobilde akıcı çalışan blok tabanlı oyun deneyimi. Refleks, akış ve skor odaklı tasarım yaklaşımı.</span>
+              <span data-lang="en">A fast-paced, visually strong and smooth block-based mobile game experience focused on reflex, flow and score.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">Arcade</span>
+              <span class="chip">Puzzle Action</span>
+              <span class="chip"><span data-lang="tr">Mobil Oyun</span><span data-lang="en">Mobile Game</span></span>
+            </div>
+            <div class="app-actions">
+              <a class="app-link" href="#iletisim">
+                <span data-lang="tr">Yayın Linki Yakında</span>
+                <span data-lang="en">Release Link Soon</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hizmetler">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title"><span data-lang="tr">Neler yapıyorum?</span><span data-lang="en">What I Do</span></h2>
+            <p class="section-desc"><span data-lang="tr">Uygulama fikrinden yayınlamaya, entegrasyondan otomasyona kadar üretim sürecinin önemli noktalarında destek sunabiliyorum.</span><span data-lang="en">From product idea to release, and from integration to automation, I can support key parts of the build process.</span></p>
+          </div>
+        </div>
+
+        <div class="services">
+          <div class="service">
+            <div class="icon">📱</div>
+            <h4><span data-lang="tr">Mobil uygulama geliştirme</span><span data-lang="en">Mobile app development</span></h4>
+            <p><span data-lang="tr">Android odaklı uygulamalar, araçlar ve özel kullanıcı senaryolarına uygun çözümler.</span><span data-lang="en">Android-focused apps, utilities and solutions for real user scenarios.</span></p>
+          </div>
+
+          <div class="service">
+            <div class="icon">🧩</div>
+            <h4><span data-lang="tr">Oyun tasarımı</span><span data-lang="en">Game design</span></h4>
+            <p><span data-lang="tr">Akıcı oynanışa sahip, sade ama etkileyici casual ve arcade oyun prototipleri.</span><span data-lang="en">Casual and arcade game prototypes with smooth gameplay and strong presentation.</span></p>
+          </div>
+
+          <div class="service">
+            <div class="icon">🎨</div>
+            <h4><span data-lang="tr">Modern arayüz</span><span data-lang="en">Modern interface</span></h4>
+            <p><span data-lang="tr">Karanlık tema, güçlü renk dili ve temiz kullanıcı deneyimi odaklı ekran tasarımları.</span><span data-lang="en">Dark themes, strong visual language and a clean user experience.</span></p>
+          </div>
+
+          <div class="service">
+            <div class="icon">🚀</div>
+            <h4><span data-lang="tr">Yayınlama ve operasyon</span><span data-lang="en">Release and operations</span></h4>
+            <p><span data-lang="tr">Store görünümü, açıklamalar, sayfa içerikleri, sürüm akışı ve yayın sonrası teknik düzen için destek.</span><span data-lang="en">Support for store listing, descriptions, landing page content, release flow and post-launch technical organization.</span></p>
+          </div>
+
+          <div class="service">
+            <div class="icon">⚙️</div>
+            <h4><span data-lang="tr">Entegrasyon ve otomasyon</span><span data-lang="en">Integration and automation</span></h4>
+            <p><span data-lang="tr">GitHub süreçleri, Firebase Messaging yapıları ve Python tabanlı otomasyon çözümleri ile uygulamaları daha güçlü hale getirme.</span><span data-lang="en">Strengthening apps with GitHub workflows, Firebase Messaging setups and Python-based automation solutions.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="container contact">
+        <div class="contact-card">
+          <h2 class="section-title" style="margin:0"><span data-lang="tr">İletişim ve iş birliği</span><span data-lang="en">Contact and collaboration</span></h2>
+          <p class="section-desc"><span data-lang="tr">Kendi ürünlerim üzerinde aktif olarak çalışıyorum. Uygun olduğum dönemlerde seçili projeler, uygulama fikirleri, entegrasyonlar ve otomasyon odaklı işler için iletişime geçebilirsiniz.</span><span data-lang="en">I am actively building my own products. When availability allows, I also welcome selected collaborations, app ideas, integrations and automation-focused work.</span></p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <div>✉️</div>
+              <div>
+                <strong><span data-lang="tr">E-posta</span><span data-lang="en">Email</span></strong>
+                <span><a href="mailto:oeappstudio.com@gmail.com">oeappstudio.com@gmail.com</a></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>🌐</div>
+              <div>
+                <strong><span data-lang="tr">Web sitesi</span><span data-lang="en">Website</span></strong>
+                <span><a href="https://oeappstudio.com/" target="_blank" rel="noopener">oeappstudio.com</a></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>💼</div>
+              <div>
+                <strong><span data-lang="tr">Yeni talepler</span><span data-lang="en">New inquiries</span></strong>
+                <span><span data-lang="tr">Takvimim uygunsa yeni projeler ve iş birlikleri için WhatsApp üzerinden ulaşabilirsiniz.</span><span data-lang="en">If my schedule is open, you can reach me on WhatsApp for new projects and collaborations.</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="whatsapp-box">
+            <div>
+              <h4><span data-lang="tr">Bir proje ya da iş birliği konuşalım</span><span data-lang="en">Let’s discuss a project or collaboration</span></h4>
+              <p><span data-lang="tr">Uygunluk durumuma göre yeni talepleri değerlendiriyorum. WhatsApp üzerinden kısa bir mesaj bırakabilirsiniz.</span><span data-lang="en">I review new requests based on availability. You can leave a short message on WhatsApp.</span></p>
+            </div>
+            <a class="btn btn-whatsapp" href="https://wa.me/905555555555?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20proje%2C%20entegrasyon%20veya%20i%C5%9F%20birli%C4%9Fi%20konusunu%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener" aria-label="WhatsApp ile iletişim kur">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.38c-.29-.14-1.72-.85-1.98-.95-.27-.1-.46-.14-.66.15-.19.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.14-1.24-.45-2.36-1.43-.88-.78-1.48-1.73-1.65-2.02-.17-.29-.02-.45.12-.59.13-.12.29-.32.44-.49.15-.17.2-.29.29-.49.1-.19.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.49-.49-.66-.5h-.56c-.19 0-.49.07-.75.37-.27.29-1.01.98-1.01 2.39s1.03 2.78 1.18 2.97c.15.19 2.02 3.08 4.89 4.31.68.29 1.2.46 1.61.59.68.22 1.3.19 1.79.12.55-.08 1.72-.7 1.96-1.37.24-.66.24-1.24.17-1.36-.07-.12-.27-.19-.56-.34zM16.02 3C8.84 3 3 8.73 3 15.82c0 2.28.61 4.49 1.77 6.43L3 29l6.96-1.79a13.1 13.1 0 0 0 6.06 1.48h.01c7.18 0 13.01-5.73 13.01-12.82C29.04 8.73 23.2 3 16.02 3zm0 23.54h-.01c-1.93 0-3.83-.51-5.49-1.48l-.39-.23-4.13 1.06 1.1-4-.25-.41a10.6 10.6 0 0 1-1.64-5.64c0-5.88 4.85-10.66 10.81-10.66 2.89 0 5.6 1.11 7.64 3.12 2.04 2 3.16 4.66 3.16 7.53 0 5.88-4.85 10.67-10.8 10.67z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3 style="margin:0 0 8px; font-size:26px; letter-spacing:-.6px"><span data-lang="tr">Bağlantılar</span><span data-lang="en">Links</span></h3>
+          <p class="section-desc"><span data-lang="tr">İsterseniz uygulama sayfalarına veya doğrudan iletişim kanallarına geçebilirsiniz.</span><span data-lang="en">Use these quick links to access apps or contact channels directly.</span></p>
+
+          <div class="socials">
+            <a href="https://oeappstudio.com/" target="_blank" rel="noopener" title="Web sitesi" aria-label="Web sitesi">
+              <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm6.93 9h-3.1a15.71 15.71 0 0 0-1.2-5A8.03 8.03 0 0 1 18.93 11zM12 4.07c.95 1.12 1.92 3.32 2.26 6.93H9.74C10.08 7.39 11.05 5.19 12 4.07zM4.07 13h3.1a15.71 15.71 0 0 0 1.2 5A8.03 8.03 0 0 1 4.07 13zm3.1-2h-3.1a8.03 8.03 0 0 1 4.3-5 15.71 15.71 0 0 0-1.2 5zm1.1 2h5.46c-.34 3.61-1.31 5.81-2.26 6.93-.95-1.12-1.92-3.32-2.26-6.93zm6.36 0h3.1a8.03 8.03 0 0 1-4.3 5 15.71 15.71 0 0 0 1.2-5z"/></svg>
+            </a>
+            <a href="mailto:oeappstudio.com@gmail.com" title="E-posta" aria-label="E-posta">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5.33-8-5.33V6l8 5.33L20 6z"/></svg>
+            </a>
+            <a href="https://wa.me/905555555555?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20konu%20hakk%C4%B1nda%20ileti%C5%9Fime%20ge%C3%A7mek%20isterim." target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">
+              <svg viewBox="0 0 32 32"><path d="M19.11 17.38c-.29-.14-1.72-.85-1.98-.95-.27-.1-.46-.14-.66.15-.19.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.14-1.24-.45-2.36-1.43-.88-.78-1.48-1.73-1.65-2.02-.17-.29-.02-.45.12-.59.13-.12.29-.32.44-.49.15-.17.2-.29.29-.49.1-.19.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.49-.49-.66-.5h-.56c-.19 0-.49.07-.75.37-.27.29-1.01.98-1.01 2.39s1.03 2.78 1.18 2.97c.15.19 2.02 3.08 4.89 4.31.68.29 1.2.46 1.61.59.68.22 1.3.19 1.79.12.55-.08 1.72-.7 1.96-1.37.24-.66.24-1.24.17-1.36-.07-.12-.27-.19-.56-.34zM16.02 3C8.84 3 3 8.73 3 15.82c0 2.28.61 4.49 1.77 6.43L3 29l6.96-1.79a13.1 13.1 0 0 0 6.06 1.48h.01c7.18 0 13.01-5.73 13.01-12.82C29.04 8.73 23.2 3 16.02 3zm0 23.54h-.01c-1.93 0-3.83-.51-5.49-1.48l-.39-.23-4.13 1.06 1.1-4-.25-.41a10.6 10.6 0 0 1-1.64-5.64c0-5.88 4.85-10.66 10.81-10.66 2.89 0 5.6 1.11 7.64 3.12 2.04 2 3.16 4.66 3.16 7.53 0 5.88-4.85 10.67-10.8 10.67z"/></svg>
+            </a>
+          </div>
+
+          <div class="contact-list" style="margin-top:22px">
+            <div class="contact-item">
+              <div>⚡</div>
+              <div>
+                <strong><span data-lang="tr">Doğrudan iletişim</span><span data-lang="en">Direct contact</span></strong>
+                <span><span data-lang="tr">Kısa ve net proje mesajları için WhatsApp en pratik kanaldır.</span><span data-lang="en">WhatsApp is the most practical channel for short and clear project messages.</span></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>🛠️</div>
+              <div>
+                <strong><span data-lang="tr">Dolu ajanda, seçili destek</span><span data-lang="en">Busy roadmap, selective support</span></strong>
+                <span><span data-lang="tr">Kendi ürün geliştirme sürecim devam ederken, uygun projelere ayrıca katkı sunabilirim.</span><span data-lang="en">While building my own products, I also take on selected opportunities when it makes sense.</span></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>🎯</div>
+              <div>
+                <strong><span data-lang="tr">Uygun alanlar</span><span data-lang="en">Relevant areas</span></strong>
+                <span><span data-lang="tr">Mobil uygulama, oyun, entegrasyon ve otomasyon odaklı dijital ürün fikirleri için iletişim kurulabilir.</span><span data-lang="en">A good fit for mobile apps, games, integration work and automation-focused digital product ideas.</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="floating-wa" href="https://wa.me/905555555555?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20proje%2C%20entegrasyon%20veya%20i%C5%9F%20birli%C4%9Fi%20konusunu%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener" aria-label="WhatsApp ile iletişim kur">
+    <svg viewBox="0 0 32 32"><path d="M19.11 17.38c-.29-.14-1.72-.85-1.98-.95-.27-.1-.46-.14-.66.15-.19.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.14-1.24-.45-2.36-1.43-.88-.78-1.48-1.73-1.65-2.02-.17-.29-.02-.45.12-.59.13-.12.29-.32.44-.49.15-.17.2-.29.29-.49.1-.19.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.49-.49-.66-.5h-.56c-.19 0-.49.07-.75.37-.27.29-1.01.98-1.01 2.39s1.03 2.78 1.18 2.97c.15.19 2.02 3.08 4.89 4.31.68.29 1.2.46 1.61.59.68.22 1.3.19 1.79.12.55-.08 1.72-.7 1.96-1.37.24-.66.24-1.24.17-1.36-.07-.12-.27-.19-.56-.34zM16.02 3C8.84 3 3 8.73 3 15.82c0 2.28.61 4.49 1.77 6.43L3 29l6.96-1.79a13.1 13.1 0 0 0 6.06 1.48h.01c7.18 0 13.01-5.73 13.01-12.82C29.04 8.73 23.2 3 16.02 3zm0 23.54h-.01c-1.93 0-3.83-.51-5.49-1.48l-.39-.23-4.13 1.06 1.1-4-.25-.41a10.6 10.6 0 0 1-1.64-5.64c0-5.88 4.85-10.66 10.81-10.66 2.89 0 5.6 1.11 7.64 3.12 2.04 2 3.16 4.66 3.16 7.53 0 5.88-4.85 10.67-10.8 10.67z"/></svg>
+  </a>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© <span id="year"></span> OE Apps Studio. <span data-lang="tr">Tüm hakları saklıdır.</span><span data-lang="en">All rights reserved.</span></div>
+      <div class="footer-links">
+        <a href="privacy.html"><span data-lang="tr">Gizlilik Politikası</span><span data-lang="en">Privacy Policy</span></a>
+        <a href="mailto:oeappstudio.com@gmail.com"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const body = document.body;
+    const gate = document.getElementById('languageGate');
+
+    function applyLanguage(lang){
+      document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+      });
+    }
+
+    function setLanguage(lang){
+      applyLanguage(lang);
+      gate.classList.add('hidden');
+      body.classList.remove('locked');
+    }
+
+    function toggleLanguage(){
+      const currentLang = document.documentElement.lang === 'en' ? 'en' : 'tr';
+      const nextLang = currentLang === 'tr' ? 'en' : 'tr';
+      applyLanguage(nextLang);
+    }
+
+    (function initLanguage(){
+      gate.classList.remove('hidden');
+      body.classList.add('locked');
+      applyLanguage('tr');
+    })();
+  </script>
 </body>
 </html>
