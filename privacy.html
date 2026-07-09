@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Gizlilik Politikası | OE Apps Studio</title>
-  <meta name="description" content="OE Apps Studio tarafından geliştirilen mobil uygulamalar için gizlilik politikası.">
+  <title id="meta-title">Privacy Policy | OE Apps Studio</title>
+  <meta id="meta-description" name="description" content="Privacy policy for mobile applications developed by OE Apps Studio.">
   <meta name="theme-color" content="#0b1120">
   <link rel="icon" href="data:,">
   <style>
+    /* (CSS aynı, değişiklik yok) */
     :root{
       --bg:#08111f;
       --bg2:#0d1728;
@@ -21,7 +22,6 @@
       --radius:22px;
       --max:920px;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -35,10 +35,8 @@
       font:16px/1.7 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       overflow-x:hidden;
     }
-
     a{color:inherit;text-decoration:none}
     .container{width:min(var(--max), calc(100% - 32px)); margin:auto}
-
     .bg-grid,.orb{
       position:fixed;
       inset:0;
@@ -63,7 +61,6 @@
     }
     .orb::before{background:#3b82f6; left:-80px; top:40px}
     .orb::after{background:#8b5cf6; right:-80px; top:80px}
-
     .topbar{
       position:sticky;
       top:0;
@@ -79,7 +76,6 @@
       justify-content:space-between;
       gap:16px;
     }
-
     .brand{
       display:flex;
       align-items:center;
@@ -101,7 +97,6 @@
     }
     .brand-title{font-size:16px; font-weight:800; line-height:1.1}
     .brand-sub{font-size:12px; color:var(--muted); margin-top:3px}
-
     .top-actions{
       display:flex;
       align-items:center;
@@ -122,7 +117,6 @@
       color:#e9f1ff;
     }
     .btn:hover{transform:translateY(-2px); border-color:rgba(96,165,250,.35)}
-
     main{padding:46px 0 70px}
     .hero{
       margin-bottom:22px;
@@ -157,7 +151,6 @@
       font-size:17px;
       max-width:760px;
     }
-
     .card{
       padding:28px;
       border-radius:24px;
@@ -166,7 +159,6 @@
       box-shadow:var(--shadow);
       margin-bottom:18px;
     }
-
     h2{
       margin:0 0 12px;
       font-size:24px;
@@ -183,7 +175,6 @@
     }
     li{margin:0 0 10px}
     .muted{color:var(--muted)}
-
     .note{
       padding:16px 18px;
       border-radius:16px;
@@ -191,7 +182,33 @@
       border:1px solid rgba(255,255,255,.06);
       color:#d8e4fa;
     }
-
+    .lang-switcher{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .lang-switcher a{
+      padding:4px 12px;
+      border-radius:30px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:14px;
+      font-weight:600;
+      color:var(--muted);
+      transition:.2s ease;
+      cursor:pointer;
+    }
+    .lang-switcher a:hover{
+      background:rgba(96,165,250,.12);
+      border-color:var(--accent);
+      color:#fff;
+    }
+    .lang-switcher a.active{
+      background:rgba(96,165,250,.18);
+      border-color:var(--accent);
+      color:#fff;
+    }
     footer{
       padding:0 0 50px;
     }
@@ -202,13 +219,14 @@
       flex-wrap:wrap;
       color:var(--muted);
       font-size:14px;
+      align-items:center;
     }
-
     @media (max-width: 720px){
       .topbar-inner{min-height:68px}
       .hero,.card{padding:22px}
       .top-actions{width:100%}
       .top-actions .btn{width:100%}
+      .footer{flex-direction:column; align-items:flex-start;}
     }
   </style>
 </head>
@@ -218,17 +236,16 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="index.html" aria-label="OE Apps Studio ana sayfa">
+      <a class="brand" href="index.html" aria-label="OE Apps Studio home">
         <div class="brand-mark">OE</div>
         <div>
           <div class="brand-title">OE Apps Studio</div>
-          <div class="brand-sub">Mobil uygulamalar • oyunlar • entegrasyon • otomasyon</div>
+          <div class="brand-sub" data-key="brand_sub">Mobile apps • games • integration • automation</div>
         </div>
       </a>
-
       <div class="top-actions">
-        <a class="btn" href="index.html">Ana Sayfa</a>
-        <a class="btn" href="mailto:oeappstudio.com@gmail.com">İletişim</a>
+        <a class="btn" href="index.html" data-key="nav_home">Home</a>
+        <a class="btn" href="mailto:oeappstudio.com@gmail.com" data-key="nav_contact">Contact</a>
       </div>
     </div>
   </header>
@@ -236,92 +253,80 @@
   <main>
     <div class="container">
       <section class="hero">
-        <div class="eyebrow">Gizlilik Politikası</div>
-        <h1>OE Apps Studio Gizlilik Politikası</h1>
-        <p>
-          Bu gizlilik politikası, OE Apps Studio tarafından geliştirilen mobil uygulamalar ve dijital ürünler için geçerlidir.
-          Uygulamalarımızı kullanan kişilerin verilerinin nasıl işlendiğini, hangi hizmetlerin kullanılabildiğini ve kullanıcı bilgilerinin nasıl korunduğunu özetler.
+        <div class="eyebrow" data-key="hero_eyebrow">Privacy Policy</div>
+        <h1 data-key="hero_title">OE Apps Studio Privacy Policy</h1>
+        <p data-key="hero_text">
+          This privacy policy applies to mobile applications and digital products developed by OE Apps Studio. It summarizes how data of users of our applications is processed, which services may be used, and how user information is protected.
         </p>
       </section>
 
       <section class="card">
-        <h2>Kapsam</h2>
-        <p>
-          Bu politika, OE Apps Studio tarafından yayınlanan mobil uygulamalar, oyunlar ve bağlantılı dijital hizmetler için genel gizlilik çerçevesini kapsar.
-          Uygulamaların bazıları farklı teknik özellikler içerebilir; ancak veri işleme yaklaşımımız temel olarak sade, sınırlı ve kullanıcı güvenliğini önceleyen bir yapıdadır.
+        <h2 data-key="section1_title">Scope</h2>
+        <p data-key="section1_text">
+          This policy covers the general privacy framework for mobile applications, games, and connected digital services published by OE Apps Studio. Some applications may have different technical features; however, our data processing approach is essentially simple, limited, and prioritizes user security.
         </p>
       </section>
 
       <section class="card">
-        <h2>Toplanan bilgiler</h2>
-        <p>
-          Uygulamalarımız genel olarak kullanıcıdan doğrudan kişisel veri toplamayı hedeflemez. Çoğu uygulamada ad, adres, kimlik bilgisi veya benzeri özel veriler talep edilmez.
+        <h2 data-key="section2_title">Information collected</h2>
+        <p data-key="section2_text">
+          Our applications generally do not aim to collect personal data directly from the user. Most applications do not request name, address, ID information or similar personal data.
         </p>
-        <div class="note">
-          Bazı uygulamalarda kullanılan üçüncü taraf hizmetler, teknik çalışmayı sağlamak veya reklam sunmak amacıyla sınırlı teknik veriler işleyebilir.
+        <div class="note" data-key="section2_note">
+          Some applications may process limited technical data through third-party services to ensure technical operation or to serve ads.
         </div>
       </section>
 
       <section class="card">
-        <h2>Kullanılabilecek üçüncü taraf hizmetler</h2>
-        <p>Uygulamalarımızın teknik yapısına göre aşağıdaki servisler kullanılabilir:</p>
-        <ul>
-          <li><strong>Google AdMob:</strong> Reklam gösterimi ve reklam performansının sağlanması için kullanılabilir.</li>
-          <li><strong>Firebase Cloud Messaging veya benzeri bildirim servisleri:</strong> Kullanıcılara bildirim iletmek için kullanılabilir.</li>
-          <li><strong>Analitik veya hata izleme servisleri:</strong> Uygulama kararlılığını artırmak amacıyla teknik kullanım verileri işlenebilir.</li>
+        <h2 data-key="section3_title">Third‑party services that may be used</h2>
+        <p data-key="section3_text">Depending on the technical structure of our applications, the following services may be used:</p>
+        <ul data-key="section3_list">
+          <!-- içerik JavaScript tarafından doldurulacak -->
         </ul>
-        <p class="muted" style="margin-top:14px;">
-          Bu hizmetlerin veri işleme süreçleri kendi gizlilik politikalarına tabidir.
+        <p class="muted" style="margin-top:14px;" data-key="section3_note">
+          These services are subject to their own privacy policies.
         </p>
       </section>
 
       <section class="card">
-        <h2>Verilerin kullanım amacı</h2>
-        <ul>
-          <li>Uygulamanın temel işlevlerini sunmak</li>
-          <li>Kullanıcı deneyimini geliştirmek</li>
-          <li>Bildirim gönderimi sağlamak</li>
-          <li>Teknik sorunları analiz etmek ve düzeltmek</li>
-          <li>Reklam destekli uygulamalarda reklam sunumunu yönetmek</li>
+        <h2 data-key="section4_title">Purpose of data use</h2>
+        <ul data-key="section4_list">
+          <!-- içerik JavaScript tarafından doldurulacak -->
         </ul>
       </section>
 
       <section class="card">
-        <h2>Veri paylaşımı</h2>
-        <p>
-          OE Apps Studio, kullanıcı verilerini satmaz, kiralamaz veya doğrudan üçüncü kişilerle ticari amaçla paylaşmaz.
-          Ancak uygulamalarda kullanılan reklam, bildirim veya analiz altyapıları teknik gereklilik kapsamında sınırlı veri işleyebilir.
+        <h2 data-key="section5_title">Data sharing</h2>
+        <p data-key="section5_text">
+          OE Apps Studio does not sell, rent, or share user data directly with third parties for commercial purposes. However, advertising, notification, or analytics infrastructures used in applications may process limited data as a technical necessity.
         </p>
       </section>
 
       <section class="card">
-        <h2>Çocukların gizliliği</h2>
-        <p>
-          Uygulamalarımız bilinçli şekilde çocuklardan kişisel veri toplamak amacıyla tasarlanmamıştır.
-          Eğer bir ebeveyn veya yasal temsilci, bir çocuğa ait uygunsuz veri işlendiğini düşünüyorsa bizimle iletişime geçebilir.
+        <h2 data-key="section6_title">Children's privacy</h2>
+        <p data-key="section6_text">
+          Our applications are not intentionally designed to collect personal data from children. If a parent or legal guardian believes that inappropriate data of a child has been processed, they can contact us.
         </p>
       </section>
 
       <section class="card">
-        <h2>Veri güvenliği</h2>
-        <p>
-          Kullanıcı güvenliğini önemseriz. Uygulamalarımızda gereksiz veri toplamamaya özen gösterir, kullanılan servisleri mümkün olduğunca sınırlı ve amaca uygun şekilde tercih ederiz.
-          Ancak internet üzerinden yapılan hiçbir veri aktarımının yüzde yüz güvenli olduğu garanti edilemez.
+        <h2 data-key="section7_title">Data security</h2>
+        <p data-key="section7_text">
+          We value user security. We take care not to collect unnecessary data in our applications and choose the services used as limited and appropriate as possible. However, no data transmission over the internet can be guaranteed to be 100% secure.
         </p>
       </section>
 
       <section class="card">
-        <h2>Politika güncellemeleri</h2>
-        <p>
-          Bu gizlilik politikası gerektiğinde güncellenebilir. Güncellenmiş sürüm bu sayfada yayınlandığı anda yürürlüğe girer.
-          Uygulamalarımızı kullanmaya devam etmeniz, güncel politikayı kabul ettiğiniz anlamına gelir.
+        <h2 data-key="section8_title">Policy updates</h2>
+        <p data-key="section8_text">
+          This privacy policy may be updated when necessary. The updated version becomes effective as soon as it is published on this page. Continuing to use our applications means you accept the current policy.
         </p>
       </section>
 
       <section class="card">
-        <h2>İletişim</h2>
-        <p>
-          Gizlilik politikası ile ilgili sorularınız için aşağıdaki e-posta adresi üzerinden iletişime geçebilirsiniz:
+        <h2 data-key="section9_title">Contact</h2>
+        <p data-key="section9_text">
+          For questions about the privacy policy, you can contact us via the following email address:
         </p>
         <p><strong>oeappstudio.com@gmail.com</strong></p>
       </section>
@@ -330,13 +335,267 @@
 
   <footer>
     <div class="container footer">
-      <div>© <span id="year"></span> OE Apps Studio. Tüm hakları saklıdır.</div>
-      <div><a href="index.html">Ana Sayfa</a></div>
+      <div>
+        <span data-key="footer_text">© <span id="year"></span> OE Apps Studio. All rights reserved.</span>
+        <div class="lang-switcher">
+          <a href="#" data-lang="en" class="active">English</a>
+          <a href="#" data-lang="tr">Türkçe</a>
+          <a href="#" data-lang="de">Deutsch</a>
+          <a href="#" data-lang="fr">Français</a>
+        </div>
+      </div>
+      <div><a href="index.html" data-key="footer_home">Home</a></div>
     </div>
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function() {
+      // ----- tüm çeviriler ------------------------------------------------
+      const translations = {
+        en: {
+          meta_title: "Privacy Policy | OE Apps Studio",
+          meta_description: "Privacy policy for mobile applications developed by OE Apps Studio.",
+          brand_sub: "Mobile apps • games • integration • automation",
+          nav_home: "Home",
+          nav_contact: "Contact",
+          hero_eyebrow: "Privacy Policy",
+          hero_title: "OE Apps Studio Privacy Policy",
+          hero_text: "This privacy policy applies to mobile applications and digital products developed by OE Apps Studio. It summarizes how data of users of our applications is processed, which services may be used, and how user information is protected.",
+          section1_title: "Scope",
+          section1_text: "This policy covers the general privacy framework for mobile applications, games, and connected digital services published by OE Apps Studio. Some applications may have different technical features; however, our data processing approach is essentially simple, limited, and prioritizes user security.",
+          section2_title: "Information collected",
+          section2_text: "Our applications generally do not aim to collect personal data directly from the user. Most applications do not request name, address, ID information or similar personal data.",
+          section2_note: "Some applications may process limited technical data through third-party services to ensure technical operation or to serve ads.",
+          section3_title: "Third‑party services that may be used",
+          section3_text: "Depending on the technical structure of our applications, the following services may be used:",
+          section3_list: [
+            "<strong>Google AdMob:</strong> For ad display and performance.",
+            "<strong>Firebase Cloud Messaging or similar notification services:</strong> To send notifications to users.",
+            "<strong>Analytics or error monitoring services:</strong> To improve application stability by processing technical usage data."
+          ],
+          section3_note: "These services are subject to their own privacy policies.",
+          section4_title: "Purpose of data use",
+          section4_list: [
+            "To provide basic functions of the application",
+            "To improve user experience",
+            "To send notifications",
+            "To analyze and fix technical issues",
+            "To manage ad delivery in ad‑supported applications"
+          ],
+          section5_title: "Data sharing",
+          section5_text: "OE Apps Studio does not sell, rent, or share user data directly with third parties for commercial purposes. However, advertising, notification, or analytics infrastructures used in applications may process limited data as a technical necessity.",
+          section6_title: "Children's privacy",
+          section6_text: "Our applications are not intentionally designed to collect personal data from children. If a parent or legal guardian believes that inappropriate data of a child has been processed, they can contact us.",
+          section7_title: "Data security",
+          section7_text: "We value user security. We take care not to collect unnecessary data in our applications and choose the services used as limited and appropriate as possible. However, no data transmission over the internet can be guaranteed to be 100% secure.",
+          section8_title: "Policy updates",
+          section8_text: "This privacy policy may be updated when necessary. The updated version becomes effective as soon as it is published on this page. Continuing to use our applications means you accept the current policy.",
+          section9_title: "Contact",
+          section9_text: "For questions about the privacy policy, you can contact us via the following email address:",
+          footer_text: "© {year} OE Apps Studio. All rights reserved.",
+          footer_home: "Home"
+        },
+        tr: {
+          meta_title: "Gizlilik Politikası | OE Apps Studio",
+          meta_description: "OE Apps Studio tarafından geliştirilen mobil uygulamalar için gizlilik politikası.",
+          brand_sub: "Mobil uygulamalar • oyunlar • entegrasyon • otomasyon",
+          nav_home: "Ana Sayfa",
+          nav_contact: "İletişim",
+          hero_eyebrow: "Gizlilik Politikası",
+          hero_title: "OE Apps Studio Gizlilik Politikası",
+          hero_text: "Bu gizlilik politikası, OE Apps Studio tarafından geliştirilen mobil uygulamalar ve dijital ürünler için geçerlidir. Uygulamalarımızı kullanan kişilerin verilerinin nasıl işlendiğini, hangi hizmetlerin kullanılabildiğini ve kullanıcı bilgilerinin nasıl korunduğunu özetler.",
+          section1_title: "Kapsam",
+          section1_text: "Bu politika, OE Apps Studio tarafından yayınlanan mobil uygulamalar, oyunlar ve bağlantılı dijital hizmetler için genel gizlilik çerçevesini kapsar. Uygulamaların bazıları farklı teknik özellikler içerebilir; ancak veri işleme yaklaşımımız temel olarak sade, sınırlı ve kullanıcı güvenliğini önceleyen bir yapıdadır.",
+          section2_title: "Toplanan bilgiler",
+          section2_text: "Uygulamalarımız genel olarak kullanıcıdan doğrudan kişisel veri toplamayı hedeflemez. Çoğu uygulamada ad, adres, kimlik bilgisi veya benzeri özel veriler talep edilmez.",
+          section2_note: "Bazı uygulamalarda kullanılan üçüncü taraf hizmetler, teknik çalışmayı sağlamak veya reklam sunmak amacıyla sınırlı teknik veriler işleyebilir.",
+          section3_title: "Kullanılabilecek üçüncü taraf hizmetler",
+          section3_text: "Uygulamalarımızın teknik yapısına göre aşağıdaki servisler kullanılabilir:",
+          section3_list: [
+            "<strong>Google AdMob:</strong> Reklam gösterimi ve reklam performansının sağlanması için kullanılabilir.",
+            "<strong>Firebase Cloud Messaging veya benzeri bildirim servisleri:</strong> Kullanıcılara bildirim iletmek için kullanılabilir.",
+            "<strong>Analitik veya hata izleme servisleri:</strong> Uygulama kararlılığını artırmak amacıyla teknik kullanım verileri işlenebilir."
+          ],
+          section3_note: "Bu hizmetlerin veri işleme süreçleri kendi gizlilik politikalarına tabidir.",
+          section4_title: "Verilerin kullanım amacı",
+          section4_list: [
+            "Uygulamanın temel işlevlerini sunmak",
+            "Kullanıcı deneyimini geliştirmek",
+            "Bildirim gönderimi sağlamak",
+            "Teknik sorunları analiz etmek ve düzeltmek",
+            "Reklam destekli uygulamalarda reklam sunumunu yönetmek"
+          ],
+          section5_title: "Veri paylaşımı",
+          section5_text: "OE Apps Studio, kullanıcı verilerini satmaz, kiralamaz veya doğrudan üçüncü kişilerle ticari amaçla paylaşmaz. Ancak uygulamalarda kullanılan reklam, bildirim veya analiz altyapıları teknik gereklilik kapsamında sınırlı veri işleyebilir.",
+          section6_title: "Çocukların gizliliği",
+          section6_text: "Uygulamalarımız bilinçli şekilde çocuklardan kişisel veri toplamak amacıyla tasarlanmamıştır. Eğer bir ebeveyn veya yasal temsilci, bir çocuğa ait uygunsuz veri işlendiğini düşünüyorsa bizimle iletişime geçebilir.",
+          section7_title: "Veri güvenliği",
+          section7_text: "Kullanıcı güvenliğini önemseriz. Uygulamalarımızda gereksiz veri toplamamaya özen gösterir, kullanılan servisleri mümkün olduğunca sınırlı ve amaca uygun şekilde tercih ederiz. Ancak internet üzerinden yapılan hiçbir veri aktarımının yüzde yüz güvenli olduğu garanti edilemez.",
+          section8_title: "Politika güncellemeleri",
+          section8_text: "Bu gizlilik politikası gerektiğinde güncellenebilir. Güncellenmiş sürüm bu sayfada yayınlandığı anda yürürlüğe girer. Uygulamalarımızı kullanmaya devam etmeniz, güncel politikayı kabul ettiğiniz anlamına gelir.",
+          section9_title: "İletişim",
+          section9_text: "Gizlilik politikası ile ilgili sorularınız için aşağıdaki e-posta adresi üzerinden iletişime geçebilirsiniz:",
+          footer_text: "© {year} OE Apps Studio. Tüm hakları saklıdır.",
+          footer_home: "Ana Sayfa"
+        },
+        de: {
+          meta_title: "Datenschutzerklärung | OE Apps Studio",
+          meta_description: "Datenschutzerklärung für mobile Anwendungen, die von OE Apps Studio entwickelt wurden.",
+          brand_sub: "Mobile Apps • Spiele • Integration • Automatisierung",
+          nav_home: "Startseite",
+          nav_contact: "Kontakt",
+          hero_eyebrow: "Datenschutzerklärung",
+          hero_title: "Datenschutzerklärung von OE Apps Studio",
+          hero_text: "Diese Datenschutzerklärung gilt für mobile Anwendungen und digitale Produkte, die von OE Apps Studio entwickelt wurden. Sie fasst zusammen, wie Daten von Nutzern unserer Anwendungen verarbeitet werden, welche Dienste genutzt werden können und wie Nutzerinformationen geschützt werden.",
+          section1_title: "Geltungsbereich",
+          section1_text: "Diese Richtlinie deckt den allgemeinen Datenschutzrahmen für mobile Anwendungen, Spiele und verbundene digitale Dienste ab, die von OE Apps Studio veröffentlicht werden. Einige Anwendungen können unterschiedliche technische Merkmale aufweisen; unser Ansatz zur Datenverarbeitung ist jedoch im Wesentlichen einfach, begrenzt und stellt die Benutzersicherheit in den Vordergrund.",
+          section2_title: "Erhobene Informationen",
+          section2_text: "Unsere Anwendungen zielen im Allgemeinen nicht darauf ab, personenbezogene Daten direkt vom Benutzer zu erheben. Die meisten Anwendungen verlangen keine Namen, Adressen, Ausweisinformationen oder ähnliche persönliche Daten.",
+          section2_note: "Einige Anwendungen können über Dienste von Drittanbietern begrenzte technische Daten verarbeiten, um den technischen Betrieb zu gewährleisten oder Werbung zu schalten.",
+          section3_title: "Dienste von Drittanbietern, die verwendet werden können",
+          section3_text: "Je nach technischer Struktur unserer Anwendungen können folgende Dienste verwendet werden:",
+          section3_list: [
+            "<strong>Google AdMob:</strong> Für Werbeeinblendungen und -leistung.",
+            "<strong>Firebase Cloud Messaging oder ähnliche Benachrichtigungsdienste:</strong> Zum Senden von Benachrichtigungen an Benutzer.",
+            "<strong>Analytik- oder Fehlerüberwachungsdienste:</strong> Zur Verbesserung der Anwendungsstabilität durch Verarbeitung technischer Nutzungsdaten."
+          ],
+          section3_note: "Diese Dienste unterliegen ihren eigenen Datenschutzrichtlinien.",
+          section4_title: "Zweck der Datennutzung",
+          section4_list: [
+            "Bereitstellung der grundlegenden Funktionen der Anwendung",
+            "Verbesserung der Benutzererfahrung",
+            "Senden von Benachrichtigungen",
+            "Analyse und Behebung technischer Probleme",
+            "Verwaltung der Werbeauslieferung in werbefinanzierten Anwendungen"
+          ],
+          section5_title: "Datenweitergabe",
+          section5_text: "OE Apps Studio verkauft, vermietet oder teilt Nutzerdaten nicht direkt mit Dritten zu kommerziellen Zwecken. Die in Anwendungen verwendeten Werbe-, Benachrichtigungs- oder Analyseinfrastrukturen können jedoch aus technischer Notwendigkeit begrenzte Daten verarbeiten.",
+          section6_title: "Datenschutz für Kinder",
+          section6_text: "Unsere Anwendungen sind nicht absichtlich darauf ausgelegt, personenbezogene Daten von Kindern zu sammeln. Wenn ein Elternteil oder Erziehungsberechtigter der Meinung ist, dass unangemessene Daten eines Kindes verarbeitet wurden, kann er uns kontaktieren.",
+          section7_title: "Datensicherheit",
+          section7_text: "Wir legen Wert auf die Sicherheit der Nutzer. Wir achten darauf, in unseren Anwendungen keine unnötigen Daten zu erheben und wählen die verwendeten Dienste so begrenzt und zweckmäßig wie möglich. Es kann jedoch keine hundertprozentige Sicherheit bei der Datenübertragung über das Internet garantiert werden.",
+          section8_title: "Aktualisierungen der Richtlinie",
+          section8_text: "Diese Datenschutzerklärung kann bei Bedarf aktualisiert werden. Die aktualisierte Version wird mit der Veröffentlichung auf dieser Seite wirksam. Die fortgesetzte Nutzung unserer Anwendungen bedeutet, dass Sie die aktuelle Richtlinie akzeptieren.",
+          section9_title: "Kontakt",
+          section9_text: "Bei Fragen zur Datenschutzerklärung können Sie uns über die folgende E‑Mail‑Adresse kontaktieren:",
+          footer_text: "© {year} OE Apps Studio. Alle Rechte vorbehalten.",
+          footer_home: "Startseite"
+        },
+        fr: {
+          meta_title: "Politique de confidentialité | OE Apps Studio",
+          meta_description: "Politique de confidentialité pour les applications mobiles développées par OE Apps Studio.",
+          brand_sub: "Applications mobiles • jeux • intégration • automatisation",
+          nav_home: "Accueil",
+          nav_contact: "Contact",
+          hero_eyebrow: "Politique de confidentialité",
+          hero_title: "Politique de confidentialité d'OE Apps Studio",
+          hero_text: "Cette politique de confidentialité s'applique aux applications mobiles et aux produits numériques développés par OE Apps Studio. Elle résume comment les données des utilisateurs de nos applications sont traitées, quels services peuvent être utilisés et comment les informations des utilisateurs sont protégées.",
+          section1_title: "Portée",
+          section1_text: "Cette politique couvre le cadre général de confidentialité pour les applications mobiles, les jeux et les services numériques connexes publiés par OE Apps Studio. Certaines applications peuvent avoir des caractéristiques techniques différentes ; cependant, notre approche de traitement des données est essentiellement simple, limitée et donne la priorité à la sécurité des utilisateurs.",
+          section2_title: "Informations collectées",
+          section2_text: "Nos applications ne visent généralement pas à collecter des données personnelles directement auprès de l'utilisateur. La plupart des applications ne demandent pas de nom, d'adresse, de pièce d'identité ou de données personnelles similaires.",
+          section2_note: "Certaines applications peuvent traiter des données techniques limitées via des services tiers pour assurer le fonctionnement technique ou diffuser des publicités.",
+          section3_title: "Services tiers susceptibles d'être utilisés",
+          section3_text: "Selon la structure technique de nos applications, les services suivants peuvent être utilisés :",
+          section3_list: [
+            "<strong>Google AdMob :</strong> Pour l'affichage et la performance des publicités.",
+            "<strong>Firebase Cloud Messaging ou services de notification similaires :</strong> Pour envoyer des notifications aux utilisateurs.",
+            "<strong>Services d'analyse ou de surveillance des erreurs :</strong> Pour améliorer la stabilité de l'application en traitant les données d'utilisation techniques."
+          ],
+          section3_note: "Ces services sont soumis à leurs propres politiques de confidentialité.",
+          section4_title: "Objectif de l'utilisation des données",
+          section4_list: [
+            "Fournir les fonctions de base de l'application",
+            "Améliorer l'expérience utilisateur",
+            "Envoyer des notifications",
+            "Analyser et corriger les problèmes techniques",
+            "Gérer la diffusion des publicités dans les applications financées par la publicité"
+          ],
+          section5_title: "Partage des données",
+          section5_text: "OE Apps Studio ne vend, ne loue ni ne partage directement les données des utilisateurs avec des tiers à des fins commerciales. Cependant, les infrastructures publicitaires, de notification ou d'analyse utilisées dans les applications peuvent traiter des données limitées par nécessité technique.",
+          section6_title: "Confidentialité des enfants",
+          section6_text: "Nos applications ne sont pas conçues intentionnellement pour collecter des données personnelles auprès des enfants. Si un parent ou tuteur légal estime que des données inappropriées d'un enfant ont été traitées, il peut nous contacter.",
+          section7_title: "Sécurité des données",
+          section7_text: "Nous accordons de l'importance à la sécurité des utilisateurs. Nous veillons à ne pas collecter de données inutiles dans nos applications et à choisir les services utilisés de manière aussi limitée et appropriée que possible. Cependant, aucune transmission de données sur Internet ne peut être garantie à 100 % sécurisée.",
+          section8_title: "Mises à jour de la politique",
+          section8_text: "Cette politique de confidentialité peut être mise à jour si nécessaire. La version mise à jour entre en vigueur dès sa publication sur cette page. Continuer à utiliser nos applications signifie que vous acceptez la politique en vigueur.",
+          section9_title: "Contact",
+          section9_text: "Pour toute question concernant la politique de confidentialité, vous pouvez nous contacter à l'adresse e‑mail suivante :",
+          footer_text: "© {year} OE Apps Studio. Tous droits réservés.",
+          footer_home: "Accueil"
+        }
+      };
+
+      // ----- yardımcı fonksiyonlar ----------------------------------------
+      function getCurrentLang() {
+        return localStorage.getItem('oeLang') || 'en';
+      }
+
+      function setLanguage(lang) {
+        if (!translations[lang]) {
+          console.warn('Dil bulunamadı:', lang);
+          return;
+        }
+        console.log('Dil değiştiriliyor:', lang);
+
+        // meta etiketlerini güncelle
+        document.getElementById('meta-title').textContent = translations[lang].meta_title;
+        document.getElementById('meta-description').content = translations[lang].meta_description;
+        document.documentElement.lang = lang;
+
+        // tüm data-key’li elemanları güncelle
+        document.querySelectorAll('[data-key]').forEach(el => {
+          const key = el.getAttribute('data-key');
+          let val = translations[lang][key];
+          if (val === undefined) return;
+
+          // Eğer eleman bir UL ve değer bir dizi ise, liste öğelerini oluştur
+          if (el.tagName === 'UL' && Array.isArray(val)) {
+            el.innerHTML = val.map(item => `<li>${item}</li>`).join('');
+            return;
+          }
+
+          // Eğer değer bir dizi ama UL değilse (ki olmamalı), stringe çevir
+          if (Array.isArray(val)) {
+            val = val.join(' ');
+          }
+
+          // footer_text içindeki {year} yerine geçerli yılı koy
+          if (key === 'footer_text') {
+            val = val.replace(/\{year\}/g, new Date().getFullYear());
+          }
+
+          el.innerHTML = val;
+        });
+
+        // aktif dil görünümünü güncelle
+        document.querySelectorAll('.lang-switcher a').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('data-lang') === lang);
+        });
+
+        // seçimi localStorage’a kaydet
+        localStorage.setItem('oeLang', lang);
+      }
+
+      // ----- başlat -------------------------------------------------------
+      document.addEventListener('DOMContentLoaded', function() {
+        // yıl bilgisini footer’a ekle (statik)
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // dil seçici tıklama olayları
+        document.querySelectorAll('.lang-switcher a').forEach(a => {
+          a.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.getAttribute('data-lang');
+            setLanguage(lang);
+          });
+        });
+
+        // kaydedilmiş veya varsayılan dili uygula
+        const savedLang = getCurrentLang();
+        setLanguage(savedLang);
+      });
+    })();
   </script>
 </body>
 </html>
