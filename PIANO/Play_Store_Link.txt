@@ -1,1 +1,1 @@
-market://details?id=com.oeappstudio.tasbih
+market://details?id=com.oeappstudio.piano
