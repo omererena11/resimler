@@ -1,1 +1,1 @@
-market://details?id=com.oeappstudio.zikirmatikpro
+market://details?id=com.oeappstudio.tasbih
