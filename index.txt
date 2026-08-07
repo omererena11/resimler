@@ -24,7 +24,7 @@
       "name": "OE Apps Studio",
       "url": "https://oeappstudio.com",
       "description": "Independent developer studio building modern mobile apps, games, and automation systems.",
-      "email": "oeappstudio@gmail.com",
+      "email": "contact@oeappstudio.com",
       "sameAs": [
         "https://play.google.com/store/apps/dev?id=5600320180610917836",
         "https://wa.me/905523831929"
@@ -957,7 +957,7 @@
               <span data-lang="tr">Projeleri Gör</span>
               <span data-lang="en">View Projects</span>
             </a>
-            <a class="btn btn-secondary" href="mailto:oeappstudio@gmail.com">
+            <a class="btn btn-secondary" href="mailto:contact@oeappstudio.com">
               <span data-lang="tr">E-posta Gönder</span>
               <span data-lang="en">Send Email</span>
             </a>
@@ -1126,7 +1126,7 @@
               <div>✉️</div>
               <div>
                 <strong><span data-lang="tr">E-posta</span><span data-lang="en">Email</span></strong>
-                <span><a href="mailto:oeappstudio@gmail.com">oeappstudio@gmail.com</a></span>
+                <span><a href="mailto:contact@oeappstudio.com">contact@oeappstudio.com</a></span>
               </div>
             </div>
 
@@ -1166,7 +1166,7 @@
             <a href="https://oeappstudio.com/" target="_blank" rel="noopener" title="Web sitesi" aria-label="Web sitesi">
               <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm6.93 9h-3.1a15.71 15.71 0 0 0-1.2-5A8.03 8.03 0 0 1 18.93 11zM12 4.07c.95 1.12 1.92 3.32 2.26 6.93H9.74C10.08 7.39 11.05 5.19 12 4.07zM4.07 13h3.1a15.71 15.71 0 0 0 1.2 5A8.03 8.03 0 0 1 4.07 13zm3.1-2h-3.1a8.03 8.03 0 0 1 4.3-5 15.71 15.71 0 0 0-1.2 5zm1.1 2h5.46c-.34 3.61-1.31 5.81-2.26 6.93-.95-1.12-1.92-3.32-2.26-6.93zm6.36 0h3.1a8.03 8.03 0 0 1-4.3 5 15.71 15.71 0 0 0 1.2-5z"/></svg>
             </a>
-            <a href="mailto:oeappstudio@gmail.com" title="E-posta" aria-label="E-posta">
+            <a href="mailto:contact@oeappstudio.com" title="E-posta" aria-label="E-posta">
               <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5.33-8-5.33V6l8 5.33L20 6z"/></svg>
             </a>
             <a href="https://wa.me/905523831929?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20konu%20hakk%C4%B1nda%20ileti%C5%9Fime%20ge%C3%A7mek%20isterim." target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">
@@ -1216,7 +1216,7 @@
       <div>© <span id="year"></span> OE Apps Studio. <span data-lang="tr">Tüm hakları saklıdır.</span><span data-lang="en">All rights reserved.</span></div>
       <div class="footer-links">
         <a href="privacy.html"><span data-lang="tr">Gizlilik Politikası</span><span data-lang="en">Privacy Policy</span></a>
-        <a href="mailto:oeappstudio@gmail.com"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
+        <a href="mailto:contact@oeappstudio.com"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
         <a href="https://play.google.com/store/apps/dev?id=5600320180610917836" target="_blank" rel="noopener">Play Store</a>
       </div>
     </div>
