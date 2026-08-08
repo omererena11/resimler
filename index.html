@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>OE Apps Studio | Premium Mobile Apps & Games</title>
   <meta name="description" content="OE Apps Studio – Award-winning mobile apps, immersive games, and smart automation systems. Discover Zikirmatik, Güncel Market Bültenleri, and more.">
-  <meta name="theme-color" content="#030712">
+  <meta name="theme-color" content="#f8fafc">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://oeappstudio.com/">
   <meta property="og:title" content="OE Apps Studio | Premium Mobile Apps & Games">
@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OE Apps Studio | Premium Mobile Apps & Games">
   <meta name="twitter:description" content="Modern mobile apps, immersive games, and smart automation. Built for performance and delight.">
-  <link rel="icon" href="data:,">
+  <link rel="icon" href="https://oeappstudio.com/APP_Icon.png">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,17 +33,17 @@
   </script>
   <style>
     :root {
-      --bg: #030712;
-      --bg2: #0f1729;
-      --panel: rgba(15, 23, 42, 0.7);
-      --panel-strong: rgba(15, 23, 42, 0.92);
-      --line: rgba(255, 255, 255, 0.06);
-      --text: #f1f5f9;
-      --muted: #94a3b8;
+      --bg: #f8fafc;
+      --bg2: #ffffff;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: rgba(255, 255, 255, 0.98);
+      --line: rgba(0, 0, 0, 0.06);
+      --text: #0f172a;
+      --muted: #64748b;
       --accent: #3b82f6;
       --accent-2: #8b5cf6;
       --accent-3: #22c55e;
-      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
       --radius: 28px;
       --max: 1240px;
       --transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -62,10 +62,10 @@
       min-height: 100%;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.1), transparent 28%),
-        radial-gradient(circle at 50% 85%, rgba(34, 197, 94, 0.07), transparent 25%),
-        linear-gradient(180deg, #020617 0%, #0a1226 45%, #030712 100%);
+        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.04), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.03), transparent 28%),
+        radial-gradient(circle at 50% 85%, rgba(34, 197, 94, 0.03), transparent 25%),
+        linear-gradient(180deg, #ffffff 0%, #f1f5f9 45%, #f8fafc 100%);
       font: 16px/1.6 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -99,17 +99,17 @@
 
     .bg-grid {
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
       background-size: 40px 40px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 90%);
-      opacity: 0.22;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 90%);
+      opacity: 0.5;
     }
 
     .noise {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
       background-size: 20px 20px;
-      opacity: 0.06;
+      opacity: 0.08;
     }
 
     .orb::before,
@@ -120,7 +120,7 @@
       height: 450px;
       border-radius: 50%;
       filter: blur(90px);
-      opacity: 0.14;
+      opacity: 0.08;
     }
 
     .orb::before {
@@ -150,7 +150,7 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: rgba(2, 6, 23, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
     }
@@ -163,11 +163,10 @@
       width: min(560px, 100%);
       padding: 40px;
       border-radius: 32px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
       text-align: center;
-      backdrop-filter: blur(20px);
     }
 
     .gate-mark {
@@ -182,7 +181,7 @@
       color: white;
       font-size: 32px;
       background: linear-gradient(135deg, #60a5fa, #2563eb 50%, #7c3aed);
-      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
     }
 
     .gate-card h1 {
@@ -191,6 +190,7 @@
       line-height: 1.1;
       letter-spacing: -1px;
       font-weight: 700;
+      color: #0f172a;
     }
 
     .gate-card p {
@@ -220,7 +220,7 @@
 
     .gate-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
     .gate-btn.tr {
@@ -237,8 +237,8 @@
       z-index: 50;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(3, 7, 18, 0.65);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
       transition: background 0.3s ease;
     }
 
@@ -259,7 +259,7 @@
     }
 
     .brand:hover {
-      opacity: 0.9;
+      opacity: 0.85;
     }
 
     .brand-mark {
@@ -272,7 +272,7 @@
       letter-spacing: 1px;
       color: white;
       background: linear-gradient(135deg, #60a5fa, #2563eb 50%, #7c3aed);
-      box-shadow: 0 15px 25px rgba(37, 99, 235, 0.35);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
       flex: 0 0 auto;
     }
 
@@ -281,6 +281,7 @@
       font-weight: 800;
       line-height: 1.2;
       letter-spacing: -0.3px;
+      color: #0f172a;
     }
 
     .brand-sub {
@@ -299,7 +300,7 @@
 
     .nav a,
     .lang-toggle {
-      color: #cbd5e1;
+      color: #475569;
       font-size: 15px;
       font-weight: 600;
       padding: 10px 18px;
@@ -314,8 +315,8 @@
 
     .nav a:hover,
     .lang-toggle:hover {
-      background: rgba(255, 255, 255, 0.06);
-      color: white;
+      background: rgba(37, 99, 235, 0.06);
+      color: #2563eb;
     }
 
     .nav a::after {
@@ -347,18 +348,17 @@
     }
 
     .hero-card {
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.04);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
       padding: 42px;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .hero-card:hover {
-      border-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
     }
 
     .eyebrow {
@@ -367,13 +367,12 @@
       gap: 8px;
       padding: 8px 16px;
       border-radius: 999px;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      color: #bfdbfe;
+      background: rgba(59, 130, 246, 0.06);
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      color: #2563eb;
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 20px;
-      backdrop-filter: blur(8px);
     }
 
     .hero-title {
@@ -382,7 +381,7 @@
       line-height: 1.04;
       letter-spacing: -1.6px;
       font-weight: 800;
-      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -391,7 +390,7 @@
     .hero p {
       margin: 20px 0 0;
       font-size: 18px;
-      color: #94a3b8;
+      color: #64748b;
       max-width: 720px;
       line-height: 1.7;
     }
@@ -426,21 +425,25 @@
     .btn-primary {
       color: white;
       background: linear-gradient(135deg, #2563eb, #4f46e5 60%, #7c3aed);
-      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .btn-secondary {
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
+      color: #334155;
+      background: white;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: rgba(0, 0, 0, 0.12);
     }
 
     .btn-whatsapp {
       color: white;
       background: linear-gradient(135deg, #22c55e, #15803d);
-      box-shadow: 0 18px 30px rgba(22, 163, 74, 0.35);
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.25);
     }
 
     .hero-mini {
@@ -452,13 +455,13 @@
     .mini-stat {
       padding: 22px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: #f8fafc;
+      border: 1px solid rgba(0, 0, 0, 0.03);
       transition: background 0.2s ease;
     }
 
     .mini-stat:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: #f1f5f9;
     }
 
     .mini-label {
@@ -474,15 +477,12 @@
       font-size: 26px;
       font-weight: 800;
       letter-spacing: -0.8px;
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #0f172a;
     }
 
     .mini-note {
       font-size: 14px;
-      color: #cbd5e1;
+      color: #64748b;
       margin-top: 6px;
     }
 
@@ -503,10 +503,7 @@
       font-size: clamp(28px, 4vw, 44px);
       letter-spacing: -1px;
       font-weight: 800;
-      background: linear-gradient(180deg, #fff, #cbd5e1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #0f172a;
     }
 
     .section-desc {
@@ -531,11 +528,10 @@
       position: relative;
       overflow: hidden;
       padding: 28px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.04);
       border-radius: 28px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(20px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       min-height: 310px;
       display: flex;
@@ -544,17 +540,8 @@
 
     .app-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .app-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 40%);
-      pointer-events: none;
-      border-radius: 28px;
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
     }
 
     .app-icon {
@@ -563,22 +550,15 @@
       border-radius: 20px;
       display: grid;
       place-items: center;
-      font-size: 32px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 15px 30px rgba(0, 0, 0, 0.3);
-      background: rgba(255, 255, 255, 0.05);
+      overflow: hidden;
       flex-shrink: 0;
+      background: #f1f5f9;
     }
 
-    .zikr .app-icon {
-      background: linear-gradient(135deg, #22c55e, #166534);
-    }
-
-    .market .app-icon {
-      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
-    }
-
-    .game .app-icon {
-      background: linear-gradient(135deg, #f59e0b, #b45309);
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .app-card h3 {
@@ -586,11 +566,12 @@
       font-size: 28px;
       letter-spacing: -0.6px;
       font-weight: 700;
+      color: #0f172a;
     }
 
     .app-card p {
       margin: 0;
-      color: #94a3b8;
+      color: #64748b;
       font-size: 15px;
       line-height: 1.65;
       flex: 1;
@@ -606,17 +587,16 @@
     .chip {
       padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: #cbd5e1;
+      background: #f1f5f9;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      color: #475569;
       font-size: 13px;
       font-weight: 600;
-      backdrop-filter: blur(8px);
       transition: background 0.2s ease;
     }
 
     .chip:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: #e2e8f0;
     }
 
     .app-actions {
@@ -629,21 +609,20 @@
     .app-link {
       padding: 10px 18px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #f8fafc;
+      border: 1px solid rgba(0, 0, 0, 0.06);
       font-size: 14px;
       font-weight: 700;
-      color: #e2e8f0;
+      color: #334155;
       transition: all 0.2s ease;
-      backdrop-filter: blur(8px);
     }
 
     .app-link:hover {
-      border-color: rgba(96, 165, 250, 0.5);
-      background: rgba(37, 99, 235, 0.1);
+      border-color: rgba(37, 99, 235, 0.3);
+      background: rgba(37, 99, 235, 0.04);
+      color: #2563eb;
     }
 
-    /* Emlak portfolio card special styling */
     .app-card.realestate {
       border-left: 3px solid rgba(199, 154, 76, 0.3);
       transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -660,17 +639,20 @@
     }
 
     .app-card.realestate .app-actions .app-link.realestate-live:hover {
-      box-shadow: 0 10px 25px rgba(10, 31, 63, 0.3);
+      box-shadow: 0 10px 25px rgba(10, 31, 63, 0.2);
       background: linear-gradient(135deg, #0d2547, #1e3c6b);
+      color: white;
     }
 
     .app-card.realestate .app-actions .app-link.realestate-github {
       border-color: rgba(199, 154, 76, 0.3);
+      background: white;
     }
 
     .app-card.realestate .app-actions .app-link.realestate-github:hover {
       border-color: #c79a4c;
-      background: rgba(199, 154, 76, 0.1);
+      background: rgba(199, 154, 76, 0.06);
+      color: #b08538;
     }
 
     .services {
@@ -682,16 +664,16 @@
     .service {
       padding: 28px;
       border-radius: 24px;
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(16px);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .service:hover {
       transform: translateY(-6px);
-      border-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
     }
 
     .service .icon {
@@ -704,6 +686,7 @@
       font-size: 20px;
       font-weight: 700;
       letter-spacing: -0.3px;
+      color: #0f172a;
     }
 
     .service p {
@@ -721,11 +704,10 @@
 
     .contact-card {
       padding: 36px;
-      background: rgba(15, 23, 42, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.04);
       border-radius: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
     }
 
     .contact-list {
@@ -740,25 +722,35 @@
       gap: 14px;
       padding: 16px 18px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: #f8fafc;
+      border: 1px solid rgba(0, 0, 0, 0.03);
       transition: background 0.2s ease;
     }
 
     .contact-item:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: #f1f5f9;
     }
 
     .contact-item strong {
       display: block;
       font-size: 15px;
       font-weight: 700;
+      color: #0f172a;
     }
 
     .contact-item span {
       display: block;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .contact-item a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
     }
 
     .socials {
@@ -774,21 +766,25 @@
       display: grid;
       place-items: center;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #f8fafc;
+      border: 1px solid rgba(0, 0, 0, 0.06);
       transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     .socials a:hover {
       transform: translateY(-4px);
-      border-color: rgba(96, 165, 250, 0.5);
-      background: rgba(37, 99, 235, 0.15);
+      border-color: rgba(37, 99, 235, 0.3);
+      background: rgba(37, 99, 235, 0.04);
     }
 
     .socials svg {
       width: 26px;
       height: 26px;
-      fill: #e2e8f0;
+      fill: #475569;
+    }
+
+    .socials a:hover svg {
+      fill: #2563eb;
     }
 
     .whatsapp-box {
@@ -798,8 +794,8 @@
       gap: 20px;
       padding: 24px;
       border-radius: 22px;
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(22, 163, 74, 0.08));
-      border: 1px solid rgba(34, 197, 94, 0.2);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.06), rgba(22, 163, 74, 0.04));
+      border: 1px solid rgba(34, 197, 94, 0.15);
       margin-top: 24px;
     }
 
@@ -807,11 +803,12 @@
       margin: 0 0 6px;
       font-size: 20px;
       font-weight: 700;
+      color: #0f172a;
     }
 
     .whatsapp-box p {
       margin: 0;
-      color: #a7f0ba;
+      color: #16a34a;
       font-size: 15px;
     }
 
@@ -826,13 +823,13 @@
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, #25d366, #128c7e);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 8px rgba(37, 211, 102, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 0 8px rgba(37, 211, 102, 0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .floating-wa:hover {
       transform: translateY(-4px) scale(1.04);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 12px rgba(37, 211, 102, 0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 12px rgba(37, 211, 102, 0.12);
     }
 
     .floating-wa svg {
@@ -843,6 +840,8 @@
 
     footer {
       padding: 40px 0 80px;
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      margin-top: 20px;
     }
 
     .footer-wrap {
@@ -860,8 +859,12 @@
       flex-wrap: wrap;
     }
 
+    .footer-links a {
+      color: #64748b;
+    }
+
     .footer-links a:hover {
-      color: #e2e8f0;
+      color: #0f172a;
       transition: color 0.2s ease;
     }
 
@@ -1041,7 +1044,9 @@
 
         <div class="apps">
           <article class="app-card zikr">
-            <div class="app-icon">☪</div>
+            <div class="app-icon">
+              <img src="https://oeappstudio.com/Zikirmatik.webp" alt="Zikirmatik" loading="lazy">
+            </div>
             <h3>Zikirmatik</h3>
             <p>
               <span data-lang="tr">Dijital tesbih deneyimini sade, modern ve kullanışlı bir yapıyla sunan mobil uygulama. Günlük zikir takibi, sayaç kullanımı ve odaklı deneyim için tasarlandı.</span>
@@ -1058,7 +1063,9 @@
           </article>
 
           <article class="app-card market">
-            <div class="app-icon">🛒</div>
+            <div class="app-icon">
+              <img src="https://oeappstudio.com/APP_Icon.png" alt="Güncel Market Bültenleri" loading="lazy">
+            </div>
             <h3>
               <span data-lang="tr">Güncel Market Bültenleri</span>
               <span data-lang="en">Current Market Flyers</span>
@@ -1082,10 +1089,12 @@
           </article>
 
           <article class="app-card game">
-            <div class="app-icon">🎮</div>
+            <div class="app-icon">
+              <img src="https://oeappstudio.com/RealPiano.webp" alt="Real Piano" loading="lazy">
+            </div>
             <h3>
-              <span data-lang="tr">Piyano Uygulaması</span>
-              <span data-lang="en">Piano App</span>
+              <span data-lang="tr">Real Piano</span>
+              <span data-lang="en">Real Piano</span>
             </h3>
             <p>
               <span data-lang="tr">Gerçekçi piyano sesleri ve şık tasarımıyla müzik keyfini mobil cihazlara taşıyan interaktif bir uygulama.</span>
@@ -1101,9 +1110,8 @@
             </div>
           </article>
 
-          <!-- YENİ EKLENEN: Zen Gayrimenkul Portföy Kartı -->
           <article class="app-card realestate">
-            <div class="app-icon" style="background: linear-gradient(135deg, #0a1f3f, #1a345b);">🏠</div>
+            <div class="app-icon" style="background: linear-gradient(135deg, #0a1f3f, #1a345b); display: grid; place-items: center; font-size: 32px;">🏠</div>
             <h3>
               <span data-lang="tr">Zen Gayrimenkul</span>
               <span data-lang="en">Zen Real Estate</span>
@@ -1323,7 +1331,6 @@
       applyLanguage('tr');
     })();
 
-    // Scroll reveal animation
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
