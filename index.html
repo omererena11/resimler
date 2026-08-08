@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OE Apps Studio | Premium Mobile Apps & Games">
   <meta name="twitter:description" content="Modern mobile apps, immersive games, and smart automation. Built for performance and delight.">
-  <link rel="icon" href="https://oeappstudio.com/APP_Icon.png">
+  <link rel="icon" type="image/webp" href="https://oeappstudio.com/icon.webp">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -176,12 +176,15 @@
       display: grid;
       place-items: center;
       margin: 0 auto 20px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      color: white;
-      font-size: 32px;
-      background: linear-gradient(135deg, #60a5fa, #2563eb 50%, #7c3aed);
-      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+    }
+
+    .gate-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .gate-card h1 {
@@ -268,12 +271,16 @@
       border-radius: 16px;
       display: grid;
       place-items: center;
-      font-weight: 900;
-      letter-spacing: 1px;
-      color: white;
-      background: linear-gradient(135deg, #60a5fa, #2563eb 50%, #7c3aed);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+      overflow: hidden;
       flex: 0 0 auto;
+      background: white;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .brand-title {
@@ -337,7 +344,22 @@
     }
 
     .hero {
-      padding: 80px 0 40px;
+      padding: 60px 0 40px;
+    }
+
+    .studio-banner {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .studio-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
     }
 
     .hero-grid {
@@ -895,7 +917,11 @@
         display: none;
       }
       .hero {
-        padding-top: 50px;
+        padding-top: 40px;
+      }
+      .studio-banner {
+        max-width: 100%;
+        margin-bottom: 28px;
       }
       .hero-card {
         padding: 28px;
@@ -944,7 +970,9 @@
 
   <div class="language-gate" id="languageGate" aria-modal="true" role="dialog">
     <div class="gate-card">
-      <div class="gate-mark">OE</div>
+      <div class="gate-mark">
+        <img src="https://oeappstudio.com/icon.webp" alt="OE Apps Studio">
+      </div>
       <h1>Select your language / Dilinizi seçin</h1>
       <p>Choose your preferred language to enter the website.</p>
       <div class="gate-actions">
@@ -957,7 +985,9 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#anasayfa" aria-label="OE Apps Studio home">
-        <div class="brand-mark">OE</div>
+        <div class="brand-mark">
+          <img src="https://oeappstudio.com/icon.webp" alt="OE Apps Studio Logo">
+        </div>
         <div>
           <div class="brand-title">OE Apps Studio</div>
           <div class="brand-sub">
@@ -978,58 +1008,64 @@
 
   <main id="anasayfa">
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <div class="eyebrow">
-            <span data-lang="tr">Bağımsız geliştirici stüdyo</span>
-            <span data-lang="en">Independent developer studio</span>
-          </div>
-
-          <h1 class="hero-title">
-            <span data-lang="tr">Modern mobil uygulamalar, sistem entegrasyonları ve dikkat çeken oyunlar geliştiriyorum.</span>
-            <span data-lang="en">I build modern mobile apps, system integrations and engaging games.</span>
-          </h1>
-
-          <p>
-            <span data-lang="tr">OE Apps Studio olarak faydalı günlük araçlar, kullanıcı dostu uygulamalar ve eğlenceli mobil oyunlar geliştiriyorum. Ürün geliştirme tarafında GitHub tabanlı iş akışları, Firebase Messaging entegrasyonları, uygulama içi sistem kurulumları ve Python ile otomasyon altyapıları üzerinde profesyonel seviyede çalışabiliyorum.</span>
-            <span data-lang="en">At OE Apps Studio, I build useful daily tools, user-friendly applications and engaging mobile games. On the product side, I also work professionally with GitHub-based workflows, Firebase Messaging integrations, in-app system implementation and Python-powered automation infrastructure.</span>
-          </p>
-
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#uygulamalar">
-              <span data-lang="tr">Projeleri Gör</span>
-              <span data-lang="en">View Projects</span>
-            </a>
-            <a class="btn btn-secondary" href="mailto:contact@oeappstudio.com">
-              <span data-lang="tr">E-posta Gönder</span>
-              <span data-lang="en">Send Email</span>
-            </a>
-            <a class="btn btn-whatsapp" href="https://wa.me/905523831929?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20proje%2C%20entegrasyon%20veya%20i%C5%9F%20birli%C4%9Fi%20konusunu%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener">
-              <span data-lang="tr">WhatsApp ile Ulaş</span>
-              <span data-lang="en">Contact on WhatsApp</span>
-            </a>
-          </div>
+      <div class="container">
+        <div class="studio-banner">
+          <img src="https://oeappstudio.com/OEAppstudio.webp" alt="OE Apps Studio" loading="eager">
         </div>
 
-        <aside class="hero-card hero-mini">
-          <div class="mini-stat">
-            <div class="mini-label"><span data-lang="tr">Odak alanı</span><span data-lang="en">Focus area</span></div>
-            <div class="mini-value"><span data-lang="tr">Mobil ürün geliştirme</span><span data-lang="en">Mobile product development</span></div>
-            <div class="mini-note"><span data-lang="tr">Kullanıcıya doğrudan değer veren uygulamalar, oyunlar ve bağlı servis yapıları</span><span data-lang="en">Apps, games and connected service structures that create direct value for users</span></div>
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="eyebrow">
+              <span data-lang="tr">Bağımsız geliştirici stüdyo</span>
+              <span data-lang="en">Independent developer studio</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span data-lang="tr">Modern mobil uygulamalar, sistem entegrasyonları ve dikkat çeken oyunlar geliştiriyorum.</span>
+              <span data-lang="en">I build modern mobile apps, system integrations and engaging games.</span>
+            </h1>
+
+            <p>
+              <span data-lang="tr">OE Apps Studio olarak faydalı günlük araçlar, kullanıcı dostu uygulamalar ve eğlenceli mobil oyunlar geliştiriyorum. Ürün geliştirme tarafında GitHub tabanlı iş akışları, Firebase Messaging entegrasyonları, uygulama içi sistem kurulumları ve Python ile otomasyon altyapıları üzerinde profesyonel seviyede çalışabiliyorum.</span>
+              <span data-lang="en">At OE Apps Studio, I build useful daily tools, user-friendly applications and engaging mobile games. On the product side, I also work professionally with GitHub-based workflows, Firebase Messaging integrations, in-app system implementation and Python-powered automation infrastructure.</span>
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#uygulamalar">
+                <span data-lang="tr">Projeleri Gör</span>
+                <span data-lang="en">View Projects</span>
+              </a>
+              <a class="btn btn-secondary" href="mailto:contact@oeappstudio.com">
+                <span data-lang="tr">E-posta Gönder</span>
+                <span data-lang="en">Send Email</span>
+              </a>
+              <a class="btn btn-whatsapp" href="https://wa.me/905523831929?text=Merhaba%20OE%20Apps%20Studio%2C%20m%C3%BCsaitli%C4%9Finiz%20uygunsa%20bir%20proje%2C%20entegrasyon%20veya%20i%C5%9F%20birli%C4%9Fi%20konusunu%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener">
+                <span data-lang="tr">WhatsApp ile Ulaş</span>
+                <span data-lang="en">Contact on WhatsApp</span>
+              </a>
+            </div>
           </div>
 
-          <div class="mini-stat">
-            <div class="mini-label"><span data-lang="tr">Teknik yetkinlik</span><span data-lang="en">Technical capability</span></div>
-            <div class="mini-value"><span data-lang="tr">GitHub • Firebase • Python</span><span data-lang="en">GitHub • Firebase • Python</span></div>
-            <div class="mini-note"><span data-lang="tr">Sürüm yönetimi, bildirim altyapısı, otomasyon ve uygulama entegrasyonlarında güçlü çalışma pratiği</span><span data-lang="en">Strong practical experience in version control, messaging infrastructure, automation and app integrations</span></div>
-          </div>
+          <aside class="hero-card hero-mini">
+            <div class="mini-stat">
+              <div class="mini-label"><span data-lang="tr">Odak alanı</span><span data-lang="en">Focus area</span></div>
+              <div class="mini-value"><span data-lang="tr">Mobil ürün geliştirme</span><span data-lang="en">Mobile product development</span></div>
+              <div class="mini-note"><span data-lang="tr">Kullanıcıya doğrudan değer veren uygulamalar, oyunlar ve bağlı servis yapıları</span><span data-lang="en">Apps, games and connected service structures that create direct value for users</span></div>
+            </div>
 
-          <div class="mini-stat">
-            <div class="mini-label"><span data-lang="tr">Çalışma yaklaşımı</span><span data-lang="en">Working approach</span></div>
-            <div class="mini-value"><span data-lang="tr">Seçili projelere destek</span><span data-lang="en">Selective project support</span></div>
-            <div class="mini-note"><span data-lang="tr">Hâlihazırda kendi projelerim üzerinde çalışıyorum. Uygun olduğum dönemlerde yeni taleplere de destek verebilirim.</span><span data-lang="en">I am actively working on my own products. When timing aligns, I also support selected new requests.</span></div>
-          </div>
-        </aside>
+            <div class="mini-stat">
+              <div class="mini-label"><span data-lang="tr">Teknik yetkinlik</span><span data-lang="en">Technical capability</span></div>
+              <div class="mini-value"><span data-lang="tr">GitHub • Firebase • Python</span><span data-lang="en">GitHub • Firebase • Python</span></div>
+              <div class="mini-note"><span data-lang="tr">Sürüm yönetimi, bildirim altyapısı, otomasyon ve uygulama entegrasyonlarında güçlü çalışma pratiği</span><span data-lang="en">Strong practical experience in version control, messaging infrastructure, automation and app integrations</span></div>
+            </div>
+
+            <div class="mini-stat">
+              <div class="mini-label"><span data-lang="tr">Çalışma yaklaşımı</span><span data-lang="en">Working approach</span></div>
+              <div class="mini-value"><span data-lang="tr">Seçili projelere destek</span><span data-lang="en">Selective project support</span></div>
+              <div class="mini-note"><span data-lang="tr">Hâlihazırda kendi projelerim üzerinde çalışıyorum. Uygun olduğum dönemlerde yeni taleplere de destek verebilirim.</span><span data-lang="en">I am actively working on my own products. When timing aligns, I also support selected new requests.</span></div>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
