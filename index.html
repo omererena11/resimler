@@ -703,6 +703,181 @@
       line-height: 1.6;
     }
 
+    /* Web Development Expertise Section */
+    .web-expertise {
+      padding: 60px 0;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .expertise-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .expertise-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .expertise-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.06));
+      color: #2563eb;
+    }
+
+    .expertise-card h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.4px;
+    }
+
+    .expertise-card p {
+      margin: 0;
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .expertise-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .expertise-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #475569;
+      padding: 4px 0;
+    }
+
+    .expertise-list li::before {
+      content: "•";
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+
+    .tech-badge:hover {
+      background: #f1f5f9;
+      border-color: rgba(37, 99, 235, 0.2);
+      color: #2563eb;
+    }
+
+    .tech-badge i {
+      font-size: 16px;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 24px 16px;
+      border-radius: 20px;
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease;
+    }
+
+    .process-step:hover {
+      transform: translateY(-4px);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      font-weight: 800;
+      font-size: 18px;
+      color: white;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    .process-step h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .process-step p {
+      margin: 0;
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1040px) {
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+      .expertise-card {
+        padding: 24px;
+      }
+    }
+
     .contact {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -981,6 +1156,7 @@
       <nav class="nav" aria-label="Main menu">
         <a href="#uygulamalar"><span data-lang="tr">Uygulamalar</span><span data-lang="en">Apps</span></a>
         <a href="#hizmetler"><span data-lang="tr">Hizmetler</span><span data-lang="en">Services</span></a>
+        <a href="#web-tasarim"><span data-lang="tr">Web Tasarım</span><span data-lang="en">Web Design</span></a>
         <a href="#iletisim"><span data-lang="tr">İletişim</span><span data-lang="en">Contact</span></a>
         <button class="lang-toggle" type="button" onclick="toggleLanguage()">TR / EN</button>
       </nav>
@@ -1206,6 +1382,104 @@
       </div>
     </section>
 
+    <!-- YENİ BÖLÜM: Web Tasarım ve Geliştirme Uzmanlığı -->
+    <section id="web-tasarim" class="web-expertise">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title"><span data-lang="tr">Web Tasarım & Geliştirme</span><span data-lang="en">Web Design & Development</span></h2>
+            <p class="section-desc"><span data-lang="tr">Modern, hızlı, SEO uyumlu ve dönüşüm odaklı web siteleri. Kurumsal sitelerden e-ticaret çözümlerine kadar geniş yelpazede profesyonel hizmet.</span><span data-lang="en">Modern, fast, SEO-friendly and conversion-focused websites. Professional service from corporate sites to e-commerce solutions.</span></p>
+          </div>
+        </div>
+
+        <div class="expertise-grid">
+          <div class="expertise-card">
+            <div class="expertise-icon">🎯</div>
+            <h3><span data-lang="tr">Kurumsal Web Siteleri</span><span data-lang="en">Corporate Websites</span></h3>
+            <p><span data-lang="tr">Markanızı en iyi yansıtan, güven veren ve profesyonel kurumsal web siteleri. Modern tasarım anlayışıyla hazırlanmış, mobil uyumlu ve hızlı çalışan yapılar.</span><span data-lang="en">Professional corporate websites that best reflect your brand, build trust and work flawlessly on all devices.</span></p>
+            <ul class="expertise-list">
+              <li><span data-lang="tr">Kurumsal kimliğe uygun özel tasarım</span><span data-lang="en">Custom design aligned with corporate identity</span></li>
+              <li><span data-lang="tr">Mobil öncelikli responsive yapı</span><span data-lang="en">Mobile-first responsive structure</span></li>
+              <li><span data-lang="tr">SEO optimizasyonu ve hızlı yükleme</span><span data-lang="en">SEO optimization and fast loading</span></li>
+              <li><span data-lang="tr">İletişim formları ve entegrasyonlar</span><span data-lang="en">Contact forms and integrations</span></li>
+            </ul>
+          </div>
+
+          <div class="expertise-card">
+            <div class="expertise-icon">🛍️</div>
+            <h3><span data-lang="tr">E-Ticaret & Portföy Siteleri</span><span data-lang="en">E-Commerce & Portfolio Sites</span></h3>
+            <p><span data-lang="tr">Satış odaklı, kullanıcı dostu e-ticaret platformları ve etkileyici portföy siteleri. Dönüşüm oranını artıracak stratejik tasarım kararları.</span><span data-lang="en">Sales-focused, user-friendly e-commerce platforms and impressive portfolio sites with strategic design decisions to boost conversion rates.</span></p>
+            <ul class="expertise-list">
+              <li><span data-lang="tr">Ürün kataloğu ve listeleme sayfaları</span><span data-lang="en">Product catalog and listing pages</span></li>
+              <li><span data-lang="tr">Sepet ve ödeme sistemleri</span><span data-lang="en">Cart and payment systems</span></li>
+              <li><span data-lang="tr">Portföy ve vitrin tasarımları</span><span data-lang="en">Portfolio and showcase designs</span></li>
+              <li><span data-lang="tr">Admin paneli ve içerik yönetimi</span><span data-lang="en">Admin panel and content management</span></li>
+            </ul>
+          </div>
+
+          <div class="expertise-card">
+            <div class="expertise-icon">⚡</div>
+            <h3><span data-lang="tr">Performans & SEO</span><span data-lang="en">Performance & SEO</span></h3>
+            <p><span data-lang="tr">Google'da üst sıralara çıkmak için gerekli tüm teknik altyapı. Core Web Vitals optimizasyonu, şema işaretlemeleri ve hız odaklı geliştirme.</span><span data-lang="en">Complete technical infrastructure for top Google rankings. Core Web Vitals optimization, schema markup and speed-focused development.</span></p>
+            <ul class="expertise-list">
+              <li><span data-lang="tr">Core Web Vitals (LCP, FID, CLS) uyumu</span><span data-lang="en">Core Web Vitals (LCP, FID, CLS) compliance</span></li>
+              <li><span data-lang="tr">Schema.org yapısal veri entegrasyonu</span><span data-lang="en">Schema.org structured data integration</span></li>
+              <li><span data-lang="tr">Lazy loading ve görsel optimizasyonu</span><span data-lang="en">Lazy loading and image optimization</span></li>
+              <li><span data-lang="tr">Meta etiketleri ve Open Graph yönetimi</span><span data-lang="en">Meta tags and Open Graph management</span></li>
+            </ul>
+          </div>
+
+          <div class="expertise-card">
+            <div class="expertise-icon">🔧</div>
+            <h3><span data-lang="tr">Teknik Altyapı & Destek</span><span data-lang="en">Technical Infrastructure & Support</span></h3>
+            <p><span data-lang="tr">Alan adı, hosting, SSL, e-posta kurulumu gibi teknik konularda baştan sona destek. GitHub ve CI/CD entegrasyonlarıyla profesyonel iş akışı.</span><span data-lang="en">End-to-end support on technical matters like domain, hosting, SSL, email setup. Professional workflow with GitHub and CI/CD integrations.</span></p>
+            <ul class="expertise-list">
+              <li><span data-lang="tr">Alan adı ve hosting yönetimi</span><span data-lang="en">Domain and hosting management</span></li>
+              <li><span data-lang="tr">SSL sertifikası ve güvenlik</span><span data-lang="en">SSL certificate and security</span></li>
+              <li><span data-lang="tr">GitHub Pages / Vercel / Netlify deploy</span><span data-lang="en">GitHub Pages / Vercel / Netlify deploy</span></li>
+              <li><span data-lang="tr">Firebase ve API entegrasyonları</span><span data-lang="en">Firebase and API integrations</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tech-stack" style="margin-top: 32px; justify-content: center;">
+          <span class="tech-badge"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
+          <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="tech-badge"><i class="fab fa-react"></i> React</span>
+          <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+          <span class="tech-badge"><i class="fab fa-github"></i> GitHub</span>
+          <span class="tech-badge"><i class="fas fa-database"></i> Firebase</span>
+          <span class="tech-badge"><i class="fas fa-mobile-alt"></i> Responsive</span>
+          <span class="tech-badge"><i class="fas fa-search"></i> SEO</span>
+          <span class="tech-badge"><i class="fas fa-bolt"></i> Performance</span>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h4><span data-lang="tr">Keşif & Planlama</span><span data-lang="en">Discovery & Planning</span></h4>
+            <p><span data-lang="tr">İhtiyaç analizi, hedef kitle belirleme ve proje yol haritası</span><span data-lang="en">Needs analysis, target audience and project roadmap</span></p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h4><span data-lang="tr">Tasarım</span><span data-lang="en">Design</span></h4>
+            <p><span data-lang="tr">Wireframe, UI/UX tasarımı ve markaya uygun görsel dil</span><span data-lang="en">Wireframe, UI/UX design and brand-aligned visual language</span></p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h4><span data-lang="tr">Geliştirme</span><span data-lang="en">Development</span></h4>
+            <p><span data-lang="tr">Temiz kod, responsive yapı, SEO ve performans odaklı geliştirme</span><span data-lang="en">Clean code, responsive structure, SEO and performance-focused development</span></p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h4><span data-lang="tr">Yayın & Destek</span><span data-lang="en">Launch & Support</span></h4>
+            <p><span data-lang="tr">Canlıya alma, test süreçleri ve yayın sonrası teknik destek</span><span data-lang="en">Go-live, testing processes and post-launch technical support</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="iletisim">
       <div class="container contact">
         <div class="contact-card">
@@ -1358,7 +1632,7 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.app-card, .service, .contact-card, .hero-card').forEach(el => {
+    document.querySelectorAll('.app-card, .service, .expertise-card, .process-step, .contact-card, .hero-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
