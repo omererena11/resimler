@@ -1,1 +1,1 @@
-market://details?id=com.oeappstudio.piano
+https://play.google.com/store/apps/details?id=com.oeappstudio.piano&pcampaignid=web_share
