@@ -34,38 +34,26 @@
 
   #app { max-width: 100%; margin: 0 auto; }
 
-  /* ===== KATEGORİ FİLTRELERİ (TEK SATIR) ===== */
-  #category-filters {
+  /* ===== ÜST FİLTRE ALANI (sadece kasa tipi) ===== */
+  #top-filters {
     background: #1A1C1E;
-    padding: 4px 8px;
-    display: flex;
-    gap: 4px;
-    flex-wrap: nowrap;          /* tek satıra zorla */
-    overflow-x: auto;           /* gerektiğinde yatay kaydır */
+    padding: 6px 12px;
     position: sticky;
     top: 0;
     z-index: 30;
-    scrollbar-width: none;      /* scrollbar gizle */
-    -ms-overflow-style: none;
+    display: flex;
+    justify-content: flex-end;
   }
-  #category-filters::-webkit-scrollbar { display: none; }
-
-  .cat-select {
+  .kasa-select {
     background: #2A2C30;
     color: #fff;
     border: 1px solid #3A3C40;
     border-radius: 6px;
-    padding: 6px 8px;
-    font-size: 12px;            /* daha küçük font */
-    min-width: 0;               /* esnek daralma */
-    flex: 1 1 auto;
+    padding: 6px 10px;
+    font-size: 13px;
     cursor: pointer;
     outline: none;
-    white-space: nowrap;
-  }
-  .cat-select option {
-    background: #2A2C30;
-    color: #fff;
+    min-width: 120px;
   }
 
   /* ===== MARKA FİLTRE + ARAMA ===== */
@@ -74,7 +62,7 @@
     padding: 6px 0 2px 0;
     border-bottom: 1px solid #E8EAED;
     position: sticky;
-    top: 36px;                  /* category-filters yeni yüksekliğine göre ayarlandı */
+    top: 40px; /* top-filters yüksekliği kadar */
     z-index: 9;
   }
   .filter-container {
@@ -216,7 +204,7 @@
   }
   .brand-highlight .text { flex: 1; }
 
-  /* Efektler */
+  /* Efektler (öncekiyle aynı) */
   .brand-highlight.marquee .text { white-space: nowrap; animation: marquee 12s linear infinite; }
   @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
   .brand-highlight.shimmer {
@@ -301,30 +289,10 @@
 </head>
 <body>
   <div id="app">
-    <!-- KATEGORİ FİLTRELERİ (TEK SATIR, "TÜM" YAZISI KALDIRILDI) -->
-    <div id="category-filters">
-      <select id="filter-vehicle-type" class="cat-select">
-        <option value="">Vasıta</option>
-        <option value="otomobil">Otomobil</option>
-        <option value="suv">Arazi / SUV</option>
-        <option value="elektrikli">Elektrikli Araç</option>
-        <option value="hibrit">Hibrit</option>
-      </select>
-      <select id="filter-fuel-type" class="cat-select">
-        <option value="">Yakıt</option>
-        <option value="benzin">Benzin</option>
-        <option value="dizel">Dizel</option>
-        <option value="hibrit">Hibrit</option>
-        <option value="elektrik">Elektrik</option>
-        <option value="lpg">LPG</option>
-      </select>
-      <select id="filter-transmission" class="cat-select">
-        <option value="">Vites</option>
-        <option value="manuel">Manuel</option>
-        <option value="otomatik">Otomatik</option>
-      </select>
-      <select id="filter-body-type" class="cat-select">
-        <option value="">Kasa</option>
+    <!-- Sadece Kasa Tipi Filtresi -->
+    <div id="top-filters">
+      <select id="filter-body-type" class="kasa-select">
+        <option value="">Tüm Kasalar</option>
         <option value="cabrio">Cabrio</option>
         <option value="coupe">Coupe</option>
         <option value="coupe_4">Coupe 4 kapı</option>
@@ -334,6 +302,7 @@
         <option value="station_wagon">Station Wagon</option>
         <option value="mpv">MPV</option>
         <option value="roadster">Roadster</option>
+        <option value="suv">SUV</option>
       </select>
     </div>
 
@@ -371,7 +340,7 @@
   const DATA_URL = BASE_PATH + 'data.json?t=' + Date.now();
 
   let appData = null, activeFilter = null;
-  let filterVehicleType = '', filterFuelType = '', filterTransmission = '', filterBodyType = '';
+  let filterBodyType = '';
 
   function getImgUrl(path) { if (!path) return ''; return path.startsWith('http') ? path : BASE_PATH + path; }
 
@@ -382,24 +351,30 @@
       if (!resp.ok) throw new Error('Veri alınamadı');
       appData = await resp.json();
       applySettings(appData.home_page_settings);
-      renderFilters(); renderContent();
-      initSearch(); bindCategoryFilters();
+      renderFilters();
+      renderContent();
+      initSearch();
+      bindCategoryFilter();
     } catch (e) { content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>'; }
   }
 
   function applySettings(s) {
     if (!s) return;
     const r = document.documentElement.style;
-    if (s.card) { const baseW = (s.card.width || 170) * 2; r.setProperty('--card-width', baseW + 'px'); r.setProperty('--card-img-h', Math.round(baseW * 27 / 32) + 'px'); }
+    if (s.card) {
+      const baseW = (s.card.width || 170) * 2;
+      r.setProperty('--card-width', baseW + 'px');
+      r.setProperty('--card-img-h', Math.round(baseW * 27 / 32) + 'px');
+    }
     if (s.carousel) r.setProperty('--card-gap', Math.round((s.carousel.gap||12) * 0.5) + 'px');
     if (s.sections) r.setProperty('--section-gap', Math.max(8, (s.sections.vertical_gap||20) / 4) + 'px');
   }
 
-  function bindCategoryFilters() {
-    $('#filter-vehicle-type').addEventListener('change', e => { filterVehicleType = e.target.value; renderContent(); });
-    $('#filter-fuel-type').addEventListener('change', e => { filterFuelType = e.target.value; renderContent(); });
-    $('#filter-transmission').addEventListener('change', e => { filterTransmission = e.target.value; renderContent(); });
-    $('#filter-body-type').addEventListener('change', e => { filterBodyType = e.target.value; renderContent(); });
+  function bindCategoryFilter() {
+    $('#filter-body-type').addEventListener('change', e => {
+      filterBodyType = e.target.value;
+      renderContent();
+    });
   }
 
   function selectBrand(brandId) {
@@ -410,12 +385,14 @@
   function renderFilters() {
     const c = $('#filter-container'); c.innerHTML = '';
     if (!appData?.brands) return;
-    const allBtn = document.createElement('button'); allBtn.className = 'filter-btn all-btn' + (!activeFilter ? ' active' : '');
+    const allBtn = document.createElement('button');
+    allBtn.className = 'filter-btn all-btn' + (!activeFilter ? ' active' : '');
     allBtn.textContent = 'TÜMÜ'; allBtn.onclick = () => selectBrand(null);
     c.appendChild(allBtn);
     appData.brands.sort((a,b)=>a.order-b.order).forEach(b => {
       if (!b.show_on_homepage) return;
-      const btn = document.createElement('button'); btn.className = 'filter-btn' + (activeFilter === b.id ? ' active' : '');
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (activeFilter === b.id ? ' active' : '');
       btn.textContent = b.name; btn.onclick = () => selectBrand(b.id);
       c.appendChild(btn);
     });
@@ -441,12 +418,9 @@
   }
   function hideSearchResults() { $('#brand-search-results').classList.remove('visible'); }
 
-  function matchesCategoryFilters(car) {
-    if (filterVehicleType && (!car.vehicle_types || !car.vehicle_types.includes(filterVehicleType))) return false;
-    if (filterFuelType && (!car.fuel_types || !car.fuel_types.includes(filterFuelType))) return false;
-    if (filterTransmission && (!car.transmissions || !car.transmissions.includes(filterTransmission))) return false;
-    if (filterBodyType && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
-    return true;
+  function matchesBodyType(car) {
+    if (!filterBodyType) return true;
+    return car.body_types && car.body_types.includes(filterBodyType);
   }
 
   function renderContent() {
@@ -455,9 +429,10 @@
     let html = '';
     appData.brands.sort((a,b)=>a.order-b.order).forEach(brand => {
       if (!brand.show_on_homepage || (activeFilter && brand.id !== activeFilter)) return;
-      let models = (brand.models||[]).filter(m => m.show_on_homepage && matchesCategoryFilters(m));
+      let models = (brand.models||[]).filter(m => m.show_on_homepage && matchesBodyType(m));
       if (!models.length) return;
-      models.sort((a,b)=>(b.homepage_order||1)-(a.homepage_order||1));
+      // GUI'deki sıralama (order) kullanılıyor!
+      models.sort((a,b) => (a.order||1) - (b.order||1));
       html += `<section class="brand-section"><div class="brand-header"><div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div><span class="brand-name">${brand.name}</span></div>`;
       if (brand.show_brand_description && brand.brand_description) {
         const style = brand.brand_description_style || {}; const effect = style.effect || 'none'; const effectClass = effect !== 'none' ? ' ' + effect : '';
