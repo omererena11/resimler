@@ -34,19 +34,48 @@
 
   #app { max-width: 100%; margin: 0 auto; }
 
+  /* ===== KATEGORİ FİLTRELERİ (TEK SATIR) ===== */
   #category-filters {
-    background: #1A1C1E; padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap;
-    position: sticky; top: 0; z-index: 30;
+    background: #1A1C1E;
+    padding: 4px 8px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: nowrap;          /* tek satıra zorla */
+    overflow-x: auto;           /* gerektiğinde yatay kaydır */
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    scrollbar-width: none;      /* scrollbar gizle */
+    -ms-overflow-style: none;
   }
-  .cat-select {
-    background: #2A2C30; color: #fff; border: 1px solid #3A3C40; border-radius: 6px;
-    padding: 6px 10px; font-size: 13px; min-width: 80px; cursor: pointer; outline: none; flex: 1 1 auto;
-  }
-  .cat-select option { background: #2A2C30; color: #fff; }
+  #category-filters::-webkit-scrollbar { display: none; }
 
+  .cat-select {
+    background: #2A2C30;
+    color: #fff;
+    border: 1px solid #3A3C40;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 12px;            /* daha küçük font */
+    min-width: 0;               /* esnek daralma */
+    flex: 1 1 auto;
+    cursor: pointer;
+    outline: none;
+    white-space: nowrap;
+  }
+  .cat-select option {
+    background: #2A2C30;
+    color: #fff;
+  }
+
+  /* ===== MARKA FİLTRE + ARAMA ===== */
   #filter-nav {
-    background: white; padding: 6px 0 2px 0; border-bottom: 1px solid #E8EAED;
-    position: sticky; top: 40px; z-index: 9;
+    background: white;
+    padding: 6px 0 2px 0;
+    border-bottom: 1px solid #E8EAED;
+    position: sticky;
+    top: 36px;                  /* category-filters yeni yüksekliğine göre ayarlandı */
+    z-index: 9;
   }
   .filter-container {
     display: flex; overflow-x: auto; gap: 8px; padding: 0 16px;
@@ -56,32 +85,119 @@
   .filter-btn {
     flex-shrink: 0; padding: 8px 16px; border-radius: 20px;
     border: 1px solid #DDE1E6; background: white; color: var(--text-primary);
-    font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    transition: all 0.2s;
   }
-  .filter-btn.all-btn { background: var(--accent); color: white; border-color: var(--accent); font-weight: 600; }
-  .filter-btn.all-btn.active { background: #1d4ed8; border-color: #1d4ed8; }
-  .filter-btn:not(.all-btn).active { background: #EFF6FF; border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .filter-btn.all-btn {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .filter-btn.all-btn.active {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+  .filter-btn:not(.all-btn).active {
+    background: #EFF6FF;
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
 
-  #brand-search-wrapper { position: relative; margin: 8px 16px 4px 16px; }
-  #brand-search { width: 100%; height: 44px; padding: 0 40px 0 40px; border: 1px solid #DDE1E6; border-radius: 22px; font-size: 15px; background: #F8FAFC; color: var(--text-primary); outline: none; transition: border-color 0.2s; }
-  #brand-search:focus { border-color: var(--accent); background: white; }
-  .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #8E98A3; font-size: 18px; pointer-events: none; }
-  .search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; border: none; background: #E8EAED; color: #5F6B7A; font-size: 16px; cursor: pointer; display: none; align-items: center; justify-content: center; }
+  /* Arama çubuğu */
+  #brand-search-wrapper {
+    position: relative;
+    margin: 8px 16px 4px 16px;
+  }
+  #brand-search {
+    width: 100%;
+    height: 44px;
+    padding: 0 40px 0 40px;
+    border: 1px solid #DDE1E6;
+    border-radius: 22px;
+    font-size: 15px;
+    background: #F8FAFC;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #brand-search:focus {
+    border-color: var(--accent);
+    background: white;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: #8E98A3;
+    font-size: 18px;
+    pointer-events: none;
+  }
+  .search-clear {
+    position: absolute;
+    right: 12px; top: 50%;
+    transform: translateY(-50%);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #E8EAED;
+    color: #5F6B7A;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
   .search-clear.visible { display: flex; }
-  #brand-search-results { display: none; position: absolute; top: 50px; left: 0; right: 0; background: white; border: 1px solid #E8EAED; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); z-index: 20; overflow: hidden; }
+
+  #brand-search-results {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0; right: 0;
+    background: white;
+    border: 1px solid #E8EAED;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    z-index: 20;
+    overflow: hidden;
+  }
   #brand-search-results.visible { display: block; }
-  .search-result-item { padding: 12px 16px; cursor: pointer; font-size: 15px; border-bottom: 1px solid #F0F2F5; transition: background 0.15s; }
+  .search-result-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 15px;
+    border-bottom: 1px solid #F0F2F5;
+    transition: background 0.15s;
+  }
   .search-result-item:last-child { border-bottom: none; }
   .search-result-item:hover { background: #F8FAFC; }
-  .search-result-empty { padding: 14px 16px; color: #8E98A3; font-size: 14px; text-align: center; }
+  .search-result-empty {
+    padding: 14px 16px;
+    color: #8E98A3;
+    font-size: 14px;
+    text-align: center;
+  }
 
   main { padding: 0; }
 
   .brand-section {
-    background: #FFFFFF; margin: 0 0 var(--section-gap) 0; padding-bottom: 6px; position: relative;
+    background: #FFFFFF;
+    margin: 0 0 var(--section-gap) 0;
+    padding-bottom: 6px;
+    position: relative;
   }
-  .brand-section::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: linear-gradient(to bottom, rgba(0,0,0,0.04), transparent); pointer-events: none; z-index: 2; }
-  .brand-section::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 8px; background: linear-gradient(to top, rgba(0,0,0,0.04), transparent); pointer-events: none; z-index: 2; }
+  .brand-section::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.04), transparent);
+    pointer-events: none; z-index: 2;
+  }
+  .brand-section::after {
+    content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(to top, rgba(0,0,0,0.04), transparent);
+    pointer-events: none; z-index: 2;
+  }
 
   .brand-header { display: flex; align-items: center; gap: 10px; padding: 12px 20px 4px; }
   .brand-logo { width: 32px; height: 32px; border-radius: 50%; background: #F0F2F5; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -89,15 +205,25 @@
   .brand-name { font-weight: 700; font-size: 1.1rem; }
 
   .brand-highlight {
-    margin: 4px 20px 8px; padding: 10px 14px; background: var(--highlight-bg);
-    border-left: 4px solid var(--accent); border-radius: 8px;
-    display: flex; align-items: center; gap: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); overflow: hidden;
+    margin: 4px 20px 8px;
+    padding: 10px 14px;
+    background: var(--highlight-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    overflow: hidden;
   }
   .brand-highlight .text { flex: 1; }
 
+  /* Efektler */
   .brand-highlight.marquee .text { white-space: nowrap; animation: marquee 12s linear infinite; }
   @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-  .brand-highlight.shimmer { background: linear-gradient(90deg, #f0f6ff 25%, #e0ecff 50%, #f0f6ff 75%) !important; background-size: 200% 100% !important; animation: shimmer 2.5s infinite; }
+  .brand-highlight.shimmer {
+    background: linear-gradient(90deg, #f0f6ff 25%, #e0ecff 50%, #f0f6ff 75%) !important;
+    background-size: 200% 100% !important;
+    animation: shimmer 2.5s infinite;
+  }
   @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
   .brand-highlight.pulse { animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
@@ -129,14 +255,36 @@
   .model-info { padding: 10px 14px; }
   .model-name { font-weight: 600; font-size: 0.95rem; }
   .model-year { color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
-  .model-desc { color: var(--accent); font-size: 0.78rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 4px; font-weight: 500; }
+  .model-desc {
+    color: var(--accent); font-size: 0.78rem; line-height: 1.3;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; margin-top: 4px; font-weight: 500;
+  }
   .placeholder-img { background: #F0F1F3; display: flex; align-items: center; justify-content: center; height: var(--card-img-h); font-size: 2.5rem; color: #ADB5BD; }
   .empty-state, .loading { text-align: center; padding: 40px; color: #8E98A3; }
 
-  #lightbox { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity 0.22s ease; }
+  /* ===== LIGHTBOX ===== */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.22s ease;
+  }
   #lightbox.active { opacity: 1; pointer-events: auto; }
-  #viewer { display: flex; width: 100%; height: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; position: absolute; top: 0; left: 0; }
+
+  #viewer {
+    display: flex; width: 100%; height: 100%;
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    position: absolute; top: 0; left: 0;
+  }
   #viewer.lock { scroll-snap-type: none; }
+
   .page { min-width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; scroll-snap-align: start; scroll-snap-stop: always; position: relative; overflow: hidden; }
   .pz { width: 100%; height: 100%; position: relative; touch-action: pan-x pan-y; }
   .stage { position: absolute; inset: 0; transform-origin: 0 0; will-change: transform; backface-visibility: hidden; }
@@ -153,16 +301,17 @@
 </head>
 <body>
   <div id="app">
+    <!-- KATEGORİ FİLTRELERİ (TEK SATIR, "TÜM" YAZISI KALDIRILDI) -->
     <div id="category-filters">
       <select id="filter-vehicle-type" class="cat-select">
-        <option value="">Tüm Vasıta</option>
+        <option value="">Vasıta</option>
         <option value="otomobil">Otomobil</option>
         <option value="suv">Arazi / SUV</option>
         <option value="elektrikli">Elektrikli Araç</option>
         <option value="hibrit">Hibrit</option>
       </select>
       <select id="filter-fuel-type" class="cat-select">
-        <option value="">Tüm Yakıt</option>
+        <option value="">Yakıt</option>
         <option value="benzin">Benzin</option>
         <option value="dizel">Dizel</option>
         <option value="hibrit">Hibrit</option>
@@ -170,12 +319,12 @@
         <option value="lpg">LPG</option>
       </select>
       <select id="filter-transmission" class="cat-select">
-        <option value="">Tüm Vites</option>
+        <option value="">Vites</option>
         <option value="manuel">Manuel</option>
         <option value="otomatik">Otomatik</option>
       </select>
       <select id="filter-body-type" class="cat-select">
-        <option value="">Tüm Kasa</option>
+        <option value="">Kasa</option>
         <option value="cabrio">Cabrio</option>
         <option value="coupe">Coupe</option>
         <option value="coupe_4">Coupe 4 kapı</option>
@@ -188,6 +337,7 @@
       </select>
     </div>
 
+    <!-- MARKA FİLTRE + ARAMA -->
     <nav id="filter-nav">
       <div class="filter-container" id="filter-container"></div>
       <div id="brand-search-wrapper">
@@ -201,6 +351,7 @@
     <main id="content"><div class="loading">Veriler yükleniyor...</div></main>
   </div>
 
+  <!-- LIGHTBOX OVERLAY -->
   <div id="lightbox">
     <button class="closebtn" id="lightbox-close">&times;</button>
     <div id="viewer"></div>
