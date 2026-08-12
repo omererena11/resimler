@@ -21,6 +21,21 @@
     --text-secondary: #5F6B7A;
     --accent: #2563EB;
     --highlight-bg: #F0F6FF;
+    /* Marka başlığı global değişkenleri */
+    --brand-logo-size: 32px;
+    --brand-title-size: 18px;
+    --brand-title-font: 'Arial';
+    --brand-title-weight: bold;
+    --brand-title-color: #1A1C1E;
+    --brand-logo-gap: 8px;
+    --brand-header-height: 40px;
+    --brand-header-align: left;
+    /* Marka listesi değişkenleri */
+    --brand-logo-w: 64px;
+    --brand-logo-h: 64px;
+    --brand-name-size: 1.1rem;
+    --brand-name-font: 'Arial';
+    --brand-name-color: #1A1C1E;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -185,23 +200,31 @@
     pointer-events: none; z-index: 2;
   }
 
-  .brand-header { display: flex; align-items: center; gap: 10px; padding: 12px 20px 4px; }
+  .brand-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px 4px;
+    height: var(--brand-header-height, 40px);
+    gap: var(--brand-logo-gap, 8px);
+    justify-content: var(--brand-header-align, left);
+  }
   .brand-logo {
-    width: var(--brand-logo-w, 64px);
-    height: var(--brand-logo-h, 64px);
+    width: var(--brand-logo-size, 32px);
+    height: var(--brand-logo-size, 32px);
     border-radius: 50%;
     background: #F0F2F5;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    flex-shrink: 0;
   }
   .brand-logo img { max-width: 80%; max-height: 80%; object-fit: contain; }
   .brand-name {
-    font-size: var(--brand-name-size, 1.1rem);
-    font-family: var(--brand-name-font, 'Arial');
-    color: var(--brand-name-color, #1A1C1E);
-    font-weight: 700;
+    font-size: var(--brand-title-size, 18px);
+    font-family: var(--brand-title-font, 'Arial');
+    font-weight: var(--brand-title-weight, bold);
+    color: var(--brand-title-color, #1A1C1E);
   }
 
   .brand-highlight {
@@ -383,6 +406,21 @@
     }
     if (s.carousel) r.setProperty('--card-gap', Math.round((s.carousel.gap||12) * 0.5) + 'px');
     if (s.sections) r.setProperty('--section-gap', Math.max(8, (s.sections.vertical_gap||20) / 4) + 'px');
+
+    // Marka başlığı global ayarları
+    if (s.brand_header_settings) {
+      const h = s.brand_header_settings;
+      r.setProperty('--brand-logo-size', (h.logo_size || 32) + 'px');
+      r.setProperty('--brand-title-size', (h.title_font_size || 18) + 'px');
+      r.setProperty('--brand-title-font', h.title_font_family || 'Arial');
+      r.setProperty('--brand-title-weight', h.title_font_weight || 'bold');
+      r.setProperty('--brand-title-color', h.title_color || '#1A1C1E');
+      r.setProperty('--brand-logo-gap', (h.logo_title_gap || 8) + 'px');
+      r.setProperty('--brand-header-height', (h.header_height || 40) + 'px');
+      r.setProperty('--brand-header-align', h.alignment || 'left');
+    }
+
+    // Marka listesi stilleri
     if (s.brand_list_style) {
       const ls = s.brand_list_style;
       r.setProperty('--brand-logo-w', (ls.logo_width || 50) + 'px');
@@ -449,18 +487,17 @@
     const content = $('#content');
     if (!appData?.brands) { content.innerHTML = '<div class="empty-state">Veri yok</div>'; return; }
     let html = '';
-    // Genel marka başlığı ayarları
-    const generalBrandStyle = appData?.home_page_settings?.brand_header || {};
     appData.brands.sort((a,b)=>a.order-b.order).forEach(brand => {
       if (!brand.show_on_homepage || (activeFilter && brand.id !== activeFilter)) return;
       let models = (brand.models||[]).filter(m => m.show_on_homepage && matchesFilters(m));
       if (!models.length) return;
       models.sort((a,b) => (a.order||1) - (b.order||1));
 
-      // Marka özel stili genel stil ile birleştir
-      const nameStyle = { ...generalBrandStyle, ...(brand.brand_name_style || {}) };
-
-      html += `<section class="brand-section"><div class="brand-header"><div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div><span class="brand-name" style="font-family:${nameStyle.font_family||'Arial'}; font-size:${nameStyle.font_size||20}px; font-weight:${nameStyle.font_weight||'bold'}; font-style:${nameStyle.font_style||'normal'}; color:${nameStyle.color||'#1A1C1E'}; text-align:${nameStyle.text_align||'left'};">${brand.name}</span></div>`;
+      html += `<section class="brand-section">
+        <div class="brand-header">
+          <div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div>
+          <span class="brand-name">${brand.name}</span>
+        </div>`;
       if (brand.show_brand_description && brand.brand_description) {
         const style = brand.brand_description_style || {}; const effect = style.effect || 'none'; const effectClass = effect !== 'none' ? ' ' + effect : '';
         html += `<div class="brand-highlight${effectClass}" style="font-family:${style.font_family||'Arial'};font-size:${style.font_size||14}px;font-weight:${style.font_weight||'normal'};color:${style.color||'#1A1C1E'};text-align:${style.text_align||'left'};"><span class="text">${brand.brand_description}</span></div>`;
