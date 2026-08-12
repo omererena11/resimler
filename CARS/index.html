@@ -330,10 +330,20 @@
     padding: 8px 12px;
     border-radius: 8px;
     z-index: 9999;
-    max-width: 200px;
+    max-width: 300px;
     line-height: 1.4;
+    max-height: 200px;
+    overflow-y: auto;
   }
   #debug-panel.visible { display: block; }
+  .debug-logo-url {
+    display: none;
+    font-size: 10px;
+    color: #999;
+    margin-top: 2px;
+    word-break: break-all;
+  }
+  .debug-mode .debug-logo-url { display: block; }
 </style>
 </head>
 <body>
@@ -397,6 +407,7 @@
   const DEBUG = urlParams.get('debug') === '1';
   if (DEBUG) {
     debugPanel.classList.add('visible');
+    document.body.classList.add('debug-mode'); // CSS'te .debug-logo-url'yi göstermek için
   }
 
   const GITHUB_RAW = 'https://raw.githubusercontent.com/omererena11/otomobil-verileri/main';
@@ -534,10 +545,12 @@
       if (!models.length) return;
       models.sort((a,b) => (a.order||1) - (b.order||1));
 
+      const logoUrl = brand.logo ? getImgUrl(brand.logo) : '';
       html += `<section class="brand-section">
         <div class="brand-header">
-          <div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div>
+          <div class="brand-logo">${brand.logo ? `<img src="${logoUrl}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div>
           <span class="brand-name">${brand.name}</span>
+          ${DEBUG ? `<div class="debug-logo-url">Logo URL: ${logoUrl || '—'}</div>` : ''}
         </div>`;
       if (brand.show_brand_description && brand.brand_description) {
         const style = brand.brand_description_style || {}; const effect = style.effect || 'none'; const effectClass = effect !== 'none' ? ' ' + effect : '';
