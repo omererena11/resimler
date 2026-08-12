@@ -21,12 +21,6 @@
     --text-secondary: #5F6B7A;
     --accent: #2563EB;
     --highlight-bg: #F0F6FF;
-    /* Marka listesi varsayılanları */
-    --brand-logo-w: 64px;
-    --brand-logo-h: 64px;
-    --brand-name-size: 1.1rem;
-    --brand-name-font: 'Arial';
-    --brand-name-color: #1A1C1E;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -204,10 +198,10 @@
   }
   .brand-logo img { max-width: 80%; max-height: 80%; object-fit: contain; }
   .brand-name {
-    font-weight: 700;
     font-size: var(--brand-name-size, 1.1rem);
     font-family: var(--brand-name-font, 'Arial');
     color: var(--brand-name-color, #1A1C1E);
+    font-weight: 700;
   }
 
   .brand-highlight {
@@ -389,8 +383,6 @@
     }
     if (s.carousel) r.setProperty('--card-gap', Math.round((s.carousel.gap||12) * 0.5) + 'px');
     if (s.sections) r.setProperty('--section-gap', Math.max(8, (s.sections.vertical_gap||20) / 4) + 'px');
-
-    // Marka listesi global stil
     if (s.brand_list_style) {
       const ls = s.brand_list_style;
       r.setProperty('--brand-logo-w', (ls.logo_width || 50) + 'px');
