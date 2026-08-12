@@ -11,8 +11,8 @@
 <style>
   :root {
     --bg-color: #F5F5F5;
-    --card-width: 272px;          /* 340 * 0.8 */
-    --card-img-h: 230px;          /* 288 * 0.8 ≈ 230 */
+    --card-width: 272px;
+    --card-img-h: 230px;
     --card-bg: #FFFFFF;
     --card-radius: 12px;
     --card-gap: 7px;
@@ -34,7 +34,6 @@
 
   #app { max-width: 100%; margin: 0 auto; }
 
-  /* ===== ÜST FİLTRE ALANI (Kasa Tipi + Yakıt Tipi) ===== */
   #top-filters {
     background: #1A1C1E;
     padding: 6px 12px;
@@ -57,13 +56,12 @@
     min-width: 110px;
   }
 
-  /* ===== MARKA FİLTRE + ARAMA ===== */
   #filter-nav {
     background: white;
     padding: 6px 0 2px 0;
     border-bottom: 1px solid #E8EAED;
     position: sticky;
-    top: 42px; /* top-filters yüksekliği kadar */
+    top: 42px;
     z-index: 9;
   }
   .filter-container {
@@ -94,7 +92,6 @@
     font-weight: 600;
   }
 
-  /* Arama çubuğu */
   #brand-search-wrapper {
     position: relative;
     margin: 8px 16px 4px 16px;
@@ -190,7 +187,7 @@
 
   .brand-header { display: flex; align-items: center; gap: 10px; padding: 12px 20px 4px; }
   .brand-logo {
-    width: 64px; height: 64px;          /* 32 → 64 (2 kat) */
+    width: 64px; height: 64px;
     border-radius: 50%;
     background: #F0F2F5;
     display: flex;
@@ -213,7 +210,6 @@
   }
   .brand-highlight .text { flex: 1; }
 
-  /* Efektler */
   .brand-highlight.marquee .text { white-space: nowrap; animation: marquee 12s linear infinite; }
   @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
   .brand-highlight.shimmer {
@@ -260,7 +256,6 @@
   .placeholder-img { background: #F0F1F3; display: flex; align-items: center; justify-content: center; height: var(--card-img-h); font-size: 2.5rem; color: #ADB5BD; }
   .empty-state, .loading { text-align: center; padding: 40px; color: #8E98A3; }
 
-  /* ===== LIGHTBOX ===== */
   #lightbox {
     position: fixed; inset: 0; z-index: 1000;
     display: flex; align-items: center; justify-content: center;
@@ -298,7 +293,6 @@
 </head>
 <body>
   <div id="app">
-    <!-- Kasa Tipi + Yakıt Tipi Filtreleri -->
     <div id="top-filters">
       <select id="filter-body-type" class="cat-select">
         <option value="">Kasa Tipi</option>
@@ -323,7 +317,6 @@
       </select>
     </div>
 
-    <!-- MARKA FİLTRE + ARAMA -->
     <nav id="filter-nav">
       <div class="filter-container" id="filter-container"></div>
       <div id="brand-search-wrapper">
@@ -337,7 +330,6 @@
     <main id="content"><div class="loading">Veriler yükleniyor...</div></main>
   </div>
 
-  <!-- LIGHTBOX OVERLAY -->
   <div id="lightbox">
     <button class="closebtn" id="lightbox-close">&times;</button>
     <div id="viewer"></div>
@@ -379,7 +371,6 @@
     if (!s) return;
     const r = document.documentElement.style;
     if (s.card) {
-      // Kart boyutlarını 1/5 küçült (orijinal çarpan 2 * 0.8 = 1.6)
       const baseW = (s.card.width || 170) * 1.6;
       r.setProperty('--card-width', baseW + 'px');
       r.setProperty('--card-img-h', Math.round(baseW * 27 / 32) + 'px');
@@ -389,14 +380,8 @@
   }
 
   function bindFilters() {
-    $('#filter-body-type').addEventListener('change', e => {
-      filterBodyType = e.target.value;
-      renderContent();
-    });
-    $('#filter-fuel-type').addEventListener('change', e => {
-      filterFuelType = e.target.value;
-      renderContent();
-    });
+    $('#filter-body-type').addEventListener('change', e => { filterBodyType = e.target.value; renderContent(); });
+    $('#filter-fuel-type').addEventListener('change', e => { filterFuelType = e.target.value; renderContent(); });
   }
 
   function selectBrand(brandId) {
@@ -454,9 +439,11 @@
       if (!brand.show_on_homepage || (activeFilter && brand.id !== activeFilter)) return;
       let models = (brand.models||[]).filter(m => m.show_on_homepage && matchesFilters(m));
       if (!models.length) return;
-      // GUI'deki sıralama (order) kullanılıyor!
       models.sort((a,b) => (a.order||1) - (b.order||1));
-      html += `<section class="brand-section"><div class="brand-header"><div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div><span class="brand-name">${brand.name}</span></div>`;
+
+      const nameStyle = brand.brand_name_style || {};
+
+      html += `<section class="brand-section"><div class="brand-header"><div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div><span class="brand-name" style="font-family:${nameStyle.font_family||'Arial'}; font-size:${nameStyle.font_size||20}px; font-weight:${nameStyle.font_weight||'bold'}; font-style:${nameStyle.font_style||'normal'}; color:${nameStyle.color||'#1A1C1E'}; text-align:${nameStyle.text_align||'left'};">${brand.name}</span></div>`;
       if (brand.show_brand_description && brand.brand_description) {
         const style = brand.brand_description_style || {}; const effect = style.effect || 'none'; const effectClass = effect !== 'none' ? ' ' + effect : '';
         html += `<div class="brand-highlight${effectClass}" style="font-family:${style.font_family||'Arial'};font-size:${style.font_size||14}px;font-weight:${style.font_weight||'normal'};color:${style.color||'#1A1C1E'};text-align:${style.text_align||'left'};"><span class="text">${brand.brand_description}</span></div>`;
@@ -475,7 +462,7 @@
     });
   }
 
-  // ===== LIGHTBOX (TAM) =====
+  // ===== LIGHTBOX =====
   let total = 0;
   function openLightbox(images) {
     viewer.innerHTML = ''; total = images.length;
