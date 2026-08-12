@@ -21,7 +21,6 @@
     --text-secondary: #5F6B7A;
     --accent: #2563EB;
     --highlight-bg: #F0F6FF;
-    /* Marka başlığı global değişkenleri */
     --brand-logo-size: 32px;
     --brand-title-size: 18px;
     --brand-title-font: 'Arial';
@@ -30,7 +29,6 @@
     --brand-logo-gap: 8px;
     --brand-header-height: 40px;
     --brand-header-align: left;
-    /* Marka listesi değişkenleri */
     --brand-logo-w: 64px;
     --brand-logo-h: 64px;
     --brand-name-size: 1.1rem;
@@ -318,6 +316,24 @@
   .navbtn { position: fixed; top: 50%; transform: translateY(-50%); width: 42px; height: 64px; z-index: 11; border: none; border-radius: 12px; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #ddd; font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   #prev { left: 8px; display: none; } #next { right: 8px; }
   .closebtn { position: fixed; top: 18px; right: 18px; z-index: 12; width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: none; color: white; font-size: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+  /* Debug panel */
+  #debug-panel {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #0f0;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 9999;
+    max-width: 200px;
+    line-height: 1.4;
+  }
+  #debug-panel.visible { display: block; }
 </style>
 </head>
 <body>
@@ -367,11 +383,21 @@
     <div id="counter">1 / 1</div>
   </div>
 
+  <div id="debug-panel"></div>
+
 <script>
 (function(){
   const $ = s => document.querySelector(s);
   const lightbox = $('#lightbox'), viewer = $('#viewer'), counter = $('#counter');
   const btnPrev = $('#prev'), btnNext = $('#next'), btnClose = $('#lightbox-close');
+  const debugPanel = $('#debug-panel');
+
+  // Debug modu aktifleştirme (?debug=1)
+  const urlParams = new URLSearchParams(window.location.search);
+  const DEBUG = urlParams.get('debug') === '1';
+  if (DEBUG) {
+    debugPanel.classList.add('visible');
+  }
 
   const GITHUB_RAW = 'https://raw.githubusercontent.com/omererena11/otomobil-verileri/main';
   const BASE_PATH = GITHUB_RAW + '/';
@@ -393,7 +419,24 @@
       renderContent();
       initSearch();
       bindFilters();
-    } catch (e) { content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>'; }
+
+      if (DEBUG) {
+        const s = appData.home_page_settings?.brand_header_settings || {};
+        debugPanel.innerHTML = `
+          DATA VERSION: ${appData.updated_at || '—'}<br>
+          LOGO SIZE: ${s.logo_size || '—'} px<br>
+          TITLE SIZE: ${s.title_font_size || '—'} px<br>
+          TITLE FONT: ${s.title_font_family || '—'}<br>
+          TITLE WEIGHT: ${s.title_font_weight || '—'}<br>
+          TITLE COLOR: ${s.title_color || '—'}<br>
+          GAP: ${s.logo_title_gap || '—'} px<br>
+          ALIGN: ${s.alignment || '—'}<br>
+          DATA SOURCE: GitHub Raw
+        `;
+      }
+    } catch (e) {
+      content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>';
+    }
   }
 
   function applySettings(s) {
@@ -407,7 +450,6 @@
     if (s.carousel) r.setProperty('--card-gap', Math.round((s.carousel.gap||12) * 0.5) + 'px');
     if (s.sections) r.setProperty('--section-gap', Math.max(8, (s.sections.vertical_gap||20) / 4) + 'px');
 
-    // Marka başlığı global ayarları
     if (s.brand_header_settings) {
       const h = s.brand_header_settings;
       r.setProperty('--brand-logo-size', (h.logo_size || 32) + 'px');
@@ -420,7 +462,6 @@
       r.setProperty('--brand-header-align', h.alignment || 'left');
     }
 
-    // Marka listesi stilleri
     if (s.brand_list_style) {
       const ls = s.brand_list_style;
       r.setProperty('--brand-logo-w', (ls.logo_width || 50) + 'px');
