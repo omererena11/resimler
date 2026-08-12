@@ -449,13 +449,16 @@
     const content = $('#content');
     if (!appData?.brands) { content.innerHTML = '<div class="empty-state">Veri yok</div>'; return; }
     let html = '';
+    // Genel marka başlığı ayarları
+    const generalBrandStyle = appData?.home_page_settings?.brand_header || {};
     appData.brands.sort((a,b)=>a.order-b.order).forEach(brand => {
       if (!brand.show_on_homepage || (activeFilter && brand.id !== activeFilter)) return;
       let models = (brand.models||[]).filter(m => m.show_on_homepage && matchesFilters(m));
       if (!models.length) return;
       models.sort((a,b) => (a.order||1) - (b.order||1));
 
-      const nameStyle = brand.brand_name_style || {};
+      // Marka özel stili genel stil ile birleştir
+      const nameStyle = { ...generalBrandStyle, ...(brand.brand_name_style || {}) };
 
       html += `<section class="brand-section"><div class="brand-header"><div class="brand-logo">${brand.logo ? `<img src="${getImgUrl(brand.logo)}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div><span class="brand-name" style="font-family:${nameStyle.font_family||'Arial'}; font-size:${nameStyle.font_size||20}px; font-weight:${nameStyle.font_weight||'bold'}; font-style:${nameStyle.font_style||'normal'}; color:${nameStyle.color||'#1A1C1E'}; text-align:${nameStyle.text_align||'left'};">${brand.name}</span></div>`;
       if (brand.show_brand_description && brand.brand_description) {
