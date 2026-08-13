@@ -79,6 +79,43 @@
           "card_description": ""
         }
       ]
+    },
+    {
+      "id": "b-marka-adi",
+      "name": "B MARKA ADI",
+      "logo": "images/brands/b-marka-adi.png",
+      "order": 2,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "AÇIKLAMA",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "none"
+      },
+      "models": [
+        {
+          "id": "b-model-adi",
+          "name": "B MODEL ADI",
+          "year": 2026,
+          "thumbnail": "images/b-marka-adi/b-model-adi/thumbnail.JPG",
+          "large_images": [
+            "images/b-marka-adi/b-model-adi/01.JPG",
+            "images/b-marka-adi/b-model-adi/02.JPG",
+            "images/b-marka-adi/b-model-adi/03.JPG"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "KART AÇIKLAMASI"
+        }
+      ]
     }
   ]
 }
