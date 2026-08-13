@@ -31,7 +31,7 @@
     {
       "id": "a",
       "name": "A MARKA ADI",
-      "logo": "C:/Users/omer.eren/Desktop/Alfa-Romeo-Logo-500x281.png",
+      "logo": "images/brands/a.png",
       "order": 1,
       "show_on_homepage": true,
       "show_brand_description": true,
@@ -49,12 +49,14 @@
           "id": "b",
           "name": "B MODEL ADI",
           "year": 2026,
-          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1).jpeg",
+          "thumbnail": "images/a/b/thumbnail.JPG",
           "large_images": [
             "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1) - Kopya.jpeg",
             "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2) - Kopya.jpeg",
             "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2).jpeg",
-            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (3) - Kopya.jpeg"
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (3) - Kopya.jpeg",
+            "images/a/b/05.JPG",
+            "images/a/b/06.JPG"
           ],
           "body_types": [],
           "fuel_types": [],
