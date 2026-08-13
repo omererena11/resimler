@@ -1,0 +1,70 @@
+{
+  "home_page_settings": {
+    "card": {
+      "width": 170
+    },
+    "carousel": {
+      "gap": 12
+    },
+    "sections": {
+      "vertical_gap": 20
+    },
+    "brand_header_settings": {
+      "logo_size": 32,
+      "title_font_size": 18,
+      "title_font_family": "Arial",
+      "title_font_weight": "bold",
+      "title_color": "#1A1C1E",
+      "logo_title_gap": 8,
+      "header_height": 40,
+      "alignment": "left"
+    },
+    "brand_list_style": {
+      "logo_width": 50,
+      "logo_height": 50,
+      "font_size": 11,
+      "font_family": "Segoe UI",
+      "font_color": "#000000"
+    }
+  },
+  "brands": [
+    {
+      "id": "a",
+      "name": "a",
+      "logo": "C:/Users/omer.eren/Desktop/Alfa-Romeo-Logo-500x281.png",
+      "order": 1,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "AÇIKLAMA ANA SAYFADA GÖSTER AÇIKLAMA",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "slide-up"
+      },
+      "models": [
+        {
+          "id": "b",
+          "name": "B",
+          "year": 2026,
+          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1).jpeg",
+          "large_images": [
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1) - Kopya.jpeg",
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2) - Kopya.jpeg",
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2).jpeg",
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (3) - Kopya.jpeg"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "KART AÇIKLAMASI"
+        }
+      ]
+    }
+  ]
+}
