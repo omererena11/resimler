@@ -72,6 +72,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .cat-select option[value=""] { display: none; } /* placeholder'ı dropdown'da gizle */
 
   #filter-nav {
     background: white;
@@ -327,7 +328,7 @@
     <div id="top-filters">
       <select id="filter-body-type" class="cat-select">
         <option value="" selected hidden>Kasa Tipi</option>
-        <option value="">Tümü</option>
+        <option value="all">Tümü</option>
         <option value="cabrio">Cabrio</option>
         <option value="coupe">Coupe</option>
         <option value="coupe_4">Coupe 4 kapı</option>
@@ -341,7 +342,7 @@
       </select>
       <select id="filter-fuel-type" class="cat-select">
         <option value="" selected hidden>Yakıt Tipi</option>
-        <option value="">Tümü</option>
+        <option value="all">Tümü</option>
         <option value="benzin">Benzin</option>
         <option value="dizel">Dizel</option>
         <option value="hibrit">Hibrit</option>
@@ -398,8 +399,7 @@
       renderContent();
       initSearch();
       bindFilters();
-      // Başlangıçta selector'ları doğru ayarla
-      syncSelectors();
+      syncSelectors(); // başlangıç görünümünü ayarla
     } catch (e) { content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>'; }
   }
 
@@ -439,41 +439,54 @@
   function syncSelectors() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
-    // Mevcut filtre değerlerine göre seçili seçenekleri ayarla
-    if (filterBodyType) {
-      bodySelect.value = filterBodyType;
-    } else {
-      bodySelect.selectedIndex = 1;  // "Tümü" index 1'dir (gizli placeholder 0)
-    }
-    if (filterFuelType) {
-      fuelSelect.value = filterFuelType;
-    } else {
-      fuelSelect.selectedIndex = 1;
-    }
+    // Eğer state boş ise placeholder (value="") seçili olur; dolu ise ilgili değer
+    bodySelect.value = filterBodyType; // '' → placeholder, 'suv' → SUV option
+    fuelSelect.value = filterFuelType;
   }
 
   function bindFilters() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
 
+    // Kasa Tipi focus: açılırken "Tümü" seçili görünsün (state boş ise)
+    bodySelect.addEventListener('focus', () => {
+      if (filterBodyType === '') {
+        bodySelect.value = 'all';
+      }
+    });
+    // Kasa Tipi blur: kapanırken state boş ise placeholder'a dön
+    bodySelect.addEventListener('blur', () => {
+      if (filterBodyType === '') {
+        bodySelect.value = '';
+      }
+    });
     bodySelect.addEventListener('change', e => {
       const val = e.target.value;
-      if (val === '') {
-        // Kullanıcı "Tümü" seçeneğini seçmiş demektir (çünkü gizli placeholder da boş ama gizli olduğu için seçilemez)
+      if (val === 'all') {
         filterBodyType = '';
-        // Kapalı görünümde placeholder'ı göster
-        bodySelect.selectedIndex = 0;  // gizli placeholder
+        bodySelect.value = ''; // kapalı görünümde başlık
       } else {
         filterBodyType = val;
       }
       renderContent();
     });
 
+    // Yakıt Tipi focus/blur/change aynı mantık
+    fuelSelect.addEventListener('focus', () => {
+      if (filterFuelType === '') {
+        fuelSelect.value = 'all';
+      }
+    });
+    fuelSelect.addEventListener('blur', () => {
+      if (filterFuelType === '') {
+        fuelSelect.value = '';
+      }
+    });
     fuelSelect.addEventListener('change', e => {
       const val = e.target.value;
-      if (val === '') {
+      if (val === 'all') {
         filterFuelType = '';
-        fuelSelect.selectedIndex = 0;
+        fuelSelect.value = '';
       } else {
         filterFuelType = val;
       }
