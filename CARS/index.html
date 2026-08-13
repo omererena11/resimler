@@ -47,6 +47,7 @@
 
   #app { max-width: 100%; margin: 0 auto; }
 
+  /* Filtre alanı ortalandı */
   #top-filters {
     background: #1A1C1E;
     padding: 6px 12px;
@@ -55,7 +56,7 @@
     z-index: 30;
     display: flex;
     gap: 8px;
-    justify-content: flex-end;
+    justify-content: center;   /* <-- ortalama */
   }
   .cat-select {
     background: #2A2C30;
@@ -225,8 +226,9 @@
     color: var(--brand-title-color, #1A1C1E);
   }
 
+  /* Marka açıklaması tam genişlikte (çok az yan boşluk) */
   .brand-highlight {
-    margin: 4px 20px 8px;
+    margin: 4px 6px 8px;   /* önceden 4px 20px 8px idi */
     padding: 10px 14px;
     background: var(--highlight-bg);
     border-left: 4px solid var(--accent);
@@ -316,41 +318,13 @@
   .navbtn { position: fixed; top: 50%; transform: translateY(-50%); width: 42px; height: 64px; z-index: 11; border: none; border-radius: 12px; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #ddd; font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   #prev { left: 8px; display: none; } #next { right: 8px; }
   .closebtn { position: fixed; top: 18px; right: 18px; z-index: 12; width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: none; color: white; font-size: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-
-  /* Debug panel */
-  #debug-panel {
-    display: none;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(0,0,0,0.8);
-    color: #0f0;
-    font-family: monospace;
-    font-size: 12px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    z-index: 9999;
-    max-width: 300px;
-    line-height: 1.4;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  #debug-panel.visible { display: block; }
-  .debug-logo-url {
-    display: none;
-    font-size: 10px;
-    color: #999;
-    margin-top: 2px;
-    word-break: break-all;
-  }
-  .debug-mode .debug-logo-url { display: block; }
 </style>
 </head>
 <body>
   <div id="app">
     <div id="top-filters">
       <select id="filter-body-type" class="cat-select">
-        <option value="">Kasa Tipi</option>
+        <option value="">Tümü</option>
         <option value="cabrio">Cabrio</option>
         <option value="coupe">Coupe</option>
         <option value="coupe_4">Coupe 4 kapı</option>
@@ -363,7 +337,7 @@
         <option value="suv">SUV</option>
       </select>
       <select id="filter-fuel-type" class="cat-select">
-        <option value="">Yakıt Tipi</option>
+        <option value="">Tümü</option>
         <option value="benzin">Benzin</option>
         <option value="dizel">Dizel</option>
         <option value="hibrit">Hibrit</option>
@@ -393,22 +367,11 @@
     <div id="counter">1 / 1</div>
   </div>
 
-  <div id="debug-panel"></div>
-
 <script>
 (function(){
   const $ = s => document.querySelector(s);
   const lightbox = $('#lightbox'), viewer = $('#viewer'), counter = $('#counter');
   const btnPrev = $('#prev'), btnNext = $('#next'), btnClose = $('#lightbox-close');
-  const debugPanel = $('#debug-panel');
-
-  // Debug modu aktifleştirme (?debug=1)
-  const urlParams = new URLSearchParams(window.location.search);
-  const DEBUG = urlParams.get('debug') === '1';
-  if (DEBUG) {
-    debugPanel.classList.add('visible');
-    document.body.classList.add('debug-mode'); // CSS'te .debug-logo-url'yi göstermek için
-  }
 
   const GITHUB_RAW = 'https://raw.githubusercontent.com/omererena11/otomobil-verileri/main';
   const BASE_PATH = GITHUB_RAW + '/';
@@ -430,24 +393,7 @@
       renderContent();
       initSearch();
       bindFilters();
-
-      if (DEBUG) {
-        const s = appData.home_page_settings?.brand_header_settings || {};
-        debugPanel.innerHTML = `
-          DATA VERSION: ${appData.updated_at || '—'}<br>
-          LOGO SIZE: ${s.logo_size || '—'} px<br>
-          TITLE SIZE: ${s.title_font_size || '—'} px<br>
-          TITLE FONT: ${s.title_font_family || '—'}<br>
-          TITLE WEIGHT: ${s.title_font_weight || '—'}<br>
-          TITLE COLOR: ${s.title_color || '—'}<br>
-          GAP: ${s.logo_title_gap || '—'} px<br>
-          ALIGN: ${s.alignment || '—'}<br>
-          DATA SOURCE: GitHub Raw
-        `;
-      }
-    } catch (e) {
-      content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>';
-    }
+    } catch (e) { content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>'; }
   }
 
   function applySettings(s) {
@@ -550,7 +496,6 @@
         <div class="brand-header">
           <div class="brand-logo">${brand.logo ? `<img src="${logoUrl}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div>
           <span class="brand-name">${brand.name}</span>
-          ${DEBUG ? `<div class="debug-logo-url">Logo URL: ${logoUrl || '—'}</div>` : ''}
         </div>`;
       if (brand.show_brand_description && brand.brand_description) {
         const style = brand.brand_description_style || {}; const effect = style.effect || 'none'; const effectClass = effect !== 'none' ? ' ' + effect : '';
