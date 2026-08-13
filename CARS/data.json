@@ -29,91 +29,40 @@
   },
   "brands": [
     {
-      "id": "opel",
-      "name": "Opel",
-      "logo": "images/opel/logo.png",
+      "id": "a",
+      "name": "a",
+      "logo": "C:/Users/omer.eren/Desktop/Alfa-Romeo-Logo-500x281.png",
       "order": 1,
       "show_on_homepage": true,
       "show_brand_description": true,
-      "brand_description": "2026 Opel modellerini keşfedin",
+      "brand_description": "AÇIKLAMA ANA SAYFADA GÖSTER AÇIKLAMA",
       "brand_description_style": {
         "font_family": "Arial",
         "font_size": 14,
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "slide-up"
       },
       "models": [
         {
-          "id": "corsa",
-          "name": "Corsa",
+          "id": "b",
+          "name": "B",
           "year": 2026,
-          "thumbnail": "images/opel/corsa/thumbnail.jpg",
+          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1).jpeg",
           "large_images": [
-            "images/opel/corsa/01.jpg",
-            "images/opel/corsa/02.jpg"
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1) - Kopya.jpeg",
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2) - Kopya.jpeg",
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2).jpeg",
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (3) - Kopya.jpeg"
           ],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [],
+          "fuel_types": [],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir içi kullanım için modern hatchback"
-        },
-        {
-          "id": "astra",
-          "name": "Astra",
-          "year": 2026,
-          "thumbnail": "images/opel/astra/thumbnail.jpg",
-          "large_images": [
-            "images/opel/astra/01.jpg",
-            "images/opel/astra/02.jpg"
-          ],
-          "body_types": ["hatchback_5", "sedan"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
-          "order": 2,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "Kompakt sınıfta konfor ve teknoloji"
-        }
-      ]
-    },
-    {
-      "id": "mercedes",
-      "name": "Mercedes",
-      "logo": "images/mercedes/logo.png",
-      "order": 2,
-      "show_on_homepage": true,
-      "show_brand_description": true,
-      "brand_description": "Lüks ve performansın buluştuğu nokta",
-      "brand_description_style": {
-        "font_family": "Arial",
-        "font_size": 14,
-        "font_weight": "normal",
-        "color": "#1A1C1E",
-        "text_align": "left",
-        "effect": "shimmer"
-      },
-      "models": [
-        {
-          "id": "c-serisi",
-          "name": "C Serisi",
-          "year": 2026,
-          "thumbnail": "images/mercedes/c-serisi/thumbnail.jpg",
-          "large_images": [
-            "images/mercedes/c-serisi/01.jpg",
-            "images/mercedes/c-serisi/02.jpg"
-          ],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
-          "order": 1,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "Zarafet ve gücün simgesi"
+          "card_description": "KART AÇIKLAMASI"
         }
       ]
     }
