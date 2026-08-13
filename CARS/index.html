@@ -72,7 +72,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .cat-select option[value=""] { display: none; } /* placeholder'ı dropdown'da gizle */
+  .cat-select option[value=""] { display: none; }
 
   #filter-nav {
     background: white;
@@ -385,8 +385,17 @@
   let appData = null, activeFilter = null;
   let filterBodyType = '';      // boş string = Tümü
   let filterFuelType = '';      // boş string = Tümü
+  let imageCacheBuster = '';    // Görseller için cache buster (Date.now ile doldurulacak)
 
-  function getImgUrl(path) { if (!path) return ''; return path.startsWith('http') ? path : BASE_PATH + path; }
+  function getImgUrl(path) {
+    if (!path) return '';
+    let url = path.startsWith('http') ? path : BASE_PATH + path;
+    if (imageCacheBuster) {
+      const separator = url.includes('?') ? '&' : '?';
+      url += separator + imageCacheBuster.substring(1); // '?v=...' olduğu için baştaki ? atılır
+    }
+    return url;
+  }
 
   async function loadData() {
     const content = $('#content'); content.innerHTML = '<div class="loading">Veriler yükleniyor...</div>';
@@ -394,6 +403,10 @@
       const resp = await fetch(DATA_URL, { cache: 'no-store' });
       if (!resp.ok) throw new Error('Veri alınamadı');
       appData = await resp.json();
+
+      // Görsel önbelleğini kırmak için her açılışta yeni değer
+      imageCacheBuster = '?v=' + Date.now();
+
       applySettings(appData.home_page_settings);
       renderFilters();
       renderContent();
