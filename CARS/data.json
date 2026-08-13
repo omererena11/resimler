@@ -30,7 +30,7 @@
   "brands": [
     {
       "id": "a",
-      "name": "a",
+      "name": "A MARKA ADI",
       "logo": "C:/Users/omer.eren/Desktop/Alfa-Romeo-Logo-500x281.png",
       "order": 1,
       "show_on_homepage": true,
@@ -47,7 +47,7 @@
       "models": [
         {
           "id": "b",
-          "name": "B",
+          "name": "B MODEL ADI",
           "year": 2026,
           "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1).jpeg",
           "large_images": [
@@ -63,6 +63,22 @@
           "show_year": true,
           "show_description": true,
           "card_description": "KART AÇIKLAMASI"
+        },
+        {
+          "id": "c",
+          "name": "C MODEL ADI",
+          "year": 2026,
+          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.23.jpeg",
+          "large_images": [
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.23.jpeg"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": ""
         }
       ]
     }
