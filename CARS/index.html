@@ -383,9 +383,10 @@
   const DATA_URL = BASE_PATH + 'data.json?t=' + Date.now();
 
   let appData = null, activeFilter = null;
-  let filterBodyType = '';      // boş string = Tümü
-  let filterFuelType = '';      // boş string = Tümü
-  let imageCacheBuster = '';    // Görseller için cache buster (Date.now ile doldurulacak)
+  // Artık "Tümü" değeri 'all' olarak tutulacak, boş string değil.
+  let filterBodyType = 'all';
+  let filterFuelType = 'all';
+  let imageCacheBuster = '';    // Görseller için cache buster
 
   function getImgUrl(path) {
     if (!path) return '';
@@ -449,34 +450,50 @@
     }
   }
 
+  // Senkronizasyon fonksiyonu güncellendi: kapalı görünümde placeholder, açıkken 'all'
   function syncSelectors() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
-    // Eğer state boş ise placeholder (value="") seçili olur; dolu ise ilgili değer
-    bodySelect.value = filterBodyType; // '' → placeholder, 'suv' → SUV option
-    fuelSelect.value = filterFuelType;
+
+    // Kasa Tipi
+    if (filterBodyType === 'all') {
+      bodySelect.value = ''; // placeholder göster
+    } else {
+      bodySelect.value = filterBodyType;
+    }
+
+    // Yakıt Tipi
+    if (filterFuelType === 'all') {
+      fuelSelect.value = ''; // placeholder göster
+    } else {
+      fuelSelect.value = filterFuelType;
+    }
   }
 
   function bindFilters() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
 
-    // Kasa Tipi focus: açılırken "Tümü" seçili görünsün (state boş ise)
+    // Kasa Tipi focus: açılırken state ne ise onu göster
     bodySelect.addEventListener('focus', () => {
-      if (filterBodyType === '') {
+      if (filterBodyType === 'all') {
         bodySelect.value = 'all';
+      } else {
+        bodySelect.value = filterBodyType;
       }
     });
-    // Kasa Tipi blur: kapanırken state boş ise placeholder'a dön
+
+    // Kasa Tipi blur: kapanırken eğer "Tümü" ise placeholder'a dön
     bodySelect.addEventListener('blur', () => {
-      if (filterBodyType === '') {
+      if (filterBodyType === 'all') {
         bodySelect.value = '';
       }
     });
+
     bodySelect.addEventListener('change', e => {
       const val = e.target.value;
       if (val === 'all') {
-        filterBodyType = '';
+        filterBodyType = 'all';
         bodySelect.value = ''; // kapalı görünümde başlık
       } else {
         filterBodyType = val;
@@ -486,20 +503,24 @@
 
     // Yakıt Tipi focus/blur/change aynı mantık
     fuelSelect.addEventListener('focus', () => {
-      if (filterFuelType === '') {
+      if (filterFuelType === 'all') {
         fuelSelect.value = 'all';
+      } else {
+        fuelSelect.value = filterFuelType;
       }
     });
+
     fuelSelect.addEventListener('blur', () => {
-      if (filterFuelType === '') {
+      if (filterFuelType === 'all') {
         fuelSelect.value = '';
       }
     });
+
     fuelSelect.addEventListener('change', e => {
       const val = e.target.value;
       if (val === 'all') {
-        filterFuelType = '';
-        fuelSelect.value = '';
+        filterFuelType = 'all';
+        fuelSelect.value = ''; // kapalı görünümde başlık
       } else {
         filterFuelType = val;
       }
@@ -548,9 +569,10 @@
   }
   function hideSearchResults() { $('#brand-search-results').classList.remove('visible'); }
 
+  // Filtreleme: 'all' değeri filtre uygulanmıyor anlamına gelir
   function matchesFilters(car) {
-    if (filterBodyType && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
-    if (filterFuelType && (!car.fuel_types || !car.fuel_types.includes(filterFuelType))) return false;
+    if (filterBodyType !== 'all' && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
+    if (filterFuelType !== 'all' && (!car.fuel_types || !car.fuel_types.includes(filterFuelType))) return false;
     return true;
   }
 
