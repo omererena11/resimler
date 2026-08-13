@@ -378,15 +378,15 @@
   const lightbox = $('#lightbox'), viewer = $('#viewer'), counter = $('#counter');
   const btnPrev = $('#prev'), btnNext = $('#next'), btnClose = $('#lightbox-close');
 
-  const GITHUB_RAW = 'https://raw.githubusercontent.com/omererena11/otomobil-verileri/main';
-  const BASE_PATH = GITHUB_RAW + '/';
+  // YENİ REPO YAPISI: omererena11/resimler, CARS klasörü
+  const GITHUB_RAW = 'https://raw.githubusercontent.com/omererena11/resimler/main';
+  const BASE_PATH = GITHUB_RAW + '/CARS/';
   const DATA_URL = BASE_PATH + 'data.json?t=' + Date.now();
 
   let appData = null, activeFilter = null;
-  // "Tümü" için 'all' değerini kullanıyoruz.
   let filterBodyType = 'all';
   let filterFuelType = 'all';
-  let imageCacheBuster = '';    // Görseller için cache buster
+  let imageCacheBuster = '';
 
   function getImgUrl(path) {
     if (!path) return '';
@@ -404,16 +404,13 @@
       const resp = await fetch(DATA_URL, { cache: 'no-store' });
       if (!resp.ok) throw new Error('Veri alınamadı');
       appData = await resp.json();
-
-      // Görsel önbelleğini kırmak için her açılışta yeni değer
       imageCacheBuster = '?v=' + Date.now();
-
       applySettings(appData.home_page_settings);
       renderFilters();
       renderContent();
       initSearch();
       bindFilters();
-      syncSelectors(); // başlangıç görünümünü ayarla
+      syncSelectors();
     } catch (e) { content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>'; }
   }
 
@@ -450,89 +447,45 @@
     }
   }
 
-  // Senkronizasyon: kapalı görünümde placeholder, açıldığında ise ilgili değer
   function syncSelectors() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
-
-    // Kasa Tipi
-    if (filterBodyType === 'all') {
-      bodySelect.value = ''; // placeholder göster
-    } else {
-      bodySelect.value = filterBodyType;
-    }
-
-    // Yakıt Tipi
-    if (filterFuelType === 'all') {
-      fuelSelect.value = ''; // placeholder göster
-    } else {
-      fuelSelect.value = filterFuelType;
-    }
+    if (filterBodyType === 'all') bodySelect.value = ''; else bodySelect.value = filterBodyType;
+    if (filterFuelType === 'all') fuelSelect.value = ''; else fuelSelect.value = filterFuelType;
   }
 
   function bindFilters() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
 
-    // ===== KASA TİPİ =====
-    // Dropdown açılmadan hemen önce doğru değeri ayarla
     function prepareBodySelect() {
-      if (filterBodyType === 'all') {
-        bodySelect.value = 'all';
-      } else {
-        bodySelect.value = filterBodyType;
-      }
+      if (filterBodyType === 'all') bodySelect.value = 'all'; else bodySelect.value = filterBodyType;
     }
     bodySelect.addEventListener('mousedown', prepareBodySelect);
     bodySelect.addEventListener('touchstart', prepareBodySelect, { passive: true });
-
-    // Seçim yapıldığında state'i güncelle ve görünümü senkronla
     bodySelect.addEventListener('change', () => {
       const val = bodySelect.value;
-      if (val === 'all') {
-        filterBodyType = 'all';
-      } else {
-        filterBodyType = val;
-      }
+      filterBodyType = (val === 'all') ? 'all' : val;
       renderContent();
-      // ÖNEMLİ: Dropdown kapandıktan sonra kapalı butonun görünümünü güncelle
-      // Bu, Android'de blur tetiklenmese bile doğru görünümü garantiler
       syncSelectors();
     });
-
-    // Dropdown kapandığında "Tümü" ise placeholder'a dön (yedek)
     bodySelect.addEventListener('blur', () => {
-      if (filterBodyType === 'all') {
-        bodySelect.value = '';
-      }
+      if (filterBodyType === 'all') bodySelect.value = '';
     });
 
-    // ===== YAKIT TİPİ =====
     function prepareFuelSelect() {
-      if (filterFuelType === 'all') {
-        fuelSelect.value = 'all';
-      } else {
-        fuelSelect.value = filterFuelType;
-      }
+      if (filterFuelType === 'all') fuelSelect.value = 'all'; else fuelSelect.value = filterFuelType;
     }
     fuelSelect.addEventListener('mousedown', prepareFuelSelect);
     fuelSelect.addEventListener('touchstart', prepareFuelSelect, { passive: true });
-
     fuelSelect.addEventListener('change', () => {
       const val = fuelSelect.value;
-      if (val === 'all') {
-        filterFuelType = 'all';
-      } else {
-        filterFuelType = val;
-      }
+      filterFuelType = (val === 'all') ? 'all' : val;
       renderContent();
-      syncSelectors(); // kapalı görünümü anında güncelle
+      syncSelectors();
     });
-
     fuelSelect.addEventListener('blur', () => {
-      if (filterFuelType === 'all') {
-        fuelSelect.value = '';
-      }
+      if (filterFuelType === 'all') fuelSelect.value = '';
     });
   }
 
@@ -577,7 +530,6 @@
   }
   function hideSearchResults() { $('#brand-search-results').classList.remove('visible'); }
 
-  // Filtreleme: 'all' değeri filtre uygulanmıyor anlamına gelir
   function matchesFilters(car) {
     if (filterBodyType !== 'all' && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
     if (filterFuelType !== 'all' && (!car.fuel_types || !car.fuel_types.includes(filterFuelType))) return false;
