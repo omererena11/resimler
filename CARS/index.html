@@ -383,7 +383,7 @@
   const DATA_URL = BASE_PATH + 'data.json?t=' + Date.now();
 
   let appData = null, activeFilter = null;
-  // Artık "Tümü" değeri 'all' olarak tutulacak, boş string değil.
+  // "Tümü" için 'all' değerini kullanıyoruz.
   let filterBodyType = 'all';
   let filterFuelType = 'all';
   let imageCacheBuster = '';    // Görseller için cache buster
@@ -393,7 +393,7 @@
     let url = path.startsWith('http') ? path : BASE_PATH + path;
     if (imageCacheBuster) {
       const separator = url.includes('?') ? '&' : '?';
-      url += separator + imageCacheBuster.substring(1); // '?v=...' olduğu için baştaki ? atılır
+      url += separator + imageCacheBuster.substring(1);
     }
     return url;
   }
@@ -450,7 +450,7 @@
     }
   }
 
-  // Senkronizasyon fonksiyonu güncellendi: kapalı görünümde placeholder, açıkken 'all'
+  // Senkronizasyon: kapalı görünümde placeholder, açıldığında ise ilgili değer
   function syncSelectors() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
@@ -474,57 +474,61 @@
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
 
-    // Kasa Tipi focus: açılırken state ne ise onu göster
-    bodySelect.addEventListener('focus', () => {
+    // ===== KASA TİPİ =====
+    // Dropdown açılmadan hemen önce (mousedown/touchstart) doğru değeri ayarla
+    function prepareBodySelect() {
       if (filterBodyType === 'all') {
         bodySelect.value = 'all';
       } else {
         bodySelect.value = filterBodyType;
       }
-    });
+    }
+    bodySelect.addEventListener('mousedown', prepareBodySelect);
+    bodySelect.addEventListener('touchstart', prepareBodySelect, { passive: true });
 
-    // Kasa Tipi blur: kapanırken eğer "Tümü" ise placeholder'a dön
-    bodySelect.addEventListener('blur', () => {
-      if (filterBodyType === 'all') {
-        bodySelect.value = '';
-      }
-    });
-
-    bodySelect.addEventListener('change', e => {
-      const val = e.target.value;
+    // Seçim yapıldığında state'i güncelle, ancak görünümü değiştirme (blur'da placeholder'a çevrilecek)
+    bodySelect.addEventListener('change', () => {
+      const val = bodySelect.value;
       if (val === 'all') {
         filterBodyType = 'all';
-        bodySelect.value = ''; // kapalı görünümde başlık
       } else {
         filterBodyType = val;
       }
       renderContent();
     });
 
-    // Yakıt Tipi focus/blur/change aynı mantık
-    fuelSelect.addEventListener('focus', () => {
+    // Dropdown kapandığında "Tümü" ise placeholder'a dön
+    bodySelect.addEventListener('blur', () => {
+      if (filterBodyType === 'all') {
+        bodySelect.value = '';
+      }
+    });
+
+    // ===== YAKIT TİPİ =====
+    function prepareFuelSelect() {
       if (filterFuelType === 'all') {
         fuelSelect.value = 'all';
       } else {
         fuelSelect.value = filterFuelType;
       }
+    }
+    fuelSelect.addEventListener('mousedown', prepareFuelSelect);
+    fuelSelect.addEventListener('touchstart', prepareFuelSelect, { passive: true });
+
+    fuelSelect.addEventListener('change', () => {
+      const val = fuelSelect.value;
+      if (val === 'all') {
+        filterFuelType = 'all';
+      } else {
+        filterFuelType = val;
+      }
+      renderContent();
     });
 
     fuelSelect.addEventListener('blur', () => {
       if (filterFuelType === 'all') {
         fuelSelect.value = '';
       }
-    });
-
-    fuelSelect.addEventListener('change', e => {
-      const val = e.target.value;
-      if (val === 'all') {
-        filterFuelType = 'all';
-        fuelSelect.value = ''; // kapalı görünümde başlık
-      } else {
-        filterFuelType = val;
-      }
-      renderContent();
     });
   }
 
