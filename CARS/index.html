@@ -475,7 +475,7 @@
     const fuelSelect = $('#filter-fuel-type');
 
     // ===== KASA TİPİ =====
-    // Dropdown açılmadan hemen önce (mousedown/touchstart) doğru değeri ayarla
+    // Dropdown açılmadan hemen önce doğru değeri ayarla
     function prepareBodySelect() {
       if (filterBodyType === 'all') {
         bodySelect.value = 'all';
@@ -486,7 +486,7 @@
     bodySelect.addEventListener('mousedown', prepareBodySelect);
     bodySelect.addEventListener('touchstart', prepareBodySelect, { passive: true });
 
-    // Seçim yapıldığında state'i güncelle, ancak görünümü değiştirme (blur'da placeholder'a çevrilecek)
+    // Seçim yapıldığında state'i güncelle ve görünümü senkronla
     bodySelect.addEventListener('change', () => {
       const val = bodySelect.value;
       if (val === 'all') {
@@ -495,9 +495,12 @@
         filterBodyType = val;
       }
       renderContent();
+      // ÖNEMLİ: Dropdown kapandıktan sonra kapalı butonun görünümünü güncelle
+      // Bu, Android'de blur tetiklenmese bile doğru görünümü garantiler
+      syncSelectors();
     });
 
-    // Dropdown kapandığında "Tümü" ise placeholder'a dön
+    // Dropdown kapandığında "Tümü" ise placeholder'a dön (yedek)
     bodySelect.addEventListener('blur', () => {
       if (filterBodyType === 'all') {
         bodySelect.value = '';
@@ -523,6 +526,7 @@
         filterFuelType = val;
       }
       renderContent();
+      syncSelectors(); // kapalı görünümü anında güncelle
     });
 
     fuelSelect.addEventListener('blur', () => {
