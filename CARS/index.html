@@ -55,7 +55,7 @@
     z-index: 30;
     display: flex;
     gap: 8px;
-    justify-content: center;   /* ortalama */
+    justify-content: center;
   }
   .cat-select {
     background: #2A2C30;
@@ -382,7 +382,8 @@
   const DATA_URL = BASE_PATH + 'data.json?t=' + Date.now();
 
   let appData = null, activeFilter = null;
-  let filterBodyType = '', filterFuelType = '';
+  let filterBodyType = '';      // boş string = Tümü
+  let filterFuelType = '';      // boş string = Tümü
 
   function getImgUrl(path) { if (!path) return ''; return path.startsWith('http') ? path : BASE_PATH + path; }
 
@@ -397,6 +398,8 @@
       renderContent();
       initSearch();
       bindFilters();
+      // Başlangıçta selector'ları doğru ayarla
+      syncSelectors();
     } catch (e) { content.innerHTML = '<div class="empty-state">Hata oluştu: ' + e.message + '</div>'; }
   }
 
@@ -433,23 +436,46 @@
     }
   }
 
+  function syncSelectors() {
+    const bodySelect = $('#filter-body-type');
+    const fuelSelect = $('#filter-fuel-type');
+    // Mevcut filtre değerlerine göre seçili seçenekleri ayarla
+    if (filterBodyType) {
+      bodySelect.value = filterBodyType;
+    } else {
+      bodySelect.selectedIndex = 1;  // "Tümü" index 1'dir (gizli placeholder 0)
+    }
+    if (filterFuelType) {
+      fuelSelect.value = filterFuelType;
+    } else {
+      fuelSelect.selectedIndex = 1;
+    }
+  }
+
   function bindFilters() {
     const bodySelect = $('#filter-body-type');
     const fuelSelect = $('#filter-fuel-type');
 
     bodySelect.addEventListener('change', e => {
-      filterBodyType = e.target.value;
-      if (filterBodyType === '') {
-        // Placeholder'ı seç (gizli ilk seçenek)
-        bodySelect.selectedIndex = 0;
+      const val = e.target.value;
+      if (val === '') {
+        // Kullanıcı "Tümü" seçeneğini seçmiş demektir (çünkü gizli placeholder da boş ama gizli olduğu için seçilemez)
+        filterBodyType = '';
+        // Kapalı görünümde placeholder'ı göster
+        bodySelect.selectedIndex = 0;  // gizli placeholder
+      } else {
+        filterBodyType = val;
       }
       renderContent();
     });
 
     fuelSelect.addEventListener('change', e => {
-      filterFuelType = e.target.value;
-      if (filterFuelType === '') {
+      const val = e.target.value;
+      if (val === '') {
+        filterFuelType = '';
         fuelSelect.selectedIndex = 0;
+      } else {
+        filterFuelType = val;
       }
       renderContent();
     });
