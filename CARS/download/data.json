@@ -31,7 +31,7 @@
     {
       "id": "a",
       "name": "A MARKA ADI",
-      "logo": "C:/Users/omer.eren/Desktop/Alfa-Romeo-Logo-500x281.png",
+      "logo": "images/brands/a.png",
       "order": 1,
       "show_on_homepage": true,
       "show_brand_description": true,
@@ -49,12 +49,10 @@
           "id": "b",
           "name": "B MODEL ADI",
           "year": 2026,
-          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1).jpeg",
+          "thumbnail": "images/a/b/thumbnail.JPG",
           "large_images": [
-            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (1) - Kopya.jpeg",
-            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2) - Kopya.jpeg",
-            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (2).jpeg",
-            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.22 (3) - Kopya.jpeg"
+            "images/a/b/05.JPG",
+            "images/a/b/06.JPG"
           ],
           "body_types": [],
           "fuel_types": [],
@@ -79,6 +77,43 @@
           "show_year": true,
           "show_description": true,
           "card_description": ""
+        }
+      ]
+    },
+    {
+      "id": "b-marka-adi",
+      "name": "B MARKA ADI",
+      "logo": "images/brands/b-marka-adi.png",
+      "order": 2,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "AÇIKLAMA",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "none"
+      },
+      "models": [
+        {
+          "id": "b-model-adi",
+          "name": "B MODEL ADI",
+          "year": 2026,
+          "thumbnail": "images/b-marka-adi/b-model-adi/thumbnail.JPG",
+          "large_images": [
+            "images/b-marka-adi/b-model-adi/01.JPG",
+            "images/b-marka-adi/b-model-adi/02.JPG",
+            "images/b-marka-adi/b-model-adi/03.JPG"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "KART AÇIKLAMASI"
         }
       ]
     }
