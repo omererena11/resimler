@@ -47,7 +47,6 @@
 
   #app { max-width: 100%; margin: 0 auto; }
 
-  /* Filtre alanı ortalandı */
   #top-filters {
     background: #1A1C1E;
     padding: 6px 12px;
@@ -56,7 +55,7 @@
     z-index: 30;
     display: flex;
     gap: 8px;
-    justify-content: center;   /* <-- ortalama */
+    justify-content: center;   /* ortalama */
   }
   .cat-select {
     background: #2A2C30;
@@ -68,6 +67,10 @@
     cursor: pointer;
     outline: none;
     min-width: 110px;
+    flex: 1 1 auto;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   #filter-nav {
@@ -226,9 +229,8 @@
     color: var(--brand-title-color, #1A1C1E);
   }
 
-  /* Marka açıklaması tam genişlikte (çok az yan boşluk) */
   .brand-highlight {
-    margin: 4px 6px 8px;   /* önceden 4px 20px 8px idi */
+    margin: 4px 6px 8px;
     padding: 10px 14px;
     background: var(--highlight-bg);
     border-left: 4px solid var(--accent);
@@ -324,6 +326,7 @@
   <div id="app">
     <div id="top-filters">
       <select id="filter-body-type" class="cat-select">
+        <option value="" selected hidden>Kasa Tipi</option>
         <option value="">Tümü</option>
         <option value="cabrio">Cabrio</option>
         <option value="coupe">Coupe</option>
@@ -337,6 +340,7 @@
         <option value="suv">SUV</option>
       </select>
       <select id="filter-fuel-type" class="cat-select">
+        <option value="" selected hidden>Yakıt Tipi</option>
         <option value="">Tümü</option>
         <option value="benzin">Benzin</option>
         <option value="dizel">Dizel</option>
@@ -430,8 +434,25 @@
   }
 
   function bindFilters() {
-    $('#filter-body-type').addEventListener('change', e => { filterBodyType = e.target.value; renderContent(); });
-    $('#filter-fuel-type').addEventListener('change', e => { filterFuelType = e.target.value; renderContent(); });
+    const bodySelect = $('#filter-body-type');
+    const fuelSelect = $('#filter-fuel-type');
+
+    bodySelect.addEventListener('change', e => {
+      filterBodyType = e.target.value;
+      if (filterBodyType === '') {
+        // Placeholder'ı seç (gizli ilk seçenek)
+        bodySelect.selectedIndex = 0;
+      }
+      renderContent();
+    });
+
+    fuelSelect.addEventListener('change', e => {
+      filterFuelType = e.target.value;
+      if (filterFuelType === '') {
+        fuelSelect.selectedIndex = 0;
+      }
+      renderContent();
+    });
   }
 
   function selectBrand(brandId) {
