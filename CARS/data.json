@@ -76,7 +76,11 @@
           "large_images": [
             "images/opel/astra/01.jpg",
             "images/opel/astra/02.jpg",
-            "images/opel/astra/03.jpg"
+            "images/opel/astra/03.jpg",
+            "images/opel/astra/04.png",
+            "images/opel/astra/05.png",
+            "images/opel/astra/06.png",
+            "images/opel/astra/07.png"
           ],
           "body_types": [
             "hatchback_5",
