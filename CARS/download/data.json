@@ -31,7 +31,7 @@
     {
       "id": "a",
       "name": "A MARKA ADI",
-      "logo": "images/brands/a.JPG",
+      "logo": "images/brands/a.png",
       "order": 1,
       "show_on_homepage": true,
       "show_brand_description": true,
@@ -49,7 +49,7 @@
           "id": "b",
           "name": "B MODEL ADI",
           "year": 2026,
-          "thumbnail": "images/a/b/thumbnail.JPG",
+          "thumbnail": "C:\\Users\\omer.eren\\Documents\\HASAR5.JPG",
           "large_images": [
             "images/a/b/03.jpeg",
             "images/a/b/06.JPG",
