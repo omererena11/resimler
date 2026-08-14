@@ -73,7 +73,11 @@
           "name": "Astra",
           "year": 2026,
           "thumbnail": "images/opel/astra/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/opel/astra/01.jpg",
+            "images/opel/astra/02.jpg",
+            "images/opel/astra/03.jpg"
+          ],
           "body_types": [
             "hatchback_5",
             "station_wagon"
