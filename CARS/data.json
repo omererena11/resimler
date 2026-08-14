@@ -47,7 +47,7 @@
       "models": [
         {
           "id": "corsa",
-          "name": "Corsa",
+          "name": "Corsa ",
           "year": 2026,
           "thumbnail": "images/opel/corsa/thumbnail.png",
           "large_images": [
@@ -60,14 +60,13 @@
             "hatchback_5"
           ],
           "fuel_types": [
-            "benzin",
-            "elektrik"
+            "hibrit"
           ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir hayatı için çevik ve modern hatchback"
+          "card_description": "1.2 Edition Şehir hayatı için çevik ve modern hatchback"
         },
         {
           "id": "astra",
