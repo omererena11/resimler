@@ -29,68 +29,13 @@
   },
   "brands": [
     {
-      "id": "a",
-      "name": "A MARKA ADI",
-      "logo": "images/brands/a.png",
+      "id": "opel",
+      "name": "Opel",
+      "logo": "images/brands/opel.png",
       "order": 1,
       "show_on_homepage": true,
       "show_brand_description": true,
-      "brand_description": "AÇIKLAMA ANA SAYFADA GÖSTER AÇIKLAMA",
-      "brand_description_style": {
-        "font_family": "Arial",
-        "font_size": 14,
-        "font_weight": "normal",
-        "color": "#1A1C1E",
-        "text_align": "left",
-        "effect": "slide-up"
-      },
-      "models": [
-        {
-          "id": "b",
-          "name": "B MODEL ADI",
-          "year": 2026,
-          "thumbnail": "images/a/b/thumbnail.jpg",
-          "large_images": [
-            "images/a/b/06.jpg",
-            "images/a/b/07.JPG",
-            "images/a/b/03.jpeg",
-            "images/a/b/05.png",
-            "images/a/b/05.jpg"
-          ],
-          "body_types": [],
-          "fuel_types": [],
-          "order": 1,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "KART AÇIKLAMASI"
-        },
-        {
-          "id": "c",
-          "name": "C MODEL ADI",
-          "year": 2026,
-          "thumbnail": "images/a/c/thumbnail.JPG",
-          "large_images": [
-            "images/a/c/01.JPG"
-          ],
-          "body_types": [],
-          "fuel_types": [],
-          "order": 2,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": ""
-        }
-      ]
-    },
-    {
-      "id": "b-marka-adi",
-      "name": "B MARKA ADI",
-      "logo": "images/brands/b-marka-adi.png",
-      "order": 2,
-      "show_on_homepage": true,
-      "show_brand_description": true,
-      "brand_description": "AÇIKLAMA",
+      "brand_description": "Alman mühendisliğinin güvenilir temsilcisi",
       "brand_description_style": {
         "font_family": "Arial",
         "font_size": 14,
@@ -101,22 +46,258 @@
       },
       "models": [
         {
-          "id": "b-model-adi",
-          "name": "B MODEL ADI",
+          "id": "corsa",
+          "name": "Corsa",
           "year": 2026,
-          "thumbnail": "images/b-marka-adi/b-model-adi/thumbnail.JPG",
+          "thumbnail": "images/opel/corsa/thumbnail.jpg",
           "large_images": [
-            "images/b-marka-adi/b-model-adi/01.JPG",
-            "images/b-marka-adi/b-model-adi/02.JPG",
-            "images/b-marka-adi/b-model-adi/03.JPG"
+            "images/opel/corsa/01.jpg",
+            "images/opel/corsa/02.jpg"
           ],
-          "body_types": [],
-          "fuel_types": [],
+          "body_types": ["hatchback_5"],
+          "fuel_types": ["benzin", "elektrik"],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "KART AÇIKLAMASI"
+          "card_description": "Şehir içi kullanım için ideal hatchback"
+        },
+        {
+          "id": "astra",
+          "name": "Astra",
+          "year": 2026,
+          "thumbnail": "images/opel/astra/thumbnail.jpg",
+          "large_images": [
+            "images/opel/astra/01.jpg",
+            "images/opel/astra/02.jpg"
+          ],
+          "body_types": ["hatchback_5", "sedan"],
+          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Kompakt sınıfta konfor ve teknoloji"
+        },
+        {
+          "id": "mokka",
+          "name": "Mokka",
+          "year": 2026,
+          "thumbnail": "images/opel/mokka/thumbnail.jpg",
+          "large_images": [
+            "images/opel/mokka/01.jpg"
+          ],
+          "body_types": ["suv"],
+          "fuel_types": ["benzin", "elektrik"],
+          "order": 3,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Kompakt SUV"
+        }
+      ]
+    },
+    {
+      "id": "mercedes",
+      "name": "Mercedes",
+      "logo": "images/brands/mercedes.png",
+      "order": 2,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "Lüks ve performansın simgesi",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "shimmer"
+      },
+      "models": [
+        {
+          "id": "c-serisi",
+          "name": "C Serisi",
+          "year": 2026,
+          "thumbnail": "images/mercedes/c-serisi/thumbnail.jpg",
+          "large_images": [
+            "images/mercedes/c-serisi/01.jpg"
+          ],
+          "body_types": ["sedan"],
+          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Zarafet ve gücün buluşması"
+        },
+        {
+          "id": "e-serisi",
+          "name": "E Serisi",
+          "year": 2026,
+          "thumbnail": "images/mercedes/e-serisi/thumbnail.jpg",
+          "large_images": [
+            "images/mercedes/e-serisi/01.jpg"
+          ],
+          "body_types": ["sedan", "station_wagon"],
+          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Yönetici sedan sınıfında yeni standart"
+        }
+      ]
+    },
+    {
+      "id": "bmw",
+      "name": "BMW",
+      "logo": "images/brands/bmw.png",
+      "order": 3,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "Sürüş keyfinin adresi",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "none"
+      },
+      "models": [
+        {
+          "id": "3-serisi",
+          "name": "3 Serisi",
+          "year": 2026,
+          "thumbnail": "images/bmw/3-serisi/thumbnail.jpg",
+          "large_images": [
+            "images/bmw/3-serisi/01.jpg"
+          ],
+          "body_types": ["sedan"],
+          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Sportif sedan"
+        },
+        {
+          "id": "x3",
+          "name": "X3",
+          "year": 2026,
+          "thumbnail": "images/bmw/x3/thumbnail.jpg",
+          "large_images": [
+            "images/bmw/x3/01.jpg"
+          ],
+          "body_types": ["suv"],
+          "fuel_types": ["benzin", "dizel", "elektrik"],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Orta sınıf SUV"
+        }
+      ]
+    },
+    {
+      "id": "audi",
+      "name": "Audi",
+      "logo": "images/brands/audi.png",
+      "order": 4,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "Teknoloji ve ilerleme",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "pulse"
+      },
+      "models": [
+        {
+          "id": "a3",
+          "name": "A3",
+          "year": 2026,
+          "thumbnail": "images/audi/a3/thumbnail.jpg",
+          "large_images": [
+            "images/audi/a3/01.jpg"
+          ],
+          "body_types": ["hatchback_5", "sedan"],
+          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Premium kompakt"
+        },
+        {
+          "id": "q5",
+          "name": "Q5",
+          "year": 2026,
+          "thumbnail": "images/audi/q5/thumbnail.jpg",
+          "large_images": [
+            "images/audi/q5/01.jpg"
+          ],
+          "body_types": ["suv"],
+          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Lüks SUV"
+        }
+      ]
+    },
+    {
+      "id": "toyota",
+      "name": "Toyota",
+      "logo": "images/brands/toyota.png",
+      "order": 5,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "Güvenilirlik ve dayanıklılık",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "none"
+      },
+      "models": [
+        {
+          "id": "corolla",
+          "name": "Corolla",
+          "year": 2026,
+          "thumbnail": "images/toyota/corolla/thumbnail.jpg",
+          "large_images": [
+            "images/toyota/corolla/01.jpg"
+          ],
+          "body_types": ["sedan", "hatchback_5"],
+          "fuel_types": ["benzin", "hibrit"],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Dünyanın en çok satan otomobili"
+        },
+        {
+          "id": "rav4",
+          "name": "RAV4",
+          "year": 2026,
+          "thumbnail": "images/toyota/rav4/thumbnail.jpg",
+          "large_images": [
+            "images/toyota/rav4/01.jpg"
+          ],
+          "body_types": ["suv"],
+          "fuel_types": ["benzin", "hibrit"],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Kompakt SUV segmentinin öncüsü"
         }
       ]
     }
