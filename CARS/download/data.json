@@ -1,126 +1,124 @@
-{
-  "home_page_settings": {
-    "card": {
-      "width": 170
-    },
-    "carousel": {
-      "gap": 12
-    },
-    "sections": {
-      "vertical_gap": 20
-    },
-    "brand_header_settings": {
-      "logo_size": 32,
-      "title_font_size": 18,
-      "title_font_family": "Arial",
-      "title_font_weight": "bold",
-      "title_color": "#1A1C1E",
-      "logo_title_gap": 8,
-      "header_height": 40,
-      "alignment": "left"
-    },
-    "brand_list_style": {
-      "logo_width": 50,
-      "logo_height": 50,
-      "font_size": 11,
-      "font_family": "Segoe UI",
-      "font_color": "#000000"
-    }
-  },
-  "brands": [
-    {
-      "id": "a",
-      "name": "A MARKA ADI",
-      "logo": "images/brands/a.JPG",
-      "order": 1,
-      "show_on_homepage": true,
-      "show_brand_description": true,
-      "brand_description": "AÇIKLAMA ANA SAYFADA GÖSTER AÇIKLAMA",
-      "brand_description_style": {
-        "font_family": "Arial",
-        "font_size": 14,
-        "font_weight": "normal",
-        "color": "#1A1C1E",
-        "text_align": "left",
-        "effect": "slide-up"
-      },
-      "models": [
-        {
-          "id": "b",
-          "name": "B MODEL ADI",
-          "year": 2026,
-          "thumbnail": "images/a/b/thumbnail.JPG",
-          "large_images": [
-            "images/a/b/05.JPG",
-            "images/a/b/06.JPG",
-            "images/a/b/03.jpeg",
-            "images/a/b/05.jpeg",
-            "images/a/b/05.JPG",
-            "images/a/b/06.JPG",
-            "images/a/b/07.JPG"
-          ],
-          "body_types": [],
-          "fuel_types": [],
-          "order": 1,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "KART AÇIKLAMASI"
-        },
-        {
-          "id": "c",
-          "name": "C MODEL ADI",
-          "year": 2026,
-          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.23.jpeg",
-          "large_images": [
-            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.23.jpeg"
-          ],
-          "body_types": [],
-          "fuel_types": [],
-          "order": 2,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": ""
-        }
-      ]
-    },
-    {
-      "id": "b-marka-adi",
-      "name": "B MARKA ADI",
-      "logo": "images/brands/b-marka-adi.png",
-      "order": 2,
-      "show_on_homepage": true,
-      "show_brand_description": true,
-      "brand_description": "AÇIKLAMA",
-      "brand_description_style": {
-        "font_family": "Arial",
-        "font_size": 14,
-        "font_weight": "normal",
-        "color": "#1A1C1E",
-        "text_align": "left",
-        "effect": "none"
-      },
-      "models": [
-        {
-          "id": "b-model-adi",
-          "name": "B MODEL ADI",
-          "year": 2026,
-          "thumbnail": "images/b-marka-adi/b-model-adi/thumbnail.JPG",
-          "large_images": [
-            "images/b-marka-adi/b-model-adi/01.JPG",
-            "images/b-marka-adi/b-model-adi/02.JPG",
-            "images/b-marka-adi/b-model-adi/03.JPG"
-          ],
-          "body_types": [],
-          "fuel_types": [],
-          "order": 1,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "KART AÇIKLAMASI"
-        }
-      ]
-    }
-  ]
+{
+  "home_page_settings": {
+    "card": {
+      "width": 170
+    },
+    "carousel": {
+      "gap": 12
+    },
+    "sections": {
+      "vertical_gap": 20
+    },
+    "brand_header_settings": {
+      "logo_size": 32,
+      "title_font_size": 18,
+      "title_font_family": "Arial",
+      "title_font_weight": "bold",
+      "title_color": "#1A1C1E",
+      "logo_title_gap": 8,
+      "header_height": 40,
+      "alignment": "left"
+    },
+    "brand_list_style": {
+      "logo_width": 50,
+      "logo_height": 50,
+      "font_size": 11,
+      "font_family": "Segoe UI",
+      "font_color": "#000000"
+    }
+  },
+  "brands": [
+    {
+      "id": "a",
+      "name": "A MARKA ADI",
+      "logo": "images/brands/a.JPG",
+      "order": 1,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "AÇIKLAMA ANA SAYFADA GÖSTER AÇIKLAMA",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "slide-up"
+      },
+      "models": [
+        {
+          "id": "b",
+          "name": "B MODEL ADI",
+          "year": 2026,
+          "thumbnail": "images/a/b/thumbnail.JPG",
+          "large_images": [
+            "images/a/b/03.jpeg",
+            "images/a/b/06.JPG",
+            "images/a/b/05.JPG",
+            "images/a/b/06.JPG",
+            "images/a/b/07.JPG"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "KART AÇIKLAMASI"
+        },
+        {
+          "id": "c",
+          "name": "C MODEL ADI",
+          "year": 2026,
+          "thumbnail": "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.23.jpeg",
+          "large_images": [
+            "C:/Users/omer.eren/Desktop/Ömer Şahsi/EVRAKLAR/WhatsApp Image 2026-06-10 at 14.30.23.jpeg"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 2,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": ""
+        }
+      ]
+    },
+    {
+      "id": "b-marka-adi",
+      "name": "B MARKA ADI",
+      "logo": "images/brands/b-marka-adi.png",
+      "order": 2,
+      "show_on_homepage": true,
+      "show_brand_description": true,
+      "brand_description": "AÇIKLAMA",
+      "brand_description_style": {
+        "font_family": "Arial",
+        "font_size": 14,
+        "font_weight": "normal",
+        "color": "#1A1C1E",
+        "text_align": "left",
+        "effect": "none"
+      },
+      "models": [
+        {
+          "id": "b-model-adi",
+          "name": "B MODEL ADI",
+          "year": 2026,
+          "thumbnail": "images/b-marka-adi/b-model-adi/thumbnail.JPG",
+          "large_images": [
+            "images/b-marka-adi/b-model-adi/01.JPG",
+            "images/b-marka-adi/b-model-adi/02.JPG",
+            "images/b-marka-adi/b-model-adi/03.JPG"
+          ],
+          "body_types": [],
+          "fuel_types": [],
+          "order": 1,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "KART AÇIKLAMASI"
+        }
+      ]
+    }
+  ]
 }
