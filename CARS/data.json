@@ -27,9 +27,7 @@
       "font_color": "#000000"
     }
   },
-
   "brands": [
-
     {
       "id": "opel",
       "name": "Opel",
@@ -53,8 +51,13 @@
           "year": 2026,
           "thumbnail": "images/opel/corsa/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -67,8 +70,15 @@
           "year": 2026,
           "thumbnail": "images/opel/astra/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "hatchback_5",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -81,8 +91,13 @@
           "year": 2026,
           "thumbnail": "images/opel/mokka/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -95,8 +110,13 @@
           "year": 2026,
           "thumbnail": "images/opel/frontera/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit",
+            "elektrik"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -109,8 +129,13 @@
           "year": 2026,
           "thumbnail": "images/opel/grandland/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit",
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -119,7 +144,6 @@
         }
       ]
     },
-
     {
       "id": "toyota",
       "name": "Toyota",
@@ -143,8 +167,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/yaris/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -157,8 +185,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/yaris-cross/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -171,8 +203,13 @@
           "year": 2026,
           "thumbnail": "images/toyota/corolla/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -185,8 +222,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/corolla-hatchback/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -199,8 +240,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/corolla-cross/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -213,8 +258,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/c-hr/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -227,8 +276,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/rav4/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -241,8 +294,12 @@
           "year": 2026,
           "thumbnail": "images/toyota/land-cruiser-prado/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -251,7 +308,6 @@
         }
       ]
     },
-
     {
       "id": "renault",
       "name": "Renault",
@@ -275,8 +331,13 @@
           "year": 2026,
           "thumbnail": "images/renault/clio/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -289,8 +350,12 @@
           "year": 2026,
           "thumbnail": "images/renault/megane-sedan/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -303,8 +368,13 @@
           "year": 2026,
           "thumbnail": "images/renault/captur/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -317,8 +387,13 @@
           "year": 2026,
           "thumbnail": "images/renault/duster/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -331,8 +406,13 @@
           "year": 2026,
           "thumbnail": "images/renault/austral/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -345,8 +425,13 @@
           "year": 2026,
           "thumbnail": "images/renault/rafale/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv", "fastback"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv",
+            "fastback"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -359,8 +444,12 @@
           "year": 2026,
           "thumbnail": "images/renault/megane-e-tech/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -373,8 +462,12 @@
           "year": 2026,
           "thumbnail": "images/renault/renault-5/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -383,7 +476,6 @@
         }
       ]
     },
-
     {
       "id": "fiat",
       "name": "Fiat",
@@ -407,8 +499,13 @@
           "year": 2026,
           "thumbnail": "images/fiat/egea-sedan/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -421,8 +518,13 @@
           "year": 2026,
           "thumbnail": "images/fiat/egea-hatchback/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -435,8 +537,13 @@
           "year": 2026,
           "thumbnail": "images/fiat/egea-cross/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -449,8 +556,13 @@
           "year": 2026,
           "thumbnail": "images/fiat/600/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik",
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -463,8 +575,14 @@
           "year": 2026,
           "thumbnail": "images/fiat/grande-panda/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5", "suv"],
-          "fuel_types": ["hibrit", "elektrik"],
+          "body_types": [
+            "hatchback_5",
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit",
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -473,7 +591,6 @@
         }
       ]
     },
-
     {
       "id": "hyundai",
       "name": "Hyundai",
@@ -497,8 +614,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/i20/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -511,8 +632,13 @@
           "year": 2026,
           "thumbnail": "images/hyundai/i30/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -525,8 +651,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/bayon/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -539,8 +669,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/kona/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -553,8 +687,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/kona-electric/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -567,8 +705,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/tucson/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -581,8 +723,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/tucson-hybrid/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -595,8 +741,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/santa-fe-hybrid/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -609,8 +759,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/inster/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 9,
           "show_on_homepage": true,
           "show_year": true,
@@ -623,8 +777,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/ioniq-5/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["crossover"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "crossover"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 10,
           "show_on_homepage": true,
           "show_year": true,
@@ -637,8 +795,13 @@
           "year": 2026,
           "thumbnail": "images/hyundai/ioniq-6/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "fastback"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "sedan",
+            "fastback"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 11,
           "show_on_homepage": true,
           "show_year": true,
@@ -651,8 +814,12 @@
           "year": 2026,
           "thumbnail": "images/hyundai/ioniq-9/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 12,
           "show_on_homepage": true,
           "show_year": true,
@@ -661,7 +828,6 @@
         }
       ]
     },
-
     {
       "id": "peugeot",
       "name": "Peugeot",
@@ -685,8 +851,12 @@
           "year": 2026,
           "thumbnail": "images/peugeot/e-208/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -699,8 +869,12 @@
           "year": 2026,
           "thumbnail": "images/peugeot/e-308/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -713,8 +887,14 @@
           "year": 2026,
           "thumbnail": "images/peugeot/2008/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit",
+            "elektrik"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -727,8 +907,12 @@
           "year": 2026,
           "thumbnail": "images/peugeot/408/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["fastback"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "fastback"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -741,8 +925,13 @@
           "year": 2026,
           "thumbnail": "images/peugeot/3008/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit",
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -755,8 +944,13 @@
           "year": 2026,
           "thumbnail": "images/peugeot/5008/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit",
+            "elektrik"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -765,7 +959,6 @@
         }
       ]
     },
-
     {
       "id": "citroen",
       "name": "Citroën",
@@ -789,8 +982,13 @@
           "year": 2026,
           "thumbnail": "images/citroen/c3/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -803,8 +1001,13 @@
           "year": 2026,
           "thumbnail": "images/citroen/c3-aircross/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -817,8 +1020,13 @@
           "year": 2026,
           "thumbnail": "images/citroen/c4/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -831,8 +1039,14 @@
           "year": 2026,
           "thumbnail": "images/citroen/c4-x/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "fastback"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "sedan",
+            "fastback"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -845,8 +1059,13 @@
           "year": 2026,
           "thumbnail": "images/citroen/c5-aircross/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit",
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -855,7 +1074,6 @@
         }
       ]
     },
-
     {
       "id": "skoda",
       "name": "Škoda",
@@ -879,8 +1097,12 @@
           "year": 2026,
           "thumbnail": "images/skoda/fabia/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -893,8 +1115,12 @@
           "year": 2026,
           "thumbnail": "images/skoda/scala/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -907,8 +1133,15 @@
           "year": 2026,
           "thumbnail": "images/skoda/octavia/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -921,8 +1154,15 @@
           "year": 2026,
           "thumbnail": "images/skoda/superb/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -935,8 +1175,12 @@
           "year": 2026,
           "thumbnail": "images/skoda/kamiq/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -949,8 +1193,13 @@
           "year": 2026,
           "thumbnail": "images/skoda/karoq/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -963,8 +1212,14 @@
           "year": 2026,
           "thumbnail": "images/skoda/kodiaq/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -977,8 +1232,12 @@
           "year": 2026,
           "thumbnail": "images/skoda/elroq/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -991,8 +1250,12 @@
           "year": 2026,
           "thumbnail": "images/skoda/enyaq/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 9,
           "show_on_homepage": true,
           "show_year": true,
@@ -1001,7 +1264,6 @@
         }
       ]
     },
-
     {
       "id": "kia",
       "name": "Kia",
@@ -1025,8 +1287,12 @@
           "year": 2026,
           "thumbnail": "images/kia/picanto/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1039,8 +1305,12 @@
           "year": 2026,
           "thumbnail": "images/kia/stonic/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1053,8 +1323,12 @@
           "year": 2026,
           "thumbnail": "images/kia/ceed/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1067,8 +1341,12 @@
           "year": 2026,
           "thumbnail": "images/kia/xceed/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -1081,8 +1359,13 @@
           "year": 2026,
           "thumbnail": "images/kia/sportage/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -1095,8 +1378,12 @@
           "year": 2026,
           "thumbnail": "images/kia/sorento/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -1109,8 +1396,12 @@
           "year": 2026,
           "thumbnail": "images/kia/niro-ev/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -1123,8 +1414,12 @@
           "year": 2026,
           "thumbnail": "images/kia/ev3/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -1137,8 +1432,12 @@
           "year": 2026,
           "thumbnail": "images/kia/ev6/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["crossover"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "crossover"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 9,
           "show_on_homepage": true,
           "show_year": true,
@@ -1151,8 +1450,12 @@
           "year": 2026,
           "thumbnail": "images/kia/ev9/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 10,
           "show_on_homepage": true,
           "show_year": true,
@@ -1161,7 +1464,6 @@
         }
       ]
     },
-
     {
       "id": "nissan",
       "name": "Nissan",
@@ -1185,8 +1487,12 @@
           "year": 2026,
           "thumbnail": "images/nissan/juke/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1199,8 +1505,13 @@
           "year": 2026,
           "thumbnail": "images/nissan/qashqai/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1213,8 +1524,12 @@
           "year": 2026,
           "thumbnail": "images/nissan/x-trail/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1223,7 +1538,6 @@
         }
       ]
     },
-
     {
       "id": "honda",
       "name": "Honda",
@@ -1247,8 +1561,12 @@
           "year": 2026,
           "thumbnail": "images/honda/jazz/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1261,8 +1579,12 @@
           "year": 2026,
           "thumbnail": "images/honda/civic/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1275,8 +1597,12 @@
           "year": 2026,
           "thumbnail": "images/honda/hr-v/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1289,8 +1615,12 @@
           "year": 2026,
           "thumbnail": "images/honda/zr-v/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -1303,8 +1633,12 @@
           "year": 2026,
           "thumbnail": "images/honda/cr-v/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -1317,8 +1651,12 @@
           "year": 2026,
           "thumbnail": "images/honda/prelude/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["coupe"],
-          "fuel_types": ["hibrit"],
+          "body_types": [
+            "coupe"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -1327,7 +1665,6 @@
         }
       ]
     },
-
     {
       "id": "kia",
       "name": "Kia",
@@ -1346,7 +1683,6 @@
       },
       "models": []
     },
-
     {
       "id": "togg",
       "name": "Togg",
@@ -1370,8 +1706,12 @@
           "year": 2026,
           "thumbnail": "images/togg/t10x/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1384,8 +1724,13 @@
           "year": 2026,
           "thumbnail": "images/togg/t10f/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["fastback", "sedan"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "fastback",
+            "sedan"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1394,7 +1739,6 @@
         }
       ]
     },
-
     {
       "id": "byd",
       "name": "BYD",
@@ -1418,8 +1762,12 @@
           "year": 2026,
           "thumbnail": "images/byd/atto-2/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1432,8 +1780,12 @@
           "year": 2026,
           "thumbnail": "images/byd/dolphin/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1446,8 +1798,12 @@
           "year": 2026,
           "thumbnail": "images/byd/atto-3/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1460,8 +1816,13 @@
           "year": 2026,
           "thumbnail": "images/byd/seal-u/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik",
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -1474,8 +1835,12 @@
           "year": 2026,
           "thumbnail": "images/byd/seal/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -1488,8 +1853,12 @@
           "year": 2026,
           "thumbnail": "images/byd/sealion-7/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -1502,8 +1871,12 @@
           "year": 2026,
           "thumbnail": "images/byd/han/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -1516,8 +1889,12 @@
           "year": 2026,
           "thumbnail": "images/byd/tang/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -1526,7 +1903,6 @@
         }
       ]
     },
-
     {
       "id": "volvo",
       "name": "Volvo",
@@ -1550,8 +1926,12 @@
           "year": 2026,
           "thumbnail": "images/volvo/ex30/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1564,8 +1944,12 @@
           "year": 2026,
           "thumbnail": "images/volvo/ex40/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1578,8 +1962,12 @@
           "year": 2026,
           "thumbnail": "images/volvo/ec40/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["crossover"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "crossover"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1592,8 +1980,13 @@
           "year": 2026,
           "thumbnail": "images/volvo/xc60/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -1606,8 +1999,13 @@
           "year": 2026,
           "thumbnail": "images/volvo/xc90/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -1620,8 +2018,13 @@
           "year": 2026,
           "thumbnail": "images/volvo/v60/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["station_wagon"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -1630,7 +2033,6 @@
         }
       ]
     },
-
     {
       "id": "audi",
       "name": "Audi",
@@ -1654,8 +2056,14 @@
           "year": 2026,
           "thumbnail": "images/audi/a3/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "hatchback_5"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "sedan",
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1668,8 +2076,15 @@
           "year": 2026,
           "thumbnail": "images/audi/a5/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1682,8 +2097,15 @@
           "year": 2026,
           "thumbnail": "images/audi/a6/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1696,8 +2118,13 @@
           "year": 2026,
           "thumbnail": "images/audi/a8/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "hibrit"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -1710,8 +2137,13 @@
           "year": 2026,
           "thumbnail": "images/audi/q2/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -1724,8 +2156,13 @@
           "year": 2026,
           "thumbnail": "images/audi/q3/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -1738,8 +2175,12 @@
           "year": 2026,
           "thumbnail": "images/audi/q4-e-tron/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -1752,8 +2193,14 @@
           "year": 2026,
           "thumbnail": "images/audi/q5/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -1766,8 +2213,12 @@
           "year": 2026,
           "thumbnail": "images/audi/q6-e-tron/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 9,
           "show_on_homepage": true,
           "show_year": true,
@@ -1780,8 +2231,13 @@
           "year": 2026,
           "thumbnail": "images/audi/q7/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "dizel",
+            "hibrit"
+          ],
           "order": 10,
           "show_on_homepage": true,
           "show_year": true,
@@ -1794,8 +2250,13 @@
           "year": 2026,
           "thumbnail": "images/audi/q8/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 11,
           "show_on_homepage": true,
           "show_year": true,
@@ -1804,7 +2265,6 @@
         }
       ]
     },
-
     {
       "id": "bmw",
       "name": "BMW",
@@ -1828,8 +2288,13 @@
           "year": 2026,
           "thumbnail": "images/bmw/1-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -1842,8 +2307,13 @@
           "year": 2026,
           "thumbnail": "images/bmw/2-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "coupe"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "sedan",
+            "coupe"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -1856,8 +2326,14 @@
           "year": 2026,
           "thumbnail": "images/bmw/3-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -1870,8 +2346,13 @@
           "year": 2026,
           "thumbnail": "images/bmw/4-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["coupe", "cabrio"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "coupe",
+            "cabrio"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -1884,8 +2365,15 @@
           "year": 2026,
           "thumbnail": "images/bmw/5-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -1898,8 +2386,14 @@
           "year": 2026,
           "thumbnail": "images/bmw/7-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "hibrit", "elektrik"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit",
+            "elektrik"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -1912,8 +2406,14 @@
           "year": 2026,
           "thumbnail": "images/bmw/x1/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -1926,8 +2426,14 @@
           "year": 2026,
           "thumbnail": "images/bmw/x2/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv", "coupe"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "suv",
+            "coupe"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -1940,8 +2446,14 @@
           "year": 2026,
           "thumbnail": "images/bmw/x3/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 9,
           "show_on_homepage": true,
           "show_year": true,
@@ -1954,8 +2466,14 @@
           "year": 2026,
           "thumbnail": "images/bmw/x5/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 10,
           "show_on_homepage": true,
           "show_year": true,
@@ -1968,8 +2486,12 @@
           "year": 2026,
           "thumbnail": "images/bmw/ix/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 11,
           "show_on_homepage": true,
           "show_year": true,
@@ -1978,7 +2500,6 @@
         }
       ]
     },
-
     {
       "id": "mercedes",
       "name": "Mercedes-Benz",
@@ -2002,8 +2523,12 @@
           "year": 2026,
           "thumbnail": "images/mercedes/a-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["hatchback_5"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": true,
@@ -2016,8 +2541,15 @@
           "year": 2026,
           "thumbnail": "images/mercedes/c-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "station_wagon"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 2,
           "show_on_homepage": true,
           "show_year": true,
@@ -2030,8 +2562,14 @@
           "year": 2026,
           "thumbnail": "images/mercedes/e-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "dizel", "hibrit"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "hibrit"
+          ],
           "order": 3,
           "show_on_homepage": true,
           "show_year": true,
@@ -2044,8 +2582,13 @@
           "year": 2026,
           "thumbnail": "images/mercedes/s-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["benzin", "dizel"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel"
+          ],
           "order": 4,
           "show_on_homepage": true,
           "show_year": true,
@@ -2058,8 +2601,14 @@
           "year": 2026,
           "thumbnail": "images/mercedes/cla/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan", "fastback"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "sedan",
+            "fastback"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 5,
           "show_on_homepage": true,
           "show_year": true,
@@ -2072,8 +2621,12 @@
           "year": 2026,
           "thumbnail": "images/mercedes/gla/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin"
+          ],
           "order": 6,
           "show_on_homepage": true,
           "show_year": true,
@@ -2086,8 +2639,13 @@
           "year": 2026,
           "thumbnail": "images/mercedes/glb/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 7,
           "show_on_homepage": true,
           "show_year": true,
@@ -2100,8 +2658,14 @@
           "year": 2026,
           "thumbnail": "images/mercedes/glc/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "dizel", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "dizel",
+            "elektrik"
+          ],
           "order": 8,
           "show_on_homepage": true,
           "show_year": true,
@@ -2114,8 +2678,13 @@
           "year": 2026,
           "thumbnail": "images/mercedes/gle/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["dizel", "hibrit"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "dizel",
+            "hibrit"
+          ],
           "order": 9,
           "show_on_homepage": true,
           "show_year": true,
@@ -2128,8 +2697,13 @@
           "year": 2026,
           "thumbnail": "images/mercedes/g-serisi/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["suv"],
-          "fuel_types": ["benzin", "elektrik"],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "elektrik"
+          ],
           "order": 10,
           "show_on_homepage": true,
           "show_year": true,
@@ -2142,8 +2716,12 @@
           "year": 2026,
           "thumbnail": "images/mercedes/eqe/thumbnail.jpg",
           "large_images": [],
-          "body_types": ["sedan"],
-          "fuel_types": ["elektrik"],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "elektrik"
+          ],
           "order": 11,
           "show_on_homepage": true,
           "show_year": true,
