@@ -96,26 +96,6 @@
           "card_description_style": {}
         },
         {
-          "id": "frontera",
-          "name": "Frontera",
-          "year": 2026,
-          "thumbnail": "images/opel/frontera/thumbnail.jpg",
-          "large_images": [],
-          "body_types": [
-            "suv"
-          ],
-          "fuel_types": [
-            "hibrit",
-            "elektrik"
-          ],
-          "order": 3,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "Aileler için geniş ve modern SUV",
-          "card_description_style": {}
-        },
-        {
           "id": "grandland",
           "name": "Grandland",
           "year": 2026,
@@ -128,61 +108,11 @@
             "hibrit",
             "elektrik"
           ],
-          "order": 4,
+          "order": 3,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
           "card_description": "Geniş hacimli yeni nesil SUV",
-          "card_description_style": {}
-        },
-        {
-          "id": "corsa-1-2-edition-kopya-1",
-          "name": "Corsa 1.2 Edition (Kopya)",
-          "year": 2026,
-          "thumbnail": "images/opel/corsa/thumbnail.png",
-          "large_images": [
-            "images/opel/corsa/05.png",
-            "images/opel/corsa/02.png",
-            "images/opel/corsa/03.png",
-            "images/opel/corsa/04.png",
-            "images/opel/corsa/01.png"
-          ],
-          "body_types": [
-            "hatchback_5"
-          ],
-          "fuel_types": [
-            "hibrit"
-          ],
-          "order": 5,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "Şehir hayatı için çevik ve modern hatchback",
-          "card_description_style": {}
-        },
-        {
-          "id": "corsa-1-2-edition-kopya-kopya",
-          "name": "Corsa 1.2 Edition (Kopya) (Kopya)",
-          "year": 2026,
-          "thumbnail": "images/opel/corsa/thumbnail.png",
-          "large_images": [
-            "images/opel/corsa/05.png",
-            "images/opel/corsa/02.png",
-            "images/opel/corsa/03.png",
-            "images/opel/corsa/04.png",
-            "images/opel/corsa/01.png"
-          ],
-          "body_types": [
-            "hatchback_5"
-          ],
-          "fuel_types": [
-            "hibrit"
-          ],
-          "order": 6,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "Şehir hayatı için çevik ve modern hatchback",
           "card_description_style": {}
         }
       ]
