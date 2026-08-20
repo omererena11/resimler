@@ -67,7 +67,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir hayatı için çevik ve modern hatchback"
+          "card_description": "Şehir hayatı için çevik ve modern hatchback",
+          "card_description_style": {}
         },
         {
           "id": "astra",
@@ -96,7 +97,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt sınıfta teknoloji ve konfor"
+          "card_description": "Kompakt sınıfta teknoloji ve konfor",
+          "card_description_style": {}
         },
         {
           "id": "mokka",
@@ -115,7 +117,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt ve sportif SUV"
+          "card_description": "Kompakt ve sportif SUV",
+          "card_description_style": {}
         },
         {
           "id": "frontera",
@@ -134,7 +137,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Aileler için geniş ve modern SUV"
+          "card_description": "Aileler için geniş ve modern SUV",
+          "card_description_style": {}
         },
         {
           "id": "grandland",
@@ -153,7 +157,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş hacimli yeni nesil SUV"
+          "card_description": "Geniş hacimli yeni nesil SUV",
+          "card_description_style": {}
         }
       ]
     },
@@ -190,7 +195,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir için çevik hibrit hatchback"
+          "card_description": "Şehir için çevik hibrit hatchback",
+          "card_description_style": {}
         },
         {
           "id": "yaris-cross",
@@ -208,7 +214,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt hibrit SUV"
+          "card_description": "Kompakt hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "corolla",
@@ -227,7 +234,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'nin en önemli sedan modellerinden biri"
+          "card_description": "Türkiye'nin en önemli sedan modellerinden biri",
+          "card_description_style": {}
         },
         {
           "id": "corolla-hatchback",
@@ -245,7 +253,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif karakterli hibrit hatchback"
+          "card_description": "Sportif karakterli hibrit hatchback",
+          "card_description_style": {}
         },
         {
           "id": "corolla-cross",
@@ -263,7 +272,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Aile odaklı kompakt hibrit SUV"
+          "card_description": "Aile odaklı kompakt hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "c-hr",
@@ -281,7 +291,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif tasarımlı hibrit SUV"
+          "card_description": "Sportif tasarımlı hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "rav4",
@@ -299,7 +310,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş hacimli güçlü hibrit SUV"
+          "card_description": "Geniş hacimli güçlü hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "land-cruiser-prado",
@@ -317,7 +329,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geleneksel arazi kabiliyetini modern teknolojiyle birleştiriyor"
+          "card_description": "Geleneksel arazi kabiliyetini modern teknolojiyle birleştiriyor",
+          "card_description_style": {}
         }
       ]
     },
@@ -355,7 +368,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir otomobilleri arasında güçlü bir seçenek"
+          "card_description": "Şehir otomobilleri arasında güçlü bir seçenek",
+          "card_description_style": {}
         },
         {
           "id": "megane-sedan",
@@ -373,7 +387,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Konfor odaklı sedan"
+          "card_description": "Konfor odaklı sedan",
+          "card_description_style": {}
         },
         {
           "id": "captur",
@@ -392,7 +407,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt şehir SUV'u"
+          "card_description": "Kompakt şehir SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "duster",
@@ -411,7 +427,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Dayanıklı ve çok yönlü SUV"
+          "card_description": "Dayanıklı ve çok yönlü SUV",
+          "card_description_style": {}
         },
         {
           "id": "austral",
@@ -430,7 +447,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Modern orta sınıf SUV"
+          "card_description": "Modern orta sınıf SUV",
+          "card_description_style": {}
         },
         {
           "id": "rafale",
@@ -449,7 +467,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif fastback SUV"
+          "card_description": "Sportif fastback SUV",
+          "card_description_style": {}
         },
         {
           "id": "megane-e-tech",
@@ -467,7 +486,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Tamamen elektrikli kompakt otomobil"
+          "card_description": "Tamamen elektrikli kompakt otomobil",
+          "card_description_style": {}
         },
         {
           "id": "renault-5",
@@ -485,7 +505,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Retro tasarımlı yeni nesil elektrikli hatchback"
+          "card_description": "Retro tasarımlı yeni nesil elektrikli hatchback",
+          "card_description_style": {}
         }
       ]
     },
@@ -523,7 +544,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'nin en çok tercih edilen sedanlarından"
+          "card_description": "Türkiye'nin en çok tercih edilen sedanlarından",
+          "card_description_style": {}
         },
         {
           "id": "egea-hatchback",
@@ -542,7 +564,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Pratik kompakt hatchback"
+          "card_description": "Pratik kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "egea-cross",
@@ -561,7 +584,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'ye özel crossover karakteri"
+          "card_description": "Türkiye'ye özel crossover karakteri",
+          "card_description_style": {}
         },
         {
           "id": "600",
@@ -580,7 +604,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt şehir crossover'ı"
+          "card_description": "Kompakt şehir crossover'ı",
+          "card_description_style": {}
         },
         {
           "id": "grande-panda",
@@ -600,7 +625,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Yeni nesil şehir otomobili"
+          "card_description": "Yeni nesil şehir otomobili",
+          "card_description_style": {}
         }
       ]
     },
@@ -637,7 +663,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'de üretilen kompakt hatchback"
+          "card_description": "Türkiye'de üretilen kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "i30",
@@ -656,7 +683,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt sınıf hatchback"
+          "card_description": "Kompakt sınıf hatchback",
+          "card_description_style": {}
         },
         {
           "id": "bayon",
@@ -674,7 +702,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'de üretilen şehir SUV'u"
+          "card_description": "Türkiye'de üretilen şehir SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "kona",
@@ -692,7 +721,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt SUV"
+          "card_description": "Kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "kona-electric",
@@ -710,7 +740,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Tamamen elektrikli kompakt SUV"
+          "card_description": "Tamamen elektrikli kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "tucson",
@@ -728,7 +759,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'nin en popüler SUV modellerinden"
+          "card_description": "Türkiye'nin en popüler SUV modellerinden",
+          "card_description_style": {}
         },
         {
           "id": "tucson-hybrid",
@@ -746,7 +778,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Hibrit orta sınıf SUV"
+          "card_description": "Hibrit orta sınıf SUV",
+          "card_description_style": {}
         },
         {
           "id": "santa-fe-hybrid",
@@ -764,7 +797,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük ve premium karakterli SUV"
+          "card_description": "Büyük ve premium karakterli SUV",
+          "card_description_style": {}
         },
         {
           "id": "inster",
@@ -782,7 +816,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt elektrikli şehir otomobili"
+          "card_description": "Kompakt elektrikli şehir otomobili",
+          "card_description_style": {}
         },
         {
           "id": "ioniq-5",
@@ -800,7 +835,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli crossover"
+          "card_description": "Elektrikli crossover",
+          "card_description_style": {}
         },
         {
           "id": "ioniq-6",
@@ -819,7 +855,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Aerodinamik elektrikli sedan"
+          "card_description": "Aerodinamik elektrikli sedan",
+          "card_description_style": {}
         },
         {
           "id": "ioniq-9",
@@ -837,7 +874,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük elektrikli SUV"
+          "card_description": "Büyük elektrikli SUV",
+          "card_description_style": {}
         }
       ]
     },
@@ -874,7 +912,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli şehir hatchback'i"
+          "card_description": "Elektrikli şehir hatchback'i",
+          "card_description_style": {}
         },
         {
           "id": "e-308",
@@ -892,7 +931,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli kompakt hatchback"
+          "card_description": "Elektrikli kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "2008",
@@ -912,7 +952,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt şehir SUV'u"
+          "card_description": "Kompakt şehir SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "408",
@@ -930,7 +971,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Fastback tasarımlı modern Peugeot"
+          "card_description": "Fastback tasarımlı modern Peugeot",
+          "card_description_style": {}
         },
         {
           "id": "3008",
@@ -949,7 +991,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Yeni nesil kompakt SUV"
+          "card_description": "Yeni nesil kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "5008",
@@ -968,7 +1011,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş aile SUV'u"
+          "card_description": "Geniş aile SUV'u",
+          "card_description_style": {}
         }
       ]
     },
@@ -1006,7 +1050,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Konfor odaklı şehir otomobili"
+          "card_description": "Konfor odaklı şehir otomobili",
+          "card_description_style": {}
         },
         {
           "id": "c3-aircross",
@@ -1025,7 +1070,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt aile SUV'u"
+          "card_description": "Kompakt aile SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "c4",
@@ -1044,7 +1090,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Konforlu kompakt otomobil"
+          "card_description": "Konforlu kompakt otomobil",
+          "card_description_style": {}
         },
         {
           "id": "c4-x",
@@ -1064,7 +1111,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sedan ve crossover karakterlerini birleştiriyor"
+          "card_description": "Sedan ve crossover karakterlerini birleştiriyor",
+          "card_description_style": {}
         },
         {
           "id": "c5-aircross",
@@ -1083,7 +1131,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük aile SUV'u"
+          "card_description": "Büyük aile SUV'u",
+          "card_description_style": {}
         }
       ]
     },
@@ -1120,7 +1169,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Pratik şehir hatchback'i"
+          "card_description": "Pratik şehir hatchback'i",
+          "card_description_style": {}
         },
         {
           "id": "scala",
@@ -1138,7 +1188,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş iç hacimli kompakt hatchback"
+          "card_description": "Geniş iç hacimli kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "octavia",
@@ -1159,7 +1210,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş ve kullanışlı aile otomobili"
+          "card_description": "Geniş ve kullanışlı aile otomobili",
+          "card_description_style": {}
         },
         {
           "id": "superb",
@@ -1180,7 +1232,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Üst sınıf geniş sedan"
+          "card_description": "Üst sınıf geniş sedan",
+          "card_description_style": {}
         },
         {
           "id": "kamiq",
@@ -1198,7 +1251,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt şehir SUV'u"
+          "card_description": "Kompakt şehir SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "karoq",
@@ -1217,7 +1271,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Orta sınıf SUV"
+          "card_description": "Orta sınıf SUV",
+          "card_description_style": {}
         },
         {
           "id": "kodiaq",
@@ -1237,7 +1292,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük aile SUV'u"
+          "card_description": "Büyük aile SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "elroq",
@@ -1255,7 +1311,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli kompakt SUV"
+          "card_description": "Elektrikli kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "enyaq",
@@ -1273,7 +1330,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli aile SUV'u"
+          "card_description": "Elektrikli aile SUV'u",
+          "card_description_style": {}
         }
       ]
     },
@@ -1310,7 +1368,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt şehir otomobili"
+          "card_description": "Kompakt şehir otomobili",
+          "card_description_style": {}
         },
         {
           "id": "stonic",
@@ -1328,7 +1387,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir odaklı kompakt SUV"
+          "card_description": "Şehir odaklı kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "ceed",
@@ -1346,7 +1406,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt hatchback"
+          "card_description": "Kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "xceed",
@@ -1364,7 +1425,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif crossover"
+          "card_description": "Sportif crossover",
+          "card_description_style": {}
         },
         {
           "id": "sportage",
@@ -1383,7 +1445,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Orta sınıf SUV"
+          "card_description": "Orta sınıf SUV",
+          "card_description_style": {}
         },
         {
           "id": "sorento",
@@ -1401,7 +1464,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük ve konforlu SUV"
+          "card_description": "Büyük ve konforlu SUV",
+          "card_description_style": {}
         },
         {
           "id": "niro-ev",
@@ -1419,7 +1483,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli kompakt SUV"
+          "card_description": "Elektrikli kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "ev3",
@@ -1437,7 +1502,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Yeni nesil elektrikli şehir SUV'u"
+          "card_description": "Yeni nesil elektrikli şehir SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "ev6",
@@ -1455,7 +1521,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif elektrikli crossover"
+          "card_description": "Sportif elektrikli crossover",
+          "card_description_style": {}
         },
         {
           "id": "ev9",
@@ -1473,7 +1540,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük elektrikli SUV"
+          "card_description": "Büyük elektrikli SUV",
+          "card_description_style": {}
         }
       ]
     },
@@ -1510,7 +1578,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Şehir odaklı kompakt crossover"
+          "card_description": "Şehir odaklı kompakt crossover",
+          "card_description_style": {}
         },
         {
           "id": "qashqai",
@@ -1529,7 +1598,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'nin en tanınan SUV modellerinden"
+          "card_description": "Türkiye'nin en tanınan SUV modellerinden",
+          "card_description_style": {}
         },
         {
           "id": "x-trail",
@@ -1547,7 +1617,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş aile SUV'u"
+          "card_description": "Geniş aile SUV'u",
+          "card_description_style": {}
         }
       ]
     },
@@ -1584,7 +1655,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt hibrit hatchback"
+          "card_description": "Kompakt hibrit hatchback",
+          "card_description_style": {}
         },
         {
           "id": "civic",
@@ -1602,7 +1674,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif ve geniş sedan"
+          "card_description": "Sportif ve geniş sedan",
+          "card_description_style": {}
         },
         {
           "id": "hr-v",
@@ -1620,7 +1693,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt hibrit SUV"
+          "card_description": "Kompakt hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "zr-v",
@@ -1638,7 +1712,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif hibrit SUV"
+          "card_description": "Sportif hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "cr-v",
@@ -1656,7 +1731,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük hibrit SUV"
+          "card_description": "Büyük hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "prelude",
@@ -1674,7 +1750,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif hibrit coupe"
+          "card_description": "Sportif hibrit coupe",
+          "card_description_style": {}
         }
       ]
     },
@@ -1729,7 +1806,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Türkiye'nin elektrikli SUV modeli"
+          "card_description": "Türkiye'nin elektrikli SUV modeli",
+          "card_description_style": {}
         },
         {
           "id": "t10f",
@@ -1748,7 +1826,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli fastback"
+          "card_description": "Elektrikli fastback",
+          "card_description_style": {}
         }
       ]
     },
@@ -1785,7 +1864,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt elektrikli SUV"
+          "card_description": "Kompakt elektrikli SUV",
+          "card_description_style": {}
         },
         {
           "id": "dolphin",
@@ -1803,7 +1883,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli kompakt hatchback"
+          "card_description": "Elektrikli kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "atto-3",
@@ -1821,7 +1902,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli kompakt SUV"
+          "card_description": "Elektrikli kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "seal-u",
@@ -1840,7 +1922,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli veya şarj edilebilir hibrit SUV"
+          "card_description": "Elektrikli veya şarj edilebilir hibrit SUV",
+          "card_description_style": {}
         },
         {
           "id": "seal",
@@ -1858,7 +1941,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif elektrikli sedan"
+          "card_description": "Sportif elektrikli sedan",
+          "card_description_style": {}
         },
         {
           "id": "seal-ion-7",
@@ -1876,7 +1960,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif elektrikli SUV"
+          "card_description": "Sportif elektrikli SUV",
+          "card_description_style": {}
         },
         {
           "id": "han",
@@ -1894,7 +1979,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli üst sınıf sedan"
+          "card_description": "Elektrikli üst sınıf sedan",
+          "card_description_style": {}
         },
         {
           "id": "tang",
@@ -1912,7 +1998,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük performans SUV'u"
+          "card_description": "Büyük performans SUV'u",
+          "card_description_style": {}
         }
       ]
     },
@@ -1949,7 +2036,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt elektrikli SUV"
+          "card_description": "Kompakt elektrikli SUV",
+          "card_description_style": {}
         },
         {
           "id": "ex40",
@@ -1967,7 +2055,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli kompakt SUV"
+          "card_description": "Elektrikli kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "ec40",
@@ -1985,7 +2074,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli crossover"
+          "card_description": "Elektrikli crossover",
+          "card_description_style": {}
         },
         {
           "id": "xc60",
@@ -2004,7 +2094,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium orta sınıf SUV"
+          "card_description": "Premium orta sınıf SUV",
+          "card_description_style": {}
         },
         {
           "id": "xc90",
@@ -2023,7 +2114,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük premium SUV"
+          "card_description": "Büyük premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "v60",
@@ -2042,7 +2134,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium station wagon"
+          "card_description": "Premium station wagon",
+          "card_description_style": {}
         }
       ]
     },
@@ -2081,7 +2174,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium kompakt sınıf"
+          "card_description": "Premium kompakt sınıf",
+          "card_description_style": {}
         },
         {
           "id": "a5",
@@ -2102,7 +2196,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium orta sınıf"
+          "card_description": "Premium orta sınıf",
+          "card_description_style": {}
         },
         {
           "id": "a6",
@@ -2123,7 +2218,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Üst sınıf premium sedan"
+          "card_description": "Üst sınıf premium sedan",
+          "card_description_style": {}
         },
         {
           "id": "a8",
@@ -2142,7 +2238,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Audi'nin lüks sedanı"
+          "card_description": "Audi'nin lüks sedanı",
+          "card_description_style": {}
         },
         {
           "id": "q2",
@@ -2161,7 +2258,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt premium SUV"
+          "card_description": "Kompakt premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "q3",
@@ -2180,7 +2278,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt premium SUV"
+          "card_description": "Kompakt premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "q4-e-tron",
@@ -2198,7 +2297,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli premium SUV"
+          "card_description": "Elektrikli premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "q5",
@@ -2218,7 +2318,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Orta sınıf premium SUV"
+          "card_description": "Orta sınıf premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "q6-e-tron",
@@ -2236,7 +2337,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Yeni nesil elektrikli premium SUV"
+          "card_description": "Yeni nesil elektrikli premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "q7",
@@ -2255,7 +2357,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük premium SUV"
+          "card_description": "Büyük premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "q8",
@@ -2274,7 +2377,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium sportif SUV"
+          "card_description": "Premium sportif SUV",
+          "card_description_style": {}
         }
       ]
     },
@@ -2312,7 +2416,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium kompakt hatchback"
+          "card_description": "Premium kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "2-serisi",
@@ -2331,7 +2436,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif kompakt premium otomobil"
+          "card_description": "Sportif kompakt premium otomobil",
+          "card_description_style": {}
         },
         {
           "id": "3-serisi",
@@ -2351,7 +2457,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "BMW'nin ikonik spor sedanı"
+          "card_description": "BMW'nin ikonik spor sedanı",
+          "card_description_style": {}
         },
         {
           "id": "4-serisi",
@@ -2370,7 +2477,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif coupe ailesi"
+          "card_description": "Sportif coupe ailesi",
+          "card_description_style": {}
         },
         {
           "id": "5-serisi",
@@ -2391,7 +2499,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium yönetici sedanı"
+          "card_description": "Premium yönetici sedanı",
+          "card_description_style": {}
         },
         {
           "id": "7-serisi",
@@ -2411,7 +2520,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "BMW'nin lüks sedanı"
+          "card_description": "BMW'nin lüks sedanı",
+          "card_description_style": {}
         },
         {
           "id": "x1",
@@ -2431,7 +2541,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt premium SUV"
+          "card_description": "Kompakt premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "x2",
@@ -2451,7 +2562,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif coupe SUV"
+          "card_description": "Sportif coupe SUV",
+          "card_description_style": {}
         },
         {
           "id": "x3",
@@ -2471,7 +2583,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Orta sınıf premium SUV"
+          "card_description": "Orta sınıf premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "x5",
@@ -2491,7 +2604,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük premium SUV"
+          "card_description": "Büyük premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "ix",
@@ -2509,7 +2623,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Tamamen elektrikli premium SUV"
+          "card_description": "Tamamen elektrikli premium SUV",
+          "card_description_style": {}
         }
       ]
     },
@@ -2546,7 +2661,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium kompakt hatchback"
+          "card_description": "Premium kompakt hatchback",
+          "card_description_style": {}
         },
         {
           "id": "c-serisi",
@@ -2567,7 +2683,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium orta sınıf sedan"
+          "card_description": "Premium orta sınıf sedan",
+          "card_description_style": {}
         },
         {
           "id": "e-serisi",
@@ -2587,7 +2704,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Yönetici sınıfında lüks sedan"
+          "card_description": "Yönetici sınıfında lüks sedan",
+          "card_description_style": {}
         },
         {
           "id": "s-serisi",
@@ -2606,7 +2724,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Mercedes-Benz'in lüks sedanı"
+          "card_description": "Mercedes-Benz'in lüks sedanı",
+          "card_description_style": {}
         },
         {
           "id": "cla",
@@ -2626,7 +2745,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Sportif kompakt sedan"
+          "card_description": "Sportif kompakt sedan",
+          "card_description_style": {}
         },
         {
           "id": "gla",
@@ -2644,7 +2764,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Kompakt premium SUV"
+          "card_description": "Kompakt premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "glb",
@@ -2663,7 +2784,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Geniş kompakt SUV"
+          "card_description": "Geniş kompakt SUV",
+          "card_description_style": {}
         },
         {
           "id": "glc",
@@ -2683,7 +2805,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Premium orta sınıf SUV"
+          "card_description": "Premium orta sınıf SUV",
+          "card_description_style": {}
         },
         {
           "id": "gle",
@@ -2702,7 +2825,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Büyük premium SUV"
+          "card_description": "Büyük premium SUV",
+          "card_description_style": {}
         },
         {
           "id": "g-serisi",
@@ -2721,7 +2845,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "İkonik arazi SUV'u"
+          "card_description": "İkonik arazi SUV'u",
+          "card_description_style": {}
         },
         {
           "id": "eqe",
@@ -2739,7 +2864,8 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Elektrikli premium sedan"
+          "card_description": "Elektrikli premium sedan",
+          "card_description_style": {}
         }
       ]
     }
