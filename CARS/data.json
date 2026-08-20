@@ -42,7 +42,7 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "typewriter"
+        "effect": "marquee"
       },
       "models": [
         {
@@ -184,6 +184,36 @@
             "hibrit"
           ],
           "order": 6,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "Şehir hayatı için çevik ve modern hatchback",
+          "card_description_style": {}
+        },
+        {
+          "id": "corsa-1-2-edition-kopya-1",
+          "name": "Corsa 1.2 Edition (Kopya)",
+          "year": 2026,
+          "thumbnail": "images/opel/corsa/thumbnail.png",
+          "large_images": [
+            "images/opel/corsa/05.png",
+            "images/opel/corsa/02.png",
+            "images/opel/corsa/03.png",
+            "images/opel/corsa/04.png",
+            "images/opel/corsa/01.png",
+            "images/opel/corsa/06.png",
+            "images/opel/corsa/07.png",
+            "images/opel/corsa/08.jpeg",
+            "images/opel/corsa/09.jpeg",
+            "images/opel/corsa/10.jpeg"
+          ],
+          "body_types": [
+            "hatchback_5"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
+          "order": 7,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
