@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-08-20T15:49:31",
+  "brand_total": 54,
+  "brand_done": 54,
+  "model_discovered": 430,
+  "model_saved": 409,
+  "version_discovered": 1455,
+  "version_saved": 1455,
+  "version_skipped_not_for_sale": 0,
+  "failed": 0,
+  "current": "",
+  "finished_at": "2026-08-20T17:13:11"
+}
