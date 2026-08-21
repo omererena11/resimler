@@ -277,6 +277,258 @@
   }
   .model-card:active { transform: scale(0.97); }
   .model-card img { width: 100%; height: var(--card-img-h); object-fit: cover; background: #F0F1F3; display: block; }
+
+  /* Tek marka seçildiğinde modeller aşağı doğru gider */
+  .brand-section.single-brand .models-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: visible;
+    gap: 10px;
+    padding: 10px 12px 18px;
+  }
+
+  .brand-section.single-brand .model-card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(118px, 38%) 1fr;
+    align-items: stretch;
+    min-height: 126px;
+  }
+
+  .brand-section.single-brand .model-card > img,
+  .brand-section.single-brand .model-card > .placeholder-img {
+    width: 100%;
+    height: 100%;
+    min-height: 126px;
+    max-height: 180px;
+    object-fit: cover;
+  }
+
+  .brand-section.single-brand .model-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+
+  .compare-add-btn {
+    margin-top: 9px;
+    width: 100%;
+    min-height: 34px;
+    border: 1px solid var(--accent);
+    border-radius: 9px;
+    background: #EFF6FF;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .compare-add-btn.selected {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* Alt karşılaştırma sepeti */
+  #compare-tray {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 80;
+    display: none;
+    background: rgba(255,255,255,.97);
+    border: 1px solid #DDE1E6;
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.18);
+    padding: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  #compare-tray.visible { display: block; }
+
+  .compare-tray-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .compare-tray-title {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .compare-clear {
+    border: none;
+    background: transparent;
+    color: #64748B;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .compare-chips {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 8px;
+  }
+
+  .compare-chips::-webkit-scrollbar { display:none; }
+
+  .compare-chip {
+    flex: 0 0 auto;
+    background: #F1F5F9;
+    border-radius: 18px;
+    padding: 7px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .compare-start-btn {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    min-height: 40px;
+    background: var(--accent);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .compare-start-btn:disabled {
+    background: #CBD5E1;
+    cursor: default;
+  }
+
+  /* Versiyon seçme / karşılaştırma modalları */
+  .app-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: none;
+    background: rgba(0,0,0,.58);
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .app-modal.active { display: flex; }
+
+  .app-modal-panel {
+    width: min(100%, 760px);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 16px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,.22);
+  }
+
+  .app-modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .app-modal-title {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .app-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #EEF2F7;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .version-option {
+    width: 100%;
+    text-align: left;
+    border: 1px solid #E2E8F0;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .version-option strong {
+    display: block;
+    font-size: 14px;
+    color: #0F172A;
+  }
+
+  .version-option small {
+    display: block;
+    margin-top: 4px;
+    color: #64748B;
+  }
+
+  .compare-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 620px;
+    font-size: 12px;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    border-bottom: 1px solid #E2E8F0;
+    border-right: 1px solid #E2E8F0;
+    padding: 9px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .compare-table th:first-child,
+  .compare-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #F8FAFC;
+    text-align: left;
+    min-width: 125px;
+    font-weight: 700;
+  }
+
+  .compare-table thead th {
+    background: #F8FAFC;
+    font-weight: 800;
+  }
+
+  .compare-car-image {
+    width: 92px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 6px;
+    background: #F8FAFC;
+  }
+
+  .compare-section-row td {
+    background: #EEF5FF !important;
+    color: #1D4ED8;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+
   .model-info { padding: 10px 14px; }
   .model-name { font-weight: 600; font-size: 0.95rem; }
   .model-year { color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
@@ -364,6 +616,35 @@
     <main id="content"><div class="loading">Veriler yükleniyor...</div></main>
   </div>
 
+  <div id="compare-tray">
+    <div class="compare-tray-top">
+      <div class="compare-tray-title"><span id="compare-count">0</span> araç seçildi</div>
+      <button class="compare-clear" id="compare-clear">Temizle</button>
+    </div>
+    <div class="compare-chips" id="compare-chips"></div>
+    <button class="compare-start-btn" id="compare-start" disabled>KARŞILAŞTIR</button>
+  </div>
+
+  <div class="app-modal" id="version-modal">
+    <div class="app-modal-panel">
+      <div class="app-modal-head">
+        <div class="app-modal-title" id="version-modal-title">Versiyon seç</div>
+        <button class="app-modal-close" id="version-modal-close">&times;</button>
+      </div>
+      <div id="version-options"></div>
+    </div>
+  </div>
+
+  <div class="app-modal" id="compare-modal">
+    <div class="app-modal-panel">
+      <div class="app-modal-head">
+        <div class="app-modal-title">Araç Karşılaştırma</div>
+        <button class="app-modal-close" id="compare-modal-close">&times;</button>
+      </div>
+      <div id="compare-content"></div>
+    </div>
+  </div>
+
   <div id="lightbox">
     <button class="closebtn" id="lightbox-close">&times;</button>
     <div id="viewer"></div>
@@ -387,6 +668,12 @@
   let filterBodyType = 'all';
   let filterFuelType = 'all';
   let imageCacheBuster = '';
+
+  // Arama / karşılaştırma durumu
+  let modelSearchQuery = '';
+  let compareSelection = [];
+  const MAX_COMPARE = 3;
+  let pendingCompareModel = null;
 
   function getImgUrl(path) {
     if (!path) return '';
@@ -490,8 +777,19 @@
   }
 
   function selectBrand(brandId) {
-    activeFilter = brandId; renderFilters(); renderContent();
-    const si = $('#brand-search'); if (si) { si.value = ''; hideSearchResults(); updateClearButton(); }
+    activeFilter = brandId;
+    modelSearchQuery = '';
+
+    const si = $('#brand-search');
+    if (si) {
+      si.value = '';
+      si.placeholder = activeFilter ? 'Model ara...' : 'Marka ara...';
+    }
+
+    hideSearchResults();
+    updateClearButton();
+    renderFilters();
+    renderContent();
   }
 
   function renderFilters() {
@@ -501,34 +799,148 @@
     allBtn.className = 'filter-btn all-btn' + (!activeFilter ? ' active' : '');
     allBtn.textContent = 'TÜMÜ'; allBtn.onclick = () => selectBrand(null);
     c.appendChild(allBtn);
-    appData.brands.sort((a,b)=>a.order-b.order).forEach(b => {
-      if (!b.show_on_homepage) return;
-      const btn = document.createElement('button');
-      btn.className = 'filter-btn' + (activeFilter === b.id ? ' active' : '');
-      btn.textContent = b.name; btn.onclick = () => selectBrand(b.id);
-      c.appendChild(btn);
-    });
+    const excludedBrandIds = new Set([
+      'araba-karsilastirma',
+      'araba-kampanyalari'
+    ]);
+
+    appData.brands
+      .sort((a,b) => (a.order || 0) - (b.order || 0))
+      .forEach(b => {
+        if (!b.show_on_homepage) return;
+        if (excludedBrandIds.has(b.id)) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn' + (activeFilter === b.id ? ' active' : '');
+        btn.textContent = b.name;
+        btn.onclick = () => selectBrand(b.id);
+        c.appendChild(btn);
+      });
   }
 
   function initSearch() {
     const si = $('#brand-search'), sc = $('#search-clear');
+
+    si.placeholder = activeFilter ? 'Model ara...' : 'Marka ara...';
+
     si.addEventListener('input', () => {
-      const q = si.value.trim().toLowerCase(); updateClearButton();
-      if (!q) { hideSearchResults(); return; }
-      const filtered = (appData.brands || []).filter(b => b.show_on_homepage && b.name.toLowerCase().includes(q));
-      showSearchResults(filtered);
+      const q = si.value.trim().toLowerCase();
+      updateClearButton();
+
+      if (activeFilter) {
+        // Marka seçiliyse gerçek model araması
+        modelSearchQuery = q;
+        renderContent();
+
+        if (!q) {
+          hideSearchResults();
+          return;
+        }
+
+        const brand = (appData.brands || []).find(b => b.id === activeFilter);
+        const models = (brand?.models || [])
+          .filter(m =>
+            m.show_on_homepage &&
+            m.name.toLowerCase().includes(q)
+          );
+
+        showModelSearchResults(models);
+      } else {
+        // TÜMÜ görünümünde marka araması
+        modelSearchQuery = '';
+
+        if (!q) {
+          hideSearchResults();
+          return;
+        }
+
+        const filtered = (appData.brands || []).filter(
+          b =>
+            b.show_on_homepage &&
+            !['araba-karsilastirma', 'araba-kampanyalari'].includes(b.id) &&
+            b.name.toLowerCase().includes(q)
+        );
+
+        showBrandSearchResults(filtered);
+      }
     });
-    sc.addEventListener('click', () => { si.value = ''; updateClearButton(); hideSearchResults(); si.focus(); });
-    document.addEventListener('click', e => { if (!e.target.closest('#brand-search-wrapper')) hideSearchResults(); });
+
+    sc.addEventListener('click', () => {
+      si.value = '';
+      modelSearchQuery = '';
+      updateClearButton();
+      hideSearchResults();
+      renderContent();
+      si.focus();
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#brand-search-wrapper')) hideSearchResults();
+    });
   }
-  function updateClearButton() { $('#search-clear').classList.toggle('visible', !!$('#brand-search').value.trim()); }
-  function showSearchResults(brands) {
-    const c = $('#brand-search-results'); c.innerHTML = '';
-    if (!brands.length) { c.innerHTML = '<div class="search-result-empty">Marka bulunamadı</div>'; }
-    else { brands.slice(0,6).forEach(b => { const item = document.createElement('div'); item.className='search-result-item'; item.textContent=b.name; item.addEventListener('click',()=>selectBrand(b.id)); c.appendChild(item); }); }
+
+  function updateClearButton() {
+    $('#search-clear').classList.toggle(
+      'visible',
+      !!$('#brand-search').value.trim()
+    );
+  }
+
+  function showBrandSearchResults(brands) {
+    const c = $('#brand-search-results');
+    c.innerHTML = '';
+
+    if (!brands.length) {
+      c.innerHTML = '<div class="search-result-empty">Marka bulunamadı</div>';
+    } else {
+      brands.slice(0, 8).forEach(b => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        item.textContent = b.name;
+        item.addEventListener('click', () => selectBrand(b.id));
+        c.appendChild(item);
+      });
+    }
+
     c.classList.add('visible');
   }
-  function hideSearchResults() { $('#brand-search-results').classList.remove('visible'); }
+
+  function showModelSearchResults(models) {
+    const c = $('#brand-search-results');
+    c.innerHTML = '';
+
+    if (!models.length) {
+      c.innerHTML = '<div class="search-result-empty">Model bulunamadı</div>';
+    } else {
+      models.slice(0, 10).forEach(m => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        item.textContent = `${m.name}${m.year ? ' · ' + m.year : ''}`;
+
+        item.addEventListener('click', () => {
+          const si = $('#brand-search');
+          si.value = m.name;
+          modelSearchQuery = m.name.toLowerCase();
+          updateClearButton();
+          hideSearchResults();
+          renderContent();
+
+          setTimeout(() => {
+            const el = document.querySelector(`[data-model-id="${CSS.escape(m.id)}"]`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 50);
+        });
+
+        c.appendChild(item);
+      });
+    }
+
+    c.classList.add('visible');
+  }
+
+  function hideSearchResults() {
+    $('#brand-search-results').classList.remove('visible');
+  }
 
   function matchesFilters(car) {
     if (filterBodyType !== 'all' && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
@@ -536,39 +948,398 @@
     return true;
   }
 
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function getModelKey(brandId, modelId) {
+    return `${brandId}::${modelId}`;
+  }
+
+  function isModelInCompare(brandId, modelId) {
+    return compareSelection.some(
+      item => item.brand.id === brandId && item.model.id === modelId
+    );
+  }
+
   function renderContent() {
     const content = $('#content');
-    if (!appData?.brands) { content.innerHTML = '<div class="empty-state">Veri yok</div>'; return; }
-    let html = '';
-    appData.brands.sort((a,b)=>a.order-b.order).forEach(brand => {
-      if (!brand.show_on_homepage || (activeFilter && brand.id !== activeFilter)) return;
-      let models = (brand.models||[]).filter(m => m.show_on_homepage && matchesFilters(m));
-      if (!models.length) return;
-      models.sort((a,b) => (a.order||1) - (b.order||1));
 
-      const logoUrl = brand.logo ? getImgUrl(brand.logo) : '';
-      html += `<section class="brand-section">
-        <div class="brand-header">
-          <div class="brand-logo">${brand.logo ? `<img src="${logoUrl}" onerror="this.parentElement.innerHTML='🏢'">` : '🏢'}</div>
-          <span class="brand-name">${brand.name}</span>
-        </div>`;
-      if (brand.show_brand_description && brand.brand_description) {
-        const style = brand.brand_description_style || {}; const effect = style.effect || 'none'; const effectClass = effect !== 'none' ? ' ' + effect : '';
-        html += `<div class="brand-highlight${effectClass}" style="font-family:${style.font_family||'Arial'};font-size:${style.font_size||14}px;font-weight:${style.font_weight||'normal'};color:${style.color||'#1A1C1E'};text-align:${style.text_align||'left'};"><span class="text">${brand.brand_description}</span></div>`;
-      }
-      html += '<div class="models-row">';
-      models.forEach(car => {
-        const thumb = car.thumbnail ? getImgUrl(car.thumbnail) : '';
-        const largeImages = (car.large_images?.length ? car.large_images : (car.thumbnail ? [car.thumbnail] : [])).map(getImgUrl);
-        html += `<div class="model-card" data-images='${JSON.stringify(largeImages)}'>${thumb ? `<img src="${thumb}" alt="${car.name}" loading="lazy" onerror="this.parentElement.querySelector('.placeholder-img').style.display='flex'; this.style.display='none';">` : ''}<div class="placeholder-img" style="display:${thumb?'none':'flex'};">🚗</div><div class="model-info"><div class="model-name">${car.name}</div>${car.show_year?`<div class="model-year">${car.year}</div>`:''}${car.show_description&&car.card_description?`<div class="model-desc">✨ ${car.card_description}</div>`:''}</div></div>`;
+    if (!appData?.brands) {
+      content.innerHTML = '<div class="empty-state">Veri yok</div>';
+      return;
+    }
+
+    let html = '';
+
+    appData.brands
+      .sort((a,b) => (a.order || 0) - (b.order || 0))
+      .forEach(brand => {
+        if (!brand.show_on_homepage) return;
+        if (activeFilter && brand.id !== activeFilter) return;
+
+        let models = (brand.models || [])
+          .filter(m => m.show_on_homepage && matchesFilters(m));
+
+        if (activeFilter && modelSearchQuery) {
+          models = models.filter(
+            m => (m.name || '').toLowerCase().includes(modelSearchQuery)
+          );
+        }
+
+        if (!models.length) return;
+
+        models.sort(
+          (a,b) => (a.order || 1) - (b.order || 1)
+        );
+
+        const logoUrl = brand.logo ? getImgUrl(brand.logo) : '';
+        const singleClass = activeFilter ? ' single-brand' : '';
+
+        html += `<section class="brand-section${singleClass}">
+          <div class="brand-header">
+            <div class="brand-logo">${
+              brand.logo
+                ? `<img src="${logoUrl}" onerror="this.parentElement.innerHTML='🏢'">`
+                : '🏢'
+            }</div>
+            <span class="brand-name">${escapeHtml(brand.name)}</span>
+          </div>`;
+
+        if (brand.show_brand_description && brand.brand_description) {
+          const style = brand.brand_description_style || {};
+          const effect = style.effect || 'none';
+          const effectClass = effect !== 'none' ? ' ' + effect : '';
+
+          html += `<div class="brand-highlight${effectClass}"
+            style="
+              font-family:${style.font_family || 'Arial'};
+              font-size:${style.font_size || 14}px;
+              font-weight:${style.font_weight || 'normal'};
+              color:${style.color || '#1A1C1E'};
+              text-align:${style.text_align || 'left'};
+            ">
+            <span class="text">${escapeHtml(brand.brand_description)}</span>
+          </div>`;
+        }
+
+        html += '<div class="models-row">';
+
+        models.forEach(car => {
+          const thumb = car.thumbnail ? getImgUrl(car.thumbnail) : '';
+          const largeImages = (
+            car.large_images?.length
+              ? car.large_images
+              : (car.thumbnail ? [car.thumbnail] : [])
+          ).map(getImgUrl);
+
+          const selected = isModelInCompare(brand.id, car.id);
+
+          html += `
+            <div
+              class="model-card"
+              data-images='${JSON.stringify(largeImages)}'
+              data-brand-id="${escapeHtml(brand.id)}"
+              data-model-id="${escapeHtml(car.id)}"
+            >
+              ${
+                thumb
+                  ? `<img src="${thumb}" alt="${escapeHtml(car.name)}" loading="lazy"
+                      onerror="this.parentElement.querySelector('.placeholder-img').style.display='flex'; this.style.display='none';">`
+                  : ''
+              }
+
+              <div class="placeholder-img" style="display:${thumb ? 'none' : 'flex'};">🚗</div>
+
+              <div class="model-info">
+                <div class="model-name">${escapeHtml(car.name)}</div>
+                ${car.show_year ? `<div class="model-year">${escapeHtml(car.year)}</div>` : ''}
+                ${
+                  car.show_description && car.card_description
+                    ? `<div class="model-desc">✨ ${escapeHtml(car.card_description)}</div>`
+                    : ''
+                }
+
+                <button
+                  class="compare-add-btn${selected ? ' selected' : ''}"
+                  data-compare-brand="${escapeHtml(brand.id)}"
+                  data-compare-model="${escapeHtml(car.id)}"
+                >
+                  ${selected ? '✓ Karşılaştırmaya eklendi' : '+ Karşılaştır'}
+                </button>
+              </div>
+            </div>`;
+        });
+
+        html += '</div></section>';
       });
-      html += '</div></section>';
-    });
+
     content.innerHTML = html || '<div class="empty-state">Model bulunamadı</div>';
+
     document.querySelectorAll('.model-card').forEach(card => {
-      card.addEventListener('click', () => { const imgs = JSON.parse(card.dataset.images); if (imgs?.length) openLightbox(imgs); });
+      card.addEventListener('click', e => {
+        if (e.target.closest('.compare-add-btn')) return;
+
+        const imgs = JSON.parse(card.dataset.images || '[]');
+        if (imgs?.length) openLightbox(imgs);
+      });
     });
+
+    document.querySelectorAll('.compare-add-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        beginCompareSelection(
+          btn.dataset.compareBrand,
+          btn.dataset.compareModel
+        );
+      });
+    });
+
+    renderCompareTray();
   }
+
+  // =========================================================
+  // KARŞILAŞTIRMA
+  // =========================================================
+
+  function findBrandModel(brandId, modelId) {
+    const brand = (appData.brands || []).find(b => b.id === brandId);
+    const model = (brand?.models || []).find(m => m.id === modelId);
+    return { brand, model };
+  }
+
+  function beginCompareSelection(brandId, modelId) {
+    const existingIndex = compareSelection.findIndex(
+      item => item.brand.id === brandId && item.model.id === modelId
+    );
+
+    if (existingIndex >= 0) {
+      compareSelection.splice(existingIndex, 1);
+      renderContent();
+      return;
+    }
+
+    if (compareSelection.length >= MAX_COMPARE) {
+      alert(`En fazla ${MAX_COMPARE} araç karşılaştırabilirsin.`);
+      return;
+    }
+
+    const { brand, model } = findBrandModel(brandId, modelId);
+    if (!brand || !model) return;
+
+    const versions = Array.isArray(model.versions) ? model.versions : [];
+
+    if (versions.length === 0) {
+      alert('Bu modelde karşılaştırılabilir versiyon bilgisi bulunamadı.');
+      return;
+    }
+
+    if (versions.length === 1) {
+      addCompareItem(brand, model, versions[0]);
+      return;
+    }
+
+    pendingCompareModel = { brand, model };
+    openVersionModal(brand, model);
+  }
+
+  function openVersionModal(brand, model) {
+    $('#version-modal-title').textContent =
+      `${brand.name} ${model.name} · Versiyon seç`;
+
+    const box = $('#version-options');
+    box.innerHTML = '';
+
+    (model.versions || []).forEach(version => {
+      const price = version.price?.raw || 'Fiyat bilgisi yok';
+
+      const button = document.createElement('button');
+      button.className = 'version-option';
+      button.innerHTML = `
+        <strong>${escapeHtml(version.name || version.slug || 'Versiyon')}</strong>
+        <small>${escapeHtml(version.year || model.year || '')} · ${escapeHtml(price)}</small>
+      `;
+
+      button.addEventListener('click', () => {
+        addCompareItem(brand, model, version);
+        closeVersionModal();
+      });
+
+      box.appendChild(button);
+    });
+
+    $('#version-modal').classList.add('active');
+  }
+
+  function closeVersionModal() {
+    $('#version-modal').classList.remove('active');
+    pendingCompareModel = null;
+  }
+
+  function addCompareItem(brand, model, version) {
+    if (compareSelection.length >= MAX_COMPARE) return;
+
+    compareSelection.push({
+      brand,
+      model,
+      version
+    });
+
+    renderContent();
+  }
+
+  function renderCompareTray() {
+    const tray = $('#compare-tray');
+    const chips = $('#compare-chips');
+    const count = $('#compare-count');
+    const startBtn = $('#compare-start');
+
+    if (!tray || !chips || !count || !startBtn) return;
+
+    count.textContent = compareSelection.length;
+    chips.innerHTML = '';
+
+    compareSelection.forEach(item => {
+      const chip = document.createElement('div');
+      chip.className = 'compare-chip';
+      chip.textContent =
+        `${item.brand.name} ${item.model.name} · ${item.version.name || ''}`;
+      chips.appendChild(chip);
+    });
+
+    tray.classList.toggle(
+      'visible',
+      compareSelection.length > 0
+    );
+
+    startBtn.disabled = compareSelection.length < 2;
+  }
+
+  function valueOf(item, key) {
+    const specs = item.version?.technical_specs || {};
+
+    if (key === '__price__') {
+      return item.version?.price?.raw || '—';
+    }
+
+    if (key === '__year__') {
+      return item.version?.year || item.model?.year || '—';
+    }
+
+    if (key === '__fuel__') {
+      return specs['Enerji Türü'] || '—';
+    }
+
+    return specs[key] ?? '—';
+  }
+
+  function openCompareModal() {
+    if (compareSelection.length < 2) return;
+
+    const rows = [
+      { section: 'Genel' },
+      ['Fiyat', '__price__'],
+      ['Model Yılı', '__year__'],
+      ['Enerji Türü', '__fuel__'],
+      ['Vites Tipi', 'Vites Tipi'],
+
+      { section: 'Performans' },
+      ['Sistem Gücü', 'Sistem Gücü'],
+      ['Sistem Torku', 'Sistem Torku'],
+      ['0-100 Hızlanma', '0-100 Hızlanma'],
+      ['Maksimum Hız', 'Maksimum Hız'],
+      ['Silindir Hacmi', 'Silindir Hacmi'],
+      ['Motor Gücü', 'Motor Gücü'],
+
+      { section: 'Ekonomi / Enerji' },
+      ['Ortalama Tüketim', 'Ortalama Tüketim'],
+      ['Ortalama Menzil', 'Ortalama Menzil'],
+      ['KM Başı Maliyet', 'KM Başı Maliyet'],
+      ['Enerji Tüketimi', 'Enerji Tüketimi'],
+      ['Batarya Hacmi', 'Batarya Hacmi'],
+      ['Şarj Süresi', 'Şarj Süresi'],
+      ['Yakıt Deposu', 'Yakıt Deposu'],
+
+      { section: 'Boyut / Pratiklik' },
+      ['Bagaj Hacmi', 'Bagaj Hacmi'],
+      ['Boş Ağırlık', 'Boş Ağırlık'],
+      ['Uzunluk', 'Uzunluk'],
+      ['Genişlik', 'Genişlik'],
+      ['Yükseklik', 'Yükseklik']
+    ];
+
+    let table = '<div class="compare-table-wrap"><table class="compare-table"><thead><tr>';
+    table += '<th>Özellik</th>';
+
+    compareSelection.forEach(item => {
+      const img = item.model.thumbnail
+        ? getImgUrl(item.model.thumbnail)
+        : '';
+
+      table += `<th>
+        ${img ? `<img class="compare-car-image" src="${img}" alt="">` : ''}
+        <div>${escapeHtml(item.brand.name)} ${escapeHtml(item.model.name)}</div>
+        <small>${escapeHtml(item.version.name || '')}</small>
+      </th>`;
+    });
+
+    table += '</tr></thead><tbody>';
+
+    rows.forEach(row => {
+      if (row.section) {
+        table += `<tr class="compare-section-row">
+          <td colspan="${compareSelection.length + 1}">${escapeHtml(row.section)}</td>
+        </tr>`;
+        return;
+      }
+
+      const [label, key] = row;
+      const values = compareSelection.map(item => valueOf(item, key));
+
+      // Tamamı boş/— ise gereksiz satırı göstermiyoruz.
+      if (values.every(v => v === '—' || v === '' || v == null)) return;
+
+      table += `<tr><td>${escapeHtml(label)}</td>`;
+
+      values.forEach(value => {
+        table += `<td>${escapeHtml(value)}</td>`;
+      });
+
+      table += '</tr>';
+    });
+
+    table += '</tbody></table></div>';
+
+    $('#compare-content').innerHTML = table;
+    $('#compare-modal').classList.add('active');
+  }
+
+  function closeCompareModal() {
+    $('#compare-modal').classList.remove('active');
+  }
+
+  $('#version-modal-close').addEventListener('click', closeVersionModal);
+  $('#compare-modal-close').addEventListener('click', closeCompareModal);
+
+  $('#version-modal').addEventListener('click', e => {
+    if (e.target.id === 'version-modal') closeVersionModal();
+  });
+
+  $('#compare-modal').addEventListener('click', e => {
+    if (e.target.id === 'compare-modal') closeCompareModal();
+  });
+
+  $('#compare-clear').addEventListener('click', () => {
+    compareSelection = [];
+    renderContent();
+  });
+
+  $('#compare-start').addEventListener('click', openCompareModal);
 
   // ===== LIGHTBOX =====
   let total = 0;
