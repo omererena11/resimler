@@ -639,6 +639,38 @@
   .compare-table thead th {
     background: #F8FAFC;
     font-weight: 800;
+    position: sticky;
+    top: 0;
+    z-index: 6;
+  }
+
+  /* Sol üst köşe hücresi diğer sticky hücrelerin üzerinde kalsın */
+  .compare-table thead th:first-child {
+    left: 0;
+    z-index: 8;
+    background: #F8FAFC;
+  }
+
+  /* Yatay modda araç başlıkları kaydırırken üstte sabit kalır */
+  #compare-modal.force-landscape .compare-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 6;
+    background: #F8FAFC;
+  }
+
+  @media (orientation: landscape) {
+    .compare-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      background: #F8FAFC;
+    }
+
+    .compare-table thead th:first-child {
+      left: 0;
+      z-index: 8;
+    }
   }
 
   .compare-car-image {
