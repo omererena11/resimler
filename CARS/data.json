@@ -67,7 +67,7 @@
     {
       "id": "alfa-romeo",
       "name": "Alfa Romeo",
-      "logo": "",
+      "logo": "images/brands/alfa-romeo.webp",
       "order": 3,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -649,7 +649,7 @@
     {
       "id": "audi",
       "name": "Audi",
-      "logo": "",
+      "logo": "images/brands/audi.webp",
       "order": 4,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -2651,7 +2651,7 @@
     {
       "id": "bmw",
       "name": "BMW",
-      "logo": "",
+      "logo": "images/brands/bmw.webp",
       "order": 5,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -4304,7 +4304,7 @@
     {
       "id": "byd",
       "name": "BYD",
-      "logo": "",
+      "logo": "images/brands/byd.webp",
       "order": 6,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -5493,7 +5493,7 @@
     {
       "id": "chery",
       "name": "Chery",
-      "logo": "",
+      "logo": "images/brands/chery.webp",
       "order": 7,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -7479,7 +7479,7 @@
     {
       "id": "citroen",
       "name": "Citroen",
-      "logo": "",
+      "logo": "images/brands/citroen.webp",
       "order": 8,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -11884,7 +11884,7 @@
     {
       "id": "cupra",
       "name": "Cupra",
-      "logo": "",
+      "logo": "images/brands/cupra.webp",
       "order": 9,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -12373,7 +12373,7 @@
     {
       "id": "dacia",
       "name": "Dacia",
-      "logo": "",
+      "logo": "images/brands/dacia.webp",
       "order": 10,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -14309,7 +14309,7 @@
     {
       "id": "dfsk",
       "name": "DFSK",
-      "logo": "",
+      "logo": "images/brands/dfsk.webp",
       "order": 11,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -14756,7 +14756,7 @@
     {
       "id": "ds",
       "name": "DS",
-      "logo": "",
+      "logo": "images/brands/ds.webp",
       "order": 12,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -15292,7 +15292,7 @@
     {
       "id": "fiat",
       "name": "Fiat",
-      "logo": "",
+      "logo": "images/brands/fiat.webp",
       "order": 13,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -22046,7 +22046,7 @@
     {
       "id": "ford",
       "name": "Ford",
-      "logo": "",
+      "logo": "images/brands/ford.webp",
       "order": 14,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -27325,7 +27325,7 @@
     {
       "id": "foton",
       "name": "Foton",
-      "logo": "",
+      "logo": "images/brands/foton.webp",
       "order": 15,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -27616,7 +27616,7 @@
     {
       "id": "honda",
       "name": "Honda",
-      "logo": "",
+      "logo": "images/brands/honda.webp",
       "order": 16,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -29168,7 +29168,7 @@
     {
       "id": "hyundai",
       "name": "Hyundai",
-      "logo": "",
+      "logo": "images/brands/hyundai.webp",
       "order": 17,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -33233,7 +33233,7 @@
     {
       "id": "isuzu",
       "name": "Isuzu",
-      "logo": "",
+      "logo": "images/brands/isuzu.webp",
       "order": 18,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -33448,7 +33448,7 @@
     {
       "id": "jaecoo",
       "name": "Jaecoo",
-      "logo": "",
+      "logo": "images/brands/jaecoo.webp",
       "order": 19,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -33825,7 +33825,7 @@
     {
       "id": "jeep",
       "name": "Jeep",
-      "logo": "",
+      "logo": "images/brands/jeep.webp",
       "order": 20,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -35160,7 +35160,7 @@
     {
       "id": "kia",
       "name": "Kia",
-      "logo": "",
+      "logo": "images/brands/kia.webp",
       "order": 21,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -37913,7 +37913,7 @@
     {
       "id": "land-rover",
       "name": "Land Rover",
-      "logo": "",
+      "logo": "images/brands/land-rover.webp",
       "order": 22,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -38267,7 +38267,7 @@
     {
       "id": "lexus",
       "name": "Lexus",
-      "logo": "",
+      "logo": "images/brands/lexus.webp",
       "order": 23,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -38575,7 +38575,7 @@
     {
       "id": "mercedes",
       "name": "Mercedes",
-      "logo": "",
+      "logo": "images/brands/mercedes.webp",
       "order": 24,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -40775,7 +40775,7 @@
     {
       "id": "mg",
       "name": "MG",
-      "logo": "",
+      "logo": "images/brands/mg.webp",
       "order": 25,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -41265,7 +41265,7 @@
     {
       "id": "mini",
       "name": "Mini",
-      "logo": "",
+      "logo": "images/brands/mini.webp",
       "order": 26,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -41533,7 +41533,7 @@
     {
       "id": "nissan",
       "name": "Nissan",
-      "logo": "",
+      "logo": "images/brands/nissan.webp",
       "order": 27,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -44453,7 +44453,7 @@
     {
       "id": "opel",
       "name": "Opel",
-      "logo": "",
+      "logo": "images/brands/opel.webp",
       "order": 28,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -47477,7 +47477,7 @@
     {
       "id": "peugeot",
       "name": "Peugeot",
-      "logo": "",
+      "logo": "images/brands/peugeot.webp",
       "order": 29,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -51342,7 +51342,7 @@
     {
       "id": "porsche",
       "name": "Porsche",
-      "logo": "",
+      "logo": "images/brands/porsche.webp",
       "order": 30,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -51850,7 +51850,7 @@
     {
       "id": "renault",
       "name": "Renault",
-      "logo": "",
+      "logo": "images/brands/renault.webp",
       "order": 31,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -57251,7 +57251,7 @@
     {
       "id": "seat",
       "name": "Seat",
-      "logo": "",
+      "logo": "images/brands/seat.webp",
       "order": 32,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -58334,7 +58334,7 @@
     {
       "id": "skoda",
       "name": "Skoda",
-      "logo": "",
+      "logo": "images/brands/skoda.webp",
       "order": 33,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -61342,7 +61342,7 @@
     {
       "id": "ssangyong",
       "name": "Ssangyong",
-      "logo": "",
+      "logo": "images/brands/ssangyong.webp",
       "order": 34,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -62079,7 +62079,7 @@
     {
       "id": "subaru",
       "name": "Subaru",
-      "logo": "",
+      "logo": "images/brands/subaru.webp",
       "order": 35,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -62793,7 +62793,7 @@
     {
       "id": "suzuki",
       "name": "Suzuki",
-      "logo": "",
+      "logo": "images/brands/suzuki.webp",
       "order": 36,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -64985,7 +64985,7 @@
     {
       "id": "swm",
       "name": "SWM",
-      "logo": "",
+      "logo": "images/brands/swm.webp",
       "order": 37,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -65606,7 +65606,7 @@
     {
       "id": "tesla",
       "name": "Tesla",
-      "logo": "",
+      "logo": "images/brands/tesla.webp",
       "order": 38,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -65877,7 +65877,7 @@
     {
       "id": "togg",
       "name": "Togg",
-      "logo": "",
+      "logo": "images/brands/togg.webp",
       "order": 39,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -66399,7 +66399,7 @@
     {
       "id": "toyota",
       "name": "Toyota",
-      "logo": "",
+      "logo": "images/brands/toyota.webp",
       "order": 40,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -70124,7 +70124,7 @@
     {
       "id": "volkswagen",
       "name": "Volkswagen",
-      "logo": "",
+      "logo": "images/brands/volkswagen.webp",
       "order": 41,
       "show_on_homepage": true,
       "show_brand_description": false,
@@ -75224,7 +75224,7 @@
     {
       "id": "volvo",
       "name": "Volvo",
-      "logo": "",
+      "logo": "images/brands/volvo.webp",
       "order": 42,
       "show_on_homepage": true,
       "show_brand_description": false,
