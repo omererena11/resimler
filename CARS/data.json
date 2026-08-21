@@ -165,7 +165,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/alfa-romeo/tonale/thumbnail.webp",
+          "thumbnail": "images/alfa-romeo/tonale/thumbnail.jpg",
           "large_images": [
             "images/alfa-romeo/tonale/001.webp",
             "images/alfa-romeo/tonale/002.webp",
@@ -251,7 +251,7 @@
             2020,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/alfa-romeo/giulietta/thumbnail.jpg",
           "large_images": [
             "images/alfa-romeo/giulietta/001.jpg",
             "images/alfa-romeo/giulietta/002.jpg",
@@ -1061,7 +1061,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/audi/q2/thumbnail.jpg",
           "large_images": [
             "images/audi/q2/001.jpg",
             "images/audi/q2/002.jpg",
@@ -1143,7 +1143,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/audi/q3/thumbnail.webp",
+          "thumbnail": "images/audi/q3/thumbnail.jpg",
           "large_images": [
             "images/audi/q3/001.webp",
             "images/audi/q3/002.webp",
@@ -1409,7 +1409,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/audi/q6/thumbnail.webp",
+          "thumbnail": "images/audi/q6/thumbnail.jpg",
           "large_images": [
             "images/audi/q6/001.webp",
             "images/audi/q6/002.webp",
@@ -1652,7 +1652,7 @@
             2018,
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/audi/a1/thumbnail.jpg",
           "large_images": [
             "images/audi/a1/001.jpg",
             "images/audi/a1/002.jpg",
@@ -1992,7 +1992,7 @@
           "years": [
             2024
           ],
-          "thumbnail": "",
+          "thumbnail": "images/audi/a4/thumbnail.jpg",
           "large_images": [
             "images/audi/a4/001.jpg",
             "images/audi/a4/002.jpg",
@@ -2672,7 +2672,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/bmw/1-serisi/thumbnail.jpg",
           "large_images": [
             "images/bmw/1-serisi/001.jpg",
             "images/bmw/1-serisi/002.jpg",
@@ -2891,7 +2891,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/bmw/3-serisi/thumbnail.jpg",
           "large_images": [
             "images/bmw/3-serisi/001.jpg",
             "images/bmw/3-serisi/002.jpg",
@@ -3214,7 +3214,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/bmw/x1/thumbnail.jpg",
           "large_images": [
             "images/bmw/x1/001.jpg",
             "images/bmw/x1/002.jpg",
@@ -3436,7 +3436,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/x3/thumbnail.webp",
+          "thumbnail": "images/bmw/x3/thumbnail.jpg",
           "large_images": [
             "images/bmw/x3/001.webp",
             "images/bmw/x3/002.webp",
@@ -3524,7 +3524,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/x5/thumbnail.webp",
+          "thumbnail": "images/bmw/x5/thumbnail.jpg",
           "large_images": [
             "images/bmw/x5/001.webp",
             "images/bmw/x5/002.webp",
@@ -3608,7 +3608,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/ix/thumbnail.webp",
+          "thumbnail": "images/bmw/ix/thumbnail.jpg",
           "large_images": [
             "images/bmw/ix/001.webp",
             "images/bmw/ix/002.webp",
@@ -3689,7 +3689,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/x6/thumbnail.webp",
+          "thumbnail": "images/bmw/x6/thumbnail.jpg",
           "large_images": [
             "images/bmw/x6/001.webp",
             "images/bmw/x6/002.webp",
@@ -3769,7 +3769,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/ix1/thumbnail.webp",
+          "thumbnail": "images/bmw/ix1/thumbnail.jpg",
           "large_images": [
             "images/bmw/ix1/001.webp",
             "images/bmw/ix1/002.webp",
@@ -3847,7 +3847,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/ix2/thumbnail.webp",
+          "thumbnail": "images/bmw/ix2/thumbnail.jpg",
           "large_images": [
             "images/bmw/ix2/001.webp",
             "images/bmw/ix2/002.webp",
@@ -3924,7 +3924,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/ix3/thumbnail.webp",
+          "thumbnail": "images/bmw/ix3/thumbnail.jpg",
           "large_images": [
             "images/bmw/ix3/001.webp",
             "images/bmw/ix3/002.webp",
@@ -4005,7 +4005,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/bmw/7-serisi/thumbnail.webp",
+          "thumbnail": "images/bmw/7-serisi/thumbnail.jpg",
           "large_images": [
             "images/bmw/7-serisi/001.webp",
             "images/bmw/7-serisi/002.webp",
@@ -4192,7 +4192,7 @@
             2026,
             2025
           ],
-          "thumbnail": "images/bmw/z4/thumbnail.webp",
+          "thumbnail": "images/bmw/z4/thumbnail.jpg",
           "large_images": [
             "images/bmw/z4/001.webp",
             "images/bmw/z4/002.webp",
@@ -4479,7 +4479,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/byd/sealion-7/thumbnail.webp",
+          "thumbnail": "images/byd/sealion-7/thumbnail.jpg",
           "large_images": [
             "images/byd/sealion-7/001.webp",
             "images/byd/sealion-7/002.webp",
@@ -4561,7 +4561,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/byd/tang/thumbnail.webp",
+          "thumbnail": "images/byd/tang/thumbnail.jpg",
           "large_images": [
             "images/byd/tang/001.webp",
             "images/byd/tang/002.webp",
@@ -4638,7 +4638,7 @@
           "years": [
             2025
           ],
-          "thumbnail": "images/byd/atto-2/thumbnail.webp",
+          "thumbnail": "images/byd/atto-2/thumbnail.jpg",
           "large_images": [
             "images/byd/atto-2/001.webp",
             "images/byd/atto-2/002.webp",
@@ -5514,7 +5514,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/chery/tiggo7/thumbnail.webp",
+          "thumbnail": "images/chery/tiggo7/thumbnail.jpg",
           "large_images": [
             "images/chery/tiggo7/001.webp",
             "images/chery/tiggo7/002.webp",
@@ -5703,7 +5703,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/chery/tiggo8/thumbnail.webp",
+          "thumbnail": "images/chery/tiggo8/thumbnail.jpg",
           "large_images": [
             "images/chery/tiggo8/001.webp",
             "images/chery/tiggo8/002.webp",
@@ -6604,7 +6604,7 @@
             2024,
             2023
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chery/omoda5/thumbnail.jpg",
           "large_images": [
             "images/chery/omoda5/001.jpg",
             "images/chery/omoda5/002.jpg",
@@ -6908,7 +6908,7 @@
             2011,
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chery/tiggo/thumbnail.jpg",
           "large_images": [
             "images/chery/tiggo/001.jpg",
             "images/chery/tiggo/002.jpg",
@@ -7104,7 +7104,7 @@
             2012,
             2011
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chery/alia/thumbnail.jpg",
           "large_images": [
             "images/chery/alia/001.jpg"
           ],
@@ -7292,7 +7292,7 @@
             2013,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chery/kimo/thumbnail.jpg",
           "large_images": [
             "images/chery/kimo/001.jpg",
             "images/chery/kimo/002.jpg",
@@ -7938,7 +7938,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/citroen/e-c3/thumbnail.webp",
+          "thumbnail": "images/citroen/e-c3/thumbnail.jpg",
           "large_images": [
             "images/citroen/e-c3/001.webp",
             "images/citroen/e-c3/002.webp",
@@ -8088,7 +8088,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/citroen/c5-aircross/thumbnail.webp",
+          "thumbnail": "images/citroen/c5-aircross/thumbnail.jpg",
           "large_images": [
             "images/citroen/c5-aircross/001.webp",
             "images/citroen/c5-aircross/002.webp",
@@ -8284,7 +8284,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/citroen/c3-aircross/thumbnail.webp",
+          "thumbnail": "images/citroen/c3-aircross/thumbnail.jpg",
           "large_images": [
             "images/citroen/c3-aircross/001.webp",
             "images/citroen/c3-aircross/002.webp",
@@ -9054,7 +9054,7 @@
             2023,
             2022
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c-elysee/thumbnail.jpg",
           "large_images": [
             "images/citroen/c-elysee/001.jpg",
             "images/citroen/c-elysee/002.jpg",
@@ -9356,7 +9356,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c1/thumbnail.jpg",
           "large_images": [
             "images/citroen/c1/001.jpg",
             "images/citroen/c1/002.jpg",
@@ -9777,7 +9777,7 @@
             2024,
             2023
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c3/thumbnail.jpg",
           "large_images": [
             "images/citroen/c3/001.jpg",
             "images/citroen/c3/002.jpg",
@@ -10144,7 +10144,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c3-picasso/thumbnail.jpg",
           "large_images": [
             "images/citroen/c3-picasso/001.jpg",
             "images/citroen/c3-picasso/002.jpg",
@@ -10344,7 +10344,7 @@
             2019,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c4-cactus/thumbnail.jpg",
           "large_images": [
             "images/citroen/c4-cactus/001.jpg",
             "images/citroen/c4-cactus/002.jpg",
@@ -10666,7 +10666,7 @@
             2019,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c4-picasso/thumbnail.jpg",
           "large_images": [
             "images/citroen/c4-picasso/001.jpg",
             "images/citroen/c4-picasso/002.jpg",
@@ -11021,7 +11021,7 @@
             2015,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/c5/thumbnail.jpg",
           "large_images": [
             "images/citroen/c5/001.jpg",
             "images/citroen/c5/002.jpg",
@@ -11280,7 +11280,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/citroen/nemo/thumbnail.jpg",
           "large_images": [
             "images/citroen/nemo/001.jpg",
             "images/citroen/nemo/002.jpg",
@@ -11693,191 +11693,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/nemo",
           "scraped_at": "2026-08-20T16:00:04"
-        },
-        {
-          "id": "xsara",
-          "name": "Xsara",
-          "year": 2005,
-          "years": [
-            2005,
-            2004
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "dizel",
-            "benzin"
-          ],
-          "order": 16,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "Kombi 1.4 HDi X",
-              "slug": "kombi-1-4-hdi-x",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Kombi 1.4 HDi X",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 1174 km",
-                "Sistem Gücü": "68 HP",
-                "Sistem Torku": "160 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "17.3 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1398 cc",
-                "Ortalama Tüketim": "~ 4.6 lt",
-                "Yakıt Deposu": "54 lt",
-                "Bagaj Hacmi": "517 lt",
-                "Boş Ağırlık": "1195 Kg",
-                "Uzunluk": "4369 mm",
-                "Genişlik": "1705 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/citroen/xsara/2005/kombi-1-4-hdi-x",
-              "source_title": "2005 Citroen Xsara Kombi 1.4 HDi X",
-              "scraped_at": "2026-08-20T16:00:07"
-            },
-            {
-              "name": "1.4 HDi X",
-              "slug": "1-4-hdi-x",
-              "year": 2004,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.4 HDi X",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 1200 km",
-                "Sistem Gücü": "68 HP",
-                "Sistem Torku": "160 Nm",
-                "Maksimum Hız": "164 km/s",
-                "0-100 Hızlanma": "16.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1398 cc",
-                "Ortalama Tüketim": "~ 4.5 lt",
-                "Yakıt Deposu": "54 lt",
-                "Bagaj Hacmi": "408 lt",
-                "Boş Ağırlık": "1145 Kg",
-                "Uzunluk": "4188 mm",
-                "Genişlik": "1705 mm",
-                "Yükseklik": "1405 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/citroen/xsara/2004/1-4-hdi-x",
-              "source_title": "2004 Citroen Xsara 1.4 HDi X",
-              "scraped_at": "2026-08-20T16:00:08"
-            },
-            {
-              "name": "1.4 X",
-              "slug": "1-4-x",
-              "year": 2004,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.4 X",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 806 km",
-                "Sistem Gücü": "75 HP",
-                "Sistem Torku": "120 Nm",
-                "Maksimum Hız": "172 km/s",
-                "0-100 Hızlanma": "12.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1360 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "54 lt",
-                "Bagaj Hacmi": "408 lt",
-                "Boş Ağırlık": "1116 Kg",
-                "Uzunluk": "4188 mm",
-                "Genişlik": "1705 mm",
-                "Yükseklik": "1405 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/citroen/xsara/2004/1-4-x",
-              "source_title": "2004 Citroen Xsara 1.4 X",
-              "scraped_at": "2026-08-20T16:00:09"
-            },
-            {
-              "name": "1.4 sx",
-              "slug": "1-4-sx",
-              "year": 2004,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.4 sx",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 806 km",
-                "Sistem Gücü": "75 HP",
-                "Sistem Torku": "120 Nm",
-                "Maksimum Hız": "172 km/s",
-                "0-100 Hızlanma": "12.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1360 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "54 lt",
-                "Bagaj Hacmi": "408 lt",
-                "Boş Ağırlık": "1116 Kg",
-                "Uzunluk": "4188 mm",
-                "Genişlik": "1705 mm",
-                "Yükseklik": "1405 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/citroen/xsara/2004/1-4-sx",
-              "source_title": "2004 Citroen Xsara 1.4 sx",
-              "scraped_at": "2026-08-20T16:00:10"
-            },
-            {
-              "name": "1.6 SX",
-              "slug": "1-6-sx",
-              "year": 2004,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 SX",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 783 km",
-                "Sistem Gücü": "110 HP",
-                "Sistem Torku": "147 Nm",
-                "Maksimum Hız": "195 km/s",
-                "0-100 Hızlanma": "11 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1587 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "54 lt",
-                "Bagaj Hacmi": "408 lt",
-                "Boş Ağırlık": "1141 Kg",
-                "Uzunluk": "4188 mm",
-                "Genişlik": "1705 mm",
-                "Yükseklik": "1405 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/citroen/xsara/2004/1-6-sx",
-              "source_title": "2004 Citroen Xsara 1.6 SX",
-              "scraped_at": "2026-08-20T16:00:11"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/citroen/xsara",
-          "scraped_at": "2026-08-20T16:00:11"
         }
       ]
     },
@@ -11905,7 +11720,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/cupra/formentor/thumbnail.jpg",
           "large_images": [
             "images/cupra/formentor/001.jpg",
             "images/cupra/formentor/002.jpg",
@@ -12078,7 +11893,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/cupra/terramar/thumbnail.webp",
+          "thumbnail": "images/cupra/terramar/thumbnail.jpg",
           "large_images": [
             "images/cupra/terramar/001.webp",
             "images/cupra/terramar/002.webp",
@@ -12394,7 +12209,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/dacia/sandero/thumbnail.webp",
+          "thumbnail": "images/dacia/sandero/thumbnail.jpg",
           "large_images": [
             "images/dacia/sandero/001.webp",
             "images/dacia/sandero/002.webp",
@@ -12533,7 +12348,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/dacia/sandero-stepway/thumbnail.webp",
+          "thumbnail": "images/dacia/sandero-stepway/thumbnail.jpg",
           "large_images": [
             "images/dacia/sandero-stepway/001.webp",
             "images/dacia/sandero-stepway/002.webp",
@@ -12677,7 +12492,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/dacia/jogger/thumbnail.webp",
+          "thumbnail": "images/dacia/jogger/thumbnail.jpg",
           "large_images": [
             "images/dacia/jogger/001.webp",
             "images/dacia/jogger/002.webp",
@@ -12925,7 +12740,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/dacia/logan/thumbnail.webp",
+          "thumbnail": "images/dacia/logan/thumbnail.jpg",
           "large_images": [
             "images/dacia/logan/001.webp",
             "images/dacia/logan/002.webp",
@@ -13080,7 +12895,7 @@
           "years": [
             2024
           ],
-          "thumbnail": "images/dacia/duster/thumbnail.webp",
+          "thumbnail": "images/dacia/duster/thumbnail.jpg",
           "large_images": [
             "images/dacia/duster/001.webp",
             "images/dacia/duster/002.webp",
@@ -13359,7 +13174,7 @@
             2021,
             2020
           ],
-          "thumbnail": "",
+          "thumbnail": "images/dacia/dokker/thumbnail.jpg",
           "large_images": [
             "images/dacia/dokker/001.jpg",
             "images/dacia/dokker/002.jpg",
@@ -13646,7 +13461,7 @@
             2022,
             2021
           ],
-          "thumbnail": "",
+          "thumbnail": "images/dacia/lodgy/thumbnail.jpg",
           "large_images": [
             "images/dacia/lodgy/001.jpg",
             "images/dacia/lodgy/002.jpg",
@@ -13967,7 +13782,7 @@
             2019,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/dacia/logan-mcv/thumbnail.jpg",
           "large_images": [
             "images/dacia/logan-mcv/001.jpg",
             "images/dacia/logan-mcv/002.jpg",
@@ -14777,7 +14592,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/ds/no4/thumbnail.webp",
+          "thumbnail": "images/ds/no4/thumbnail.jpg",
           "large_images": [
             "images/ds/no4/001.webp",
             "images/ds/no4/002.webp",
@@ -16702,7 +16517,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/fiat/grande-panda/thumbnail.webp",
+          "thumbnail": "images/fiat/grande-panda/thumbnail.jpg",
           "large_images": [
             "images/fiat/grande-panda/001.webp",
             "images/fiat/grande-panda/002.webp",
@@ -16797,7 +16612,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/doblo-cargo/thumbnail.jpg",
           "large_images": [
             "images/fiat/doblo-cargo/001.jpg",
             "images/fiat/doblo-cargo/002.jpg",
@@ -16987,7 +16802,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/fiat/scudo/thumbnail.webp",
+          "thumbnail": "images/fiat/scudo/thumbnail.jpg",
           "large_images": [
             "images/fiat/scudo/001.webp",
             "images/fiat/scudo/002.webp",
@@ -17245,7 +17060,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/fiat/500e/thumbnail.webp",
+          "thumbnail": "images/fiat/500e/thumbnail.jpg",
           "large_images": [
             "images/fiat/500e/001.webp",
             "images/fiat/500e/002.webp",
@@ -17321,7 +17136,7 @@
             2021,
             2020
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/500x/thumbnail.jpg",
           "large_images": [
             "images/fiat/500x/001.jpg",
             "images/fiat/500x/002.jpg",
@@ -17657,7 +17472,7 @@
           "years": [
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/albea/thumbnail.jpg",
           "large_images": [
             "images/fiat/albea/001.jpg",
             "images/fiat/albea/002.jpg",
@@ -17958,7 +17773,7 @@
             2001,
             2000
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/brava/thumbnail.jpg",
           "large_images": [
             "images/fiat/brava/001.jpg",
             "images/fiat/brava/002.jpg",
@@ -18146,7 +17961,7 @@
           "years": [
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/bravo/thumbnail.jpg",
           "large_images": [
             "images/fiat/bravo/001.jpg",
             "images/fiat/bravo/002.jpg",
@@ -18350,7 +18165,7 @@
             2020,
             2019
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/doblo/thumbnail.jpg",
           "large_images": [
             "images/fiat/doblo/001.jpg",
             "images/fiat/doblo/002.jpg",
@@ -18688,7 +18503,7 @@
           "years": [
             2024
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/fiorino/thumbnail.jpg",
           "large_images": [
             "images/fiat/fiorino/001.jpg",
             "images/fiat/fiorino/002.jpg",
@@ -19043,7 +18858,7 @@
             2015,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/freemont/thumbnail.jpg",
           "large_images": [
             "images/fiat/freemont/001.jpg",
             "images/fiat/freemont/002.jpg",
@@ -19313,7 +19128,7 @@
             2017,
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/linea/thumbnail.jpg",
           "large_images": [
             "images/fiat/linea/001.jpg",
             "images/fiat/linea/002.jpg",
@@ -19646,190 +19461,6 @@
           "scraped_at": "2026-08-20T16:06:51"
         },
         {
-          "id": "marea",
-          "name": "Marea",
-          "year": 2007,
-          "years": [
-            2007,
-            2006
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 19,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6 Exclusive",
-              "slug": "1-6-exclusive",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Exclusive",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 778 km",
-                "Sistem Gücü": "103 HP",
-                "Sistem Torku": "145 Nm",
-                "Maksimum Hız": "187 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1140 Kg",
-                "Uzunluk": "4390 mm",
-                "Genişlik": "1741 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/marea/2007/1-6-exclusive",
-              "source_title": "2007 Fiat Marea 1.6 Exclusive",
-              "scraped_at": "2026-08-20T16:06:53"
-            },
-            {
-              "name": "1.6 Exclusive VIP",
-              "slug": "1-6-exclusive-vip",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Exclusive VIP",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 778 km",
-                "Sistem Gücü": "103 HP",
-                "Sistem Torku": "145 Nm",
-                "Maksimum Hız": "187 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1140 Kg",
-                "Uzunluk": "4390 mm",
-                "Genişlik": "1741 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/marea/2007/1-6-exclusive-vip",
-              "source_title": "2007 Fiat Marea 1.6 Exclusive VIP",
-              "scraped_at": "2026-08-20T16:06:55"
-            },
-            {
-              "name": "1.6 Liberty",
-              "slug": "1-6-liberty",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Liberty",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 778 km",
-                "Sistem Gücü": "103 HP",
-                "Sistem Torku": "145 Nm",
-                "Maksimum Hız": "187 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1140 Kg",
-                "Uzunluk": "4390 mm",
-                "Genişlik": "1741 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/marea/2007/1-6-liberty",
-              "source_title": "2007 Fiat Marea 1.6 Liberty",
-              "scraped_at": "2026-08-20T16:06:56"
-            },
-            {
-              "name": "1.6 Liberty VIP",
-              "slug": "1-6-liberty-vip",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Liberty VIP",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 778 km",
-                "Sistem Gücü": "103 HP",
-                "Sistem Torku": "145 Nm",
-                "Maksimum Hız": "187 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1140 Kg",
-                "Uzunluk": "4390 mm",
-                "Genişlik": "1741 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/marea/2007/1-6-liberty-vip",
-              "source_title": "2007 Fiat Marea 1.6 Liberty VIP",
-              "scraped_at": "2026-08-20T16:06:57"
-            },
-            {
-              "name": "1.6 Exclusive",
-              "slug": "1-6-exclusive",
-              "year": 2006,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Exclusive",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 778 km",
-                "Sistem Gücü": "103 HP",
-                "Sistem Torku": "145 Nm",
-                "Maksimum Hız": "187 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1140 Kg",
-                "Uzunluk": "4390 mm",
-                "Genişlik": "1741 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/marea/2006/1-6-exclusive",
-              "source_title": "2006 Fiat Marea 1.6 Exclusive",
-              "scraped_at": "2026-08-20T16:06:58"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/fiat/marea",
-          "scraped_at": "2026-08-20T16:06:58"
-        },
-        {
           "id": "palio",
           "name": "Palio",
           "year": 2012,
@@ -19837,7 +19468,7 @@
             2012,
             2011
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/palio/thumbnail.jpg",
           "large_images": [
             "images/fiat/palio/001.jpg",
             "images/fiat/palio/002.jpg",
@@ -20031,7 +19662,7 @@
             2023,
             2022
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/panda/thumbnail.jpg",
           "large_images": [
             "images/fiat/panda/001.jpg",
             "images/fiat/panda/002.jpg",
@@ -20344,7 +19975,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/punto/thumbnail.jpg",
           "large_images": [
             "images/fiat/punto/001.jpg",
             "images/fiat/punto/002.jpg",
@@ -20754,7 +20385,7 @@
             2002,
             2001
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/siena/thumbnail.jpg",
           "large_images": [
             "images/fiat/siena/001.jpg",
             "images/fiat/siena/002.jpg"
@@ -20942,7 +20573,7 @@
           "years": [
             2007
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/stilo/thumbnail.jpg",
           "large_images": [
             "images/fiat/stilo/001.jpg",
             "images/fiat/stilo/002.jpg",
@@ -21135,7 +20766,7 @@
           "years": [
             1998
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/tempra/thumbnail.jpg",
           "large_images": [
             "images/fiat/tempra/001.jpg",
             "images/fiat/tempra/002.jpg",
@@ -21324,7 +20955,7 @@
           "years": [
             1999
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/tipo/thumbnail.jpg",
           "large_images": [
             "images/fiat/tipo/001.jpg",
             "images/fiat/tipo/002.jpg",
@@ -21508,192 +21139,6 @@
           "scraped_at": "2026-08-20T16:09:08"
         },
         {
-          "id": "uno",
-          "name": "Uno",
-          "year": 2002,
-          "years": [
-            2002,
-            2001,
-            2000,
-            1999
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 27,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.0 ie",
-              "slug": "1-0-ie",
-              "year": 2002,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.0 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 594 km",
-                "Sistem Gücü": "46 HP",
-                "Sistem Torku": "74 Nm",
-                "Maksimum Hız": "145 km/s",
-                "0-100 Hızlanma": "17.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "999 cc",
-                "Ortalama Tüketim": "~ 6.4 lt",
-                "Yakıt Deposu": "38 lt",
-                "Bagaj Hacmi": "248 lt",
-                "Boş Ağırlık": "840 Kg",
-                "Uzunluk": "3689 mm",
-                "Genişlik": "1558 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/uno/2002/1-0-ie",
-              "source_title": "2002 Fiat Uno 1.0 ie",
-              "scraped_at": "2026-08-20T16:09:10"
-            },
-            {
-              "name": "1.0 ie",
-              "slug": "1-0-ie",
-              "year": 2001,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.0 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 594 km",
-                "Sistem Gücü": "46 HP",
-                "Sistem Torku": "74 Nm",
-                "Maksimum Hız": "145 km/s",
-                "0-100 Hızlanma": "17.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "999 cc",
-                "Ortalama Tüketim": "~ 6.4 lt",
-                "Yakıt Deposu": "38 lt",
-                "Bagaj Hacmi": "248 lt",
-                "Boş Ağırlık": "840 Kg",
-                "Uzunluk": "3689 mm",
-                "Genişlik": "1558 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/uno/2001/1-0-ie",
-              "source_title": "2001 Fiat Uno 1.0 ie",
-              "scraped_at": "2026-08-20T16:09:12"
-            },
-            {
-              "name": "1.0 ie",
-              "slug": "1-0-ie",
-              "year": 2000,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.0 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 594 km",
-                "Sistem Gücü": "46 HP",
-                "Sistem Torku": "74 Nm",
-                "Maksimum Hız": "145 km/s",
-                "0-100 Hızlanma": "17.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "999 cc",
-                "Ortalama Tüketim": "~ 6.4 lt",
-                "Yakıt Deposu": "38 lt",
-                "Bagaj Hacmi": "248 lt",
-                "Boş Ağırlık": "840 Kg",
-                "Uzunluk": "3689 mm",
-                "Genişlik": "1558 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/uno/2000/1-0-ie",
-              "source_title": "2000 Fiat Uno 1.0 ie",
-              "scraped_at": "2026-08-20T16:09:13"
-            },
-            {
-              "name": "1.4 70 SX",
-              "slug": "1-4-70-sx",
-              "year": 2000,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.4 70 SX",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "71 HP",
-                "Sistem Torku": "90 Nm",
-                "Maksimum Hız": "-",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1372 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "42 lt",
-                "Bagaj Hacmi": "271 lt",
-                "Boş Ağırlık": "830 Kg",
-                "Uzunluk": "3465 mm",
-                "Genişlik": "1549 mm",
-                "Yükseklik": "1432 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/uno/2000/1-4-70-sx",
-              "source_title": "2000 Fiat Uno 1.4 70 SX",
-              "scraped_at": "2026-08-20T16:09:15"
-            },
-            {
-              "name": "1.0 ie",
-              "slug": "1-0-ie",
-              "year": 1999,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.0 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 594 km",
-                "Sistem Gücü": "46 HP",
-                "Sistem Torku": "74 Nm",
-                "Maksimum Hız": "145 km/s",
-                "0-100 Hızlanma": "17.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "999 cc",
-                "Ortalama Tüketim": "~ 6.4 lt",
-                "Yakıt Deposu": "38 lt",
-                "Bagaj Hacmi": "248 lt",
-                "Boş Ağırlık": "840 Kg",
-                "Uzunluk": "3689 mm",
-                "Genişlik": "1558 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/fiat/uno/1999/1-0-ie",
-              "source_title": "1999 Fiat Uno 1.0 ie",
-              "scraped_at": "2026-08-20T16:09:16"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/fiat/uno",
-          "scraped_at": "2026-08-20T16:09:16"
-        },
-        {
           "id": "500l",
           "name": "500L",
           "year": 2022,
@@ -21702,7 +21147,7 @@
             2021,
             2020
           ],
-          "thumbnail": "",
+          "thumbnail": "images/fiat/500l/thumbnail.jpg",
           "large_images": [
             "images/fiat/500l/001.jpg",
             "images/fiat/500l/002.jpg",
@@ -23315,7 +22760,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/ford/explorer/thumbnail.webp",
+          "thumbnail": "images/ford/explorer/thumbnail.jpg",
           "large_images": [
             "images/ford/explorer/001.webp",
             "images/ford/explorer/002.webp",
@@ -23500,7 +22945,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/ford/capri/thumbnail.webp",
+          "thumbnail": "images/ford/capri/thumbnail.jpg",
           "large_images": [
             "images/ford/capri/001.webp",
             "images/ford/capri/002.webp",
@@ -23634,7 +23079,7 @@
           "years": [
             2025
           ],
-          "thumbnail": "images/ford/focus/thumbnail.webp",
+          "thumbnail": "images/ford/focus/thumbnail.jpg",
           "large_images": [
             "images/ford/focus/001.webp",
             "images/ford/focus/002.webp",
@@ -23972,7 +23417,7 @@
             2017,
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/b-max/thumbnail.jpg",
           "large_images": [
             "images/ford/b-max/001.jpg",
             "images/ford/b-max/002.jpg",
@@ -24383,7 +23828,7 @@
             2019,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/c-max/thumbnail.jpg",
           "large_images": [
             "images/ford/c-max/001.jpg",
             "images/ford/c-max/002.jpg",
@@ -24686,7 +24131,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/tourneo-connect/thumbnail.jpg",
           "large_images": [
             "images/ford/tourneo-connect/001.jpg",
             "images/ford/tourneo-connect/002.jpg",
@@ -24759,7 +24204,7 @@
             2022,
             2021
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/ecosport/thumbnail.jpg",
           "large_images": [
             "images/ford/ecosport/001.jpg",
             "images/ford/ecosport/002.jpg",
@@ -25063,7 +24508,7 @@
             1996,
             1995
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/escort/thumbnail.jpg",
           "large_images": [
             "images/ford/escort/001.jpg",
             "images/ford/escort/002.jpg",
@@ -25253,7 +24698,7 @@
           "years": [
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/fiesta/thumbnail.jpg",
           "large_images": [
             "images/ford/fiesta/001.jpg",
             "images/ford/fiesta/002.jpg",
@@ -25669,7 +25114,7 @@
             2011,
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/fusion/thumbnail.jpg",
           "large_images": [
             "images/ford/fusion/001.jpg",
             "images/ford/fusion/002.jpg",
@@ -25869,7 +25314,7 @@
             2008,
             2006
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/ka/thumbnail.jpg",
           "large_images": [
             "images/ford/ka/001.jpg",
             "images/ford/ka/002.jpg",
@@ -26066,7 +25511,7 @@
             2020,
             2019
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/mondeo/thumbnail.jpg",
           "large_images": [
             "images/ford/mondeo/001.jpg",
             "images/ford/mondeo/002.jpg",
@@ -26711,160 +26156,6 @@
           "scraped_at": "2026-08-20T16:14:03"
         },
         {
-          "id": "taunus",
-          "name": "Taunus",
-          "year": 1993,
-          "years": [
-            1993,
-            1992,
-            1991,
-            1990
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 19,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6 GT",
-              "slug": "1-6-gt",
-              "year": 1993,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 GT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "101 HP",
-                "Sistem Torku": "137 Nm",
-                "Maksimum Hız": "162 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1592 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "54 lt",
-                "Boş Ağırlık": "995 Kg",
-                "Uzunluk": "4585 mm",
-                "Genişlik": "1715 mm",
-                "Yükseklik": "1481 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/ford/taunus/1993/1-6-gt",
-              "source_title": "1993 Ford Taunus 1.6 GT",
-              "scraped_at": "2026-08-20T16:14:06"
-            },
-            {
-              "name": "1.6 GT",
-              "slug": "1-6-gt",
-              "year": 1992,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 GT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "101 HP",
-                "Sistem Torku": "137 Nm",
-                "Maksimum Hız": "162 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1592 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "54 lt",
-                "Boş Ağırlık": "995 Kg",
-                "Uzunluk": "4585 mm",
-                "Genişlik": "1715 mm",
-                "Yükseklik": "1481 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/ford/taunus/1992/1-6-gt",
-              "source_title": "1992 Ford Taunus 1.6 GT",
-              "scraped_at": "2026-08-20T16:14:08"
-            },
-            {
-              "name": "1.6 GT",
-              "slug": "1-6-gt",
-              "year": 1991,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 GT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "101 HP",
-                "Sistem Torku": "137 Nm",
-                "Maksimum Hız": "162 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1592 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "54 lt",
-                "Boş Ağırlık": "995 Kg",
-                "Uzunluk": "4585 mm",
-                "Genişlik": "1715 mm",
-                "Yükseklik": "1481 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/ford/taunus/1991/1-6-gt",
-              "source_title": "1991 Ford Taunus 1.6 GT",
-              "scraped_at": "2026-08-20T16:14:09"
-            },
-            {
-              "name": "1.6 GT",
-              "slug": "1-6-gt",
-              "year": 1990,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 GT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "101 HP",
-                "Sistem Torku": "137 Nm",
-                "Maksimum Hız": "162 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1592 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "54 lt",
-                "Boş Ağırlık": "995 Kg",
-                "Uzunluk": "4585 mm",
-                "Genişlik": "1715 mm",
-                "Yükseklik": "1481 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/ford/taunus/1990/1-6-gt",
-              "source_title": "1990 Ford Taunus 1.6 GT",
-              "scraped_at": "2026-08-20T16:14:11"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/ford/taunus",
-          "scraped_at": "2026-08-20T16:14:11"
-        },
-        {
           "id": "transit-connect",
           "name": "Transit Connect",
           "year": 2022,
@@ -26873,7 +26164,7 @@
             2021,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/ford/transit-connect/thumbnail.jpg",
           "large_images": [
             "images/ford/transit-connect/001.jpg",
             "images/ford/transit-connect/002.jpg",
@@ -27146,7 +26437,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/ford/tourneo-custom/thumbnail.webp",
+          "thumbnail": "images/ford/tourneo-custom/thumbnail.jpg",
           "large_images": [
             "images/ford/tourneo-custom/001.webp",
             "images/ford/tourneo-custom/002.webp",
@@ -27346,7 +26637,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/foton/tunland-g7/thumbnail.webp",
+          "thumbnail": "images/foton/tunland-g7/thumbnail.jpg",
           "large_images": [
             "images/foton/tunland-g7/001.webp",
             "images/foton/tunland-g7/002.webp",
@@ -27482,7 +26773,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/foton/tunland-v9/thumbnail.webp",
+          "thumbnail": "images/foton/tunland-v9/thumbnail.jpg",
           "large_images": [
             "images/foton/tunland-v9/001.webp",
             "images/foton/tunland-v9/002.webp",
@@ -27637,7 +26928,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/honda/jazz/thumbnail.jpg",
           "large_images": [
             "images/honda/jazz/001.jpg",
             "images/honda/jazz/002.jpg",
@@ -27714,7 +27005,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/honda/hr-v/thumbnail.jpg",
           "large_images": [
             "images/honda/hr-v/001.jpg",
             "images/honda/hr-v/002.jpg",
@@ -27854,7 +27145,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/honda/prelude/thumbnail.webp",
+          "thumbnail": "images/honda/prelude/thumbnail.jpg",
           "large_images": [
             "images/honda/prelude/001.webp",
             "images/honda/prelude/002.webp",
@@ -28073,7 +27364,7 @@
             2025,
             2024
           ],
-          "thumbnail": "images/honda/civic/thumbnail.webp",
+          "thumbnail": "images/honda/civic/thumbnail.jpg",
           "large_images": [
             "images/honda/civic/001.webp",
             "images/honda/civic/002.webp",
@@ -28435,190 +27726,6 @@
           "scraped_at": "2026-08-20T16:15:46"
         },
         {
-          "id": "accord",
-          "name": "Accord",
-          "year": 2002,
-          "years": [
-            2002,
-            2001
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 7,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6i LS",
-              "slug": "1-6i-ls",
-              "year": 2002,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6i LS",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 793 km",
-                "Sistem Gücü": "116 HP",
-                "Sistem Torku": "140 Nm",
-                "Maksimum Hız": "190 km/s",
-                "0-100 Hızlanma": "12.2 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1590 cc",
-                "Ortalama Tüketim": "~ 8.2 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "427 lt",
-                "Boş Ağırlık": "1330 Kg",
-                "Uzunluk": "4595 mm",
-                "Genişlik": "1750 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/honda/accord/2002/1-6i-ls",
-              "source_title": "2002 Honda Accord 1.6i LS",
-              "scraped_at": "2026-08-20T16:15:48"
-            },
-            {
-              "name": "1.6i S",
-              "slug": "1-6i-s",
-              "year": 2002,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6i S",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 793 km",
-                "Sistem Gücü": "116 HP",
-                "Sistem Torku": "140 Nm",
-                "Maksimum Hız": "190 km/s",
-                "0-100 Hızlanma": "12.2 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1590 cc",
-                "Ortalama Tüketim": "~ 8.2 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "427 lt",
-                "Boş Ağırlık": "1330 Kg",
-                "Uzunluk": "4595 mm",
-                "Genişlik": "1740 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/honda/accord/2002/1-6i-s",
-              "source_title": "2002 Honda Accord 1.6i S",
-              "scraped_at": "2026-08-20T16:15:50"
-            },
-            {
-              "name": "1.8i ES",
-              "slug": "1-8i-es",
-              "year": 2002,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.8i ES",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 756 km",
-                "Sistem Gücü": "136 HP",
-                "Sistem Torku": "175 Nm",
-                "Maksimum Hız": "205 km/s",
-                "0-100 Hızlanma": "10.9 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1850 cc",
-                "Ortalama Tüketim": "~ 8.6 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "427 lt",
-                "Boş Ağırlık": "1395 Kg",
-                "Uzunluk": "4595 mm",
-                "Genişlik": "1750 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/honda/accord/2002/1-8i-es",
-              "source_title": "2002 Honda Accord 1.8i ES",
-              "scraped_at": "2026-08-20T16:15:51"
-            },
-            {
-              "name": "1.8i LS",
-              "slug": "1-8i-ls",
-              "year": 2002,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.8i LS",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 756 km",
-                "Sistem Gücü": "136 HP",
-                "Sistem Torku": "175 Nm",
-                "Maksimum Hız": "205 km/s",
-                "0-100 Hızlanma": "10.9 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1850 cc",
-                "Ortalama Tüketim": "~ 8.6 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "427 lt",
-                "Boş Ağırlık": "1362 Kg",
-                "Uzunluk": "4595 mm",
-                "Genişlik": "1750 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/honda/accord/2002/1-8i-ls",
-              "source_title": "2002 Honda Accord 1.8i LS",
-              "scraped_at": "2026-08-20T16:15:53"
-            },
-            {
-              "name": "1.6i LS",
-              "slug": "1-6i-ls",
-              "year": 2001,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6i LS",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 793 km",
-                "Sistem Gücü": "116 HP",
-                "Sistem Torku": "140 Nm",
-                "Maksimum Hız": "190 km/s",
-                "0-100 Hızlanma": "12.2 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1590 cc",
-                "Ortalama Tüketim": "~ 8.2 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "427 lt",
-                "Boş Ağırlık": "1330 Kg",
-                "Uzunluk": "4595 mm",
-                "Genişlik": "1750 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/honda/accord/2001/1-6i-ls",
-              "source_title": "2001 Honda Accord 1.6i LS",
-              "scraped_at": "2026-08-20T16:15:54"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/honda/accord",
-          "scraped_at": "2026-08-20T16:15:54"
-        },
-        {
           "id": "city",
           "name": "City",
           "year": 2024,
@@ -28627,7 +27734,7 @@
             2023,
             2022
           ],
-          "thumbnail": "",
+          "thumbnail": "images/honda/city/thumbnail.jpg",
           "large_images": [
             "images/honda/city/001.jpg",
             "images/honda/city/002.jpg",
@@ -28969,7 +28076,7 @@
             2013,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/honda/cr-z/thumbnail.jpg",
           "large_images": [
             "images/honda/cr-z/001.jpg",
             "images/honda/cr-z/002.jpg",
@@ -29189,7 +28296,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/hyundai/i20/thumbnail.webp",
+          "thumbnail": "images/hyundai/i20/thumbnail.jpg",
           "large_images": [
             "images/hyundai/i20/001.jpg",
             "images/hyundai/i20/002.jpg",
@@ -29467,7 +28574,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/hyundai/i30/thumbnail.webp",
+          "thumbnail": "images/hyundai/i30/thumbnail.jpg",
           "large_images": [
             "images/hyundai/i30/001.webp",
             "images/hyundai/i30/002.webp",
@@ -30012,7 +29119,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/hyundai/ioniq-9/thumbnail.webp",
+          "thumbnail": "images/hyundai/ioniq-9/thumbnail.jpg",
           "large_images": [
             "images/hyundai/ioniq-9/001.webp",
             "images/hyundai/ioniq-9/002.webp",
@@ -30224,7 +29331,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/hyundai/tucson/thumbnail.webp",
+          "thumbnail": "images/hyundai/tucson/thumbnail.jpg",
           "large_images": [
             "images/hyundai/tucson/001.webp",
             "images/hyundai/tucson/002.webp",
@@ -30547,7 +29654,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/hyundai/ioniq-6/thumbnail.webp",
+          "thumbnail": "images/hyundai/ioniq-6/thumbnail.jpg",
           "large_images": [
             "images/hyundai/ioniq-6/001.webp",
             "images/hyundai/ioniq-6/002.webp",
@@ -30651,197 +29758,13 @@
           "scraped_at": "2026-08-20T16:17:40"
         },
         {
-          "id": "accent",
-          "name": "Accent",
-          "year": 2007,
-          "years": [
-            2007,
-            2006
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 10,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "HB 1.3 GL Active",
-              "slug": "hb-1-3-gl-active",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "HB 1.3 GL Active",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 672 km",
-                "Sistem Gücü": "86 HP",
-                "Sistem Torku": "114 Nm",
-                "Maksimum Hız": "169 km/s",
-                "0-100 Hızlanma": "14.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1341 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "321 lt",
-                "Boş Ağırlık": "1105 Kg",
-                "Uzunluk": "4200 mm",
-                "Genişlik": "1670 mm",
-                "Yükseklik": "1395 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/hyundai/accent/2007/hb-1-3-gl-active",
-              "source_title": "2007 Hyundai Accent HB 1.3 GL Active",
-              "scraped_at": "2026-08-20T16:17:43"
-            },
-            {
-              "name": "HB 1.3 GL Comfort",
-              "slug": "hb-1-3-gl-comfort",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "HB 1.3 GL Comfort",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 672 km",
-                "Sistem Gücü": "86 HP",
-                "Sistem Torku": "114 Nm",
-                "Maksimum Hız": "169 km/s",
-                "0-100 Hızlanma": "14.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1341 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "321 lt",
-                "Boş Ağırlık": "1105 Kg",
-                "Uzunluk": "4200 mm",
-                "Genişlik": "1670 mm",
-                "Yükseklik": "1395 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/hyundai/accent/2007/hb-1-3-gl-comfort",
-              "source_title": "2007 Hyundai Accent HB 1.3 GL Comfort",
-              "scraped_at": "2026-08-20T16:17:45"
-            },
-            {
-              "name": "1.3 GLS Active",
-              "slug": "1-3-gls-active",
-              "year": 2006,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.3 GLS Active",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 672 km",
-                "Sistem Gücü": "86 HP",
-                "Sistem Torku": "114 Nm",
-                "Maksimum Hız": "169 km/s",
-                "0-100 Hızlanma": "14.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1341 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "321 lt",
-                "Boş Ağırlık": "1105 Kg",
-                "Uzunluk": "4200 mm",
-                "Genişlik": "1670 mm",
-                "Yükseklik": "1395 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/hyundai/accent/2006/1-3-gls-active",
-              "source_title": "2006 Hyundai Accent 1.3 GLS Active",
-              "scraped_at": "2026-08-20T16:17:47"
-            },
-            {
-              "name": "1.3 L Comfort",
-              "slug": "1-3-l-comfort",
-              "year": 2006,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.3 L Comfort",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 672 km",
-                "Sistem Gücü": "86 HP",
-                "Sistem Torku": "114 Nm",
-                "Maksimum Hız": "169 km/s",
-                "0-100 Hızlanma": "14.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1341 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "321 lt",
-                "Boş Ağırlık": "1050 Kg",
-                "Uzunluk": "4200 mm",
-                "Genişlik": "1670 mm",
-                "Yükseklik": "1395 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/hyundai/accent/2006/1-3-l-comfort",
-              "source_title": "2006 Hyundai Accent 1.3 L Comfort",
-              "scraped_at": "2026-08-20T16:17:49"
-            },
-            {
-              "name": "HB 1.3 GL Active",
-              "slug": "hb-1-3-gl-active",
-              "year": 2006,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "HB 1.3 GL Active",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 672 km",
-                "Sistem Gücü": "86 HP",
-                "Sistem Torku": "114 Nm",
-                "Maksimum Hız": "169 km/s",
-                "0-100 Hızlanma": "14.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1341 cc",
-                "Ortalama Tüketim": "~ 6.7 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "321 lt",
-                "Boş Ağırlık": "1105 Kg",
-                "Uzunluk": "4200 mm",
-                "Genişlik": "1670 mm",
-                "Yükseklik": "1395 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/hyundai/accent/2006/hb-1-3-gl-active",
-              "source_title": "2006 Hyundai Accent HB 1.3 GL Active",
-              "scraped_at": "2026-08-20T16:17:50"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/hyundai/accent",
-          "scraped_at": "2026-08-20T16:17:50"
-        },
-        {
           "id": "accent-blue",
           "name": "Accent Blue",
           "year": 2018,
           "years": [
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/hyundai/accent-blue/thumbnail.jpg",
           "large_images": [
             "images/hyundai/accent-blue/001.jpg",
             "images/hyundai/accent-blue/002.jpg",
@@ -31247,7 +30170,7 @@
           "years": [
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/hyundai/accent-era/thumbnail.jpg",
           "large_images": [
             "images/hyundai/accent-era/001.jpg",
             "images/hyundai/accent-era/002.jpg",
@@ -31674,7 +30597,7 @@
             1993,
             1992
           ],
-          "thumbnail": "",
+          "thumbnail": "images/hyundai/excel/thumbnail.jpg",
           "large_images": [
             "images/hyundai/excel/001.jpg",
             "images/hyundai/excel/002.jpg",
@@ -31864,7 +30787,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/hyundai/getz/thumbnail.jpg",
           "large_images": [
             "images/hyundai/getz/001.jpg",
             "images/hyundai/getz/002.jpg",
@@ -32063,7 +30986,7 @@
             2025,
             2024
           ],
-          "thumbnail": "",
+          "thumbnail": "images/hyundai/i10/thumbnail.jpg",
           "large_images": [
             "images/hyundai/i10/001.jpg",
             "images/hyundai/i10/002.jpg",
@@ -32469,7 +31392,7 @@
           "years": [
             2025
           ],
-          "thumbnail": "images/hyundai/inster/thumbnail.webp",
+          "thumbnail": "images/hyundai/inster/thumbnail.jpg",
           "large_images": [
             "images/hyundai/inster/001.webp",
             "images/hyundai/inster/002.webp",
@@ -32652,7 +31575,7 @@
           "years": [
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/hyundai/ix35/thumbnail.jpg",
           "large_images": [
             "images/hyundai/ix35/001.jpg",
             "images/hyundai/ix35/002.jpg",
@@ -33662,7 +32585,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/jaecoo/omoda/thumbnail.webp",
+          "thumbnail": "images/jaecoo/omoda/thumbnail.jpg",
           "large_images": [
             "images/jaecoo/omoda/001.webp",
             "images/jaecoo/omoda/002.webp",
@@ -33744,7 +32667,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/jaecoo/omoda-7/thumbnail.webp",
+          "thumbnail": "images/jaecoo/omoda-7/thumbnail.jpg",
           "large_images": [
             "images/jaecoo/omoda-7/001.webp",
             "images/jaecoo/omoda-7/002.webp",
@@ -34041,7 +32964,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/jeep/compass/thumbnail.webp",
+          "thumbnail": "images/jeep/compass/thumbnail.jpg",
           "large_images": [
             "images/jeep/compass/001.webp",
             "images/jeep/compass/002.webp",
@@ -34509,7 +33432,7 @@
             2015,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/jeep/cherokee/thumbnail.jpg",
           "large_images": [
             "images/jeep/cherokee/001.jpg",
             "images/jeep/cherokee/002.jpg",
@@ -34862,7 +33785,7 @@
             2017,
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/jeep/grand-cherokee/thumbnail.jpg",
           "large_images": [
             "images/jeep/grand-cherokee/001.jpg",
             "images/jeep/grand-cherokee/002.jpg",
@@ -35318,7 +34241,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/kia/stonic/thumbnail.webp",
+          "thumbnail": "images/kia/stonic/thumbnail.jpg",
           "large_images": [
             "images/kia/stonic/001.webp",
             "images/kia/stonic/002.webp",
@@ -35401,7 +34324,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/kia/sportage/thumbnail.webp",
+          "thumbnail": "images/kia/sportage/thumbnail.jpg",
           "large_images": [
             "images/kia/sportage/001.webp",
             "images/kia/sportage/002.webp",
@@ -36423,7 +35346,7 @@
             2024,
             2023
           ],
-          "thumbnail": "",
+          "thumbnail": "images/kia/ceed/thumbnail.jpg",
           "large_images": [
             "images/kia/ceed/001.jpg",
             "images/kia/ceed/002.jpg",
@@ -36750,7 +35673,7 @@
             2018,
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/kia/cerato/thumbnail.jpg",
           "large_images": [
             "images/kia/cerato/001.jpg",
             "images/kia/cerato/002.jpg",
@@ -37165,7 +36088,7 @@
             2000,
             1999
           ],
-          "thumbnail": "",
+          "thumbnail": "images/kia/pride/thumbnail.jpg",
           "large_images": [
             "images/kia/pride/001.jpg",
             "images/kia/pride/002.jpg",
@@ -37356,7 +36279,7 @@
             2023,
             2022
           ],
-          "thumbnail": "",
+          "thumbnail": "images/kia/rio/thumbnail.jpg",
           "large_images": [
             "images/kia/rio/001.jpg",
             "images/kia/rio/002.jpg",
@@ -37715,7 +36638,7 @@
             2012,
             2011
           ],
-          "thumbnail": "",
+          "thumbnail": "images/kia/venga/thumbnail.jpg",
           "large_images": [
             "images/kia/venga/001.jpg",
             "images/kia/venga/002.jpg",
@@ -38824,7 +37747,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mercedes/cla-serisi/thumbnail.webp",
+          "thumbnail": "images/mercedes/cla-serisi/thumbnail.jpg",
           "large_images": [
             "images/mercedes/cla-serisi/001.webp",
             "images/mercedes/cla-serisi/002.webp",
@@ -39005,7 +37928,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mercedes/eqa/thumbnail.webp",
+          "thumbnail": "images/mercedes/eqa/thumbnail.jpg",
           "large_images": [
             "images/mercedes/eqa/001.webp",
             "images/mercedes/eqa/002.webp",
@@ -39183,7 +38106,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mercedes/glb/thumbnail.webp",
+          "thumbnail": "images/mercedes/glb/thumbnail.jpg",
           "large_images": [
             "images/mercedes/glb/001.webp",
             "images/mercedes/glb/002.webp",
@@ -39332,7 +38255,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mercedes/eqs/thumbnail.webp",
+          "thumbnail": "images/mercedes/eqs/thumbnail.jpg",
           "large_images": [
             "images/mercedes/eqs/001.webp",
             "images/mercedes/eqs/002.webp",
@@ -39443,7 +38366,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mercedes/g-serisi/thumbnail.webp",
+          "thumbnail": "images/mercedes/g-serisi/thumbnail.jpg",
           "large_images": [
             "images/mercedes/g-serisi/001.webp",
             "images/mercedes/g-serisi/002.webp",
@@ -40068,7 +38991,7 @@
             2019,
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mercedes/cls/thumbnail.jpg",
           "large_images": [
             "images/mercedes/cls/001.jpg",
             "images/mercedes/cls/002.jpg",
@@ -40368,7 +39291,7 @@
           "years": [
             2025
           ],
-          "thumbnail": "images/mercedes/eqb/thumbnail.webp",
+          "thumbnail": "images/mercedes/eqb/thumbnail.jpg",
           "large_images": [
             "images/mercedes/eqb/001.webp",
             "images/mercedes/eqb/002.webp",
@@ -40520,7 +39443,7 @@
             2017,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mercedes/vito/thumbnail.jpg",
           "large_images": [
             "images/mercedes/vito/001.jpg",
             "images/mercedes/vito/002.jpg",
@@ -40796,7 +39719,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mg/mg7/thumbnail.webp",
+          "thumbnail": "images/mg/mg7/thumbnail.jpg",
           "large_images": [
             "images/mg/mg7/001.webp",
             "images/mg/mg7/002.webp",
@@ -41043,7 +39966,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mg/zs/thumbnail.webp",
+          "thumbnail": "images/mg/zs/thumbnail.jpg",
           "large_images": [
             "images/mg/zs/001.webp",
             "images/mg/zs/002.webp",
@@ -41465,7 +40388,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/mini/cooper/thumbnail.webp",
+          "thumbnail": "images/mini/cooper/thumbnail.jpg",
           "large_images": [
             "images/mini/cooper/001.webp",
             "images/mini/cooper/002.webp",
@@ -42580,7 +41503,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/x-trail/thumbnail.jpg",
           "large_images": [
             "images/nissan/x-trail/001.jpg",
             "images/nissan/x-trail/002.jpg",
@@ -42721,7 +41644,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/nissan/townstar/thumbnail.webp",
+          "thumbnail": "images/nissan/townstar/thumbnail.jpg",
           "large_images": [
             "images/nissan/townstar/001.webp",
             "images/nissan/townstar/002.webp",
@@ -42983,7 +41906,7 @@
             2009,
             2008
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/micra/thumbnail.jpg",
           "large_images": [
             "images/nissan/micra/001.jpg",
             "images/nissan/micra/002.jpg",
@@ -43174,7 +42097,7 @@
             2021,
             2020
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/navara/thumbnail.jpg",
           "large_images": [
             "images/nissan/navara/001.jpg",
             "images/nissan/navara/002.jpg",
@@ -43495,7 +42418,7 @@
           "years": [
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/note/thumbnail.jpg",
           "large_images": [
             "images/nissan/note/001.jpg",
             "images/nissan/note/002.jpg",
@@ -43737,7 +42660,7 @@
             2008,
             2007
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/primera/thumbnail.jpg",
           "large_images": [
             "images/nissan/primera/001.jpg",
             "images/nissan/primera/002.jpg",
@@ -43928,7 +42851,7 @@
           "years": [
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/pulsar/thumbnail.jpg",
           "large_images": [
             "images/nissan/pulsar/001.jpg",
             "images/nissan/pulsar/002.jpg",
@@ -44270,7 +43193,7 @@
             2009,
             2008
           ],
-          "thumbnail": "",
+          "thumbnail": "images/nissan/skystar/thumbnail.jpg",
           "large_images": [
             "images/nissan/skystar/001.jpg"
           ],
@@ -44474,7 +43397,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/opel/corsa/thumbnail.webp",
+          "thumbnail": "images/opel/corsa/thumbnail.jpg",
           "large_images": [
             "images/opel/corsa/001.webp",
             "images/opel/corsa/002.webp",
@@ -44733,7 +43656,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/opel/astra/thumbnail.webp",
+          "thumbnail": "images/opel/astra/thumbnail.jpg",
           "large_images": [
             "images/opel/astra/001.webp",
             "images/opel/astra/002.webp",
@@ -44838,7 +43761,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/opel/mokka/thumbnail.webp",
+          "thumbnail": "images/opel/mokka/thumbnail.jpg",
           "large_images": [
             "images/opel/mokka/001.webp",
             "images/opel/mokka/002.webp",
@@ -45045,7 +43968,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/opel/frontera/thumbnail.webp",
+          "thumbnail": "images/opel/frontera/thumbnail.jpg",
           "large_images": [
             "images/opel/frontera/001.webp",
             "images/opel/frontera/002.webp",
@@ -45899,7 +44822,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/opel/zafira/thumbnail.jpg",
           "large_images": [
             "images/opel/zafira/001.jpg",
             "images/opel/zafira/002.jpg",
@@ -46044,7 +44967,7 @@
             2024,
             2023
           ],
-          "thumbnail": "images/opel/crossland/thumbnail.webp",
+          "thumbnail": "images/opel/crossland/thumbnail.jpg",
           "large_images": [
             "images/opel/crossland/001.webp",
             "images/opel/crossland/002.webp",
@@ -46388,7 +45311,7 @@
             2022,
             2021
           ],
-          "thumbnail": "",
+          "thumbnail": "images/opel/insignia/thumbnail.jpg",
           "large_images": [
             "images/opel/insignia/001.jpg",
             "images/opel/insignia/002.jpg",
@@ -46721,7 +45644,7 @@
             2015,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/opel/meriva/thumbnail.jpg",
           "large_images": [
             "images/opel/meriva/001.jpg",
             "images/opel/meriva/002.jpg",
@@ -47082,7 +46005,7 @@
             2008,
             2006
           ],
-          "thumbnail": "",
+          "thumbnail": "images/opel/vectra/thumbnail.jpg",
           "large_images": [
             "images/opel/vectra/001.jpg",
             "images/opel/vectra/002.jpg",
@@ -47281,7 +46204,7 @@
             2008,
             2007
           ],
-          "thumbnail": "",
+          "thumbnail": "images/opel/tigra/thumbnail.jpg",
           "large_images": [
             "images/opel/tigra/001.jpg",
             "images/opel/tigra/002.jpg",
@@ -47498,7 +46421,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/peugeot/208/thumbnail.webp",
+          "thumbnail": "images/peugeot/208/thumbnail.jpg",
           "large_images": [
             "images/peugeot/208/001.webp",
             "images/peugeot/208/002.webp",
@@ -47578,7 +46501,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/308/thumbnail.jpg",
           "large_images": [
             "images/peugeot/308/001.jpg",
             "images/peugeot/308/002.jpg",
@@ -47897,7 +46820,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/peugeot/408/thumbnail.webp",
+          "thumbnail": "images/peugeot/408/thumbnail.jpg",
           "large_images": [
             "images/peugeot/408/001.webp",
             "images/peugeot/408/002.webp",
@@ -48030,7 +46953,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/peugeot/3008/thumbnail.webp",
+          "thumbnail": "images/peugeot/3008/thumbnail.jpg",
           "large_images": [
             "images/peugeot/3008/001.webp",
             "images/peugeot/3008/002.webp",
@@ -48660,7 +47583,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/peugeot/rifter/thumbnail.webp",
+          "thumbnail": "images/peugeot/rifter/thumbnail.jpg",
           "large_images": [
             "images/peugeot/rifter/001.webp",
             "images/peugeot/rifter/002.webp",
@@ -48852,7 +47775,7 @@
             2000,
             1999
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/106/thumbnail.jpg",
           "large_images": [
             "images/peugeot/106/001.jpg",
             "images/peugeot/106/002.jpg",
@@ -49046,7 +47969,7 @@
             2012,
             2011
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/107/thumbnail.jpg",
           "large_images": [
             "images/peugeot/107/001.jpg",
             "images/peugeot/107/002.jpg",
@@ -49241,7 +48164,7 @@
             2012,
             2011
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/206/thumbnail.jpg",
           "large_images": [
             "images/peugeot/206/001.jpg",
             "images/peugeot/206/002.jpg",
@@ -49437,7 +48360,7 @@
           "years": [
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/207/thumbnail.jpg",
           "large_images": [
             "images/peugeot/207/001.jpg",
             "images/peugeot/207/002.jpg",
@@ -49635,7 +48558,7 @@
             2020,
             2019
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/301/thumbnail.jpg",
           "large_images": [
             "images/peugeot/301/001.jpg",
             "images/peugeot/301/002.jpg",
@@ -49944,7 +48867,7 @@
           "years": [
             2001
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/306/thumbnail.jpg",
           "large_images": [
             "images/peugeot/306/001.jpg",
             "images/peugeot/306/002.jpg",
@@ -50139,7 +49062,7 @@
             2008,
             2007
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/307/thumbnail.jpg",
           "large_images": [
             "images/peugeot/307/001.jpg",
             "images/peugeot/307/002.jpg",
@@ -50333,7 +49256,7 @@
             2011,
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/407/thumbnail.jpg",
           "large_images": [
             "images/peugeot/407/001.jpg",
             "images/peugeot/407/002.jpg",
@@ -50532,7 +49455,7 @@
             2023,
             2022
           ],
-          "thumbnail": "images/peugeot/508/thumbnail.webp",
+          "thumbnail": "images/peugeot/508/thumbnail.jpg",
           "large_images": [
             "images/peugeot/508/001.webp",
             "images/peugeot/508/002.webp",
@@ -50877,7 +49800,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/peugeot/bipper/thumbnail.jpg",
           "large_images": [
             "images/peugeot/bipper/001.jpg",
             "images/peugeot/bipper/002.jpg",
@@ -51363,7 +50286,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/porsche/macan/thumbnail.webp",
+          "thumbnail": "images/porsche/macan/thumbnail.jpg",
           "large_images": [
             "images/porsche/macan/001.webp",
             "images/porsche/macan/002.webp",
@@ -51592,7 +50515,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/porsche/taycan/thumbnail.webp",
+          "thumbnail": "images/porsche/taycan/thumbnail.jpg",
           "large_images": [
             "images/porsche/taycan/001.webp",
             "images/porsche/taycan/002.webp",
@@ -51780,7 +50703,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/porsche/cayenne/thumbnail.webp",
+          "thumbnail": "images/porsche/cayenne/thumbnail.jpg",
           "large_images": [
             "images/porsche/cayenne/001.webp",
             "images/porsche/cayenne/002.webp",
@@ -51871,7 +50794,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/renault/clio/thumbnail.webp",
+          "thumbnail": "images/renault/clio/thumbnail.jpg",
           "large_images": [
             "images/renault/clio/001.webp",
             "images/renault/clio/002.webp",
@@ -52400,7 +51323,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/renault/megane/thumbnail.webp",
+          "thumbnail": "images/renault/megane/thumbnail.jpg",
           "large_images": [
             "images/renault/megane/001.webp",
             "images/renault/megane/002.webp",
@@ -52795,7 +51718,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/austral/thumbnail.jpg",
           "large_images": [
             "images/renault/austral/001.jpg",
             "images/renault/austral/002.jpg",
@@ -53075,7 +51998,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/renault/boreal/thumbnail.webp",
+          "thumbnail": "images/renault/boreal/thumbnail.jpg",
           "large_images": [
             "images/renault/boreal/001.webp",
             "images/renault/boreal/002.webp",
@@ -53294,7 +52217,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/renault/scenic/thumbnail.webp",
+          "thumbnail": "images/renault/scenic/thumbnail.jpg",
           "large_images": [
             "images/renault/scenic/001.webp",
             "images/renault/scenic/002.webp",
@@ -53384,7 +52307,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/kangoo/thumbnail.jpg",
           "large_images": [
             "images/renault/kangoo/001.jpg",
             "images/renault/kangoo/002.jpg",
@@ -53520,7 +52443,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/renault/r-5/thumbnail.webp",
+          "thumbnail": "images/renault/r-5/thumbnail.jpg",
           "large_images": [
             "images/renault/r-5/001.webp",
             "images/renault/r-5/002.webp",
@@ -53605,7 +52528,7 @@
           "years": [
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/fluence/thumbnail.jpg",
           "large_images": [
             "images/renault/fluence/001.jpg",
             "images/renault/fluence/002.jpg",
@@ -54469,7 +53392,7 @@
             2020,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/koleos/thumbnail.jpg",
           "large_images": [
             "images/renault/koleos/001.jpg",
             "images/renault/koleos/002.jpg",
@@ -54796,7 +53719,7 @@
             2008,
             2007
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/laguna/thumbnail.jpg",
           "large_images": [
             "images/renault/laguna/001.jpg",
             "images/renault/laguna/002.jpg",
@@ -54992,7 +53915,7 @@
             2015,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/latitude/thumbnail.jpg",
           "large_images": [
             "images/renault/latitude/001.jpg",
             "images/renault/latitude/002.jpg",
@@ -55383,198 +54306,13 @@
           "scraped_at": "2026-08-20T16:41:14"
         },
         {
-          "id": "r-11",
-          "name": "R 11",
-          "year": 1995,
-          "years": [
-            1995,
-            1994,
-            1993
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 16,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6 Rainbow",
-              "slug": "1-6-rainbow",
-              "year": 1995,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Rainbow",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "80 HP",
-                "Sistem Torku": "107 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1565 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "340 lt",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "3970 mm",
-                "Genişlik": "1650 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-11/1995/1-6-rainbow",
-              "source_title": "1995 Renault R 11 1.6 Rainbow",
-              "scraped_at": "2026-08-20T16:41:17"
-            },
-            {
-              "name": "1.7 Flash S",
-              "slug": "1-7-flash-s",
-              "year": 1995,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 Flash S",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "74 HP",
-                "Sistem Torku": "-",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1721 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-11/1995/1-7-flash-s",
-              "source_title": "1995 Renault R 11 1.7 Flash S",
-              "scraped_at": "2026-08-20T16:41:18"
-            },
-            {
-              "name": "1.6 Rainbow",
-              "slug": "1-6-rainbow",
-              "year": 1994,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Rainbow",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "80 HP",
-                "Sistem Torku": "107 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1565 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "340 lt",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "3970 mm",
-                "Genişlik": "1650 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-11/1994/1-6-rainbow",
-              "source_title": "1994 Renault R 11 1.6 Rainbow",
-              "scraped_at": "2026-08-20T16:41:20"
-            },
-            {
-              "name": "1.7 Flash S",
-              "slug": "1-7-flash-s",
-              "year": 1994,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 Flash S",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "74 HP",
-                "Sistem Torku": "-",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1721 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-11/1994/1-7-flash-s",
-              "source_title": "1994 Renault R 11 1.7 Flash S",
-              "scraped_at": "2026-08-20T16:41:21"
-            },
-            {
-              "name": "1.6 Rainbow",
-              "slug": "1-6-rainbow",
-              "year": 1993,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Rainbow",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "80 HP",
-                "Sistem Torku": "107 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1565 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "340 lt",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "3970 mm",
-                "Genişlik": "1650 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-11/1993/1-6-rainbow",
-              "source_title": "1993 Renault R 11 1.6 Rainbow",
-              "scraped_at": "2026-08-20T16:41:23"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/renault/r-11",
-          "scraped_at": "2026-08-20T16:41:23"
-        },
-        {
           "id": "r-19",
           "name": "R 19",
           "year": 2001,
           "years": [
             2001
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/r-19/thumbnail.jpg",
           "large_images": [
             "images/renault/r-19/001.jpg",
             "images/renault/r-19/002.jpg",
@@ -55757,190 +54495,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/r-19",
           "scraped_at": "2026-08-20T16:41:43"
-        },
-        {
-          "id": "r-21",
-          "name": "R 21",
-          "year": 1995,
-          "years": [
-            1995,
-            1994
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 18,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.7 Nevada RT",
-              "slug": "1-7-nevada-rt",
-              "year": 1995,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 Nevada RT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "90 HP",
-                "Sistem Torku": "-",
-                "Maksimum Hız": "-",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1721 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "1090 Kg",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-21/1995/1-7-nevada-rt",
-              "source_title": "1995 Renault R 21 1.7 Nevada RT",
-              "scraped_at": "2026-08-20T16:41:46"
-            },
-            {
-              "name": "1.7 GTS",
-              "slug": "1-7-gts",
-              "year": 1994,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 GTS",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "90 HP",
-                "Sistem Torku": "-",
-                "Maksimum Hız": "-",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1721 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-21/1994/1-7-gts",
-              "source_title": "1994 Renault R 21 1.7 GTS",
-              "scraped_at": "2026-08-20T16:41:47"
-            },
-            {
-              "name": "1.7 GTS Manager",
-              "slug": "1-7-gts-manager",
-              "year": 1994,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 GTS Manager",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "95 HP",
-                "Sistem Torku": "143 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1721 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "67 lt",
-                "Bagaj Hacmi": "490 lt",
-                "Boş Ağırlık": "1020 Kg",
-                "Uzunluk": "4462 mm",
-                "Genişlik": "1715 mm",
-                "Yükseklik": "1415 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-21/1994/1-7-gts-manager",
-              "source_title": "1994 Renault R 21 1.7 GTS Manager",
-              "scraped_at": "2026-08-20T16:41:49"
-            },
-            {
-              "name": "1.7 GTX",
-              "slug": "1-7-gtx",
-              "year": 1994,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 GTX",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "159 Nm",
-                "Maksimum Hız": "192 km/s",
-                "0-100 Hızlanma": "9.9 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1995 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "66 lt",
-                "Bagaj Hacmi": "490 lt",
-                "Boş Ağırlık": "1185 Kg",
-                "Uzunluk": "4461 mm",
-                "Genişlik": "1726 mm",
-                "Yükseklik": "1415 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-21/1994/1-7-gtx",
-              "source_title": "1994 Renault R 21 1.7 GTX",
-              "scraped_at": "2026-08-20T16:41:50"
-            },
-            {
-              "name": "1.7 Nevada RT",
-              "slug": "1-7-nevada-rt",
-              "year": 1994,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.7 Nevada RT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "90 HP",
-                "Sistem Torku": "-",
-                "Maksimum Hız": "-",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1721 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "-",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "1090 Kg",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/renault/r-21/1994/1-7-nevada-rt",
-              "source_title": "1994 Renault R 21 1.7 Nevada RT",
-              "scraped_at": "2026-08-20T16:41:52"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/renault/r-21",
-          "scraped_at": "2026-08-20T16:41:52"
         },
         {
           "id": "r-9",
@@ -56211,7 +54765,7 @@
             2018,
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/symbol/thumbnail.jpg",
           "large_images": [
             "images/renault/symbol/001.jpg",
             "images/renault/symbol/002.jpg",
@@ -56582,7 +55136,7 @@
             2023,
             2022
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/taliant/thumbnail.jpg",
           "large_images": [
             "images/renault/taliant/001.jpg",
             "images/renault/taliant/002.jpg",
@@ -56920,7 +55474,7 @@
             2020,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/renault/talisman/thumbnail.jpg",
           "large_images": [
             "images/renault/talisman/001.jpg",
             "images/renault/talisman/002.jpg",
@@ -57272,7 +55826,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/seat/ibiza/thumbnail.webp",
+          "thumbnail": "images/seat/ibiza/thumbnail.jpg",
           "large_images": [
             "images/seat/ibiza/001.webp",
             "images/seat/ibiza/002.webp",
@@ -57350,7 +55904,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/seat/leon/thumbnail.jpg",
           "large_images": [
             "images/seat/leon/001.jpg",
             "images/seat/leon/002.jpg",
@@ -57433,7 +55987,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/seat/arona/thumbnail.webp",
+          "thumbnail": "images/seat/arona/thumbnail.jpg",
           "large_images": [
             "images/seat/arona/001.webp",
             "images/seat/arona/002.webp",
@@ -57515,7 +56069,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/seat/ateca/thumbnail.jpg",
           "large_images": [
             "images/seat/ateca/001.jpg",
             "images/seat/ateca/002.jpg",
@@ -57597,7 +56151,7 @@
           "years": [
             2024
           ],
-          "thumbnail": "",
+          "thumbnail": "images/seat/tarraco/thumbnail.jpg",
           "large_images": [
             "images/seat/tarraco/001.jpg",
             "images/seat/tarraco/002.jpg",
@@ -57715,7 +56269,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/seat/altea/thumbnail.jpg",
           "large_images": [
             "images/seat/altea/001.jpg",
             "images/seat/altea/002.jpg",
@@ -57939,7 +56493,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/seat/toledo/thumbnail.jpg",
           "large_images": [
             "images/seat/toledo/001.jpg",
             "images/seat/toledo/002.jpg",
@@ -58140,7 +56694,7 @@
           "years": [
             2003
           ],
-          "thumbnail": "",
+          "thumbnail": "images/seat/cordoba/thumbnail.jpg",
           "large_images": [
             "images/seat/cordoba/001.jpg",
             "images/seat/cordoba/002.jpg",
@@ -58355,7 +56909,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/skoda/fabia/thumbnail.jpg",
           "large_images": [
             "images/skoda/fabia/001.jpg",
             "images/skoda/fabia/002.jpg",
@@ -59593,7 +58147,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/skoda/karoq/thumbnail.jpg",
           "large_images": [
             "images/skoda/karoq/001.jpg",
             "images/skoda/karoq/002.jpg",
@@ -59995,7 +58549,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/skoda/elroq/thumbnail.webp",
+          "thumbnail": "images/skoda/elroq/thumbnail.jpg",
           "large_images": [
             "images/skoda/elroq/001.webp",
             "images/skoda/elroq/002.webp",
@@ -60086,7 +58640,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/skoda/enyaq/thumbnail.webp",
+          "thumbnail": "images/skoda/enyaq/thumbnail.jpg",
           "large_images": [
             "images/skoda/enyaq/001.webp",
             "images/skoda/enyaq/002.webp",
@@ -60175,7 +58729,7 @@
             2013,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/skoda/citigo/thumbnail.jpg",
           "large_images": [
             "images/skoda/citigo/001.jpg",
             "images/skoda/citigo/002.jpg",
@@ -60367,7 +58921,7 @@
           "years": [
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/skoda/rapid/thumbnail.jpg",
           "large_images": [
             "images/skoda/rapid/001.jpg",
             "images/skoda/rapid/002.jpg",
@@ -60765,7 +59319,7 @@
           "years": [
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/skoda/roomster/thumbnail.jpg",
           "large_images": [
             "images/skoda/roomster/001.jpg",
             "images/skoda/roomster/002.jpg",
@@ -60962,7 +59516,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/skoda/yeti/thumbnail.jpg",
           "large_images": [
             "images/skoda/yeti/001.jpg",
             "images/skoda/yeti/002.jpg",
@@ -61668,7 +60222,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/ssangyong/musso-grand/thumbnail.webp",
+          "thumbnail": "images/ssangyong/musso-grand/thumbnail.jpg",
           "large_images": [
             "images/ssangyong/musso-grand/001.webp",
             "images/ssangyong/musso-grand/002.webp",
@@ -61746,7 +60300,7 @@
           "years": [
             2025
           ],
-          "thumbnail": "images/ssangyong/actyon/thumbnail.webp",
+          "thumbnail": "images/ssangyong/actyon/thumbnail.jpg",
           "large_images": [
             "images/ssangyong/actyon/001.webp",
             "images/ssangyong/actyon/002.webp",
@@ -62005,7 +60559,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/ssangyong/musso/thumbnail.webp",
+          "thumbnail": "images/ssangyong/musso/thumbnail.jpg",
           "large_images": [
             "images/ssangyong/musso/001.webp",
             "images/ssangyong/musso/002.webp",
@@ -62309,7 +60863,7 @@
           "years": [
             2007
           ],
-          "thumbnail": "",
+          "thumbnail": "images/subaru/impreza/thumbnail.jpg",
           "large_images": [
             "images/subaru/impreza/001.jpg",
             "images/subaru/impreza/002.jpg",
@@ -62508,7 +61062,7 @@
             2020,
             2019
           ],
-          "thumbnail": "",
+          "thumbnail": "images/subaru/xv/thumbnail.jpg",
           "large_images": [
             "images/subaru/xv/001.jpg",
             "images/subaru/xv/002.jpg",
@@ -62814,7 +61368,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/suzuki/vitara/thumbnail.webp",
+          "thumbnail": "images/suzuki/vitara/thumbnail.jpg",
           "large_images": [
             "images/suzuki/vitara/001.webp",
             "images/suzuki/vitara/002.webp",
@@ -63095,7 +61649,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/suzuki/s-cross/thumbnail.jpg",
           "large_images": [
             "images/suzuki/s-cross/001.jpg",
             "images/suzuki/s-cross/002.jpg",
@@ -63697,7 +62251,7 @@
             2020,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/suzuki/sx4/thumbnail.jpg",
           "large_images": [
             "images/suzuki/sx4/001.jpg",
             "images/suzuki/sx4/002.jpg",
@@ -63930,7 +62484,7 @@
             2021,
             2020
           ],
-          "thumbnail": "",
+          "thumbnail": "images/suzuki/jimny/thumbnail.jpg",
           "large_images": [
             "images/suzuki/jimny/001.jpg",
             "images/suzuki/jimny/002.jpg",
@@ -64302,7 +62856,7 @@
             2017,
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/suzuki/baleno/thumbnail.jpg",
           "large_images": [
             "images/suzuki/baleno/001.jpg",
             "images/suzuki/baleno/002.jpg",
@@ -64589,7 +63143,7 @@
             2013,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/suzuki/splash/thumbnail.jpg",
           "large_images": [
             "images/suzuki/splash/001.jpg",
             "images/suzuki/splash/002.jpg",
@@ -64791,7 +63345,7 @@
             2010,
             2006
           ],
-          "thumbnail": "",
+          "thumbnail": "images/suzuki/alto/thumbnail.jpg",
           "large_images": [
             "images/suzuki/alto/001.jpg",
             "images/suzuki/alto/002.jpg",
@@ -65006,7 +63560,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/swm/g01-pro/thumbnail.webp",
+          "thumbnail": "images/swm/g01-pro/thumbnail.jpg",
           "large_images": [
             "images/swm/g01-pro/001.webp",
             "images/swm/g01-pro/002.webp",
@@ -65627,7 +64181,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/tesla/model-y/thumbnail.webp",
+          "thumbnail": "images/tesla/model-y/thumbnail.jpg",
           "large_images": [
             "images/tesla/model-y/001.webp",
             "images/tesla/model-y/002.webp",
@@ -65898,7 +64452,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/togg/t10x/thumbnail.webp",
+          "thumbnail": "images/togg/t10x/thumbnail.jpg",
           "large_images": [
             "images/togg/t10x/001.webp",
             "images/togg/t10x/002.webp",
@@ -66150,7 +64704,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/togg/t10f/thumbnail.webp",
+          "thumbnail": "images/togg/t10f/thumbnail.jpg",
           "large_images": [
             "images/togg/t10f/001.webp",
             "images/togg/t10f/002.webp",
@@ -66420,7 +64974,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/toyota/corolla/thumbnail.webp",
+          "thumbnail": "images/toyota/corolla/thumbnail.jpg",
           "large_images": [
             "images/toyota/corolla/001.webp",
             "images/toyota/corolla/002.webp",
@@ -67147,7 +65701,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/toyota/corolla-cross/thumbnail.webp",
+          "thumbnail": "images/toyota/corolla-cross/thumbnail.jpg",
           "large_images": [
             "images/toyota/corolla-cross/001.webp",
             "images/toyota/corolla-cross/002.webp",
@@ -67657,7 +66211,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/toyota/c-hr/thumbnail.webp",
+          "thumbnail": "images/toyota/c-hr/thumbnail.jpg",
           "large_images": [
             "images/toyota/c-hr/001.webp",
             "images/toyota/c-hr/002.webp",
@@ -68277,7 +66831,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/toyota/hilux/thumbnail.jpg",
           "large_images": [
             "images/toyota/hilux/001.jpg",
             "images/toyota/hilux/002.jpg",
@@ -68539,7 +67093,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/toyota/proace-verso/thumbnail.webp",
+          "thumbnail": "images/toyota/proace-verso/thumbnail.jpg",
           "large_images": [
             "images/toyota/proace-verso/001.webp",
             "images/toyota/proace-verso/002.webp",
@@ -68684,7 +67238,7 @@
             2025,
             2024
           ],
-          "thumbnail": "",
+          "thumbnail": "images/toyota/rav4/thumbnail.jpg",
           "large_images": [
             "images/toyota/rav4/001.jpg",
             "images/toyota/rav4/002.jpg",
@@ -69011,7 +67565,7 @@
           "years": [
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/toyota/auris/thumbnail.jpg",
           "large_images": [
             "images/toyota/auris/001.jpg",
             "images/toyota/auris/002.jpg",
@@ -69344,7 +67898,7 @@
           "years": [
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/toyota/avensis/thumbnail.jpg",
           "large_images": [
             "images/toyota/avensis/001.jpg",
             "images/toyota/avensis/002.jpg",
@@ -69705,7 +68259,7 @@
           "years": [
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/toyota/verso/thumbnail.jpg",
           "large_images": [
             "images/toyota/verso/001.jpg",
             "images/toyota/verso/002.jpg",
@@ -70494,7 +69048,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volkswagen/taigo/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/taigo/001.jpg",
             "images/volkswagen/taigo/002.jpg",
@@ -71092,7 +69646,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/volkswagen/t-roc/thumbnail.webp",
+          "thumbnail": "images/volkswagen/t-roc/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/t-roc/001.webp",
             "images/volkswagen/t-roc/002.webp",
@@ -71935,7 +70489,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/volkswagen/tayron/thumbnail.webp",
+          "thumbnail": "images/volkswagen/tayron/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/tayron/001.webp",
             "images/volkswagen/tayron/002.webp",
@@ -72293,7 +70847,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volkswagen/caddy/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/caddy/001.jpg",
             "images/volkswagen/caddy/002.jpg",
@@ -72633,7 +71187,7 @@
           "years": [
             2025
           ],
-          "thumbnail": "images/volkswagen/id-7/thumbnail.webp",
+          "thumbnail": "images/volkswagen/id-7/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/id-7/001.webp",
             "images/volkswagen/id-7/002.webp",
@@ -72902,189 +71456,6 @@
           "scraped_at": "2026-08-20T16:57:47"
         },
         {
-          "id": "bora",
-          "name": "Bora",
-          "year": 2005,
-          "years": [
-            2005
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 12,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6 Basic",
-              "slug": "1-6-basic",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Basic",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 797 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "148 Nm",
-                "Maksimum Hız": "192 km/s",
-                "0-100 Hızlanma": "11.3 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1595 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "55 lt",
-                "Bagaj Hacmi": "455 lt",
-                "Boş Ağırlık": "1193 Kg",
-                "Uzunluk": "4376 mm",
-                "Genişlik": "1735 mm",
-                "Yükseklik": "1446 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/volkswagen/bora/2005/1-6-basic",
-              "source_title": "2005 Volkswagen Bora 1.6 Basic",
-              "scraped_at": "2026-08-20T16:57:50"
-            },
-            {
-              "name": "1.6 Comfortline",
-              "slug": "1-6-comfortline",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Comfortline",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 797 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "148 Nm",
-                "Maksimum Hız": "192 km/s",
-                "0-100 Hızlanma": "11.3 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1595 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "55 lt",
-                "Bagaj Hacmi": "455 lt",
-                "Boş Ağırlık": "1193 Kg",
-                "Uzunluk": "4376 mm",
-                "Genişlik": "1735 mm",
-                "Yükseklik": "1446 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/volkswagen/bora/2005/1-6-comfortline",
-              "source_title": "2005 Volkswagen Bora 1.6 Comfortline",
-              "scraped_at": "2026-08-20T16:57:52"
-            },
-            {
-              "name": "1.6 Comfortline Otomatik",
-              "slug": "1-6-comfortline-otomatik",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Comfortline Otomatik",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 679 km",
-                "Sistem Gücü": "102 HP",
-                "Sistem Torku": "148 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.8 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1595 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "55 lt",
-                "Bagaj Hacmi": "455 lt",
-                "Boş Ağırlık": "1211 Kg",
-                "Uzunluk": "4376 mm",
-                "Genişlik": "1735 mm",
-                "Yükseklik": "1446 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/volkswagen/bora/2005/1-6-comfortline-otomatik",
-              "source_title": "2005 Volkswagen Bora 1.6 Comfortline Otomatik",
-              "scraped_at": "2026-08-20T16:57:53"
-            },
-            {
-              "name": "1.6 Pacific",
-              "slug": "1-6-pacific",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Pacific",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 797 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "148 Nm",
-                "Maksimum Hız": "192 km/s",
-                "0-100 Hızlanma": "11.3 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1595 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "55 lt",
-                "Bagaj Hacmi": "455 lt",
-                "Boş Ağırlık": "1193 Kg",
-                "Uzunluk": "4376 mm",
-                "Genişlik": "1735 mm",
-                "Yükseklik": "1446 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/volkswagen/bora/2005/1-6-pacific",
-              "source_title": "2005 Volkswagen Bora 1.6 Pacific",
-              "scraped_at": "2026-08-20T16:57:55"
-            },
-            {
-              "name": "1.6 Pacific Otomatik",
-              "slug": "1-6-pacific-otomatik",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 Pacific Otomatik",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 679 km",
-                "Sistem Gücü": "102 HP",
-                "Sistem Torku": "148 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.8 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1595 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "55 lt",
-                "Bagaj Hacmi": "455 lt",
-                "Boş Ağırlık": "1211 Kg",
-                "Uzunluk": "4376 mm",
-                "Genişlik": "1735 mm",
-                "Yükseklik": "1446 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/volkswagen/bora/2005/1-6-pacific-otomatik",
-              "source_title": "2005 Volkswagen Bora 1.6 Pacific Otomatik",
-              "scraped_at": "2026-08-20T16:57:56"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/volkswagen/bora",
-          "scraped_at": "2026-08-20T16:57:56"
-        },
-        {
           "id": "transporter",
           "name": "Transporter",
           "year": 2026,
@@ -73093,7 +71464,7 @@
             2025,
             2024
           ],
-          "thumbnail": "images/volkswagen/transporter/thumbnail.webp",
+          "thumbnail": "images/volkswagen/transporter/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/transporter/001.webp",
             "images/volkswagen/transporter/002.webp",
@@ -73382,7 +71753,7 @@
           "years": [
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volkswagen/cc/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/cc/001.jpg",
             "images/volkswagen/cc/002.jpg",
@@ -73985,7 +72356,7 @@
           "years": [
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volkswagen/jetta/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/jetta/001.jpg",
             "images/volkswagen/jetta/002.jpg",
@@ -74378,7 +72749,7 @@
             2025,
             2024
           ],
-          "thumbnail": "images/volkswagen/polo/thumbnail.webp",
+          "thumbnail": "images/volkswagen/polo/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/polo/001.webp",
             "images/volkswagen/polo/002.webp",
@@ -74728,7 +73099,7 @@
           "years": [
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volkswagen/scirocco/thumbnail.jpg",
           "large_images": [
             "images/volkswagen/scirocco/001.jpg",
             "images/volkswagen/scirocco/002.jpg",
@@ -75245,7 +73616,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/volvo/ex30/thumbnail.webp",
+          "thumbnail": "images/volvo/ex30/thumbnail.jpg",
           "large_images": [
             "images/volvo/ex30/001.webp",
             "images/volvo/ex30/002.webp",
@@ -75319,295 +73690,13 @@
           "scraped_at": "2026-08-20T16:59:55"
         },
         {
-          "id": "ex40",
-          "name": "Ex40",
-          "year": 2026,
-          "years": [
-            2026
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "elektrik"
-          ],
-          "order": 2,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "Single Motor",
-              "slug": "single-motor",
-              "year": 2026,
-              "price": {
-                "raw": "3.925.000 TL",
-                "numeric": 3925000,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Single Motor",
-                "Enerji Türü": "Elektrik",
-                "KM Başı Maliyet": "~ 0.82 TL",
-                "Ortalama Menzil": "~ 566 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "420 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "7.9 sn",
-                "Vites Tipi": "Otomatik",
-                "Motor Gücü": "150 kW",
-                "Şarj Süresi": "~ 480 dk",
-                "Enerji Tüketimi": "~ 16.9 kWh",
-                "Batarya Hacmi": "82 kWsa",
-                "Bagaj Hacmi": "419 lt",
-                "Boş Ağırlık": "2075 Kg",
-                "Uzunluk": "4440 mm",
-                "Genişlik": "1873 mm",
-                "Yükseklik": "1647 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.933.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "4.325.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "3.925.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/volvo/ex40/2026/single-motor",
-              "source_title": "2026 Volvo EX40 Single Motor",
-              "scraped_at": "2026-08-20T16:59:57"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/volvo/ex40",
-          "scraped_at": "2026-08-20T16:59:57"
-        },
-        {
-          "id": "ec40",
-          "name": "Ec40",
-          "year": 2026,
-          "years": [
-            2026,
-            2025
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "elektrik"
-          ],
-          "order": 3,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "Single Motor",
-              "slug": "single-motor",
-              "year": 2026,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Single Motor",
-                "Enerji Türü": "Elektrik",
-                "Ortalama Menzil": "~ 576 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "420 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "7.9 sn",
-                "Vites Tipi": "Otomatik",
-                "Motor Gücü": "150 kW",
-                "Şarj Süresi": "~ 480 dk",
-                "Enerji Tüketimi": "~ 16.5 kWh",
-                "Batarya Hacmi": "82 kWsa",
-                "Bagaj Hacmi": "404 lt",
-                "Boş Ağırlık": "2110 Kg",
-                "Uzunluk": "4440 mm",
-                "Genişlik": "1873 mm",
-                "Yükseklik": "1591 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "4.020.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "4.417.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "4.409.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/volvo/ec40/2026/single-motor",
-              "source_title": "2026 Volvo EC40 Single Motor",
-              "scraped_at": "2026-08-20T17:00:01"
-            },
-            {
-              "name": "Twin Motor",
-              "slug": "twin-motor",
-              "year": 2026,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Twin Motor",
-                "Enerji Türü": "Elektrik",
-                "Ortalama Menzil": "~ 548 km",
-                "Sistem Gücü": "408 HP",
-                "Sistem Torku": "670 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "4.7 sn",
-                "Vites Tipi": "Otomatik",
-                "Motor Gücü": "300 kW",
-                "Şarj Süresi": "~ 480 dk",
-                "Enerji Tüketimi": "~ 17.4 kWh",
-                "Batarya Hacmi": "82 kWsa",
-                "Bagaj Hacmi": "404 lt",
-                "Boş Ağırlık": "2185 Kg",
-                "Uzunluk": "4440 mm",
-                "Genişlik": "1873 mm",
-                "Yükseklik": "1591 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "4.874.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "5.338.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/volvo/ec40/2026/twin-motor",
-              "source_title": "2026 Volvo EC40 Twin Motor",
-              "scraped_at": "2026-08-20T17:00:02"
-            },
-            {
-              "name": "Ultra",
-              "slug": "ultra",
-              "year": 2025,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Ultra",
-                "Enerji Türü": "Elektrik",
-                "Ortalama Menzil": "~ 576 km",
-                "Sistem Gücü": "252 HP",
-                "Sistem Torku": "420 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "7.3 sn",
-                "Vites Tipi": "Otomatik",
-                "Motor Gücü": "185 kW",
-                "Şarj Süresi": "~ 480 dk",
-                "Enerji Tüketimi": "~ 16.4 kWh",
-                "Batarya Hacmi": "82 kWsa",
-                "Bagaj Hacmi": "404 lt",
-                "Boş Ağırlık": "2095 Kg",
-                "Uzunluk": "4440 mm",
-                "Genişlik": "1873 mm",
-                "Yükseklik": "1591 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Mart",
-                  "price": "2.782.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "3.008.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "3.225.000 ₺"
-                },
-                {
-                  "month": "Haziran",
-                  "price": "3.228.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "4.020.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/volvo/ec40/2025/ultra",
-              "source_title": "2025 Volvo EC40 Ultra",
-              "scraped_at": "2026-08-20T17:00:04"
-            },
-            {
-              "name": "Ultra AWD",
-              "slug": "ultra-awd",
-              "year": 2025,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Ultra AWD",
-                "Enerji Türü": "Elektrik",
-                "Ortalama Menzil": "~ 548 km",
-                "Sistem Gücü": "408 HP",
-                "Sistem Torku": "670 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "4.7 sn",
-                "Vites Tipi": "Otomatik",
-                "Motor Gücü": "300 kW",
-                "Şarj Süresi": "~ 480 dk",
-                "Enerji Tüketimi": "~ 17.4 kWh",
-                "Batarya Hacmi": "82 kWsa",
-                "Bagaj Hacmi": "404 lt",
-                "Boş Ağırlık": "2185 Kg",
-                "Uzunluk": "4440 mm",
-                "Genişlik": "1873 mm",
-                "Yükseklik": "1591 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Mart",
-                  "price": "3.406.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "3.681.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "3.948.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/volvo/ec40/2025/ultra-awd",
-              "source_title": "2025 Volvo EC40 Ultra AWD",
-              "scraped_at": "2026-08-20T17:00:05"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/volvo/ec40",
-          "scraped_at": "2026-08-20T17:00:05"
-        },
-        {
           "id": "xc90",
           "name": "Xc90",
           "year": 2026,
           "years": [
             2026
           ],
-          "thumbnail": "images/volvo/xc90/thumbnail.webp",
+          "thumbnail": "images/volvo/xc90/thumbnail.jpg",
           "large_images": [
             "images/volvo/xc90/001.webp",
             "images/volvo/xc90/002.webp",
@@ -75725,7 +73814,7 @@
           "years": [
             2026
           ],
-          "thumbnail": "images/volvo/xc60/thumbnail.webp",
+          "thumbnail": "images/volvo/xc60/thumbnail.jpg",
           "large_images": [
             "images/volvo/xc60/001.webp",
             "images/volvo/xc60/002.webp",
@@ -76278,7 +74367,7 @@
             2012,
             2011
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volvo/s40/thumbnail.jpg",
           "large_images": [
             "images/volvo/s40/001.jpg",
             "images/volvo/s40/002.jpg",
@@ -76795,7 +74884,7 @@
           "years": [
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volvo/s80/thumbnail.jpg",
           "large_images": [
             "images/volvo/s80/001.jpg",
             "images/volvo/s80/002.jpg",
@@ -77496,7 +75585,7 @@
             2018,
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/volvo/v40/thumbnail.jpg",
           "large_images": [
             "images/volvo/v40/001.jpg",
             "images/volvo/v40/002.jpg",
@@ -78132,7 +76221,7 @@
           "years": [
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chevrolet/aveo/thumbnail.jpg",
           "large_images": [
             "images/chevrolet/aveo/001.jpg",
             "images/chevrolet/aveo/002.jpg",
@@ -78334,7 +76423,7 @@
           "years": [
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chevrolet/cruze/thumbnail.jpg",
           "large_images": [
             "images/chevrolet/cruze/001.jpg",
             "images/chevrolet/cruze/002.jpg",
@@ -78538,7 +76627,7 @@
             2013,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chevrolet/captiva/thumbnail.jpg",
           "large_images": [
             "images/chevrolet/captiva/001.jpg",
             "images/chevrolet/captiva/002.jpg",
@@ -78742,7 +76831,7 @@
             2011,
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chevrolet/lacetti/thumbnail.jpg",
           "large_images": [
             "images/chevrolet/lacetti/001.jpg",
             "images/chevrolet/lacetti/002.jpg",
@@ -78939,7 +77028,7 @@
           "years": [
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chevrolet/trax/thumbnail.jpg",
           "large_images": [
             "images/chevrolet/trax/001.jpg",
             "images/chevrolet/trax/002.jpg",
@@ -79132,7 +77221,7 @@
             2013,
             2012
           ],
-          "thumbnail": "",
+          "thumbnail": "images/chevrolet/camaro/thumbnail.jpg",
           "large_images": [
             "images/chevrolet/camaro/001.jpg",
             "images/chevrolet/camaro/002.jpg",
@@ -79355,7 +77444,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/geely/emgrand/thumbnail.jpg",
           "large_images": [
             "images/geely/emgrand/001.jpg",
             "images/geely/emgrand/002.jpg",
@@ -79553,7 +77642,7 @@
             2009,
             2008
           ],
-          "thumbnail": "",
+          "thumbnail": "images/geely/familia/thumbnail.jpg",
           "large_images": [
             "images/geely/familia/001.jpg",
             "images/geely/familia/002.jpg",
@@ -79704,193 +77793,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/geely/familia",
           "scraped_at": "2026-08-20T17:05:20"
-        },
-        {
-          "id": "fc",
-          "name": "Fc",
-          "year": 2014,
-          "years": [
-            2014,
-            2013,
-            2012,
-            2011,
-            2010
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 3,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.5 GSL",
-              "slug": "1-5-gsl",
-              "year": 2014,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GSL",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 676 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "129 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "558 lt",
-                "Boş Ağırlık": "1190 Kg",
-                "Uzunluk": "4602 mm",
-                "Genişlik": "1725 mm",
-                "Yükseklik": "1485 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/geely/fc/2014/1-5-gsl",
-              "source_title": "2014 Geely FC 1.5 GSL",
-              "scraped_at": "2026-08-20T17:05:23"
-            },
-            {
-              "name": "1.5 GSL",
-              "slug": "1-5-gsl",
-              "year": 2013,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GSL",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 676 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "129 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "558 lt",
-                "Boş Ağırlık": "1190 Kg",
-                "Uzunluk": "4602 mm",
-                "Genişlik": "1725 mm",
-                "Yükseklik": "1485 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/geely/fc/2013/1-5-gsl",
-              "source_title": "2013 Geely FC 1.5 GSL",
-              "scraped_at": "2026-08-20T17:05:24"
-            },
-            {
-              "name": "1.5 GSL",
-              "slug": "1-5-gsl",
-              "year": 2012,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GSL",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 676 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "129 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "558 lt",
-                "Boş Ağırlık": "1190 Kg",
-                "Uzunluk": "4602 mm",
-                "Genişlik": "1725 mm",
-                "Yükseklik": "1485 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/geely/fc/2012/1-5-gsl",
-              "source_title": "2012 Geely FC 1.5 GSL",
-              "scraped_at": "2026-08-20T17:05:26"
-            },
-            {
-              "name": "1.5 GSL",
-              "slug": "1-5-gsl",
-              "year": 2011,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GSL",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 676 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "129 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "558 lt",
-                "Boş Ağırlık": "1190 Kg",
-                "Uzunluk": "4602 mm",
-                "Genişlik": "1725 mm",
-                "Yükseklik": "1485 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/geely/fc/2011/1-5-gsl",
-              "source_title": "2011 Geely FC 1.5 GSL",
-              "scraped_at": "2026-08-20T17:05:27"
-            },
-            {
-              "name": "1.5 GSL",
-              "slug": "1-5-gsl",
-              "year": 2010,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GSL",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 676 km",
-                "Sistem Gücü": "105 HP",
-                "Sistem Torku": "129 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "558 lt",
-                "Boş Ağırlık": "1190 Kg",
-                "Uzunluk": "4602 mm",
-                "Genişlik": "1725 mm",
-                "Yükseklik": "1485 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/geely/fc/2010/1-5-gsl",
-              "source_title": "2010 Geely FC 1.5 GSL",
-              "scraped_at": "2026-08-20T17:05:29"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/geely/fc",
-          "scraped_at": "2026-08-20T17:05:29"
         }
       ]
     },
@@ -79919,7 +77821,7 @@
             2019,
             2018
           ],
-          "thumbnail": "",
+          "thumbnail": "images/lada/niva/thumbnail.jpg",
           "large_images": [
             "images/lada/niva/001.jpg",
             "images/lada/niva/002.jpg",
@@ -80199,7 +78101,7 @@
             2012,
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/lada/kalina/thumbnail.jpg",
           "large_images": [
             "images/lada/kalina/001.jpg"
           ],
@@ -80385,7 +78287,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/lada/priora/thumbnail.jpg",
           "large_images": [
             "images/lada/priora/001.jpg",
             "images/lada/priora/002.jpg",
@@ -80568,377 +78470,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/lada/priora",
           "scraped_at": "2026-08-20T17:06:32"
-        },
-        {
-          "id": "samara",
-          "name": "Samara",
-          "year": 2000,
-          "years": [
-            2000,
-            1999,
-            1998
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 4,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.5i Bass",
-              "slug": "1-5i-bass",
-              "year": 2000,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5i Bass",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 600 km",
-                "Sistem Gücü": "70 HP",
-                "Sistem Torku": "110 Nm",
-                "Maksimum Hız": "150 km/s",
-                "0-100 Hızlanma": "15 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1500 cc",
-                "Ortalama Tüketim": "~ 7.5 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "330 lt",
-                "Boş Ağırlık": "970 Kg",
-                "Uzunluk": "4205 mm",
-                "Genişlik": "1620 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/samara/2000/1-5i-bass",
-              "source_title": "2000 Lada Samara 1.5i Bass",
-              "scraped_at": "2026-08-20T17:06:35"
-            },
-            {
-              "name": "1.5i Ring",
-              "slug": "1-5i-ring",
-              "year": 2000,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5i Ring",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 600 km",
-                "Sistem Gücü": "70 HP",
-                "Sistem Torku": "110 Nm",
-                "Maksimum Hız": "150 km/s",
-                "0-100 Hızlanma": "15 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1500 cc",
-                "Ortalama Tüketim": "~ 7.5 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "330 lt",
-                "Boş Ağırlık": "945 Kg",
-                "Uzunluk": "4006 mm",
-                "Genişlik": "1620 mm",
-                "Yükseklik": "1335 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/samara/2000/1-5i-ring",
-              "source_title": "2000 Lada Samara 1.5i Ring",
-              "scraped_at": "2026-08-20T17:06:37"
-            },
-            {
-              "name": "1.5i Bass",
-              "slug": "1-5i-bass",
-              "year": 1999,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5i Bass",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 600 km",
-                "Sistem Gücü": "70 HP",
-                "Sistem Torku": "110 Nm",
-                "Maksimum Hız": "150 km/s",
-                "0-100 Hızlanma": "15 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1500 cc",
-                "Ortalama Tüketim": "~ 7.5 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "330 lt",
-                "Boş Ağırlık": "970 Kg",
-                "Uzunluk": "4205 mm",
-                "Genişlik": "1620 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/samara/1999/1-5i-bass",
-              "source_title": "1999 Lada Samara 1.5i Bass",
-              "scraped_at": "2026-08-20T17:06:38"
-            },
-            {
-              "name": "1.5i Ring",
-              "slug": "1-5i-ring",
-              "year": 1999,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5i Ring",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 600 km",
-                "Sistem Gücü": "70 HP",
-                "Sistem Torku": "110 Nm",
-                "Maksimum Hız": "150 km/s",
-                "0-100 Hızlanma": "15 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1500 cc",
-                "Ortalama Tüketim": "~ 7.5 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "330 lt",
-                "Boş Ağırlık": "945 Kg",
-                "Uzunluk": "4006 mm",
-                "Genişlik": "1620 mm",
-                "Yükseklik": "1335 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/samara/1999/1-5i-ring",
-              "source_title": "1999 Lada Samara 1.5i Ring",
-              "scraped_at": "2026-08-20T17:06:40"
-            },
-            {
-              "name": "1.3 GLX",
-              "slug": "1-3-glx",
-              "year": 1998,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.3 GLX",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "65 HP",
-                "Sistem Torku": "96 Nm",
-                "Maksimum Hız": "146 km/s",
-                "0-100 Hızlanma": "16 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1288 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "330 lt",
-                "Boş Ağırlık": "920 Kg",
-                "Uzunluk": "4006 mm",
-                "Genişlik": "1620 mm",
-                "Yükseklik": "1335 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/samara/1998/1-3-glx",
-              "source_title": "1998 Lada Samara 1.3 GLX",
-              "scraped_at": "2026-08-20T17:06:41"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/lada/samara",
-          "scraped_at": "2026-08-20T17:06:41"
-        },
-        {
-          "id": "vega",
-          "name": "Vega",
-          "year": 2008,
-          "years": [
-            2008,
-            2007,
-            2006,
-            2005
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 5,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6",
-              "slug": "1-6",
-              "year": 2008,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 623 km",
-                "Sistem Gücü": "90 HP",
-                "Sistem Torku": "130 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "43 lt",
-                "Bagaj Hacmi": "445 lt",
-                "Boş Ağırlık": "1130 Kg",
-                "Uzunluk": "4285 mm",
-                "Genişlik": "1680 mm",
-                "Yükseklik": "1480 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/vega/2008/1-6",
-              "source_title": "2008 Lada Vega 1.6",
-              "scraped_at": "2026-08-20T17:06:45"
-            },
-            {
-              "name": "1.6",
-              "slug": "1-6",
-              "year": 2007,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 623 km",
-                "Sistem Gücü": "90 HP",
-                "Sistem Torku": "130 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "12 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1596 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "43 lt",
-                "Bagaj Hacmi": "445 lt",
-                "Boş Ağırlık": "1130 Kg",
-                "Uzunluk": "4285 mm",
-                "Genişlik": "1680 mm",
-                "Yükseklik": "1480 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/vega/2007/1-6",
-              "source_title": "2007 Lada Vega 1.6",
-              "scraped_at": "2026-08-20T17:06:46"
-            },
-            {
-              "name": "1.5 GLi",
-              "slug": "1-5-gli",
-              "year": 2006,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GLi",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 581 km",
-                "Sistem Gücü": "93 HP",
-                "Sistem Torku": "128 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "11.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1499 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "43 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1060 Kg",
-                "Uzunluk": "4265 mm",
-                "Genişlik": "1680 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/vega/2006/1-5-gli",
-              "source_title": "2006 Lada Vega 1.5 GLi",
-              "scraped_at": "2026-08-20T17:06:48"
-            },
-            {
-              "name": "1.5 Li",
-              "slug": "1-5-li",
-              "year": 2006,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 Li",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 589 km",
-                "Sistem Gücü": "77 HP",
-                "Sistem Torku": "118 Nm",
-                "Maksimum Hız": "167 km/s",
-                "0-100 Hızlanma": "13 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1499 cc",
-                "Ortalama Tüketim": "~ 7.3 lt",
-                "Yakıt Deposu": "43 lt",
-                "Bagaj Hacmi": "450 lt",
-                "Boş Ağırlık": "1150 Kg",
-                "Uzunluk": "4285 mm",
-                "Genişlik": "1680 mm",
-                "Yükseklik": "1480 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/vega/2006/1-5-li",
-              "source_title": "2006 Lada Vega 1.5 Li",
-              "scraped_at": "2026-08-20T17:06:49"
-            },
-            {
-              "name": "1.5 GLi",
-              "slug": "1-5-gli",
-              "year": 2005,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 GLi",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 581 km",
-                "Sistem Gücü": "93 HP",
-                "Sistem Torku": "128 Nm",
-                "Maksimum Hız": "185 km/s",
-                "0-100 Hızlanma": "11.5 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1499 cc",
-                "Ortalama Tüketim": "~ 7.4 lt",
-                "Yakıt Deposu": "43 lt",
-                "Bagaj Hacmi": "430 lt",
-                "Boş Ağırlık": "1060 Kg",
-                "Uzunluk": "4265 mm",
-                "Genişlik": "1680 mm",
-                "Yükseklik": "1420 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/lada/vega/2005/1-5-gli",
-              "source_title": "2005 Lada Vega 1.5 GLi",
-              "scraped_at": "2026-08-20T17:06:51"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/lada/vega",
-          "scraped_at": "2026-08-20T17:06:51"
         }
       ]
     },
@@ -81057,7 +78588,7 @@
           "years": [
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mazda/cx-3/thumbnail.jpg",
           "large_images": [
             "images/mazda/cx-3/001.jpg",
             "images/mazda/cx-3/002.jpg",
@@ -81397,7 +78928,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mazda/cx-5/thumbnail.jpg",
           "large_images": [
             "images/mazda/cx-5/001.jpg",
             "images/mazda/cx-5/002.jpg",
@@ -81773,7 +79304,7 @@
             2009,
             2008
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mazda/rx/thumbnail.jpg",
           "large_images": [
             "images/mazda/rx/001.jpg",
             "images/mazda/rx/002.jpg",
@@ -81964,7 +79495,7 @@
           "years": [
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mazda/3/thumbnail.jpg",
           "large_images": [
             "images/mazda/3/001.jpg",
             "images/mazda/3/002.jpg",
@@ -82401,7 +79932,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mazda/6/thumbnail.jpg",
           "large_images": [
             "images/mazda/6/001.jpg",
             "images/mazda/6/002.jpg",
@@ -82792,192 +80323,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/mazda/6",
           "scraped_at": "2026-08-20T17:08:51"
-        },
-        {
-          "id": "626",
-          "name": "626",
-          "year": 1999,
-          "years": [
-            1999,
-            1998,
-            1997
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin",
-            "dizel"
-          ],
-          "order": 6,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "HB 2.0 GT",
-              "slug": "hb-2-0-gt",
-              "year": 1999,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "HB 2.0 GT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 790 km",
-                "Sistem Gücü": "136 HP",
-                "Sistem Torku": "178 Nm",
-                "Maksimum Hız": "208 km/s",
-                "0-100 Hızlanma": "9.6 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1991 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "64 lt",
-                "Bagaj Hacmi": "50 lt",
-                "Boş Ağırlık": "1240 Kg",
-                "Uzunluk": "4575 mm",
-                "Genişlik": "1710 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mazda/626/1999/hb-2-0-gt",
-              "source_title": "1999 Mazda 626 HB 2.0 GT",
-              "scraped_at": "2026-08-20T17:08:54"
-            },
-            {
-              "name": "HB 2.0 GT",
-              "slug": "hb-2-0-gt",
-              "year": 1998,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "HB 2.0 GT",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 790 km",
-                "Sistem Gücü": "136 HP",
-                "Sistem Torku": "178 Nm",
-                "Maksimum Hız": "208 km/s",
-                "0-100 Hızlanma": "9.6 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1991 cc",
-                "Ortalama Tüketim": "~ 8.1 lt",
-                "Yakıt Deposu": "64 lt",
-                "Bagaj Hacmi": "50 lt",
-                "Boş Ağırlık": "1240 Kg",
-                "Uzunluk": "4575 mm",
-                "Genişlik": "1710 mm",
-                "Yükseklik": "1430 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mazda/626/1998/hb-2-0-gt",
-              "source_title": "1998 Mazda 626 HB 2.0 GT",
-              "scraped_at": "2026-08-20T17:08:56"
-            },
-            {
-              "name": "HB 2.0 LX",
-              "slug": "hb-2-0-lx",
-              "year": 1998,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "HB 2.0 LX",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "61 HP",
-                "Sistem Torku": "121 Nm",
-                "Maksimum Hız": "154 km/s",
-                "0-100 Hızlanma": "15.3 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1998 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "60 lt",
-                "Bagaj Hacmi": "455 lt",
-                "Boş Ağırlık": "1165 Kg",
-                "Uzunluk": "4515 mm",
-                "Genişlik": "1690 mm",
-                "Yükseklik": "1360 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mazda/626/1998/hb-2-0-lx",
-              "source_title": "1998 Mazda 626 HB 2.0 LX",
-              "scraped_at": "2026-08-20T17:08:57"
-            },
-            {
-              "name": "2.0 i 115 BG",
-              "slug": "2-0-i-115-bg",
-              "year": 1997,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "2.0 i 115 BG",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 750 km",
-                "Sistem Gücü": "115 HP",
-                "Sistem Torku": "170 Nm",
-                "Maksimum Hız": "198 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1991 cc",
-                "Ortalama Tüketim": "~ 8 lt",
-                "Yakıt Deposu": "60 lt",
-                "Bagaj Hacmi": "452 lt",
-                "Boş Ağırlık": "1200 Kg",
-                "Uzunluk": "4695 mm",
-                "Genişlik": "1750 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mazda/626/1997/2-0-i-115-bg",
-              "source_title": "1997 Mazda 626 2.0 i 115 BG",
-              "scraped_at": "2026-08-20T17:08:58"
-            },
-            {
-              "name": "2.0 i GLE",
-              "slug": "2-0-i-gle",
-              "year": 1997,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "2.0 i GLE",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 750 km",
-                "Sistem Gücü": "115 HP",
-                "Sistem Torku": "170 Nm",
-                "Maksimum Hız": "198 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1991 cc",
-                "Ortalama Tüketim": "~ 8 lt",
-                "Yakıt Deposu": "60 lt",
-                "Bagaj Hacmi": "452 lt",
-                "Boş Ağırlık": "1200 Kg",
-                "Uzunluk": "4695 mm",
-                "Genişlik": "1750 mm",
-                "Yükseklik": "1400 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mazda/626/1997/2-0-i-gle",
-              "source_title": "1997 Mazda 626 2.0 i GLE",
-              "scraped_at": "2026-08-20T17:09:00"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/mazda/626",
-          "scraped_at": "2026-08-20T17:09:00"
         }
       ]
     },
@@ -83009,7 +80354,7 @@
             2019,
             2016
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mitsubishi/space-star/thumbnail.jpg",
           "large_images": [
             "images/mitsubishi/space-star/001.jpg",
             "images/mitsubishi/space-star/002.jpg",
@@ -83333,7 +80678,7 @@
             2019,
             2017
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mitsubishi/asx/thumbnail.jpg",
           "large_images": [
             "images/mitsubishi/asx/001.jpg",
             "images/mitsubishi/asx/002.jpg",
@@ -84042,7 +81387,7 @@
             2016,
             2015
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mitsubishi/lancer/thumbnail.jpg",
           "large_images": [
             "images/mitsubishi/lancer/001.jpg",
             "images/mitsubishi/lancer/002.jpg",
@@ -84400,7 +81745,7 @@
             2015,
             2014
           ],
-          "thumbnail": "",
+          "thumbnail": "images/mitsubishi/attrage/thumbnail.jpg",
           "large_images": [
             "images/mitsubishi/attrage/001.jpg",
             "images/mitsubishi/attrage/002.jpg",
@@ -84754,189 +82099,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/mitsubishi/attrage",
           "scraped_at": "2026-08-20T17:10:32"
-        },
-        {
-          "id": "colt",
-          "name": "Colt",
-          "year": 2014,
-          "years": [
-            2014
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 6,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.1 Inform AC",
-              "slug": "1-1-inform-ac",
-              "year": 2014,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.1 Inform AC",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 855 km",
-                "Sistem Gücü": "75 HP",
-                "Sistem Torku": "100 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "12.9 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1124 cc",
-                "Ortalama Tüketim": "~ 5.5 lt",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "315 lt",
-                "Boş Ağırlık": "965 Kg",
-                "Uzunluk": "3870 mm",
-                "Genişlik": "1695 mm",
-                "Yükseklik": "1550 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mitsubishi/colt/2014/1-1-inform-ac",
-              "source_title": "2014 Mitsubishi Colt 1.1 Inform AC",
-              "scraped_at": "2026-08-20T17:10:35"
-            },
-            {
-              "name": "1.3 Elegance",
-              "slug": "1-3-elegance",
-              "year": 2014,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.3 Elegance",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 783 km",
-                "Sistem Gücü": "95 HP",
-                "Sistem Torku": "125 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "11 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1332 cc",
-                "Ortalama Tüketim": "~ 6 lt",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "315 lt",
-                "Boş Ağırlık": "970 Kg",
-                "Uzunluk": "3870 mm",
-                "Genişlik": "1695 mm",
-                "Yükseklik": "1550 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mitsubishi/colt/2014/1-3-elegance",
-              "source_title": "2014 Mitsubishi Colt 1.3 Elegance",
-              "scraped_at": "2026-08-20T17:10:36"
-            },
-            {
-              "name": "1.3 Sport Otomatik",
-              "slug": "1-3-sport-otomatik",
-              "year": 2014,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.3 Sport Otomatik",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 810 km",
-                "Sistem Gücü": "95 HP",
-                "Sistem Torku": "125 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "11.8 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1332 cc",
-                "Ortalama Tüketim": "~ 5.8 lt",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "315 lt",
-                "Boş Ağırlık": "945 Kg",
-                "Uzunluk": "3810 mm",
-                "Genişlik": "1695 mm",
-                "Yükseklik": "1520 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mitsubishi/colt/2014/1-3-sport-otomatik",
-              "source_title": "2014 Mitsubishi Colt 1.3 Sport Otomatik",
-              "scraped_at": "2026-08-20T17:10:38"
-            },
-            {
-              "name": "3K 1.1 Inform",
-              "slug": "3k-1-1-inform",
-              "year": 2014,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "3K 1.1 Inform",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 855 km",
-                "Sistem Gücü": "75 HP",
-                "Sistem Torku": "100 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "12.9 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1124 cc",
-                "Ortalama Tüketim": "~ 5.5 lt",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "315 lt",
-                "Boş Ağırlık": "930 Kg",
-                "Uzunluk": "3810 mm",
-                "Genişlik": "1695 mm",
-                "Yükseklik": "1520 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mitsubishi/colt/2014/3k-1-1-inform",
-              "source_title": "2014 Mitsubishi Colt 3K 1.1 Inform",
-              "scraped_at": "2026-08-20T17:10:39"
-            },
-            {
-              "name": "3K 1.1 Inform AC",
-              "slug": "3k-1-1-inform-ac",
-              "year": 2014,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "3K 1.1 Inform AC",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 855 km",
-                "Sistem Gücü": "75 HP",
-                "Sistem Torku": "100 Nm",
-                "Maksimum Hız": "165 km/s",
-                "0-100 Hızlanma": "12.9 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1124 cc",
-                "Ortalama Tüketim": "~ 5.5 lt",
-                "Yakıt Deposu": "47 lt",
-                "Bagaj Hacmi": "315 lt",
-                "Boş Ağırlık": "930 Kg",
-                "Uzunluk": "3810 mm",
-                "Genişlik": "1695 mm",
-                "Yükseklik": "1520 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/mitsubishi/colt/2014/3k-1-1-inform-ac",
-              "source_title": "2014 Mitsubishi Colt 3K 1.1 Inform AC",
-              "scraped_at": "2026-08-20T17:10:40"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/mitsubishi/colt",
-          "scraped_at": "2026-08-20T17:10:40"
         }
       ]
     },
@@ -85089,7 +82251,7 @@
           "years": [
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/tata/vista/thumbnail.jpg",
           "large_images": [
             "images/tata/vista/001.jpg",
             "images/tata/vista/002.jpg",
@@ -85279,7 +82441,7 @@
             2010,
             2009
           ],
-          "thumbnail": "",
+          "thumbnail": "images/tata/indica/thumbnail.jpg",
           "large_images": [
             "images/tata/indica/001.jpg",
             "images/tata/indica/002.jpg",
@@ -85474,7 +82636,7 @@
             2014,
             2013
           ],
-          "thumbnail": "",
+          "thumbnail": "images/tata/xenon/thumbnail.jpg",
           "large_images": [
             "images/tata/xenon/001.jpg",
             "images/tata/xenon/002.jpg",
@@ -85720,7 +82882,7 @@
             2011,
             2010
           ],
-          "thumbnail": "",
+          "thumbnail": "images/tata/telcoline/thumbnail.jpg",
           "large_images": [
             "images/tata/telcoline/001.jpg"
           ],
@@ -85925,7 +83087,7 @@
             2002,
             2001
           ],
-          "thumbnail": "",
+          "thumbnail": "images/tofas/sahin/thumbnail.jpg",
           "large_images": [
             "images/tofas/sahin/001.jpg"
           ],
@@ -86107,191 +83269,6 @@
           "scraped_at": "2026-08-20T17:12:37"
         },
         {
-          "id": "dogan",
-          "name": "Dogan",
-          "year": 2002,
-          "years": [
-            2002,
-            2001,
-            2000
-          ],
-          "thumbnail": "",
-          "large_images": [],
-          "body_types": [],
-          "fuel_types": [
-            "benzin"
-          ],
-          "order": 2,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.6 ie",
-              "slug": "1-6-ie",
-              "year": 2002,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "83 HP",
-                "Sistem Torku": "131 Nm",
-                "Maksimum Hız": "-",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1581 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/tofas/dogan/2002/1-6-ie",
-              "source_title": "2002 Tofaş Doğan 1.6 ie",
-              "scraped_at": "2026-08-20T17:12:40"
-            },
-            {
-              "name": "1.6 SLX",
-              "slug": "1-6-slx",
-              "year": 2001,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 SLX",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "83 HP",
-                "Sistem Torku": "125 Nm",
-                "Maksimum Hız": "170 km/s",
-                "0-100 Hızlanma": "13.2 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1581 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "400 lt",
-                "Boş Ağırlık": "1040 Kg",
-                "Uzunluk": "4316 mm",
-                "Genişlik": "1642 mm",
-                "Yükseklik": "1437 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/tofas/dogan/2001/1-6-slx",
-              "source_title": "2001 Tofaş Doğan 1.6 SLX",
-              "scraped_at": "2026-08-20T17:12:41"
-            },
-            {
-              "name": "1.6 ie",
-              "slug": "1-6-ie",
-              "year": 2001,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "83 HP",
-                "Sistem Torku": "131 Nm",
-                "Maksimum Hız": "-",
-                "0-100 Hızlanma": "-",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1581 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "-",
-                "Boş Ağırlık": "-",
-                "Uzunluk": "0 mm",
-                "Genişlik": "0 mm",
-                "Yükseklik": "-"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/tofas/dogan/2001/1-6-ie",
-              "source_title": "2001 Tofaş Doğan 1.6 ie",
-              "scraped_at": "2026-08-20T17:12:43"
-            },
-            {
-              "name": "1.6 SLX",
-              "slug": "1-6-slx",
-              "year": 2000,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 SLX",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 0 km",
-                "Sistem Gücü": "83 HP",
-                "Sistem Torku": "125 Nm",
-                "Maksimum Hız": "170 km/s",
-                "0-100 Hızlanma": "13.2 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1581 cc",
-                "Ortalama Tüketim": "-",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "400 lt",
-                "Boş Ağırlık": "1040 Kg",
-                "Uzunluk": "4316 mm",
-                "Genişlik": "1462 mm",
-                "Yükseklik": "1437 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/tofas/dogan/2000/1-6-slx",
-              "source_title": "2000 Tofaş Doğan 1.6 SLX",
-              "scraped_at": "2026-08-20T17:12:45"
-            },
-            {
-              "name": "1.6 ie",
-              "slug": "1-6-ie",
-              "year": 2000,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.6 ie",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 682 km",
-                "Sistem Gücü": "96 HP",
-                "Sistem Torku": "124 Nm",
-                "Maksimum Hız": "180 km/s",
-                "0-100 Hızlanma": "13.2 sn",
-                "Vites Tipi": "Manuel",
-                "Silindir Hacmi": "1581 cc",
-                "Ortalama Tüketim": "~ 6.6 lt",
-                "Yakıt Deposu": "45 lt",
-                "Bagaj Hacmi": "400 lt",
-                "Boş Ağırlık": "1040 Kg",
-                "Uzunluk": "4316 mm",
-                "Genişlik": "1642 mm",
-                "Yükseklik": "1437 mm"
-              },
-              "price_history": [],
-              "source_url": "https://www.arabalar.com.tr/tofas/dogan/2000/1-6-ie",
-              "source_title": "2000 Tofaş Doğan 1.6 ie",
-              "scraped_at": "2026-08-20T17:12:46"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/tofas/dogan",
-          "scraped_at": "2026-08-20T17:12:46"
-        },
-        {
           "id": "kartal",
           "name": "Kartal",
           "year": 2002,
@@ -86299,7 +83276,7 @@
             2002,
             2001
           ],
-          "thumbnail": "",
+          "thumbnail": "images/tofas/kartal/thumbnail.jpg",
           "large_images": [
             "images/tofas/kartal/001.jpg"
           ],
