@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-08-20T17:13:11",
+  "work_dir": "C:\\Users\\omer.eren\\.car_manager",
+  "data_file": "C:\\Users\\omer.eren\\.car_manager\\data.json",
+  "valid": true,
+  "brand_count": 54,
+  "model_count": 409,
+  "thumbnail_checked": 232,
+  "large_image_checked": 2480,
+  "missing_count": 0,
+  "missing": []
+}
