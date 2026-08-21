@@ -1006,24 +1006,41 @@
     renderContent();
   }
 
+  function brandHasAllowedModels(brand) {
+    return Array.isArray(brand?.models) &&
+      brand.models.some(
+        model =>
+          model.show_on_homepage &&
+          modelHasAllowedYear(model)
+      );
+  }
+
   function renderFilters() {
-    const c = $('#filter-container'); c.innerHTML = '';
+    const c = $('#filter-container');
+    c.innerHTML = '';
+
     if (!appData?.brands) return;
+
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn all-btn' + (!activeFilter ? ' active' : '');
-    allBtn.textContent = 'TÜMÜ'; allBtn.onclick = () => selectBrand(null);
+    allBtn.textContent = 'TÜMÜ';
+    allBtn.onclick = () => selectBrand(null);
     c.appendChild(allBtn);
+
     const excludedBrandIds = new Set([
       'araba-karsilastirma',
       'araba-kampanyalari'
     ]);
 
     appData.brands
+      .filter(
+        b =>
+          b.show_on_homepage &&
+          !excludedBrandIds.has(b.id) &&
+          brandHasAllowedModels(b)
+      )
       .sort((a,b) => (a.order || 0) - (b.order || 0))
       .forEach(b => {
-        if (!b.show_on_homepage) return;
-        if (excludedBrandIds.has(b.id)) return;
-
         const btn = document.createElement('button');
         btn.className = 'filter-btn' + (activeFilter === b.id ? ' active' : '');
         btn.textContent = b.name;
@@ -1073,6 +1090,7 @@
           b =>
             b.show_on_homepage &&
             !['araba-karsilastirma', 'araba-kampanyalari'].includes(b.id) &&
+            brandHasAllowedModels(b) &&
             b.name.toLowerCase().includes(q)
         );
 
