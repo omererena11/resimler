@@ -473,6 +473,61 @@
     margin-bottom: 8px;
   }
 
+  .compare-head-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .compare-orientation-btn {
+    min-height: 36px;
+    border: none;
+    border-radius: 9px;
+    padding: 0 12px;
+    background: #2563EB;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .compare-orientation-btn.active {
+    background: #0F766E;
+  }
+
+  /*
+   * WebView gerçek orientation lock'u desteklemezse
+   * sadece karşılaştırma panelini 90 derece döndürürüz.
+   */
+  #compare-modal.force-landscape {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  #compare-modal.force-landscape .app-modal-panel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100vh;
+    height: 100vw;
+    max-width: none;
+    max-height: none;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center center;
+    border-radius: 0;
+  }
+
+  #compare-modal.force-landscape #compare-content {
+    overflow: auto;
+  }
+
+  #compare-modal.force-landscape .compare-table {
+    min-width: 100%;
+  }
+
   #compare-content {
     flex: 1 1 auto;
     min-height: 0;
@@ -732,7 +787,23 @@
     <div class="app-modal-panel">
       <div class="app-modal-head">
         <div class="app-modal-title">Araç Karşılaştırma</div>
-        <button class="app-modal-close" id="compare-modal-close">&times;</button>
+
+        <div class="compare-head-actions">
+          <button
+            type="button"
+            class="compare-orientation-btn"
+            id="compare-orientation-btn"
+          >
+            ↔ Yatay Göster
+          </button>
+
+          <button
+            class="app-modal-close"
+            id="compare-modal-close"
+          >
+            &times;
+          </button>
+        </div>
       </div>
       <div id="compare-content"></div>
     </div>
@@ -767,6 +838,7 @@
   let compareSelection = [];
   const MAX_COMPARE = 3;
   let pendingCompareModel = null;
+  let compareLandscapeMode = false;
 
   function getImgUrl(path) {
     if (!path) return '';
@@ -1382,32 +1454,110 @@
     return specs[key] ?? '—';
   }
 
-  async function tryLandscapeOrientation() {
+  async function enterCompareLandscape() {
+    const modal = $('#compare-modal');
+    const btn = $('#compare-orientation-btn');
+
+    compareLandscapeMode = true;
+
+    if (btn) {
+      btn.classList.add('active');
+      btn.textContent = '↕ Dikey Göster';
+    }
+
+    let realLandscape = false;
+
     try {
-      // Android WebView / destekleyen tarayıcılarda yatay moda geçmeye çalış.
-      if (screen.orientation && screen.orientation.lock) {
-        await screen.orientation.lock('landscape');
+      // Orientation API, çoğu Android WebView'da kullanıcı tıklaması
+      // sonrasında fullscreen iken daha güvenilir çalışır.
+      if (
+        document.documentElement.requestFullscreen &&
+        !document.fullscreenElement
+      ) {
+        try {
+          await document.documentElement.requestFullscreen();
+        } catch (e) {
+          console.debug('Fullscreen açılamadı:', e);
+        }
       }
+
+      if (
+        screen.orientation &&
+        typeof screen.orientation.lock === 'function'
+      ) {
+        try {
+          await screen.orientation.lock('landscape');
+        } catch (e) {
+          console.debug('Landscape lock desteklenmedi:', e);
+        }
+      }
+
+      // Android'e gerçek dönüş için kısa süre ver.
+      await new Promise(resolve => setTimeout(resolve, 250));
+
+      realLandscape = window.innerWidth > window.innerHeight;
+
     } catch (e) {
-      // WebView izin vermiyorsa karşılaştırma ekranı yine tam ekran/geniş çalışır.
-      console.debug('Landscape orientation lock desteklenmedi:', e);
+      console.debug('Landscape işlemi başarısız:', e);
+    }
+
+    /*
+     * Gerçek cihaz yönü değişmediyse karşılaştırma ekranını
+     * CSS ile yatay hale getir.
+     */
+    if (modal) {
+      modal.classList.toggle(
+        'force-landscape',
+        !realLandscape
+      );
     }
   }
 
-  function releaseOrientationLock() {
+  async function exitCompareLandscape() {
+    const modal = $('#compare-modal');
+    const btn = $('#compare-orientation-btn');
+
+    compareLandscapeMode = false;
+
+    if (modal) {
+      modal.classList.remove('force-landscape');
+    }
+
+    if (btn) {
+      btn.classList.remove('active');
+      btn.textContent = '↔ Yatay Göster';
+    }
+
     try {
-      if (screen.orientation && screen.orientation.unlock) {
+      if (
+        screen.orientation &&
+        typeof screen.orientation.unlock === 'function'
+      ) {
         screen.orientation.unlock();
       }
     } catch (e) {
       console.debug('Orientation unlock desteklenmedi:', e);
     }
+
+    try {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        await document.exitFullscreen();
+      }
+    } catch (e) {
+      console.debug('Fullscreen kapatılamadı:', e);
+    }
+  }
+
+  async function toggleCompareOrientation() {
+    if (compareLandscapeMode) {
+      await exitCompareLandscape();
+    } else {
+      await enterCompareLandscape();
+    }
   }
 
   async function openCompareModal() {
     if (compareSelection.length < 2) return;
-
-    await tryLandscapeOrientation();
 
     const rows = [
       { section: 'Genel' },
@@ -1487,9 +1637,9 @@
     $('#compare-modal').classList.add('active');
   }
 
-  function closeCompareModal() {
+  async function closeCompareModal() {
     $('#compare-modal').classList.remove('active');
-    releaseOrientationLock();
+    await exitCompareLandscape();
   }
 
   $('#version-modal-close').addEventListener('click', closeVersionModal);
@@ -1509,6 +1659,11 @@
   });
 
   $('#compare-start').addEventListener('click', openCompareModal);
+
+  $('#compare-orientation-btn').addEventListener(
+    'click',
+    toggleCompareOrientation
+  );
 
   // ===== LIGHTBOX =====
   let total = 0;
