@@ -707,6 +707,23 @@
     margin-bottom: 8px;
   }
 
+  .model-starting-price {
+    margin-top: 7px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.25;
+  }
+
+  .model-starting-price small {
+    display: block;
+    margin-top: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748B;
+  }
+
   .compare-add-btn {
     margin-top: auto !important;
   }
@@ -1190,6 +1207,34 @@
     renderCompareTray();
   }
 
+  function getModelStartingPrice(model) {
+    const versions = Array.isArray(model?.versions)
+      ? model.versions
+      : [];
+
+    const prices = versions
+      .filter(v => Number(v?.year || model?.year || 0) === 2026)
+      .map(v => Number(v?.price?.numeric))
+      .filter(v => Number.isFinite(v) && v > 0);
+
+    if (!prices.length) return null;
+
+    return Math.min(...prices);
+  }
+
+  function formatTry(value) {
+    try {
+      return new Intl.NumberFormat(
+        'tr-TR',
+        {
+          maximumFractionDigits: 0
+        }
+      ).format(value) + ' TL';
+    } catch (e) {
+      return String(value) + ' TL';
+    }
+  }
+
   function renderContent() {
     const content = $('#content');
 
@@ -1285,6 +1330,15 @@
                 ${
                   car.show_description && car.card_description
                     ? `<div class="model-desc">✨ ${escapeHtml(car.card_description)}</div>`
+                    : ''
+                }
+
+                ${
+                  getModelStartingPrice(car)
+                    ? `<div class="model-starting-price">
+                        ${escapeHtml(formatTry(getModelStartingPrice(car)))}
+                        <small>den başlayan fiyatlarla</small>
+                      </div>`
                     : ''
                 }
 
