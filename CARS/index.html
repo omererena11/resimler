@@ -344,6 +344,7 @@
     padding: 10px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    touch-action: manipulation;
   }
 
   #compare-tray.visible { display: block; }
@@ -381,11 +382,31 @@
 
   .compare-chip {
     flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     background: #F1F5F9;
     border-radius: 18px;
-    padding: 7px 10px;
+    padding: 6px 7px 6px 10px;
     font-size: 11px;
     white-space: nowrap;
+  }
+
+  .compare-chip-remove {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border: none;
+    border-radius: 50%;
+    background: #DC2626;
+    color: #fff;
+    font-weight: 900;
+    line-height: 22px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .compare-start-btn {
@@ -425,6 +446,60 @@
     border-radius: 20px 20px 0 0;
     padding: 16px;
     box-shadow: 0 -10px 30px rgba(0,0,0,.22);
+  }
+
+  /* Karşılaştırma ekranı mümkün olduğunca yatay / geniş açılır */
+  #compare-modal {
+    align-items: stretch;
+    justify-content: stretch;
+    background: #fff;
+  }
+
+  #compare-modal .app-modal-panel {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+    padding: 10px 12px 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+  }
+
+  #compare-modal .app-modal-head {
+    flex: 0 0 auto;
+    margin-bottom: 8px;
+  }
+
+  #compare-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #compare-modal .compare-table-wrap {
+    height: 100%;
+    overflow: auto;
+    border-radius: 10px;
+  }
+
+  #compare-modal .compare-table {
+    min-width: 760px;
+  }
+
+  @media (orientation: landscape) {
+    #compare-modal .compare-table {
+      min-width: 100%;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 7px 9px;
+      font-size: 12px;
+    }
   }
 
   .app-modal-head {
@@ -529,7 +604,25 @@
     letter-spacing: .3px;
   }
 
-  .model-info { padding: 10px 14px; }
+  .model-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .model-info {
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .model-desc {
+    margin-bottom: 8px;
+  }
+
+  .compare-add-btn {
+    margin-top: auto !important;
+  }
   .model-name { font-weight: 600; font-size: 0.95rem; }
   .model-year { color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
   .model-desc {
@@ -967,6 +1060,32 @@
     );
   }
 
+  function syncCompareButtons() {
+    const selectedKeys = new Set(
+      compareSelection.map(
+        item => `${item.brand.id}::${item.model.id}`
+      )
+    );
+
+    document.querySelectorAll('.compare-add-btn').forEach(btn => {
+      const key = `${btn.dataset.compareBrand}::${btn.dataset.compareModel}`;
+      const selected = selectedKeys.has(key);
+
+      btn.classList.toggle('selected', selected);
+      btn.textContent = selected
+        ? '✓ Karşılaştırmaya eklendi'
+        : '+ Karşılaştır';
+    });
+  }
+
+  function refreshCompareUI() {
+    // Karşılaştırma seçimi değiştiğinde artık bütün model listesini
+    // yeniden render etmiyoruz. Bu, büyük data.json'larda oluşan
+    // takılma/donmanın ana nedenini ortadan kaldırır.
+    syncCompareButtons();
+    renderCompareTray();
+  }
+
   function renderContent() {
     const content = $('#content');
 
@@ -1120,7 +1239,7 @@
 
     if (existingIndex >= 0) {
       compareSelection.splice(existingIndex, 1);
-      renderContent();
+      refreshCompareUI();
       return;
     }
 
@@ -1190,7 +1309,7 @@
       version
     });
 
-    renderContent();
+    refreshCompareUI();
   }
 
   function renderCompareTray() {
@@ -1202,15 +1321,40 @@
     if (!tray || !chips || !count || !startBtn) return;
 
     count.textContent = compareSelection.length;
-    chips.innerHTML = '';
 
-    compareSelection.forEach(item => {
+    // DOM'u tek seferde üret; büyük listelerde gereksiz repaint azaltır.
+    const fragment = document.createDocumentFragment();
+
+    compareSelection.forEach((item, index) => {
       const chip = document.createElement('div');
       chip.className = 'compare-chip';
-      chip.textContent =
+
+      const label = document.createElement('span');
+      label.textContent =
         `${item.brand.name} ${item.model.name} · ${item.version.name || ''}`;
-      chips.appendChild(chip);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'compare-chip-remove';
+      removeBtn.type = 'button';
+      removeBtn.textContent = '−';
+      removeBtn.setAttribute(
+        'aria-label',
+        `${item.brand.name} ${item.model.name} karşılaştırmadan çıkar`
+      );
+
+      removeBtn.addEventListener('click', e => {
+        e.stopPropagation();
+
+        compareSelection.splice(index, 1);
+        refreshCompareUI();
+      });
+
+      chip.appendChild(label);
+      chip.appendChild(removeBtn);
+      fragment.appendChild(chip);
     });
+
+    chips.replaceChildren(fragment);
 
     tray.classList.toggle(
       'visible',
@@ -1238,8 +1382,32 @@
     return specs[key] ?? '—';
   }
 
-  function openCompareModal() {
+  async function tryLandscapeOrientation() {
+    try {
+      // Android WebView / destekleyen tarayıcılarda yatay moda geçmeye çalış.
+      if (screen.orientation && screen.orientation.lock) {
+        await screen.orientation.lock('landscape');
+      }
+    } catch (e) {
+      // WebView izin vermiyorsa karşılaştırma ekranı yine tam ekran/geniş çalışır.
+      console.debug('Landscape orientation lock desteklenmedi:', e);
+    }
+  }
+
+  function releaseOrientationLock() {
+    try {
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
+    } catch (e) {
+      console.debug('Orientation unlock desteklenmedi:', e);
+    }
+  }
+
+  async function openCompareModal() {
     if (compareSelection.length < 2) return;
+
+    await tryLandscapeOrientation();
 
     const rows = [
       { section: 'Genel' },
@@ -1321,6 +1489,7 @@
 
   function closeCompareModal() {
     $('#compare-modal').classList.remove('active');
+    releaseOrientationLock();
   }
 
   $('#version-modal-close').addEventListener('click', closeVersionModal);
@@ -1336,7 +1505,7 @@
 
   $('#compare-clear').addEventListener('click', () => {
     compareSelection = [];
-    renderContent();
+    refreshCompareUI();
   });
 
   $('#compare-start').addEventListener('click', openCompareModal);
