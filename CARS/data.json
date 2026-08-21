@@ -70,7 +70,7 @@
       "logo": "images/brands/alfa-romeo.webp",
       "order": 3,
       "show_on_homepage": true,
-      "show_brand_description": false,
+      "show_brand_description": true,
       "brand_description": "açıklama",
       "brand_description_style": {
         "font_family": "Arial",
