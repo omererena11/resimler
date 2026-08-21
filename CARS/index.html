@@ -1055,6 +1055,7 @@
         const models = (brand?.models || [])
           .filter(m =>
             m.show_on_homepage &&
+            modelHasAllowedYear(m) &&
             m.name.toLowerCase().includes(q)
           );
 
@@ -1235,6 +1236,28 @@
     }
   }
 
+  function modelHasAllowedYear(model) {
+    const allowedYears = new Set([2025, 2026]);
+
+    const versions = Array.isArray(model?.versions)
+      ? model.versions
+      : [];
+
+    if (versions.some(v => allowedYears.has(Number(v?.year)))) {
+      return true;
+    }
+
+    const years = Array.isArray(model?.years)
+      ? model.years.map(Number)
+      : [];
+
+    if (years.some(y => allowedYears.has(y))) {
+      return true;
+    }
+
+    return allowedYears.has(Number(model?.year));
+  }
+
   function renderContent() {
     const content = $('#content');
 
@@ -1252,7 +1275,12 @@
         if (activeFilter && brand.id !== activeFilter) return;
 
         let models = (brand.models || [])
-          .filter(m => m.show_on_homepage && matchesFilters(m));
+          .filter(
+            m =>
+              m.show_on_homepage &&
+              modelHasAllowedYear(m) &&
+              matchesFilters(m)
+          );
 
         if (activeFilter && modelSearchQuery) {
           models = models.filter(
