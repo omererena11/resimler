@@ -71,14 +71,14 @@
       "order": 3,
       "show_on_homepage": true,
       "show_brand_description": false,
-      "brand_description": "",
+      "brand_description": "açıklama",
       "brand_description_style": {
         "font_family": "Arial",
         "font_size": 14,
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "marquee"
       },
       "models": [
         {
