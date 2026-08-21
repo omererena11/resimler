@@ -106,7 +106,7 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "",
+          "card_description": "KART AÇIKLAMA",
           "versions": [
             {
               "name": "1.2 Ibrida Speciale",
