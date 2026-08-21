@@ -1055,88 +1055,6 @@
           "scraped_at": "2026-08-20T15:50:43"
         },
         {
-          "id": "q2",
-          "name": "Q2",
-          "year": 2026,
-          "years": [
-            2026
-          ],
-          "thumbnail": "images/audi/q2/thumbnail.jpg",
-          "large_images": [
-            "images/audi/q2/001.jpg",
-            "images/audi/q2/002.jpg",
-            "images/audi/q2/003.jpg",
-            "images/audi/q2/004.jpg",
-            "images/audi/q2/005.jpg"
-          ],
-          "body_types": [
-            "suv"
-          ],
-          "fuel_types": [
-            "benzin",
-            "hibrit"
-          ],
-          "order": 4,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "35 TFSI",
-              "slug": "35-tfsi",
-              "year": 2026,
-              "price": {
-                "raw": "3.735.000 TL",
-                "numeric": 3735000,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "35 TFSI",
-                "Enerji Türü": "Benzin / MHEV",
-                "KM Başı Maliyet": "~ 4.10 TL",
-                "Ortalama Menzil": "~ 833 km",
-                "Sistem Gücü": "150 HP",
-                "Sistem Torku": "250 Nm",
-                "Maksimum Hız": "218 km/s",
-                "0-100 Hızlanma": "8.6 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 6.0 lt",
-                "Yakıt Deposu": "50 lt",
-                "Bagaj Hacmi": "405 lt",
-                "Boş Ağırlık": "1305 Kg",
-                "Uzunluk": "4208 mm",
-                "Genişlik": "1794 mm",
-                "Yükseklik": "1508 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.504.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "3.571.000 ₺"
-                },
-                {
-                  "month": "Haziran",
-                  "price": "3.636.000 ₺"
-                },
-                {
-                  "month": "Ağustos",
-                  "price": "3.735.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/q2/2026/35-tfsi",
-              "source_title": "2026 Audi Q2 35 TFSI",
-              "scraped_at": "2026-08-20T15:50:45"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/audi/q2",
-          "scraped_at": "2026-08-20T15:50:57"
-        },
-        {
           "id": "q3",
           "name": "Q3",
           "year": 2026,
@@ -1159,7 +1077,7 @@
             "benzin",
             "hibrit"
           ],
-          "order": 5,
+          "order": 4,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -1239,7 +1157,7 @@
           "fuel_types": [
             "elektrik"
           ],
-          "order": 6,
+          "order": 5,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -1425,7 +1343,7 @@
           "fuel_types": [
             "elektrik"
           ],
-          "order": 7,
+          "order": 6,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -1481,6 +1399,117 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q6",
           "scraped_at": "2026-08-20T15:51:11"
+        },
+        {
+          "id": "a7",
+          "name": "A7",
+          "year": 2024,
+          "years": [
+            2024
+          ],
+          "thumbnail": "images/audi/a7/thumbnail.jpg",
+          "large_images": [
+            "images/audi/a7/001.jpg",
+            "images/audi/a7/002.jpg",
+            "images/audi/a7/003.jpg",
+            "images/audi/a7/004.jpg"
+          ],
+          "body_types": [],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
+          "order": 7,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "",
+          "versions": [
+            {
+              "name": "Sportback 40 TDI",
+              "slug": "sportback-40-tdi",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "Sportback 40 TDI",
+                "Enerji Türü": "Benzin / MHEV",
+                "Ortalama Menzil": "~ 1189 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "400 Nm",
+                "Maksimum Hız": "245 km/s",
+                "0-100 Hızlanma": "8.1 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1968 cc",
+                "Ortalama Tüketim": "~ 5.3 lt",
+                "Yakıt Deposu": "63 lt",
+                "Bagaj Hacmi": "535 lt",
+                "Boş Ağırlık": "1695 Kg",
+                "Uzunluk": "4969 mm",
+                "Genişlik": "1908 mm",
+                "Yükseklik": "1422 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Ekim",
+                  "price": "7.783.000 ₺"
+                },
+                {
+                  "month": "Aralık",
+                  "price": "7.789.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a7/2024/sportback-40-tdi",
+              "source_title": "2024 Audi A7 Sportback 40 TDI",
+              "scraped_at": "2026-08-20T15:51:59"
+            },
+            {
+              "name": "Sportback 50 TDI",
+              "slug": "sportback-50-tdi",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "Sportback 50 TDI",
+                "Enerji Türü": "Benzin / MHEV",
+                "Ortalama Menzil": "~ 984 km",
+                "Sistem Gücü": "286 HP",
+                "Sistem Torku": "620 Nm",
+                "Maksimum Hız": "250 km/s",
+                "0-100 Hızlanma": "5.6 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "2967 cc",
+                "Ortalama Tüketim": "~ 6.4 lt",
+                "Yakıt Deposu": "63 lt",
+                "Bagaj Hacmi": "535 lt",
+                "Boş Ağırlık": "1880 Kg",
+                "Uzunluk": "4969 mm",
+                "Genişlik": "1908 mm",
+                "Yükseklik": "1422 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Ekim",
+                  "price": "9.983.000 ₺"
+                },
+                {
+                  "month": "Aralık",
+                  "price": "9.994.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a7/2024/sportback-50-tdi",
+              "source_title": "2024 Audi A7 Sportback 50 TDI",
+              "scraped_at": "2026-08-20T15:52:02"
+            }
+          ],
+          "source_model_url": "https://www.arabalar.com.tr/audi/a7",
+          "scraped_at": "2026-08-20T15:52:02"
         },
         {
           "id": "q7",
@@ -1564,6 +1593,88 @@
           "scraped_at": "2026-08-20T15:51:14"
         },
         {
+          "id": "q2",
+          "name": "Q2",
+          "year": 2026,
+          "years": [
+            2026
+          ],
+          "thumbnail": "images/audi/q2/thumbnail.jpg",
+          "large_images": [
+            "images/audi/q2/001.jpg",
+            "images/audi/q2/002.jpg",
+            "images/audi/q2/003.jpg",
+            "images/audi/q2/004.jpg",
+            "images/audi/q2/005.jpg"
+          ],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit"
+          ],
+          "order": 9,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "",
+          "versions": [
+            {
+              "name": "35 TFSI",
+              "slug": "35-tfsi",
+              "year": 2026,
+              "price": {
+                "raw": "3.735.000 TL",
+                "numeric": 3735000,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "35 TFSI",
+                "Enerji Türü": "Benzin / MHEV",
+                "KM Başı Maliyet": "~ 4.10 TL",
+                "Ortalama Menzil": "~ 833 km",
+                "Sistem Gücü": "150 HP",
+                "Sistem Torku": "250 Nm",
+                "Maksimum Hız": "218 km/s",
+                "0-100 Hızlanma": "8.6 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1498 cc",
+                "Ortalama Tüketim": "~ 6.0 lt",
+                "Yakıt Deposu": "50 lt",
+                "Bagaj Hacmi": "405 lt",
+                "Boş Ağırlık": "1305 Kg",
+                "Uzunluk": "4208 mm",
+                "Genişlik": "1794 mm",
+                "Yükseklik": "1508 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "3.504.000 ₺"
+                },
+                {
+                  "month": "Mayıs",
+                  "price": "3.571.000 ₺"
+                },
+                {
+                  "month": "Haziran",
+                  "price": "3.636.000 ₺"
+                },
+                {
+                  "month": "Ağustos",
+                  "price": "3.735.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/q2/2026/35-tfsi",
+              "source_title": "2026 Audi Q2 35 TFSI",
+              "scraped_at": "2026-08-20T15:50:45"
+            }
+          ],
+          "source_model_url": "https://www.arabalar.com.tr/audi/q2",
+          "scraped_at": "2026-08-20T15:50:57"
+        },
+        {
           "id": "q8",
           "name": "Q8",
           "year": 2026,
@@ -1584,7 +1695,7 @@
             "benzin",
             "hibrit"
           ],
-          "order": 9,
+          "order": 10,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -1645,6 +1756,556 @@
           "scraped_at": "2026-08-20T15:51:18"
         },
         {
+          "id": "q5",
+          "name": "Q5",
+          "year": 2025,
+          "years": [
+            2025,
+            2024
+          ],
+          "thumbnail": "images/audi/q5/thumbnail.jpg",
+          "large_images": [
+            "images/audi/q5/001.jpg",
+            "images/audi/q5/002.jpg",
+            "images/audi/q5/003.jpg",
+            "images/audi/q5/004.jpg"
+          ],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "benzin",
+            "hibrit",
+            "dizel"
+          ],
+          "order": 11,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "",
+          "versions": [
+            {
+              "name": "2.0 FSI",
+              "slug": "2-0-fsi",
+              "year": 2025,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "2.0 FSI",
+                "Enerji Türü": "Benzin / MHEV",
+                "Ortalama Menzil": "~ 942 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "340 Nm",
+                "Maksimum Hız": "226 km/s",
+                "0-100 Hızlanma": "7.2 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1984 cc",
+                "Ortalama Tüketim": "~ 6.9 lt",
+                "Yakıt Deposu": "65 lt",
+                "Bagaj Hacmi": "515 lt",
+                "Boş Ağırlık": "1910 Kg",
+                "Uzunluk": "4717 mm",
+                "Genişlik": "1900 mm",
+                "Yükseklik": "1619 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Mart",
+                  "price": "6.095.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "6.326.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/q5/2025/2-0-fsi",
+              "source_title": "2025 Audi Q5 2.0 FSI",
+              "scraped_at": "2026-08-20T15:52:04"
+            },
+            {
+              "name": "TDI",
+              "slug": "tdi",
+              "year": 2025,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "TDI",
+                "Enerji Türü": "Benzin / MHEV",
+                "Ortalama Menzil": "~ 1102 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "400 Nm",
+                "Maksimum Hız": "226 km/s",
+                "0-100 Hızlanma": "7.4 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1968 cc",
+                "Ortalama Tüketim": "~ 5.9 lt",
+                "Yakıt Deposu": "65 lt",
+                "Bagaj Hacmi": "520 lt",
+                "Boş Ağırlık": "1955 Kg",
+                "Uzunluk": "4717 mm",
+                "Genişlik": "1900 mm",
+                "Yükseklik": "1625 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Ağustos",
+                  "price": "7.013.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "7.013.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/q5/2025/tdi",
+              "source_title": "2025 Audi Q5 TDI",
+              "scraped_at": "2026-08-20T15:52:06"
+            },
+            {
+              "name": "TFSI",
+              "slug": "tfsi",
+              "year": 2025,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "TFSI",
+                "Enerji Türü": "Benzin / MHEV",
+                "Ortalama Menzil": "~ 956 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "340 Nm",
+                "Maksimum Hız": "226 km/s",
+                "0-100 Hızlanma": "7.2 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1984 cc",
+                "Ortalama Tüketim": "~ 6.8 lt",
+                "Yakıt Deposu": "65 lt",
+                "Bagaj Hacmi": "520 lt",
+                "Boş Ağırlık": "1895 Kg",
+                "Uzunluk": "4717 mm",
+                "Genişlik": "1900 mm",
+                "Yükseklik": "1625 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Ağustos",
+                  "price": "6.734.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "6.734.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/q5/2025/tfsi",
+              "source_title": "2025 Audi Q5 TFSI",
+              "scraped_at": "2026-08-20T15:52:07"
+            },
+            {
+              "name": "40 TDI",
+              "slug": "40-tdi",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "40 TDI",
+                "Enerji Türü": "Dizel",
+                "Ortalama Menzil": "~ 942 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "400 Nm",
+                "Maksimum Hız": "222 km/s",
+                "0-100 Hızlanma": "7.6 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1968 cc",
+                "Ortalama Tüketim": "~ 6.9 lt",
+                "Yakıt Deposu": "65 lt",
+                "Bagaj Hacmi": "520 lt",
+                "Boş Ağırlık": "1805 Kg",
+                "Uzunluk": "4682 mm",
+                "Genişlik": "1893 mm",
+                "Yükseklik": "1662 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "4.455.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "4.586.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "4.782.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "5.199.000 ₺"
+                },
+                {
+                  "month": "Aralık",
+                  "price": "5.205.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/q5/2024/40-tdi",
+              "source_title": "2024 Audi Q5 40 TDI",
+              "scraped_at": "2026-08-20T15:52:09"
+            },
+            {
+              "name": "45 FSI",
+              "slug": "45-fsi",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "45 FSI",
+                "Enerji Türü": "Benzin",
+                "Ortalama Menzil": "~ 761 km",
+                "Sistem Gücü": "265 HP",
+                "Sistem Torku": "370 Nm",
+                "Maksimum Hız": "240 km/s",
+                "0-100 Hızlanma": "6.1 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1984 cc",
+                "Ortalama Tüketim": "~ 9.2 lt",
+                "Yakıt Deposu": "70 lt",
+                "Bagaj Hacmi": "520 lt",
+                "Boş Ağırlık": "1760 Kg",
+                "Uzunluk": "4682 mm",
+                "Genişlik": "1893 mm",
+                "Yükseklik": "1662 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "4.819.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "4.960.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "5.172.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "5.618.000 ₺"
+                },
+                {
+                  "month": "Aralık",
+                  "price": "5.624.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/q5/2024/45-fsi",
+              "source_title": "2024 Audi Q5 45 FSI",
+              "scraped_at": "2026-08-20T15:52:10"
+            }
+          ],
+          "source_model_url": "https://www.arabalar.com.tr/audi/q5",
+          "scraped_at": "2026-08-20T15:52:10"
+        },
+        {
+          "id": "a4",
+          "name": "A4",
+          "year": 2024,
+          "years": [
+            2024
+          ],
+          "thumbnail": "images/audi/a4/thumbnail.jpg",
+          "large_images": [
+            "images/audi/a4/001.jpg",
+            "images/audi/a4/002.jpg",
+            "images/audi/a4/003.jpg",
+            "images/audi/a4/004.jpg",
+            "images/audi/a4/005.jpg",
+            "images/audi/a4/006.jpg",
+            "images/audi/a4/007.jpg",
+            "images/audi/a4/008.jpg"
+          ],
+          "body_types": [
+            "sedan"
+          ],
+          "fuel_types": [
+            "dizel",
+            "benzin"
+          ],
+          "order": 12,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "",
+          "versions": [
+            {
+              "name": "40 TDI",
+              "slug": "40-tdi",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "40 TDI",
+                "Enerji Türü": "Dizel",
+                "Ortalama Menzil": "~ 690 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "400 Nm",
+                "Maksimum Hız": "210 km/s",
+                "0-100 Hızlanma": "7.4 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1968 cc",
+                "Ortalama Tüketim": "~ 5.8 lt",
+                "Yakıt Deposu": "40 lt",
+                "Bagaj Hacmi": "460 lt",
+                "Boş Ağırlık": "1500 Kg",
+                "Uzunluk": "4762 mm",
+                "Genişlik": "1847 mm",
+                "Yükseklik": "1431 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "3.191.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "3.285.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "3.425.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "3.709.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/40-tdi",
+              "source_title": "2024 Audi A4 40 TDI",
+              "scraped_at": "2026-08-20T15:51:40"
+            },
+            {
+              "name": "40 TDI Quattro",
+              "slug": "40-tdi-quattro",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "40 TDI Quattro",
+                "Enerji Türü": "Dizel",
+                "Ortalama Menzil": "~ 1000 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "400 Nm",
+                "Maksimum Hız": "210 km/s",
+                "0-100 Hızlanma": "6.9 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1968 cc",
+                "Ortalama Tüketim": "~ 5.8 lt",
+                "Yakıt Deposu": "58 lt",
+                "Bagaj Hacmi": "460 lt",
+                "Boş Ağırlık": "1500 Kg",
+                "Uzunluk": "4762 mm",
+                "Genişlik": "1847 mm",
+                "Yükseklik": "1431 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "3.305.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "3.402.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "3.547.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "3.840.000 ₺"
+                },
+                {
+                  "month": "Aralık",
+                  "price": "3.846.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/40-tdi-quattro",
+              "source_title": "2024 Audi A4 40 TDI Quattro",
+              "scraped_at": "2026-08-20T15:51:53"
+            },
+            {
+              "name": "45 FSI",
+              "slug": "45-fsi",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "45 FSI",
+                "Enerji Türü": "Benzin",
+                "Ortalama Menzil": "~ 699 km",
+                "Sistem Gücü": "265 HP",
+                "Sistem Torku": "370 Nm",
+                "Maksimum Hız": "250 km/s",
+                "0-100 Hızlanma": "5.5 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1984 cc",
+                "Ortalama Tüketim": "~ 8.3 lt",
+                "Yakıt Deposu": "58 lt",
+                "Bagaj Hacmi": "460 lt",
+                "Boş Ağırlık": "1570 Kg",
+                "Uzunluk": "4762 mm",
+                "Genişlik": "1847 mm",
+                "Yükseklik": "1431 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "3.319.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "3.417.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "3.563.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "3.857.000 ₺"
+                },
+                {
+                  "month": "Aralık",
+                  "price": "4.113.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/45-fsi",
+              "source_title": "2024 Audi A4 45 FSI",
+              "scraped_at": "2026-08-20T15:51:54"
+            },
+            {
+              "name": "Allroad 40 TDI Quattro",
+              "slug": "allroad-40-tdi-quattro",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "Allroad 40 TDI Quattro",
+                "Enerji Türü": "Dizel",
+                "Ortalama Menzil": "~ 967 km",
+                "Sistem Gücü": "204 HP",
+                "Sistem Torku": "400 Nm",
+                "Maksimum Hız": "232 km/s",
+                "0-100 Hızlanma": "7.3 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1968 cc",
+                "Ortalama Tüketim": "~ 6.0 lt",
+                "Yakıt Deposu": "58 lt",
+                "Bagaj Hacmi": "495 lt",
+                "Boş Ağırlık": "1645 Kg",
+                "Uzunluk": "4762 mm",
+                "Genişlik": "1847 mm",
+                "Yükseklik": "1493 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "3.837.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "3.949.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "4.118.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "4.455.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/allroad-40-tdi-quattro",
+              "source_title": "2024 Audi A4 Allroad 40 TDI Quattro",
+              "scraped_at": "2026-08-20T15:51:56"
+            },
+            {
+              "name": "Allroad 45 FSI Quattro",
+              "slug": "allroad-45-fsi-quattro",
+              "year": 2024,
+              "price": {
+                "raw": "",
+                "numeric": null,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "Allroad 45 FSI Quattro",
+                "Enerji Türü": "Benzin",
+                "Ortalama Menzil": "~ 674 km",
+                "Sistem Gücü": "265 HP",
+                "Sistem Torku": "370 Nm",
+                "Maksimum Hız": "250 km/s",
+                "0-100 Hızlanma": "5.8 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1984 cc",
+                "Ortalama Tüketim": "~ 8.6 lt",
+                "Yakıt Deposu": "58 lt",
+                "Bagaj Hacmi": "495 lt",
+                "Boş Ağırlık": "1630 Kg",
+                "Uzunluk": "4762 mm",
+                "Genişlik": "1847 mm",
+                "Yükseklik": "1493 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Şubat",
+                  "price": "3.851.000 ₺"
+                },
+                {
+                  "month": "Mart",
+                  "price": "3.964.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "4.133.000 ₺"
+                },
+                {
+                  "month": "Eylül",
+                  "price": "4.472.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/allroad-45-fsi-quattro",
+              "source_title": "2024 Audi A4 Allroad 45 FSI Quattro",
+              "scraped_at": "2026-08-20T15:51:57"
+            }
+          ],
+          "source_model_url": "https://www.arabalar.com.tr/audi/a4",
+          "scraped_at": "2026-08-20T15:51:57"
+        },
+        {
           "id": "a1",
           "name": "A1",
           "year": 2018,
@@ -1670,7 +2331,7 @@
             "dizel",
             "benzin"
           ],
-          "order": 10,
+          "order": 13,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -1984,667 +2645,6 @@
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/a1",
           "scraped_at": "2026-08-20T15:51:37"
-        },
-        {
-          "id": "a4",
-          "name": "A4",
-          "year": 2024,
-          "years": [
-            2024
-          ],
-          "thumbnail": "images/audi/a4/thumbnail.jpg",
-          "large_images": [
-            "images/audi/a4/001.jpg",
-            "images/audi/a4/002.jpg",
-            "images/audi/a4/003.jpg",
-            "images/audi/a4/004.jpg",
-            "images/audi/a4/005.jpg",
-            "images/audi/a4/006.jpg",
-            "images/audi/a4/007.jpg",
-            "images/audi/a4/008.jpg"
-          ],
-          "body_types": [
-            "sedan"
-          ],
-          "fuel_types": [
-            "dizel",
-            "benzin"
-          ],
-          "order": 11,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "40 TDI",
-              "slug": "40-tdi",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "40 TDI",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 690 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "400 Nm",
-                "Maksimum Hız": "210 km/s",
-                "0-100 Hızlanma": "7.4 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1968 cc",
-                "Ortalama Tüketim": "~ 5.8 lt",
-                "Yakıt Deposu": "40 lt",
-                "Bagaj Hacmi": "460 lt",
-                "Boş Ağırlık": "1500 Kg",
-                "Uzunluk": "4762 mm",
-                "Genişlik": "1847 mm",
-                "Yükseklik": "1431 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.191.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "3.285.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "3.425.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "3.709.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/40-tdi",
-              "source_title": "2024 Audi A4 40 TDI",
-              "scraped_at": "2026-08-20T15:51:40"
-            },
-            {
-              "name": "40 TDI Quattro",
-              "slug": "40-tdi-quattro",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "40 TDI Quattro",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 1000 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "400 Nm",
-                "Maksimum Hız": "210 km/s",
-                "0-100 Hızlanma": "6.9 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1968 cc",
-                "Ortalama Tüketim": "~ 5.8 lt",
-                "Yakıt Deposu": "58 lt",
-                "Bagaj Hacmi": "460 lt",
-                "Boş Ağırlık": "1500 Kg",
-                "Uzunluk": "4762 mm",
-                "Genişlik": "1847 mm",
-                "Yükseklik": "1431 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.305.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "3.402.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "3.547.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "3.840.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "3.846.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/40-tdi-quattro",
-              "source_title": "2024 Audi A4 40 TDI Quattro",
-              "scraped_at": "2026-08-20T15:51:53"
-            },
-            {
-              "name": "45 FSI",
-              "slug": "45-fsi",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "45 FSI",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 699 km",
-                "Sistem Gücü": "265 HP",
-                "Sistem Torku": "370 Nm",
-                "Maksimum Hız": "250 km/s",
-                "0-100 Hızlanma": "5.5 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1984 cc",
-                "Ortalama Tüketim": "~ 8.3 lt",
-                "Yakıt Deposu": "58 lt",
-                "Bagaj Hacmi": "460 lt",
-                "Boş Ağırlık": "1570 Kg",
-                "Uzunluk": "4762 mm",
-                "Genişlik": "1847 mm",
-                "Yükseklik": "1431 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.319.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "3.417.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "3.563.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "3.857.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "4.113.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/45-fsi",
-              "source_title": "2024 Audi A4 45 FSI",
-              "scraped_at": "2026-08-20T15:51:54"
-            },
-            {
-              "name": "Allroad 40 TDI Quattro",
-              "slug": "allroad-40-tdi-quattro",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Allroad 40 TDI Quattro",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 967 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "400 Nm",
-                "Maksimum Hız": "232 km/s",
-                "0-100 Hızlanma": "7.3 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1968 cc",
-                "Ortalama Tüketim": "~ 6.0 lt",
-                "Yakıt Deposu": "58 lt",
-                "Bagaj Hacmi": "495 lt",
-                "Boş Ağırlık": "1645 Kg",
-                "Uzunluk": "4762 mm",
-                "Genişlik": "1847 mm",
-                "Yükseklik": "1493 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.837.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "3.949.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "4.118.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "4.455.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/allroad-40-tdi-quattro",
-              "source_title": "2024 Audi A4 Allroad 40 TDI Quattro",
-              "scraped_at": "2026-08-20T15:51:56"
-            },
-            {
-              "name": "Allroad 45 FSI Quattro",
-              "slug": "allroad-45-fsi-quattro",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Allroad 45 FSI Quattro",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 674 km",
-                "Sistem Gücü": "265 HP",
-                "Sistem Torku": "370 Nm",
-                "Maksimum Hız": "250 km/s",
-                "0-100 Hızlanma": "5.8 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1984 cc",
-                "Ortalama Tüketim": "~ 8.6 lt",
-                "Yakıt Deposu": "58 lt",
-                "Bagaj Hacmi": "495 lt",
-                "Boş Ağırlık": "1630 Kg",
-                "Uzunluk": "4762 mm",
-                "Genişlik": "1847 mm",
-                "Yükseklik": "1493 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "3.851.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "3.964.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "4.133.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "4.472.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a4/2024/allroad-45-fsi-quattro",
-              "source_title": "2024 Audi A4 Allroad 45 FSI Quattro",
-              "scraped_at": "2026-08-20T15:51:57"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/audi/a4",
-          "scraped_at": "2026-08-20T15:51:57"
-        },
-        {
-          "id": "a7",
-          "name": "A7",
-          "year": 2024,
-          "years": [
-            2024
-          ],
-          "thumbnail": "images/audi/a7/thumbnail.jpg",
-          "large_images": [
-            "images/audi/a7/001.jpg",
-            "images/audi/a7/002.jpg",
-            "images/audi/a7/003.jpg",
-            "images/audi/a7/004.jpg"
-          ],
-          "body_types": [],
-          "fuel_types": [
-            "benzin",
-            "hibrit"
-          ],
-          "order": 12,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "Sportback 40 TDI",
-              "slug": "sportback-40-tdi",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Sportback 40 TDI",
-                "Enerji Türü": "Benzin / MHEV",
-                "Ortalama Menzil": "~ 1189 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "400 Nm",
-                "Maksimum Hız": "245 km/s",
-                "0-100 Hızlanma": "8.1 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1968 cc",
-                "Ortalama Tüketim": "~ 5.3 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "535 lt",
-                "Boş Ağırlık": "1695 Kg",
-                "Uzunluk": "4969 mm",
-                "Genişlik": "1908 mm",
-                "Yükseklik": "1422 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Ekim",
-                  "price": "7.783.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "7.789.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a7/2024/sportback-40-tdi",
-              "source_title": "2024 Audi A7 Sportback 40 TDI",
-              "scraped_at": "2026-08-20T15:51:59"
-            },
-            {
-              "name": "Sportback 50 TDI",
-              "slug": "sportback-50-tdi",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "Sportback 50 TDI",
-                "Enerji Türü": "Benzin / MHEV",
-                "Ortalama Menzil": "~ 984 km",
-                "Sistem Gücü": "286 HP",
-                "Sistem Torku": "620 Nm",
-                "Maksimum Hız": "250 km/s",
-                "0-100 Hızlanma": "5.6 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "2967 cc",
-                "Ortalama Tüketim": "~ 6.4 lt",
-                "Yakıt Deposu": "63 lt",
-                "Bagaj Hacmi": "535 lt",
-                "Boş Ağırlık": "1880 Kg",
-                "Uzunluk": "4969 mm",
-                "Genişlik": "1908 mm",
-                "Yükseklik": "1422 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Ekim",
-                  "price": "9.983.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "9.994.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/a7/2024/sportback-50-tdi",
-              "source_title": "2024 Audi A7 Sportback 50 TDI",
-              "scraped_at": "2026-08-20T15:52:02"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/audi/a7",
-          "scraped_at": "2026-08-20T15:52:02"
-        },
-        {
-          "id": "q5",
-          "name": "Q5",
-          "year": 2025,
-          "years": [
-            2025,
-            2024
-          ],
-          "thumbnail": "images/audi/q5/thumbnail.jpg",
-          "large_images": [
-            "images/audi/q5/001.jpg",
-            "images/audi/q5/002.jpg",
-            "images/audi/q5/003.jpg",
-            "images/audi/q5/004.jpg"
-          ],
-          "body_types": [
-            "suv"
-          ],
-          "fuel_types": [
-            "benzin",
-            "hibrit",
-            "dizel"
-          ],
-          "order": 13,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "2.0 FSI",
-              "slug": "2-0-fsi",
-              "year": 2025,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "2.0 FSI",
-                "Enerji Türü": "Benzin / MHEV",
-                "Ortalama Menzil": "~ 942 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "340 Nm",
-                "Maksimum Hız": "226 km/s",
-                "0-100 Hızlanma": "7.2 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1984 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "515 lt",
-                "Boş Ağırlık": "1910 Kg",
-                "Uzunluk": "4717 mm",
-                "Genişlik": "1900 mm",
-                "Yükseklik": "1619 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Mart",
-                  "price": "6.095.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "6.326.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/q5/2025/2-0-fsi",
-              "source_title": "2025 Audi Q5 2.0 FSI",
-              "scraped_at": "2026-08-20T15:52:04"
-            },
-            {
-              "name": "TDI",
-              "slug": "tdi",
-              "year": 2025,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "TDI",
-                "Enerji Türü": "Benzin / MHEV",
-                "Ortalama Menzil": "~ 1102 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "400 Nm",
-                "Maksimum Hız": "226 km/s",
-                "0-100 Hızlanma": "7.4 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1968 cc",
-                "Ortalama Tüketim": "~ 5.9 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "520 lt",
-                "Boş Ağırlık": "1955 Kg",
-                "Uzunluk": "4717 mm",
-                "Genişlik": "1900 mm",
-                "Yükseklik": "1625 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Ağustos",
-                  "price": "7.013.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "7.013.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/q5/2025/tdi",
-              "source_title": "2025 Audi Q5 TDI",
-              "scraped_at": "2026-08-20T15:52:06"
-            },
-            {
-              "name": "TFSI",
-              "slug": "tfsi",
-              "year": 2025,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "TFSI",
-                "Enerji Türü": "Benzin / MHEV",
-                "Ortalama Menzil": "~ 956 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "340 Nm",
-                "Maksimum Hız": "226 km/s",
-                "0-100 Hızlanma": "7.2 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1984 cc",
-                "Ortalama Tüketim": "~ 6.8 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "520 lt",
-                "Boş Ağırlık": "1895 Kg",
-                "Uzunluk": "4717 mm",
-                "Genişlik": "1900 mm",
-                "Yükseklik": "1625 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Ağustos",
-                  "price": "6.734.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "6.734.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/q5/2025/tfsi",
-              "source_title": "2025 Audi Q5 TFSI",
-              "scraped_at": "2026-08-20T15:52:07"
-            },
-            {
-              "name": "40 TDI",
-              "slug": "40-tdi",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "40 TDI",
-                "Enerji Türü": "Dizel",
-                "Ortalama Menzil": "~ 942 km",
-                "Sistem Gücü": "204 HP",
-                "Sistem Torku": "400 Nm",
-                "Maksimum Hız": "222 km/s",
-                "0-100 Hızlanma": "7.6 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1968 cc",
-                "Ortalama Tüketim": "~ 6.9 lt",
-                "Yakıt Deposu": "65 lt",
-                "Bagaj Hacmi": "520 lt",
-                "Boş Ağırlık": "1805 Kg",
-                "Uzunluk": "4682 mm",
-                "Genişlik": "1893 mm",
-                "Yükseklik": "1662 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "4.455.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "4.586.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "4.782.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "5.199.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "5.205.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/q5/2024/40-tdi",
-              "source_title": "2024 Audi Q5 40 TDI",
-              "scraped_at": "2026-08-20T15:52:09"
-            },
-            {
-              "name": "45 FSI",
-              "slug": "45-fsi",
-              "year": 2024,
-              "price": {
-                "raw": "",
-                "numeric": null,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "45 FSI",
-                "Enerji Türü": "Benzin",
-                "Ortalama Menzil": "~ 761 km",
-                "Sistem Gücü": "265 HP",
-                "Sistem Torku": "370 Nm",
-                "Maksimum Hız": "240 km/s",
-                "0-100 Hızlanma": "6.1 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1984 cc",
-                "Ortalama Tüketim": "~ 9.2 lt",
-                "Yakıt Deposu": "70 lt",
-                "Bagaj Hacmi": "520 lt",
-                "Boş Ağırlık": "1760 Kg",
-                "Uzunluk": "4682 mm",
-                "Genişlik": "1893 mm",
-                "Yükseklik": "1662 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Şubat",
-                  "price": "4.819.000 ₺"
-                },
-                {
-                  "month": "Mart",
-                  "price": "4.960.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "5.172.000 ₺"
-                },
-                {
-                  "month": "Eylül",
-                  "price": "5.618.000 ₺"
-                },
-                {
-                  "month": "Aralık",
-                  "price": "5.624.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/audi/q5/2024/45-fsi",
-              "source_title": "2024 Audi Q5 45 FSI",
-              "scraped_at": "2026-08-20T15:52:10"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/audi/q5",
-          "scraped_at": "2026-08-20T15:52:10"
         }
       ]
     },
@@ -26922,223 +26922,6 @@
       },
       "models": [
         {
-          "id": "jazz",
-          "name": "Jazz",
-          "year": 2026,
-          "years": [
-            2026
-          ],
-          "thumbnail": "images/honda/jazz/thumbnail.jpg",
-          "large_images": [
-            "images/honda/jazz/001.jpg",
-            "images/honda/jazz/002.jpg",
-            "images/honda/jazz/003.jpg",
-            "images/honda/jazz/004.jpg",
-            "images/honda/jazz/005.jpg",
-            "images/honda/jazz/006.jpg",
-            "images/honda/jazz/007.jpg"
-          ],
-          "body_types": [],
-          "fuel_types": [
-            "hibrit"
-          ],
-          "order": 1,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.5 Crosstar",
-              "slug": "1-5-crosstar",
-              "year": 2026,
-              "price": {
-                "raw": "2.525.000 TL",
-                "numeric": 2525000,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 Crosstar",
-                "Enerji Türü": "Full Hibrit",
-                "KM Başı Maliyet": "~ 3.28 TL",
-                "Ortalama Menzil": "~ 833 km",
-                "Sistem Gücü": "229 HP",
-                "Sistem Torku": "384 Nm",
-                "Maksimum Hız": "175 km/s",
-                "0-100 Hızlanma": "9.7 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1498 cc",
-                "Ortalama Tüketim": "~ 4.8 lt",
-                "Yakıt Deposu": "40 lt",
-                "Bagaj Hacmi": "304 lt",
-                "Boş Ağırlık": "1320 Kg",
-                "Uzunluk": "4105 mm",
-                "Genişlik": "1725 mm",
-                "Yükseklik": "155 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Mayıs",
-                  "price": "2.525.000 ₺"
-                },
-                {
-                  "month": "Haziran",
-                  "price": "2.525.000 ₺"
-                },
-                {
-                  "month": "Ağustos",
-                  "price": "2.525.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/honda/jazz/2026/1-5-crosstar",
-              "source_title": "2026 Honda Jazz 1.5 Crosstar",
-              "scraped_at": "2026-08-20T16:14:58"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/honda/jazz",
-          "scraped_at": "2026-08-20T16:15:10"
-        },
-        {
-          "id": "hr-v",
-          "name": "Hr V",
-          "year": 2026,
-          "years": [
-            2026
-          ],
-          "thumbnail": "images/honda/hr-v/thumbnail.jpg",
-          "large_images": [
-            "images/honda/hr-v/001.jpg",
-            "images/honda/hr-v/002.jpg",
-            "images/honda/hr-v/003.jpg",
-            "images/honda/hr-v/004.jpg",
-            "images/honda/hr-v/005.jpg",
-            "images/honda/hr-v/006.jpg"
-          ],
-          "body_types": [
-            "suv"
-          ],
-          "fuel_types": [
-            "hibrit"
-          ],
-          "order": 2,
-          "show_on_homepage": true,
-          "show_year": true,
-          "show_description": true,
-          "card_description": "",
-          "versions": [
-            {
-              "name": "1.5 Advance",
-              "slug": "1-5-advance",
-              "year": 2026,
-              "price": {
-                "raw": "2.670.000 TL",
-                "numeric": 2670000,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 Advance",
-                "Enerji Türü": "Full Hibrit",
-                "KM Başı Maliyet": "~ 3.69 TL",
-                "Ortalama Menzil": "~ 741 km",
-                "Sistem Gücü": "238 HP",
-                "Sistem Torku": "384 Nm",
-                "Maksimum Hız": "170 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1493 cc",
-                "Ortalama Tüketim": "~ 5.4 lt",
-                "Yakıt Deposu": "40 lt",
-                "Bagaj Hacmi": "319 lt",
-                "Boş Ağırlık": "1452 Kg",
-                "Uzunluk": "4355 mm",
-                "Genişlik": "1790 mm",
-                "Yükseklik": "1582 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Mart",
-                  "price": "2.730.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "2.730.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "2.730.000 ₺"
-                },
-                {
-                  "month": "Haziran",
-                  "price": "2.730.000 ₺"
-                },
-                {
-                  "month": "Ağustos",
-                  "price": "2.670.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/honda/hr-v/2026/1-5-advance",
-              "source_title": "2026 Honda HR-V 1.5 Advance",
-              "scraped_at": "2026-08-20T16:15:12"
-            },
-            {
-              "name": "1.5 Elegance",
-              "slug": "1-5-elegance",
-              "year": 2026,
-              "price": {
-                "raw": "2.389.000 TL",
-                "numeric": 2389000,
-                "currency": "TRY"
-              },
-              "technical_specs": {
-                "Versiyon Adı": "1.5 Elegance",
-                "Enerji Türü": "Full Hibrit",
-                "KM Başı Maliyet": "~ 3.69 TL",
-                "Ortalama Menzil": "~ 741 km",
-                "Sistem Gücü": "238 HP",
-                "Sistem Torku": "384 Nm",
-                "Maksimum Hız": "170 km/s",
-                "0-100 Hızlanma": "10.7 sn",
-                "Vites Tipi": "Otomatik",
-                "Silindir Hacmi": "1493 cc",
-                "Ortalama Tüketim": "~ 5.4 lt",
-                "Yakıt Deposu": "40 lt",
-                "Bagaj Hacmi": "319 lt",
-                "Boş Ağırlık": "1452 Kg",
-                "Uzunluk": "4355 mm",
-                "Genişlik": "1790 mm",
-                "Yükseklik": "1582 mm"
-              },
-              "price_history": [
-                {
-                  "month": "Mart",
-                  "price": "2.595.000 ₺"
-                },
-                {
-                  "month": "Nisan",
-                  "price": "2.389.000 ₺"
-                },
-                {
-                  "month": "Mayıs",
-                  "price": "2.389.000 ₺"
-                },
-                {
-                  "month": "Haziran",
-                  "price": "2.389.000 ₺"
-                },
-                {
-                  "month": "Ağustos",
-                  "price": "2.389.000 ₺"
-                }
-              ],
-              "source_url": "https://www.arabalar.com.tr/honda/hr-v/2026/1-5-elegance",
-              "source_title": "2026 Honda HR-V 1.5 Elegance",
-              "scraped_at": "2026-08-20T16:15:25"
-            }
-          ],
-          "source_model_url": "https://www.arabalar.com.tr/honda/hr-v",
-          "scraped_at": "2026-08-20T16:15:25"
-        },
-        {
           "id": "prelude",
           "name": "Prelude",
           "year": 2026,
@@ -27160,7 +26943,7 @@
           "fuel_types": [
             "hibrit"
           ],
-          "order": 3,
+          "order": 1,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -27236,7 +27019,7 @@
           "fuel_types": [
             "hibrit"
           ],
-          "order": 4,
+          "order": 2,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -27304,7 +27087,7 @@
           "fuel_types": [
             "hibrit"
           ],
-          "order": 5,
+          "order": 3,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -27378,7 +27161,7 @@
             "lpg",
             "benzin"
           ],
-          "order": 6,
+          "order": 4,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -27726,6 +27509,223 @@
           "scraped_at": "2026-08-20T16:15:46"
         },
         {
+          "id": "hr-v",
+          "name": "Hr V",
+          "year": 2026,
+          "years": [
+            2026
+          ],
+          "thumbnail": "images/honda/hr-v/thumbnail.jpg",
+          "large_images": [
+            "images/honda/hr-v/001.jpg",
+            "images/honda/hr-v/002.jpg",
+            "images/honda/hr-v/003.jpg",
+            "images/honda/hr-v/004.jpg",
+            "images/honda/hr-v/005.jpg",
+            "images/honda/hr-v/006.jpg"
+          ],
+          "body_types": [
+            "suv"
+          ],
+          "fuel_types": [
+            "hibrit"
+          ],
+          "order": 5,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "",
+          "versions": [
+            {
+              "name": "1.5 Advance",
+              "slug": "1-5-advance",
+              "year": 2026,
+              "price": {
+                "raw": "2.670.000 TL",
+                "numeric": 2670000,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "1.5 Advance",
+                "Enerji Türü": "Full Hibrit",
+                "KM Başı Maliyet": "~ 3.69 TL",
+                "Ortalama Menzil": "~ 741 km",
+                "Sistem Gücü": "238 HP",
+                "Sistem Torku": "384 Nm",
+                "Maksimum Hız": "170 km/s",
+                "0-100 Hızlanma": "10.7 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1493 cc",
+                "Ortalama Tüketim": "~ 5.4 lt",
+                "Yakıt Deposu": "40 lt",
+                "Bagaj Hacmi": "319 lt",
+                "Boş Ağırlık": "1452 Kg",
+                "Uzunluk": "4355 mm",
+                "Genişlik": "1790 mm",
+                "Yükseklik": "1582 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Mart",
+                  "price": "2.730.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "2.730.000 ₺"
+                },
+                {
+                  "month": "Mayıs",
+                  "price": "2.730.000 ₺"
+                },
+                {
+                  "month": "Haziran",
+                  "price": "2.730.000 ₺"
+                },
+                {
+                  "month": "Ağustos",
+                  "price": "2.670.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/honda/hr-v/2026/1-5-advance",
+              "source_title": "2026 Honda HR-V 1.5 Advance",
+              "scraped_at": "2026-08-20T16:15:12"
+            },
+            {
+              "name": "1.5 Elegance",
+              "slug": "1-5-elegance",
+              "year": 2026,
+              "price": {
+                "raw": "2.389.000 TL",
+                "numeric": 2389000,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "1.5 Elegance",
+                "Enerji Türü": "Full Hibrit",
+                "KM Başı Maliyet": "~ 3.69 TL",
+                "Ortalama Menzil": "~ 741 km",
+                "Sistem Gücü": "238 HP",
+                "Sistem Torku": "384 Nm",
+                "Maksimum Hız": "170 km/s",
+                "0-100 Hızlanma": "10.7 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1493 cc",
+                "Ortalama Tüketim": "~ 5.4 lt",
+                "Yakıt Deposu": "40 lt",
+                "Bagaj Hacmi": "319 lt",
+                "Boş Ağırlık": "1452 Kg",
+                "Uzunluk": "4355 mm",
+                "Genişlik": "1790 mm",
+                "Yükseklik": "1582 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Mart",
+                  "price": "2.595.000 ₺"
+                },
+                {
+                  "month": "Nisan",
+                  "price": "2.389.000 ₺"
+                },
+                {
+                  "month": "Mayıs",
+                  "price": "2.389.000 ₺"
+                },
+                {
+                  "month": "Haziran",
+                  "price": "2.389.000 ₺"
+                },
+                {
+                  "month": "Ağustos",
+                  "price": "2.389.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/honda/hr-v/2026/1-5-elegance",
+              "source_title": "2026 Honda HR-V 1.5 Elegance",
+              "scraped_at": "2026-08-20T16:15:25"
+            }
+          ],
+          "source_model_url": "https://www.arabalar.com.tr/honda/hr-v",
+          "scraped_at": "2026-08-20T16:15:25"
+        },
+        {
+          "id": "jazz",
+          "name": "Jazz",
+          "year": 2026,
+          "years": [
+            2026
+          ],
+          "thumbnail": "images/honda/jazz/thumbnail.jpg",
+          "large_images": [
+            "images/honda/jazz/001.jpg",
+            "images/honda/jazz/002.jpg",
+            "images/honda/jazz/003.jpg",
+            "images/honda/jazz/004.jpg",
+            "images/honda/jazz/005.jpg",
+            "images/honda/jazz/006.jpg",
+            "images/honda/jazz/007.jpg"
+          ],
+          "body_types": [],
+          "fuel_types": [
+            "hibrit"
+          ],
+          "order": 6,
+          "show_on_homepage": true,
+          "show_year": true,
+          "show_description": true,
+          "card_description": "",
+          "versions": [
+            {
+              "name": "1.5 Crosstar",
+              "slug": "1-5-crosstar",
+              "year": 2026,
+              "price": {
+                "raw": "2.525.000 TL",
+                "numeric": 2525000,
+                "currency": "TRY"
+              },
+              "technical_specs": {
+                "Versiyon Adı": "1.5 Crosstar",
+                "Enerji Türü": "Full Hibrit",
+                "KM Başı Maliyet": "~ 3.28 TL",
+                "Ortalama Menzil": "~ 833 km",
+                "Sistem Gücü": "229 HP",
+                "Sistem Torku": "384 Nm",
+                "Maksimum Hız": "175 km/s",
+                "0-100 Hızlanma": "9.7 sn",
+                "Vites Tipi": "Otomatik",
+                "Silindir Hacmi": "1498 cc",
+                "Ortalama Tüketim": "~ 4.8 lt",
+                "Yakıt Deposu": "40 lt",
+                "Bagaj Hacmi": "304 lt",
+                "Boş Ağırlık": "1320 Kg",
+                "Uzunluk": "4105 mm",
+                "Genişlik": "1725 mm",
+                "Yükseklik": "155 mm"
+              },
+              "price_history": [
+                {
+                  "month": "Mayıs",
+                  "price": "2.525.000 ₺"
+                },
+                {
+                  "month": "Haziran",
+                  "price": "2.525.000 ₺"
+                },
+                {
+                  "month": "Ağustos",
+                  "price": "2.525.000 ₺"
+                }
+              ],
+              "source_url": "https://www.arabalar.com.tr/honda/jazz/2026/1-5-crosstar",
+              "source_title": "2026 Honda Jazz 1.5 Crosstar",
+              "scraped_at": "2026-08-20T16:14:58"
+            }
+          ],
+          "source_model_url": "https://www.arabalar.com.tr/honda/jazz",
+          "scraped_at": "2026-08-20T16:15:10"
+        },
+        {
           "id": "city",
           "name": "City",
           "year": 2024,
@@ -27748,7 +27748,7 @@
           "fuel_types": [
             "benzin"
           ],
-          "order": 8,
+          "order": 7,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
@@ -28100,7 +28100,7 @@
           "fuel_types": [
             "benzin"
           ],
-          "order": 9,
+          "order": 8,
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
