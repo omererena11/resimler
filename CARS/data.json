@@ -39180,46 +39180,10 @@
       "models": []
     },
     {
-      "id": "tata",
-      "name": "Tata",
-      "logo": "",
-      "order": 50,
-      "show_on_homepage": true,
-      "show_brand_description": false,
-      "brand_description": "",
-      "brand_description_style": {
-        "font_family": "Arial",
-        "font_size": 14,
-        "font_weight": "normal",
-        "color": "#1A1C1E",
-        "text_align": "left",
-        "effect": "none"
-      },
-      "models": []
-    },
-    {
-      "id": "tofas",
-      "name": "Tofaş",
-      "logo": "",
-      "order": 51,
-      "show_on_homepage": true,
-      "show_brand_description": false,
-      "brand_description": "",
-      "brand_description_style": {
-        "font_family": "Arial",
-        "font_size": 14,
-        "font_weight": "normal",
-        "color": "#1A1C1E",
-        "text_align": "left",
-        "effect": "none"
-      },
-      "models": []
-    },
-    {
       "id": "bize-ulasin",
       "name": "İletişim",
       "logo": "",
-      "order": 52,
+      "order": 50,
       "show_on_homepage": true,
       "show_brand_description": false,
       "brand_description": "",
@@ -39237,7 +39201,7 @@
       "id": "sikca-sorulan-sorular",
       "name": "S.S.S.",
       "logo": "",
-      "order": 53,
+      "order": 51,
       "show_on_homepage": true,
       "show_brand_description": false,
       "brand_description": "",
@@ -39255,7 +39219,7 @@
       "id": "ucuz-arabalar",
       "name": "En Ucuz Sıfır Araba Modelleri",
       "logo": "",
-      "order": 54,
+      "order": 52,
       "show_on_homepage": true,
       "show_brand_description": false,
       "brand_description": "",
