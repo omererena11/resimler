@@ -568,6 +568,53 @@
       object-fit: cover;
     }
 
+    .app-icon.pro-icon {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .app-icon.pro-icon::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      pointer-events: none;
+    }
+
+    .app-icon.pro-icon svg {
+      width: 34px;
+      height: 34px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-icon.accounting-icon {
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 28% 20%, rgba(255,255,255,0.22), transparent 34%),
+        linear-gradient(145deg, #0f4cdb 0%, #3158d8 48%, #6d3bc4 100%);
+      box-shadow:
+        0 12px 26px rgba(49, 88, 216, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+
+    .app-icon.realestate-icon {
+      color: #f8e7bd;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.11), transparent 34%),
+        linear-gradient(145deg, #081a32 0%, #102d50 52%, #173e66 100%);
+      box-shadow:
+        0 12px 26px rgba(8, 26, 50, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
     .app-card h3 {
       margin: 20px 0 10px;
       font-size: 28px;
@@ -1117,6 +1164,13 @@
         padding-bottom: 100px;
       }
     }
+
+    /* Ön Muhasebe demo project */
+    .app-card.accounting { border-left: 3px solid rgba(37,99,235,.35); }
+    .app-card.accounting:hover { border-left-color:#2563eb; }
+    .app-card.accounting .app-actions .accounting-live { background:linear-gradient(135deg,#2563eb,#4f46e5); color:#fff; border:none; }
+    .app-card.accounting .app-actions .accounting-live:hover { color:#fff; box-shadow:0 10px 25px rgba(37,99,235,.22); }
+    .demo-note { margin-top:14px; padding:11px 13px; border-radius:12px; background:#eff6ff; border:1px solid #dbeafe; color:#475569; font-size:12px; line-height:1.5; }
   </style>
 </head>
 <body class="locked">
@@ -1322,8 +1376,46 @@
             </div>
           </article>
 
+          <article class="app-card accounting">
+            <div class="app-icon pro-icon accounting-icon" aria-label="OE Ön Muhasebe ikonu">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="8" y="7" width="32" height="34" rx="6"></rect>
+                <path d="M15 16h18"></path>
+                <path d="M15 23h7"></path>
+                <path d="M15 30h7"></path>
+                <path d="M28 22v12"></path>
+                <path d="M34 26v8"></path>
+                <path d="M22 27v7"></path>
+              </svg>
+            </div>
+            <h3><span data-lang="tr">OE Ön Muhasebe</span><span data-lang="en">OE Accounting</span></h3>
+            <p>
+              <span data-lang="tr">Cari hesap, satış faturası, tahsilat ve ödeme süreçlerini tek panelde yönetmek için geliştirdiğim web tabanlı ön muhasebe sistemi. Aşağıdaki canlı demo ile arayüzü ve temel iş akışlarını doğrudan inceleyebilirsiniz.</span>
+              <span data-lang="en">A web-based accounting system I developed to manage customer accounts, sales invoices, collections and payments from one dashboard. Use the live demo below to explore the interface and core workflows.</span>
+            </p>
+            <div class="chips">
+              <span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">SQLAlchemy</span><span class="chip">Responsive</span><span class="chip"><span data-lang="tr">Canlı Demo</span><span data-lang="en">Live Demo</span></span>
+            </div>
+            <div class="demo-note">
+              <span data-lang="tr">ℹ️ Demo ücretsiz sunucuda çalışır. Uzun süre kullanılmadığında ilk açılış yaklaşık 1 dakika sürebilir.</span>
+              <span data-lang="en">ℹ️ The demo runs on a free server. After a period of inactivity, the first load may take about a minute.</span>
+            </div>
+            <div class="app-actions">
+              <a class="app-link accounting-live" href="https://demo.oeappstudio.com/" target="_blank" rel="noopener">
+                <span data-lang="tr">Canlı Demoyu Dene</span><span data-lang="en">Try Live Demo</span>
+              </a>
+            </div>
+          </article>
+
           <article class="app-card realestate">
-            <div class="app-icon" style="background: linear-gradient(135deg, #0a1f3f, #1a345b); display: grid; place-items: center; font-size: 32px;">🏠</div>
+            <div class="app-icon pro-icon realestate-icon" aria-label="Zen Gayrimenkul ikonu">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M7 23.5 24 9l17 14.5"></path>
+                <path d="M11 21.5V40h26V21.5"></path>
+                <path d="M19 40V28h10v12"></path>
+                <path d="M33 14v-4h5v8"></path>
+              </svg>
+            </div>
             <h3>
               <span data-lang="tr">Zen Gayrimenkul</span>
               <span data-lang="en">Zen Real Estate</span>
@@ -1341,12 +1433,12 @@
             </div>
             <div class="app-actions">
               <a class="app-link realestate-live" href="emlak-sitesi.html" target="_blank" rel="noopener">
-                <span data-lang="tr">🏠 Canlı Önizleme</span>
-                <span data-lang="en">🏠 Live Preview</span>
+                <span data-lang="tr">Canlı Önizleme</span>
+                <span data-lang="en">Live Preview</span>
               </a>
               <a class="app-link realestate-github" href="https://github.com/kullaniciadi/emlak-sitesi" target="_blank" rel="noopener">
-                <span data-lang="tr">📂 GitHub</span>
-                <span data-lang="en">📂 GitHub</span>
+                <span data-lang="tr">GitHub</span>
+                <span data-lang="en">GitHub</span>
               </a>
             </div>
           </article>
