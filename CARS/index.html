@@ -697,10 +697,17 @@
   }
 
   .model-info {
-    padding: 10px 14px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+     padding: 10px 14px;
+     display: grid;
+     grid-template-rows:
+       minmax(38px, auto)   /* model adı */
+       20px                 /* yıl */
+       42px                 /* açıklama - 2 satır */
+       50px                 /* fiyat alanı */
+       40px;                /* karşılaştır butonu */
+     row-gap: 4px;
+     flex: 1;
+     align-content: stretch;
   }
 
   .model-desc {
@@ -770,6 +777,53 @@
   .navbtn { position: fixed; top: 50%; transform: translateY(-50%); width: 42px; height: 64px; z-index: 11; border: none; border-radius: 12px; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #ddd; font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   #prev { left: 8px; display: none; } #next { right: 8px; }
   .closebtn { position: fixed; top: 18px; right: 18px; z-index: 12; width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: none; color: white; font-size: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+  /* Kart alanlarını tüm modellerde aynı hizaya getir */
+  .model-name {
+    min-height: 38px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+
+  .model-year {
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .model-desc {
+    min-height: 42px;
+    margin: 0 !important;
+  }
+
+  .model-starting-price {
+    min-height: 50px;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .model-slot-placeholder {
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Tek marka dikey görünümde eski daha kompakt yapıyı koru */
+  .brand-section.single-brand .model-info {
+    display: grid;
+    grid-template-rows:
+      minmax(24px, auto)
+      20px
+      minmax(36px, auto)
+      minmax(44px, auto)
+      40px;
+    row-gap: 4px;
+    justify-content: stretch;
+  }
+
 </style>
 </head>
 <body>
@@ -1242,9 +1296,15 @@
   }
 
   function getModelCardPriceText(model) {
+    // Global anahtar: false ise tüm kart fiyatlarını gizle.
+    if (appData?.home_page_settings?.show_card_prices === false) return '';
+
+    // Model bazlı anahtar: sadece bu modeli gizle.
     if (model?.show_starting_price === false) return '';
+
     const manual = String(model?.starting_price_text || '').trim();
     if (manual) return manual;
+
     const automatic = getModelStartingPrice(model);
     return automatic ? formatTry(automatic) : '';
   }
@@ -1381,7 +1441,9 @@
 
               <div class="model-info">
                 <div class="model-name">${escapeHtml(car.name)}</div>
-                ${car.show_year ? `<div class="model-year">${escapeHtml(car.year)}</div>` : ''}
+                ${car.show_year
+                  ? `<div class="model-year">${escapeHtml(car.year)}</div>`
+                  : `<div class="model-year model-slot-placeholder">&nbsp;</div>`}
                 ${
                   car.show_description && car.card_description
                     ? `<div class="model-desc" style="color:${escapeHtml(car.card_description_style?.color || '#2563EB')};font-size:${Number(car.card_description_style?.font_size || 12)}px;">${escapeHtml(car.card_description)}</div>`
@@ -1394,7 +1456,9 @@
                         ${escapeHtml(getModelCardPriceText(car))}
                         <small>den başlayan fiyatlarla</small>
                       </div>`
-                    : ''
+                    : `<div class="model-starting-price model-slot-placeholder">
+                        &nbsp;<small>&nbsp;</small>
+                      </div>`
                 }
 
                 <button
