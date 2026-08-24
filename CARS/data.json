@@ -42,7 +42,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -60,7 +61,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -78,7 +80,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "marquee"
+        "effect": "marquee",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -158,7 +161,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/alfa-romeo/junior",
-          "scraped_at": "2026-08-20T15:50:01"
+          "scraped_at": "2026-08-20T15:50:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tonale",
@@ -245,7 +254,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/alfa-romeo/tonale",
-          "scraped_at": "2026-08-20T15:50:06"
+          "scraped_at": "2026-08-20T15:50:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -263,7 +278,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -452,7 +468,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/a3",
-          "scraped_at": "2026-08-20T15:50:31"
+          "scraped_at": "2026-08-20T15:50:31",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "a5",
@@ -589,7 +611,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/a5",
-          "scraped_at": "2026-08-20T15:50:36"
+          "scraped_at": "2026-08-20T15:50:36",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "a6",
@@ -674,7 +702,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/a6",
-          "scraped_at": "2026-08-20T15:50:43"
+          "scraped_at": "2026-08-20T15:50:43",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q3",
@@ -759,7 +793,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q3",
-          "scraped_at": "2026-08-20T15:51:01"
+          "scraped_at": "2026-08-20T15:51:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q4",
@@ -948,7 +988,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q4",
-          "scraped_at": "2026-08-20T15:51:06"
+          "scraped_at": "2026-08-20T15:51:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q6",
@@ -1030,7 +1076,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q6",
-          "scraped_at": "2026-08-20T15:51:11"
+          "scraped_at": "2026-08-20T15:51:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q7",
@@ -1113,7 +1165,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q7",
-          "scraped_at": "2026-08-20T15:51:14"
+          "scraped_at": "2026-08-20T15:51:14",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q2",
@@ -1197,7 +1255,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q2",
-          "scraped_at": "2026-08-20T15:50:57"
+          "scraped_at": "2026-08-20T15:50:57",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q8",
@@ -1280,7 +1344,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q8",
-          "scraped_at": "2026-08-20T15:51:18"
+          "scraped_at": "2026-08-20T15:51:18",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "q5",
@@ -1435,7 +1505,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/audi/q5",
-          "scraped_at": "2026-08-20T15:52:10"
+          "scraped_at": "2026-08-20T15:52:10",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -1453,7 +1529,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -1537,7 +1614,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/1-serisi",
-          "scraped_at": "2026-08-20T15:52:24"
+          "scraped_at": "2026-08-20T15:52:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "2-serisi",
@@ -1681,7 +1764,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/2-serisi",
-          "scraped_at": "2026-08-20T15:52:29"
+          "scraped_at": "2026-08-20T15:52:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "3-serisi",
@@ -1774,7 +1863,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/3-serisi",
-          "scraped_at": "2026-08-20T15:52:44"
+          "scraped_at": "2026-08-20T15:52:44",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "4-serisi",
@@ -1861,7 +1956,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/4-serisi",
-          "scraped_at": "2026-08-20T15:52:48"
+          "scraped_at": "2026-08-20T15:52:48",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "5-serisi",
@@ -2014,7 +2115,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/5-serisi",
-          "scraped_at": "2026-08-20T15:52:54"
+          "scraped_at": "2026-08-20T15:52:54",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "x1",
@@ -2156,7 +2263,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/x1",
-          "scraped_at": "2026-08-20T15:53:09"
+          "scraped_at": "2026-08-20T15:53:09",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "x2",
@@ -2244,7 +2357,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/x2",
-          "scraped_at": "2026-08-20T15:53:14"
+          "scraped_at": "2026-08-20T15:53:14",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "x3",
@@ -2335,7 +2454,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/x3",
-          "scraped_at": "2026-08-20T15:53:18"
+          "scraped_at": "2026-08-20T15:53:18",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "x5",
@@ -2423,7 +2548,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/x5",
-          "scraped_at": "2026-08-20T15:53:24"
+          "scraped_at": "2026-08-20T15:53:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ix",
@@ -2506,7 +2637,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/ix",
-          "scraped_at": "2026-08-20T15:53:29"
+          "scraped_at": "2026-08-20T15:53:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "x6",
@@ -2588,7 +2725,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/x6",
-          "scraped_at": "2026-08-20T15:53:33"
+          "scraped_at": "2026-08-20T15:53:33",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ix1",
@@ -2668,7 +2811,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/ix1",
-          "scraped_at": "2026-08-20T15:53:37"
+          "scraped_at": "2026-08-20T15:53:37",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ix2",
@@ -2747,7 +2896,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/ix2",
-          "scraped_at": "2026-08-20T15:53:43"
+          "scraped_at": "2026-08-20T15:53:43",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ix3",
@@ -2830,7 +2985,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/ix3",
-          "scraped_at": "2026-08-20T15:53:48"
+          "scraped_at": "2026-08-20T15:53:48",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "7-serisi",
@@ -2918,7 +3079,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/7-serisi",
-          "scraped_at": "2026-08-20T15:53:54"
+          "scraped_at": "2026-08-20T15:53:54",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "z4",
@@ -3033,7 +3200,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/bmw/z4",
-          "scraped_at": "2026-08-20T15:54:05"
+          "scraped_at": "2026-08-20T15:54:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -3051,7 +3224,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -3131,7 +3305,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/seal",
-          "scraped_at": "2026-08-20T15:54:10"
+          "scraped_at": "2026-08-20T15:54:10",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "han",
@@ -3210,7 +3390,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/han",
-          "scraped_at": "2026-08-20T15:54:13"
+          "scraped_at": "2026-08-20T15:54:13",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "sealion-7",
@@ -3294,7 +3480,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/sealion-7",
-          "scraped_at": "2026-08-20T15:54:19"
+          "scraped_at": "2026-08-20T15:54:19",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tang",
@@ -3373,7 +3565,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/tang",
-          "scraped_at": "2026-08-20T15:54:24"
+          "scraped_at": "2026-08-20T15:54:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "atto-2",
@@ -3480,7 +3678,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/atto-2",
-          "scraped_at": "2026-08-20T15:54:29"
+          "scraped_at": "2026-08-20T15:54:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "atto-3",
@@ -3615,7 +3819,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/atto-3",
-          "scraped_at": "2026-08-20T15:54:37"
+          "scraped_at": "2026-08-20T15:54:37",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "dolphin",
@@ -3777,7 +3987,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/dolphin",
-          "scraped_at": "2026-08-20T15:54:44"
+          "scraped_at": "2026-08-20T15:54:44",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "seal-u",
@@ -3994,7 +4210,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/byd/seal-u",
-          "scraped_at": "2026-08-20T15:54:53"
+          "scraped_at": "2026-08-20T15:54:53",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -4012,7 +4234,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -4208,7 +4431,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/chery/tiggo7",
-          "scraped_at": "2026-08-20T15:55:00"
+          "scraped_at": "2026-08-20T15:55:00",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tiggo8",
@@ -4300,7 +4529,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/chery/tiggo8",
-          "scraped_at": "2026-08-20T15:55:03"
+          "scraped_at": "2026-08-20T15:55:03",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tiggo-8-pro-max",
@@ -4468,7 +4703,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/chery/tiggo-8-pro-max",
-          "scraped_at": "2026-08-20T15:55:11"
+          "scraped_at": "2026-08-20T15:55:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "omoda-5-pro",
@@ -4661,7 +4902,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/chery/omoda-5-pro",
-          "scraped_at": "2026-08-20T15:55:19"
+          "scraped_at": "2026-08-20T15:55:19",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tiggo-7-pro-max",
@@ -4813,7 +5060,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/chery/tiggo-7-pro-max",
-          "scraped_at": "2026-08-20T15:55:25"
+          "scraped_at": "2026-08-20T15:55:25",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -4831,7 +5084,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -5056,7 +5310,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/c4",
-          "scraped_at": "2026-08-20T15:56:47"
+          "scraped_at": "2026-08-20T15:56:47",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "c4-x",
@@ -5281,7 +5541,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/c4-x",
-          "scraped_at": "2026-08-20T15:56:53"
+          "scraped_at": "2026-08-20T15:56:53",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "e-c3",
@@ -5435,7 +5701,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/e-c3",
-          "scraped_at": "2026-08-20T15:56:59"
+          "scraped_at": "2026-08-20T15:56:59",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "c5-aircross",
@@ -5636,7 +5908,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/c5-aircross",
-          "scraped_at": "2026-08-20T15:57:05"
+          "scraped_at": "2026-08-20T15:57:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "c3-aircross",
@@ -5999,7 +6277,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/c3-aircross",
-          "scraped_at": "2026-08-20T15:57:14"
+          "scraped_at": "2026-08-20T15:57:14",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "berlingo",
@@ -6295,7 +6579,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/berlingo",
-          "scraped_at": "2026-08-20T15:57:23"
+          "scraped_at": "2026-08-20T15:57:23",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ami",
@@ -6429,7 +6719,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/citroen/ami",
-          "scraped_at": "2026-08-20T15:57:28"
+          "scraped_at": "2026-08-20T15:57:28",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -6447,7 +6743,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -6627,7 +6924,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/cupra/formentor",
-          "scraped_at": "2026-08-20T16:00:28"
+          "scraped_at": "2026-08-20T16:00:28",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "terramar",
@@ -6790,7 +7093,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/cupra/terramar",
-          "scraped_at": "2026-08-20T16:00:34"
+          "scraped_at": "2026-08-20T16:00:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "leon",
@@ -6863,7 +7172,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/cupra/leon",
-          "scraped_at": "2026-08-20T16:00:38"
+          "scraped_at": "2026-08-20T16:00:38",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -6881,7 +7196,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -7025,7 +7341,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/dacia/sandero",
-          "scraped_at": "2026-08-20T16:00:49"
+          "scraped_at": "2026-08-20T16:00:49",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "sandero-stepway",
@@ -7173,7 +7495,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/dacia/sandero-stepway",
-          "scraped_at": "2026-08-20T16:00:55"
+          "scraped_at": "2026-08-20T16:00:55",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "jogger",
@@ -7429,7 +7757,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/dacia/jogger",
-          "scraped_at": "2026-08-20T16:01:03"
+          "scraped_at": "2026-08-20T16:01:03",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "logan",
@@ -7590,7 +7924,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/dacia/logan",
-          "scraped_at": "2026-08-20T16:01:09"
+          "scraped_at": "2026-08-20T16:01:09",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -7608,7 +7948,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -7676,7 +8017,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/dfsk/fengon-500",
-          "scraped_at": "2026-08-20T16:02:23"
+          "scraped_at": "2026-08-20T16:02:23",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "e5",
@@ -7857,7 +8204,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/dfsk/e5",
-          "scraped_at": "2026-08-20T16:02:34"
+          "scraped_at": "2026-08-20T16:02:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -7875,7 +8228,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -7952,7 +8306,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ds/no4",
-          "scraped_at": "2026-08-20T16:02:45"
+          "scraped_at": "2026-08-20T16:02:45",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ds-7",
@@ -8027,7 +8387,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ds/ds-7",
-          "scraped_at": "2026-08-20T16:02:49"
+          "scraped_at": "2026-08-20T16:02:49",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ds-4",
@@ -8113,7 +8479,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ds/ds-4",
-          "scraped_at": "2026-08-20T16:02:57"
+          "scraped_at": "2026-08-20T16:02:57",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -8131,7 +8503,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -8570,7 +8943,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/egea",
-          "scraped_at": "2026-08-20T16:03:11"
+          "scraped_at": "2026-08-20T16:03:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "egea-cross",
@@ -8873,7 +9252,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/egea-cross",
-          "scraped_at": "2026-08-20T16:03:18"
+          "scraped_at": "2026-08-20T16:03:18",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "doblo-combi",
@@ -9323,7 +9708,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/doblo-combi",
-          "scraped_at": "2026-08-20T16:03:29"
+          "scraped_at": "2026-08-20T16:03:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "600",
@@ -9473,7 +9864,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/600",
-          "scraped_at": "2026-08-20T16:03:36"
+          "scraped_at": "2026-08-20T16:03:36",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "grande-panda",
@@ -9574,7 +9971,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/grande-panda",
-          "scraped_at": "2026-08-20T16:03:40"
+          "scraped_at": "2026-08-20T16:03:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "doblo-cargo",
@@ -9770,7 +10173,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/doblo-cargo",
-          "scraped_at": "2026-08-20T16:03:56"
+          "scraped_at": "2026-08-20T16:03:56",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "scudo",
@@ -9894,7 +10303,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/scudo",
-          "scraped_at": "2026-08-20T16:04:01"
+          "scraped_at": "2026-08-20T16:04:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "topolino",
@@ -10036,7 +10451,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/topolino",
-          "scraped_at": "2026-08-20T16:04:05"
+          "scraped_at": "2026-08-20T16:04:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "500e",
@@ -10112,7 +10533,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/fiat/500e",
-          "scraped_at": "2026-08-20T16:04:10"
+          "scraped_at": "2026-08-20T16:04:10",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -10130,7 +10557,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -10332,7 +10760,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/puma",
-          "scraped_at": "2026-08-20T16:09:45"
+          "scraped_at": "2026-08-20T16:09:45",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "kuga",
@@ -10519,7 +10953,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/kuga",
-          "scraped_at": "2026-08-20T16:09:51"
+          "scraped_at": "2026-08-20T16:09:51",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "transit-courier",
@@ -10789,7 +11229,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/transit-courier",
-          "scraped_at": "2026-08-20T16:09:58"
+          "scraped_at": "2026-08-20T16:09:58",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tourneo-courier",
@@ -11419,7 +11865,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/tourneo-courier",
-          "scraped_at": "2026-08-20T16:10:13"
+          "scraped_at": "2026-08-20T16:10:13",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "explorer",
@@ -11610,7 +12062,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/explorer",
-          "scraped_at": "2026-08-20T16:10:19"
+          "scraped_at": "2026-08-20T16:10:19",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "capri",
@@ -11748,7 +12206,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/capri",
-          "scraped_at": "2026-08-20T16:10:24"
+          "scraped_at": "2026-08-20T16:10:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "focus",
@@ -12085,7 +12549,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/focus",
-          "scraped_at": "2026-08-20T16:10:34"
+          "scraped_at": "2026-08-20T16:10:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "bronco-sport",
@@ -12191,7 +12661,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/bronco-sport",
-          "scraped_at": "2026-08-20T16:11:04"
+          "scraped_at": "2026-08-20T16:11:04",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tourneo-connect",
@@ -12264,7 +12740,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/tourneo-connect",
-          "scraped_at": "2026-08-20T16:11:39"
+          "scraped_at": "2026-08-20T16:11:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ranger",
@@ -12504,7 +12986,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/ranger",
-          "scraped_at": "2026-08-20T16:14:03"
+          "scraped_at": "2026-08-20T16:14:03",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tourneo-custom",
@@ -12693,7 +13181,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ford/tourneo-custom",
-          "scraped_at": "2026-08-20T16:14:40"
+          "scraped_at": "2026-08-20T16:14:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -12711,7 +13205,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -12852,7 +13347,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/foton/tunland-g7",
-          "scraped_at": "2026-08-20T16:14:48"
+          "scraped_at": "2026-08-20T16:14:48",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tunland-v9",
@@ -12992,7 +13493,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/foton/tunland-v9",
-          "scraped_at": "2026-08-20T16:14:55"
+          "scraped_at": "2026-08-20T16:14:55",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -13010,7 +13517,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -13091,7 +13599,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/honda/prelude",
-          "scraped_at": "2026-08-20T16:15:29"
+          "scraped_at": "2026-08-20T16:15:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "zr-v",
@@ -13161,7 +13675,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/honda/zr-v",
-          "scraped_at": "2026-08-20T16:15:33"
+          "scraped_at": "2026-08-20T16:15:33",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "cr-v",
@@ -13235,7 +13755,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/honda/cr-v",
-          "scraped_at": "2026-08-20T16:15:37"
+          "scraped_at": "2026-08-20T16:15:37",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "civic",
@@ -13541,7 +14067,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/honda/civic",
-          "scraped_at": "2026-08-20T16:15:46"
+          "scraped_at": "2026-08-20T16:15:46",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "hr-v",
@@ -13685,7 +14217,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/honda/hr-v",
-          "scraped_at": "2026-08-20T16:15:25"
+          "scraped_at": "2026-08-20T16:15:25",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "jazz",
@@ -13766,7 +14304,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/honda/jazz",
-          "scraped_at": "2026-08-20T16:15:10"
+          "scraped_at": "2026-08-20T16:15:10",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -13784,7 +14328,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -14072,7 +14617,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/i20",
-          "scraped_at": "2026-08-20T16:16:56"
+          "scraped_at": "2026-08-20T16:16:56",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "i30",
@@ -14224,7 +14775,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/i30",
-          "scraped_at": "2026-08-20T16:17:01"
+          "scraped_at": "2026-08-20T16:17:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "bayon",
@@ -14498,7 +15055,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/bayon",
-          "scraped_at": "2026-08-20T16:17:08"
+          "scraped_at": "2026-08-20T16:17:08",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ioniq-5",
@@ -14634,7 +15197,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/ioniq-5",
-          "scraped_at": "2026-08-20T16:17:14"
+          "scraped_at": "2026-08-20T16:17:14",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ioniq-9",
@@ -14773,7 +15342,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/ioniq-9",
-          "scraped_at": "2026-08-20T16:17:20"
+          "scraped_at": "2026-08-20T16:17:20",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "kona",
@@ -14851,7 +15426,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/kona",
-          "scraped_at": "2026-08-20T16:17:24"
+          "scraped_at": "2026-08-20T16:17:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tucson",
@@ -15105,7 +15686,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/tucson",
-          "scraped_at": "2026-08-20T16:17:31"
+          "scraped_at": "2026-08-20T16:17:31",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "santa-fe",
@@ -15183,7 +15770,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/santa-fe",
-          "scraped_at": "2026-08-20T16:17:34"
+          "scraped_at": "2026-08-20T16:17:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ioniq-6",
@@ -15298,7 +15891,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/ioniq-6",
-          "scraped_at": "2026-08-20T16:17:40"
+          "scraped_at": "2026-08-20T16:17:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "i10",
@@ -15651,7 +16250,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/i10",
-          "scraped_at": "2026-08-20T16:19:50"
+          "scraped_at": "2026-08-20T16:19:50",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "inster",
@@ -15836,7 +16441,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/inster",
-          "scraped_at": "2026-08-20T16:19:57"
+          "scraped_at": "2026-08-20T16:19:57",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "staria",
@@ -15931,7 +16542,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/hyundai/staria",
-          "scraped_at": "2026-08-20T16:20:25"
+          "scraped_at": "2026-08-20T16:20:25",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -15949,7 +16566,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -16154,7 +16772,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/isuzu/d-max",
-          "scraped_at": "2026-08-20T16:20:35"
+          "scraped_at": "2026-08-20T16:20:35",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -16172,7 +16796,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -16372,7 +16997,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/jaecoo/j7",
-          "scraped_at": "2026-08-20T16:20:42"
+          "scraped_at": "2026-08-20T16:20:42",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "omoda",
@@ -16456,7 +17087,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/jaecoo/omoda",
-          "scraped_at": "2026-08-20T16:20:46"
+          "scraped_at": "2026-08-20T16:20:46",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "omoda-7",
@@ -16541,7 +17178,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/jaecoo/omoda-7",
-          "scraped_at": "2026-08-20T16:20:50"
+          "scraped_at": "2026-08-20T16:20:50",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -16559,7 +17202,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -16761,7 +17405,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/jeep/avenger",
-          "scraped_at": "2026-08-20T16:20:58"
+          "scraped_at": "2026-08-20T16:20:58",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "compass",
@@ -16917,7 +17567,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/jeep/compass",
-          "scraped_at": "2026-08-20T16:21:04"
+          "scraped_at": "2026-08-20T16:21:04",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -16935,7 +17591,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -17077,7 +17734,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/picanto",
-          "scraped_at": "2026-08-20T16:22:02"
+          "scraped_at": "2026-08-20T16:22:02",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "stonic",
@@ -17162,7 +17825,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/stonic",
-          "scraped_at": "2026-08-20T16:22:06"
+          "scraped_at": "2026-08-20T16:22:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "sportage",
@@ -17496,7 +18165,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/sportage",
-          "scraped_at": "2026-08-20T16:22:16"
+          "scraped_at": "2026-08-20T16:22:16",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "xceed",
@@ -17583,7 +18258,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/xceed",
-          "scraped_at": "2026-08-20T16:22:19"
+          "scraped_at": "2026-08-20T16:22:19",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ev3",
@@ -17772,7 +18453,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/ev3",
-          "scraped_at": "2026-08-20T16:22:26"
+          "scraped_at": "2026-08-20T16:22:26",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ev6",
@@ -17855,7 +18542,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/ev6",
-          "scraped_at": "2026-08-20T16:22:29"
+          "scraped_at": "2026-08-20T16:22:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ev9",
@@ -17999,7 +18692,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/ev9",
-          "scraped_at": "2026-08-20T16:22:34"
+          "scraped_at": "2026-08-20T16:22:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "sorento",
@@ -18133,7 +18832,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/sorento",
-          "scraped_at": "2026-08-20T16:22:39"
+          "scraped_at": "2026-08-20T16:22:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "niro",
@@ -18212,7 +18917,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/niro",
-          "scraped_at": "2026-08-20T16:22:43"
+          "scraped_at": "2026-08-20T16:22:43",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ceed",
@@ -18305,7 +19016,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/kia/ceed",
-          "scraped_at": "2026-08-20T16:23:04"
+          "scraped_at": "2026-08-20T16:23:04",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -18323,7 +19040,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -18406,7 +19124,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/land-rover/range-rover",
-          "scraped_at": "2026-08-20T16:24:32"
+          "scraped_at": "2026-08-20T16:24:32",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -18424,7 +19148,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -18499,7 +19224,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/lexus/lbx",
-          "scraped_at": "2026-08-20T16:24:47"
+          "scraped_at": "2026-08-20T16:24:47",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "nx",
@@ -18577,7 +19308,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/lexus/nx",
-          "scraped_at": "2026-08-20T16:24:51"
+          "scraped_at": "2026-08-20T16:24:51",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -18595,7 +19332,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -18714,7 +19452,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/a-serisi",
-          "scraped_at": "2026-08-20T16:25:06"
+          "scraped_at": "2026-08-20T16:25:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "c-serisi",
@@ -18835,7 +19579,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/c-serisi",
-          "scraped_at": "2026-08-20T16:25:11"
+          "scraped_at": "2026-08-20T16:25:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "cla-serisi",
@@ -18910,7 +19660,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/cla-serisi",
-          "scraped_at": "2026-08-20T16:25:16"
+          "scraped_at": "2026-08-20T16:25:16",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "e-serisi",
@@ -19022,7 +19778,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/e-serisi",
-          "scraped_at": "2026-08-20T16:25:21"
+          "scraped_at": "2026-08-20T16:25:21",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "eqa",
@@ -19094,7 +19856,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/eqa",
-          "scraped_at": "2026-08-20T16:25:25"
+          "scraped_at": "2026-08-20T16:25:25",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "eqe",
@@ -19206,7 +19974,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/eqe",
-          "scraped_at": "2026-08-20T16:25:31"
+          "scraped_at": "2026-08-20T16:25:31",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "glb",
@@ -19285,7 +20059,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/glb",
-          "scraped_at": "2026-08-20T16:25:36"
+          "scraped_at": "2026-08-20T16:25:36",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "gla-serisi",
@@ -19360,7 +20140,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/gla-serisi",
-          "scraped_at": "2026-08-20T16:25:40"
+          "scraped_at": "2026-08-20T16:25:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "eqs",
@@ -19475,7 +20261,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/eqs",
-          "scraped_at": "2026-08-20T16:25:46"
+          "scraped_at": "2026-08-20T16:25:46",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "g-serisi",
@@ -19591,7 +20383,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/g-serisi",
-          "scraped_at": "2026-08-20T16:25:52"
+          "scraped_at": "2026-08-20T16:25:52",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "glc",
@@ -19743,7 +20541,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/glc",
-          "scraped_at": "2026-08-20T16:25:59"
+          "scraped_at": "2026-08-20T16:25:59",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "s-serisi",
@@ -19814,7 +20618,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/s-serisi",
-          "scraped_at": "2026-08-20T16:26:02"
+          "scraped_at": "2026-08-20T16:26:02",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "b-serisi",
@@ -19888,7 +20698,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/b-serisi",
-          "scraped_at": "2026-08-20T16:26:12"
+          "scraped_at": "2026-08-20T16:26:12",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "eqb",
@@ -20039,7 +20855,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mercedes/eqb",
-          "scraped_at": "2026-08-20T16:26:39"
+          "scraped_at": "2026-08-20T16:26:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -20057,7 +20879,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -20178,7 +21001,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mg/mg7",
-          "scraped_at": "2026-08-20T16:27:06"
+          "scraped_at": "2026-08-20T16:27:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "hs",
@@ -20313,7 +21142,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mg/hs",
-          "scraped_at": "2026-08-20T16:27:12"
+          "scraped_at": "2026-08-20T16:27:12",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "zs",
@@ -20396,7 +21231,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mg/zs",
-          "scraped_at": "2026-08-20T16:27:16"
+          "scraped_at": "2026-08-20T16:27:16",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -20414,7 +21255,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -20600,7 +21442,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mini/countryman",
-          "scraped_at": "2026-08-20T16:27:31"
+          "scraped_at": "2026-08-20T16:27:31",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "cooper",
@@ -20672,7 +21520,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/mini/cooper",
-          "scraped_at": "2026-08-20T16:27:36"
+          "scraped_at": "2026-08-20T16:27:36",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -20690,7 +21544,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -20913,7 +21768,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/nissan/juke",
-          "scraped_at": "2026-08-20T16:27:45"
+          "scraped_at": "2026-08-20T16:27:45",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "qashqai",
@@ -21748,7 +22609,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/nissan/qashqai",
-          "scraped_at": "2026-08-20T16:28:05"
+          "scraped_at": "2026-08-20T16:28:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "x-trail",
@@ -21892,7 +22759,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/nissan/x-trail",
-          "scraped_at": "2026-08-20T16:28:21"
+          "scraped_at": "2026-08-20T16:28:21",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "townstar",
@@ -22161,7 +23034,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/nissan/townstar",
-          "scraped_at": "2026-08-20T16:28:29"
+          "scraped_at": "2026-08-20T16:28:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -22179,7 +23058,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -22447,7 +23327,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/corsa",
-          "scraped_at": "2026-08-20T16:30:40"
+          "scraped_at": "2026-08-20T16:30:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "astra",
@@ -22561,7 +23447,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/astra",
-          "scraped_at": "2026-08-20T16:30:46"
+          "scraped_at": "2026-08-20T16:30:46",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "mokka",
@@ -22773,7 +23665,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/mokka",
-          "scraped_at": "2026-08-20T16:30:52"
+          "scraped_at": "2026-08-20T16:30:52",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "frontera",
@@ -23054,7 +23952,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/frontera",
-          "scraped_at": "2026-08-20T16:30:59"
+          "scraped_at": "2026-08-20T16:30:59",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "grandland",
@@ -23327,7 +24231,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/grandland",
-          "scraped_at": "2026-08-20T16:31:06"
+          "scraped_at": "2026-08-20T16:31:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "combo",
@@ -23651,7 +24561,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/combo",
-          "scraped_at": "2026-08-20T16:31:14"
+          "scraped_at": "2026-08-20T16:31:14",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "zafira",
@@ -23799,7 +24715,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/opel/zafira",
-          "scraped_at": "2026-08-20T16:31:29"
+          "scraped_at": "2026-08-20T16:31:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -23817,7 +24739,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -23900,7 +24823,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/208",
-          "scraped_at": "2026-08-20T16:33:11"
+          "scraped_at": "2026-08-20T16:33:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "308",
@@ -23986,7 +24915,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/308",
-          "scraped_at": "2026-08-20T16:33:26"
+          "scraped_at": "2026-08-20T16:33:26",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "2008",
@@ -24229,7 +25164,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/2008",
-          "scraped_at": "2026-08-20T16:33:34"
+          "scraped_at": "2026-08-20T16:33:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "408",
@@ -24365,7 +25306,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/408",
-          "scraped_at": "2026-08-20T16:33:39"
+          "scraped_at": "2026-08-20T16:33:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "3008",
@@ -24615,7 +25562,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/3008",
-          "scraped_at": "2026-08-20T16:33:48"
+          "scraped_at": "2026-08-20T16:33:48",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "5008",
@@ -24873,7 +25826,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/5008",
-          "scraped_at": "2026-08-20T16:33:56"
+          "scraped_at": "2026-08-20T16:33:56",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "partner",
@@ -25013,7 +25972,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/partner",
-          "scraped_at": "2026-08-20T16:34:01"
+          "scraped_at": "2026-08-20T16:34:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "rifter",
@@ -25209,7 +26174,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/peugeot/rifter",
-          "scraped_at": "2026-08-20T16:34:06"
+          "scraped_at": "2026-08-20T16:34:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -25227,7 +26198,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -25467,7 +26439,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/porsche/macan",
-          "scraped_at": "2026-08-20T16:37:50"
+          "scraped_at": "2026-08-20T16:37:50",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "taycan",
@@ -25663,7 +26641,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/porsche/taycan",
-          "scraped_at": "2026-08-20T16:37:59"
+          "scraped_at": "2026-08-20T16:37:59",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "cayenne",
@@ -25737,7 +26721,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/porsche/cayenne",
-          "scraped_at": "2026-08-20T16:38:04"
+          "scraped_at": "2026-08-20T16:38:04",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -25755,7 +26745,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -25919,7 +26910,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/clio",
-          "scraped_at": "2026-08-20T16:38:12"
+          "scraped_at": "2026-08-20T16:38:12",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "duster",
@@ -26302,7 +27299,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/duster",
-          "scraped_at": "2026-08-20T16:38:21"
+          "scraped_at": "2026-08-20T16:38:21",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "megane",
@@ -26709,7 +27712,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/megane",
-          "scraped_at": "2026-08-20T16:38:31"
+          "scraped_at": "2026-08-20T16:38:31",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "austral",
@@ -26906,7 +27915,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/austral",
-          "scraped_at": "2026-08-20T16:38:47"
+          "scraped_at": "2026-08-20T16:38:47",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "captur",
@@ -26997,7 +28012,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/captur",
-          "scraped_at": "2026-08-20T16:38:51"
+          "scraped_at": "2026-08-20T16:38:51",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "boreal",
@@ -27224,7 +28245,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/boreal",
-          "scraped_at": "2026-08-20T16:38:59"
+          "scraped_at": "2026-08-20T16:38:59",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "scenic",
@@ -27316,7 +28343,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/scenic",
-          "scraped_at": "2026-08-20T16:39:05"
+          "scraped_at": "2026-08-20T16:39:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "kangoo",
@@ -27456,7 +28489,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/kangoo",
-          "scraped_at": "2026-08-20T16:39:24"
+          "scraped_at": "2026-08-20T16:39:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "r-5",
@@ -27543,7 +28582,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/r-5",
-          "scraped_at": "2026-08-20T16:39:29"
+          "scraped_at": "2026-08-20T16:39:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "rafale",
@@ -27614,7 +28659,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/renault/rafale",
-          "scraped_at": "2026-08-20T16:42:05"
+          "scraped_at": "2026-08-20T16:42:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -27632,7 +28683,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -27713,7 +28765,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/seat/ibiza",
-          "scraped_at": "2026-08-20T16:43:15"
+          "scraped_at": "2026-08-20T16:43:15",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "leon",
@@ -27798,7 +28856,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/seat/leon",
-          "scraped_at": "2026-08-20T16:43:30"
+          "scraped_at": "2026-08-20T16:43:30",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "arona",
@@ -27882,7 +28946,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/seat/arona",
-          "scraped_at": "2026-08-20T16:43:35"
+          "scraped_at": "2026-08-20T16:43:35",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "ateca",
@@ -27966,7 +29036,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/seat/ateca",
-          "scraped_at": "2026-08-20T16:43:50"
+          "scraped_at": "2026-08-20T16:43:50",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -27984,7 +29060,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -28146,7 +29223,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/fabia",
-          "scraped_at": "2026-08-20T16:45:32"
+          "scraped_at": "2026-08-20T16:45:32",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "scala",
@@ -28432,7 +29515,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/scala",
-          "scraped_at": "2026-08-20T16:45:39"
+          "scraped_at": "2026-08-20T16:45:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "octavia",
@@ -28689,7 +29778,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/octavia",
-          "scraped_at": "2026-08-20T16:45:46"
+          "scraped_at": "2026-08-20T16:45:46",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "superb",
@@ -28978,7 +30073,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/superb",
-          "scraped_at": "2026-08-20T16:45:54"
+          "scraped_at": "2026-08-20T16:45:54",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "kamiq",
@@ -29264,7 +30365,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/kamiq",
-          "scraped_at": "2026-08-20T16:46:01"
+          "scraped_at": "2026-08-20T16:46:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "karoq",
@@ -29479,7 +30586,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/karoq",
-          "scraped_at": "2026-08-20T16:46:18"
+          "scraped_at": "2026-08-20T16:46:18",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "kodiaq",
@@ -29679,7 +30792,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/kodiaq",
-          "scraped_at": "2026-08-20T16:46:24"
+          "scraped_at": "2026-08-20T16:46:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "elroq",
@@ -29772,7 +30891,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/elroq",
-          "scraped_at": "2026-08-20T16:46:28"
+          "scraped_at": "2026-08-20T16:46:28",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "enyaq",
@@ -29861,7 +30986,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/skoda/enyaq",
-          "scraped_at": "2026-08-20T16:46:32"
+          "scraped_at": "2026-08-20T16:46:32",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -29879,7 +31010,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -30013,7 +31145,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ssangyong/torres",
-          "scraped_at": "2026-08-20T16:48:11"
+          "scraped_at": "2026-08-20T16:48:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "korando",
@@ -30151,7 +31289,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ssangyong/korando",
-          "scraped_at": "2026-08-20T16:48:18"
+          "scraped_at": "2026-08-20T16:48:18",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "musso-grand",
@@ -30231,7 +31375,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ssangyong/musso-grand",
-          "scraped_at": "2026-08-20T16:48:22"
+          "scraped_at": "2026-08-20T16:48:22",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "actyon",
@@ -30322,7 +31472,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ssangyong/actyon",
-          "scraped_at": "2026-08-20T16:48:26"
+          "scraped_at": "2026-08-20T16:48:26",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tivoli",
@@ -30448,7 +31604,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ssangyong/tivoli",
-          "scraped_at": "2026-08-20T16:48:34"
+          "scraped_at": "2026-08-20T16:48:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "musso",
@@ -30526,7 +31688,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/ssangyong/musso",
-          "scraped_at": "2026-08-20T16:48:38"
+          "scraped_at": "2026-08-20T16:48:38",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -30544,7 +31712,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -30622,7 +31791,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/subaru/forester",
-          "scraped_at": "2026-08-20T16:48:47"
+          "scraped_at": "2026-08-20T16:48:47",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "crosstrek",
@@ -30710,7 +31885,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/subaru/crosstrek",
-          "scraped_at": "2026-08-20T16:48:52"
+          "scraped_at": "2026-08-20T16:48:52",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -30728,7 +31909,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -31018,7 +32200,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/suzuki/vitara",
-          "scraped_at": "2026-08-20T16:49:45"
+          "scraped_at": "2026-08-20T16:49:45",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "s-cross",
@@ -31306,7 +32494,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/suzuki/s-cross",
-          "scraped_at": "2026-08-20T16:50:03"
+          "scraped_at": "2026-08-20T16:50:03",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "swift",
@@ -31473,7 +32667,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/suzuki/swift",
-          "scraped_at": "2026-08-20T16:50:15"
+          "scraped_at": "2026-08-20T16:50:15",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -31491,7 +32691,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -31563,7 +32764,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/swm/g01-pro",
-          "scraped_at": "2026-08-20T16:52:13"
+          "scraped_at": "2026-08-20T16:52:13",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "g01",
@@ -31667,7 +32874,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/swm/g01",
-          "scraped_at": "2026-08-20T16:52:24"
+          "scraped_at": "2026-08-20T16:52:24",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "g03",
@@ -31734,7 +32947,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/swm/g03",
-          "scraped_at": "2026-08-20T16:52:30"
+          "scraped_at": "2026-08-20T16:52:30",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "g05",
@@ -31801,7 +33020,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/swm/g05",
-          "scraped_at": "2026-08-20T16:52:37"
+          "scraped_at": "2026-08-20T16:52:37",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -31819,7 +33044,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -32080,7 +33306,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/tesla/model-y",
-          "scraped_at": "2026-08-20T16:52:49"
+          "scraped_at": "2026-08-20T16:52:49",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -32098,7 +33330,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -32359,7 +33592,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/togg/t10x",
-          "scraped_at": "2026-08-20T16:52:58"
+          "scraped_at": "2026-08-20T16:52:58",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "t10f",
@@ -32619,7 +33858,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/togg/t10f",
-          "scraped_at": "2026-08-20T16:53:06"
+          "scraped_at": "2026-08-20T16:53:06",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -32637,7 +33882,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -33387,7 +34633,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/corolla",
-          "scraped_at": "2026-08-20T16:53:22"
+          "scraped_at": "2026-08-20T16:53:22",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "corolla-cross",
@@ -33601,7 +34853,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/corolla-cross",
-          "scraped_at": "2026-08-20T16:53:29"
+          "scraped_at": "2026-08-20T16:53:29",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "yaris",
@@ -33759,7 +35017,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/yaris",
-          "scraped_at": "2026-08-20T16:53:34"
+          "scraped_at": "2026-08-20T16:53:34",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "yaris-cross",
@@ -33917,7 +35181,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/yaris-cross",
-          "scraped_at": "2026-08-20T16:53:39"
+          "scraped_at": "2026-08-20T16:53:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "c-hr",
@@ -34137,7 +35407,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/c-hr",
-          "scraped_at": "2026-08-20T16:53:46"
+          "scraped_at": "2026-08-20T16:53:46",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "land-cruiser",
@@ -34227,7 +35503,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/land-cruiser",
-          "scraped_at": "2026-08-20T16:53:51"
+          "scraped_at": "2026-08-20T16:53:51",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "proace-city",
@@ -34555,7 +35837,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/proace-city",
-          "scraped_at": "2026-08-20T16:54:00"
+          "scraped_at": "2026-08-20T16:54:00",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "hilux",
@@ -34825,7 +36113,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/hilux",
-          "scraped_at": "2026-08-20T16:54:18"
+          "scraped_at": "2026-08-20T16:54:18",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "proace-verso",
@@ -34973,7 +36267,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/proace-verso",
-          "scraped_at": "2026-08-20T16:54:23"
+          "scraped_at": "2026-08-20T16:54:23",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "rav4",
@@ -35117,7 +36417,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/toyota/rav4",
-          "scraped_at": "2026-08-20T16:54:43"
+          "scraped_at": "2026-08-20T16:54:43",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -35135,7 +36441,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -35497,7 +36804,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/golf",
-          "scraped_at": "2026-08-20T16:56:04"
+          "scraped_at": "2026-08-20T16:56:04",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "taigo",
@@ -35860,7 +37173,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/taigo",
-          "scraped_at": "2026-08-20T16:56:25"
+          "scraped_at": "2026-08-20T16:56:25",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "t-cross",
@@ -36115,7 +37434,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/t-cross",
-          "scraped_at": "2026-08-20T16:56:32"
+          "scraped_at": "2026-08-20T16:56:32",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "t-roc",
@@ -36308,7 +37633,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/t-roc",
-          "scraped_at": "2026-08-20T16:56:40"
+          "scraped_at": "2026-08-20T16:56:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tiguan",
@@ -36620,7 +37951,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/tiguan",
-          "scraped_at": "2026-08-20T16:56:51"
+          "scraped_at": "2026-08-20T16:56:51",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "passat",
@@ -36986,7 +38323,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/passat",
-          "scraped_at": "2026-08-20T16:57:01"
+          "scraped_at": "2026-08-20T16:57:01",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "tayron",
@@ -37356,7 +38699,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/tayron",
-          "scraped_at": "2026-08-20T16:57:11"
+          "scraped_at": "2026-08-20T16:57:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "caddy",
@@ -37626,7 +38975,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/caddy",
-          "scraped_at": "2026-08-20T16:57:30"
+          "scraped_at": "2026-08-20T16:57:30",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "amarok",
@@ -37706,7 +39061,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/amarok",
-          "scraped_at": "2026-08-20T16:57:35"
+          "scraped_at": "2026-08-20T16:57:35",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "id-7",
@@ -37800,7 +39161,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/id-7",
-          "scraped_at": "2026-08-20T16:57:39"
+          "scraped_at": "2026-08-20T16:57:39",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "id-buzz",
@@ -37987,7 +39354,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/id-buzz",
-          "scraped_at": "2026-08-20T16:57:47"
+          "scraped_at": "2026-08-20T16:57:47",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "transporter",
@@ -38236,7 +39609,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/transporter",
-          "scraped_at": "2026-08-20T16:58:05"
+          "scraped_at": "2026-08-20T16:58:05",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "id-4",
@@ -38328,7 +39707,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/id-4",
-          "scraped_at": "2026-08-20T16:58:40"
+          "scraped_at": "2026-08-20T16:58:40",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "polo",
@@ -38621,7 +40006,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/polo",
-          "scraped_at": "2026-08-20T16:59:13"
+          "scraped_at": "2026-08-20T16:59:13",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "touareg",
@@ -38741,7 +40132,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volkswagen/touareg",
-          "scraped_at": "2026-08-20T16:59:49"
+          "scraped_at": "2026-08-20T16:59:49",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -38759,7 +40156,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": [
         {
@@ -38842,7 +40240,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volvo/ex30",
-          "scraped_at": "2026-08-20T16:59:55"
+          "scraped_at": "2026-08-20T16:59:55",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "xc90",
@@ -38964,7 +40368,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volvo/xc90",
-          "scraped_at": "2026-08-20T17:00:11"
+          "scraped_at": "2026-08-20T17:00:11",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         },
         {
           "id": "xc60",
@@ -39094,7 +40504,13 @@
             }
           ],
           "source_model_url": "https://www.arabalar.com.tr/volvo/xc60",
-          "scraped_at": "2026-08-20T17:00:16"
+          "scraped_at": "2026-08-20T17:00:16",
+          "card_description_style": {
+            "font_size": 12,
+            "color": "#2563EB"
+          },
+          "show_starting_price": true,
+          "starting_price_text": ""
         }
       ]
     },
@@ -39112,7 +40528,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39130,7 +40547,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39148,7 +40566,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39166,7 +40585,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39184,7 +40604,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39202,7 +40623,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39220,7 +40642,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39238,7 +40661,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39256,7 +40680,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     },
@@ -39274,7 +40699,8 @@
         "font_weight": "normal",
         "color": "#1A1C1E",
         "text_align": "left",
-        "effect": "none"
+        "effect": "none",
+        "font_style": "normal"
       },
       "models": []
     }
