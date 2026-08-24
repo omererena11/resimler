@@ -1175,9 +1175,159 @@
     $('#brand-search-results').classList.remove('visible');
   }
 
+  function normalizeFilterToken(value) {
+    return String(value ?? '')
+      .trim()
+      .toLocaleLowerCase('tr-TR')
+      .replace(/ı/g, 'i')
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ş/g, 's')
+      .replace(/ö/g, 'o')
+      .replace(/ç/g, 'c')
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function normalizeBodyType(value) {
+    const t = normalizeFilterToken(value);
+    const aliases = {
+      cabriolet: 'cabrio',
+      convertible: 'cabrio',
+      coupe4: 'coupe_4',
+      coupe_4_kapi: 'coupe_4',
+      coupe_4_kapili: 'coupe_4',
+      hatchback3: 'hatchback_3',
+      hatchback_3_kapi: 'hatchback_3',
+      hatchback_3_kapili: 'hatchback_3',
+      hatchback5: 'hatchback_5',
+      hatchback_5_kapi: 'hatchback_5',
+      hatchback_5_kapili: 'hatchback_5',
+      stationwagon: 'station_wagon',
+      station_wagon: 'station_wagon',
+      estate: 'station_wagon',
+      sw: 'station_wagon',
+      sport_tourer: 'station_wagon',
+      touring_sports: 'station_wagon',
+      sportstourer: 'station_wagon',
+      sportstourer: 'station_wagon',
+      crossover: 'suv'
+    };
+    return aliases[t] || t;
+  }
+
+  function getModelBodyTypes(car) {
+    const values = [];
+    if (Array.isArray(car?.body_types)) values.push(...car.body_types);
+    if (car?.body_type) values.push(car.body_type);
+    if (car?.bodyType) values.push(car.bodyType);
+    return [...new Set(values.map(normalizeBodyType).filter(Boolean))];
+  }
+
+  function fuelTypesFromText(value) {
+    const raw = String(value ?? '').trim();
+    if (!raw) return [];
+
+    const t = normalizeFilterToken(raw);
+    const found = new Set();
+
+    // Hibrit ifadelerini önce yakala. MHEV / HEV / PHEV doğrudan hibrittir.
+    if (/\b(mhev|phev|hev)\b/.test(t) || t.includes('hibrit') || t.includes('hybrid')) {
+      found.add('hibrit');
+    }
+    if (t.includes('benzin') || t.includes('gasoline') || t.includes('petrol')) {
+      found.add('benzin');
+    }
+    if (t.includes('dizel') || t.includes('diesel')) {
+      found.add('dizel');
+    }
+    if (t.includes('lpg')) {
+      found.add('lpg');
+    }
+    if (t.includes('elektrik') || t.includes('electric') || t === 'ev' || t.startsWith('ev_')) {
+      found.add('elektrik');
+    }
+
+    return [...found];
+  }
+
+  function normalizeFuelType(value) {
+    const detected = fuelTypesFromText(value);
+    if (detected.length === 1) return detected[0];
+
+    const t = normalizeFilterToken(value);
+    const aliases = {
+      gasoline: 'benzin',
+      petrol: 'benzin',
+      diesel: 'dizel',
+      hybrid: 'hibrit',
+      elektrikli: 'elektrik',
+      electric: 'elektrik',
+      ev: 'elektrik'
+    };
+    return aliases[t] || t;
+  }
+
+  function getModelFuelTypes(car) {
+    const allowedYears = new Set([2025, 2026]);
+    const versions = Array.isArray(car?.versions) ? car.versions : [];
+    const versionFuelTypes = new Set();
+    let hasUsableVersionFuelData = false;
+
+    versions.forEach(version => {
+      const year = Number(version?.year || car?.year || 0);
+      if (!allowedYears.has(year)) return;
+
+      const specs = version?.technical_specs || {};
+      const energy =
+        specs['Enerji Türü'] ??
+        specs['Yakıt Türü'] ??
+        specs['Yakit Turu'] ??
+        version?.fuel_type ??
+        version?.fuelType ??
+        '';
+
+      const detected = fuelTypesFromText(energy);
+      if (detected.length) {
+        hasUsableVersionFuelData = true;
+        detected.forEach(x => versionFuelTypes.add(x));
+      }
+    });
+
+    // Versiyonlarda güvenilir yakıt bilgisi varsa model seviyesindeki eski/geniş
+    // fuel_types etiketlerini kullanma. Yanlış "hibrit" sonuçlarının önüne geçer.
+    if (hasUsableVersionFuelData) {
+      return [...versionFuelTypes];
+    }
+
+    const fallback = [];
+    if (Array.isArray(car?.fuel_types)) fallback.push(...car.fuel_types);
+    if (car?.fuel_type) fallback.push(car.fuel_type);
+    if (car?.fuelType) fallback.push(car.fuelType);
+
+    const normalized = new Set();
+    fallback.forEach(value => {
+      const detected = fuelTypesFromText(value);
+      if (detected.length) detected.forEach(x => normalized.add(x));
+      else {
+        const single = normalizeFuelType(value);
+        if (single) normalized.add(single);
+      }
+    });
+    return [...normalized];
+  }
+
   function matchesFilters(car) {
-    if (filterBodyType !== 'all' && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
-    if (filterFuelType !== 'all' && (!car.fuel_types || !car.fuel_types.includes(filterFuelType))) return false;
+    if (filterBodyType !== 'all') {
+      const wantedBody = normalizeBodyType(filterBodyType);
+      if (!getModelBodyTypes(car).includes(wantedBody)) return false;
+    }
+
+    if (filterFuelType !== 'all') {
+      const wantedFuel = normalizeFuelType(filterFuelType);
+      if (!getModelFuelTypes(car).includes(wantedFuel)) return false;
+    }
+
     return true;
   }
 
@@ -1375,7 +1525,7 @@
                 ${car.show_year ? `<div class="model-year">${escapeHtml(car.year)}</div>` : ''}
                 ${
                   car.show_description && car.card_description
-                    ? `<div class="model-desc">✨ ${escapeHtml(car.card_description)}</div>`
+                    ? `<div class="model-desc">${escapeHtml(car.card_description)}</div>`
                     : ''
                 }
 
