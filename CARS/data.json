@@ -25,7 +25,8 @@
       "font_size": 11,
       "font_family": "Segoe UI",
       "font_color": "#000000"
-    }
+    },
+    "show_card_prices": true
   },
   "brands": [
     {
