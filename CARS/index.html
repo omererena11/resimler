@@ -824,6 +824,93 @@
     justify-content: stretch;
   }
 
+
+  /* =========================================================
+     KART HİZALAMA - TÜM KARTLARDA AYNI DİKEY YERLEŞİM
+     ========================================================= */
+
+  .model-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100%;
+  }
+
+  .model-info {
+    padding: 10px 14px !important;
+    display: grid !important;
+    grid-template-rows: 38px 20px 44px 50px 40px !important;
+    row-gap: 4px !important;
+    align-content: start !important;
+    min-height: 208px !important;
+    height: 208px !important;
+  }
+
+  .model-name {
+    height: 38px !important;
+    min-height: 38px !important;
+    line-height: 19px !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    align-items: initial !important;
+  }
+
+  .model-year {
+    height: 20px !important;
+    min-height: 20px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  .model-desc {
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    margin: 0 !important;
+    line-height: 1.25 !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+  }
+
+  .model-starting-price {
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+
+  .compare-add-btn {
+    height: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+    align-self: stretch !important;
+  }
+
+  .model-slot-placeholder {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Tek marka görünümünde de metin/fiyat/buton satırları aynı hizada kalsın. */
+  .brand-section.single-brand .model-info {
+    display: grid !important;
+    grid-template-rows: 38px 20px 44px 50px 40px !important;
+    row-gap: 4px !important;
+    min-height: 208px !important;
+    height: 208px !important;
+    justify-content: stretch !important;
+  }
+
 </style>
 </head>
 <body>
@@ -1447,7 +1534,7 @@
                 ${
                   car.show_description && car.card_description
                     ? `<div class="model-desc" style="color:${escapeHtml(car.card_description_style?.color || '#2563EB')};font-size:${Number(car.card_description_style?.font_size || 12)}px;">${escapeHtml(car.card_description)}</div>`
-                    : ''
+                    : `<div class="model-desc model-slot-placeholder">&nbsp;</div>`
                 }
 
                 ${
