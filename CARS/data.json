@@ -281,11 +281,12 @@
             "images/audi/a3/004.jpg"
           ],
           "body_types": [
-            "suv"
+            "sedan",
+            "hatchback_5"
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -467,11 +468,14 @@
             "images/audi/a5/003.jpg",
             "images/audi/a5/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "sedan",
+            "station_wagon"
+          ],
           "fuel_types": [
             "benzin",
-            "hibrit",
-            "dizel"
+            "dizel",
+            "hibrit"
           ],
           "order": 2,
           "show_on_homepage": true,
@@ -602,10 +606,13 @@
             "images/audi/a6/004.jpg"
           ],
           "body_types": [
-            "sedan"
+            "sedan",
+            "station_wagon"
           ],
           "fuel_types": [
-            "dizel"
+            "benzin",
+            "dizel",
+            "hibrit"
           ],
           "order": 3,
           "show_on_homepage": true,
@@ -690,7 +697,7 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 4,
           "show_on_homepage": true,
@@ -1043,7 +1050,7 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 8,
@@ -1128,7 +1135,7 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 9,
           "show_on_homepage": true,
@@ -1211,7 +1218,7 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 10,
           "show_on_homepage": true,
@@ -1294,8 +1301,8 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
-            "dizel"
+            "dizel",
+            "hibrit"
           ],
           "order": 11,
           "show_on_homepage": true,
@@ -1463,10 +1470,12 @@
             "images/bmw/1-serisi/003.jpg",
             "images/bmw/1-serisi/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -1545,10 +1554,10 @@
             "images/bmw/2-serisi/004.jpg"
           ],
           "body_types": [
-            "mpv"
+            "sedan",
+            "coupe"
           ],
           "fuel_types": [
-            "hibrit",
             "benzin"
           ],
           "order": 2,
@@ -1694,6 +1703,7 @@
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 3,
@@ -1781,11 +1791,11 @@
             "images/bmw/4-serisi/004.jpg"
           ],
           "body_types": [
-            "coupe"
+            "coupe",
+            "cabrio"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 4,
           "show_on_homepage": true,
@@ -1868,11 +1878,12 @@
             "images/bmw/5-serisi/004.jpg"
           ],
           "body_types": [
-            "sedan"
+            "sedan",
+            "station_wagon"
           ],
           "fuel_types": [
-            "dizel",
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 5,
@@ -2025,6 +2036,7 @@
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 6,
@@ -2161,11 +2173,12 @@
             "images/bmw/x2/004.jpg"
           ],
           "body_types": [
-            "suv"
+            "suv",
+            "coupe"
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "elektrik"
           ],
           "order": 7,
           "show_on_homepage": true,
@@ -2255,6 +2268,7 @@
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 8,
@@ -2345,7 +2359,9 @@
             "suv"
           ],
           "fuel_types": [
-            "dizel"
+            "benzin",
+            "dizel",
+            "hibrit"
           ],
           "order": 9,
           "show_on_homepage": true,
@@ -2838,7 +2854,9 @@
             "sedan"
           ],
           "fuel_types": [
-            "dizel"
+            "benzin",
+            "hibrit",
+            "elektrik"
           ],
           "order": 15,
           "show_on_homepage": true,
@@ -3613,7 +3631,9 @@
             "images/byd/dolphin/003.jpg",
             "images/byd/dolphin/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "elektrik"
           ],
@@ -3777,8 +3797,8 @@
             "suv"
           ],
           "fuel_types": [
-            "hibrit",
-            "elektrik"
+            "elektrik",
+            "hibrit"
           ],
           "order": 8,
           "show_on_homepage": true,
@@ -4829,11 +4849,10 @@
             "images/citroen/c4/004.jpg"
           ],
           "body_types": [
-            "suv"
+            "hatchback_5"
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
             "elektrik"
           ],
           "order": 1,
@@ -5054,11 +5073,11 @@
             "images/citroen/c4-x/004.jpg"
           ],
           "body_types": [
-            "suv"
+            "sedan",
+            "fastback"
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
             "elektrik"
           ],
           "order": 2,
@@ -5437,7 +5456,6 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit",
             "elektrik"
           ],
@@ -5640,7 +5658,6 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
             "elektrik"
           ],
           "order": 5,
@@ -8569,8 +8586,11 @@
             "images/fiat/egea-cross/003.jpg",
             "images/fiat/egea-cross/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "suv"
+          ],
           "fuel_types": [
+            "benzin",
             "dizel"
           ],
           "order": 2,
@@ -9323,9 +9343,8 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit",
-            "elektrik"
+            "elektrik",
+            "hibrit"
           ],
           "order": 4,
           "show_on_homepage": true,
@@ -9474,8 +9493,12 @@
             "images/fiat/grande-panda/007.webp",
             "images/fiat/grande-panda/008.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5",
+            "suv"
+          ],
           "fuel_types": [
+            "hibrit",
             "elektrik"
           ],
           "order": 5,
@@ -13232,7 +13255,6 @@
             "sedan"
           ],
           "fuel_types": [
-            "lpg",
             "benzin"
           ],
           "order": 4,
@@ -13682,7 +13704,9 @@
             "images/honda/jazz/006.jpg",
             "images/honda/jazz/007.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "hibrit"
           ],
@@ -13778,10 +13802,11 @@
             "images/hyundai/i20/004.jpg",
             "images/hyundai/i20/005.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -14064,10 +14089,12 @@
             "images/hyundai/i30/004.webp",
             "images/hyundai/i30/005.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 2,
           "show_on_homepage": true,
@@ -14217,8 +14244,7 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 3,
           "show_on_homepage": true,
@@ -14489,7 +14515,7 @@
             "images/hyundai/ioniq-5/004.jpg"
           ],
           "body_types": [
-            "suv"
+            "crossover"
           ],
           "fuel_types": [
             "elektrik"
@@ -14767,8 +14793,7 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 6,
           "show_on_homepage": true,
@@ -14846,8 +14871,7 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 7,
           "show_on_homepage": true,
@@ -15178,7 +15202,8 @@
             "images/hyundai/ioniq-6/006.webp"
           ],
           "body_types": [
-            "sedan"
+            "sedan",
+            "fastback"
           ],
           "fuel_types": [
             "elektrik"
@@ -15643,7 +15668,9 @@
             "images/hyundai/inster/004.webp",
             "images/hyundai/inster/005.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "elektrik"
           ],
@@ -18585,10 +18612,11 @@
             "images/mercedes/a-serisi/003.jpg",
             "images/mercedes/a-serisi/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -18703,10 +18731,12 @@
             "images/mercedes/c-serisi/004.jpg"
           ],
           "body_types": [
-            "sedan"
+            "sedan",
+            "station_wagon"
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 2,
@@ -18901,8 +18931,8 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
-            "dizel"
+            "dizel",
+            "hibrit"
           ],
           "order": 4,
           "show_on_homepage": true,
@@ -19203,6 +19233,7 @@
             "suv"
           ],
           "fuel_types": [
+            "benzin",
             "elektrik"
           ],
           "order": 7,
@@ -19469,7 +19500,8 @@
             "suv"
           ],
           "fuel_types": [
-            "dizel"
+            "benzin",
+            "elektrik"
           ],
           "order": 10,
           "show_on_homepage": true,
@@ -19580,8 +19612,8 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
-            "dizel"
+            "dizel",
+            "elektrik"
           ],
           "order": 11,
           "show_on_homepage": true,
@@ -19731,6 +19763,7 @@
             "sedan"
           ],
           "fuel_types": [
+            "benzin",
             "dizel"
           ],
           "order": 12,
@@ -20678,8 +20711,7 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -21738,7 +21770,6 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit"
           ],
           "order": 3,
@@ -22165,11 +22196,11 @@
             "images/opel/corsa/003.webp",
             "images/opel/corsa/004.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
-            "benzin",
-            "hibrit",
-            "elektrik"
+            "hibrit"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -22433,9 +22464,14 @@
             "images/opel/astra/004.webp",
             "images/opel/astra/005.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5",
+            "station_wagon"
+          ],
           "fuel_types": [
-            "dizel"
+            "benzin",
+            "dizel",
+            "hibrit"
           ],
           "order": 2,
           "show_on_homepage": true,
@@ -22546,7 +22582,6 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit",
             "elektrik"
           ],
           "order": 3,
@@ -22758,7 +22793,6 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit",
             "elektrik"
           ],
@@ -23040,7 +23074,6 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit",
             "elektrik"
           ],
@@ -24215,10 +24248,9 @@
             "images/peugeot/408/006.webp"
           ],
           "body_types": [
-            "suv"
+            "fastback"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit"
           ],
           "order": 4,
@@ -24354,7 +24386,6 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit",
             "elektrik"
           ],
@@ -24605,7 +24636,6 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
             "hibrit",
             "elektrik"
           ],
@@ -25746,7 +25776,9 @@
             "images/renault/clio/007.webp",
             "images/renault/clio/008.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "benzin",
             "hibrit"
@@ -25907,7 +25939,6 @@
             "suv"
           ],
           "fuel_types": [
-            "lpg",
             "benzin",
             "hibrit"
           ],
@@ -26700,8 +26731,8 @@
             "suv"
           ],
           "fuel_types": [
-            "hibrit",
-            "benzin"
+            "benzin",
+            "hibrit"
           ],
           "order": 4,
           "show_on_homepage": true,
@@ -27529,7 +27560,8 @@
             "images/renault/rafale/004.jpg"
           ],
           "body_types": [
-            "suv"
+            "suv",
+            "fastback"
           ],
           "fuel_types": [
             "hibrit"
@@ -27972,10 +28004,11 @@
             "images/skoda/fabia/006.jpg",
             "images/skoda/fabia/007.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 1,
           "show_on_homepage": true,
@@ -28129,10 +28162,11 @@
             "images/skoda/scala/003.jpg",
             "images/skoda/scala/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 2,
           "show_on_homepage": true,
@@ -28415,10 +28449,12 @@
             "images/skoda/octavia/004.jpg"
           ],
           "body_types": [
-            "sedan"
+            "sedan",
+            "station_wagon"
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 3,
@@ -28670,10 +28706,12 @@
             "images/skoda/superb/004.jpg"
           ],
           "body_types": [
-            "sedan"
+            "sedan",
+            "station_wagon"
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 4,
@@ -28960,8 +28998,7 @@
             "suv"
           ],
           "fuel_types": [
-            "benzin",
-            "hibrit"
+            "benzin"
           ],
           "order": 5,
           "show_on_homepage": true,
@@ -29252,7 +29289,7 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "dizel"
           ],
           "order": 6,
           "show_on_homepage": true,
@@ -29463,6 +29500,7 @@
           ],
           "fuel_types": [
             "benzin",
+            "dizel",
             "hibrit"
           ],
           "order": 7,
@@ -32339,6 +32377,7 @@
             "images/togg/t10f/005.webp"
           ],
           "body_types": [
+            "fastback",
             "sedan"
           ],
           "fuel_types": [
@@ -33368,7 +33407,9 @@
             "images/toyota/corolla-cross/007.webp",
             "images/toyota/corolla-cross/008.webp"
           ],
-          "body_types": [],
+          "body_types": [
+            "suv"
+          ],
           "fuel_types": [
             "hibrit"
           ],
@@ -33576,7 +33617,9 @@
             "images/toyota/yaris/003.jpg",
             "images/toyota/yaris/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "hatchback_5"
+          ],
           "fuel_types": [
             "hibrit"
           ],
@@ -33732,7 +33775,9 @@
             "images/toyota/yaris-cross/003.jpg",
             "images/toyota/yaris-cross/004.jpg"
           ],
-          "body_types": [],
+          "body_types": [
+            "suv"
+          ],
           "fuel_types": [
             "hibrit"
           ],
