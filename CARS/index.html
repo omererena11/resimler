@@ -697,17 +697,10 @@
   }
 
   .model-info {
-     padding: 10px 14px;
-     display: grid;
-     grid-template-rows:
-       minmax(38px, auto)   /* model adı */
-       20px                 /* yıl */
-       42px                 /* açıklama - 2 satır */
-       50px                 /* fiyat alanı */
-       40px;                /* karşılaştır butonu */
-     row-gap: 4px;
-     flex: 1;
-     align-content: stretch;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   .model-desc {
@@ -777,77 +770,6 @@
   .navbtn { position: fixed; top: 50%; transform: translateY(-50%); width: 42px; height: 64px; z-index: 11; border: none; border-radius: 12px; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #ddd; font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   #prev { left: 8px; display: none; } #next { right: 8px; }
   .closebtn { position: fixed; top: 18px; right: 18px; z-index: 12; width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: none; color: white; font-size: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-
-  /* Kart alanlarını tüm modellerde aynı hizaya getir */
-  .model-name {
-    min-height: 38px;
-    display: flex;
-    align-items: flex-start;
-    line-height: 1.2;
-  }
-
-  .model-year {
-    min-height: 20px;
-    display: flex;
-    align-items: center;
-  }
-
-  .model-desc {
-    min-height: 42px;
-    margin: 0 !important;
-  }
-
-  .model-starting-price {
-    min-height: 50px;
-    margin: 0 !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  .model-slot-placeholder {
-    visibility: hidden;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  /* Tek marka dikey görünümde eski daha kompakt yapıyı koru */
-  .brand-section.single-brand .model-info {
-    display: grid;
-    grid-template-rows:
-      minmax(24px, auto)
-      20px
-      minmax(36px, auto)
-      minmax(44px, auto)
-      40px;
-    row-gap: 4px;
-    justify-content: stretch;
-  }
-
-
-  /* FINAL KART HIZALAMA: veri olsa da olmasa da her kart aynı satır yapısını korur */
-  .model-card { display:flex !important; flex-direction:column !important; height:100% !important; }
-  .model-info {
-    display:grid !important;
-    grid-template-rows: 38px 20px 44px 50px 40px !important;
-    row-gap:4px !important;
-    min-height:208px !important;
-    height:208px !important;
-    align-content:start !important;
-    padding:10px 14px !important;
-  }
-  .model-name { height:38px !important; min-height:38px !important; line-height:19px !important; overflow:hidden !important; }
-  .model-year { height:20px !important; min-height:20px !important; margin:0 !important; overflow:hidden !important; }
-  .model-desc { height:44px !important; min-height:44px !important; max-height:44px !important; margin:0 !important; overflow:hidden !important; }
-  .model-starting-price { height:50px !important; min-height:50px !important; max-height:50px !important; margin:0 !important; padding:0 !important; overflow:hidden !important; }
-  .compare-add-btn { height:40px !important; min-height:40px !important; margin:0 !important; align-self:stretch !important; }
-  .model-slot-placeholder { visibility:hidden !important; pointer-events:none !important; user-select:none !important; }
-  .brand-section.single-brand .model-info {
-    grid-template-rows: 38px 20px 44px 50px 40px !important;
-    min-height:208px !important;
-    height:208px !important;
-  }
-
 </style>
 </head>
 <body>
@@ -1084,41 +1006,24 @@
     renderContent();
   }
 
-  function brandHasAllowedModels(brand) {
-    return Array.isArray(brand?.models) &&
-      brand.models.some(
-        model =>
-          model.show_on_homepage &&
-          modelHasAllowedYear(model)
-      );
-  }
-
   function renderFilters() {
-    const c = $('#filter-container');
-    c.innerHTML = '';
-
+    const c = $('#filter-container'); c.innerHTML = '';
     if (!appData?.brands) return;
-
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn all-btn' + (!activeFilter ? ' active' : '');
-    allBtn.textContent = 'TÜMÜ';
-    allBtn.onclick = () => selectBrand(null);
+    allBtn.textContent = 'TÜMÜ'; allBtn.onclick = () => selectBrand(null);
     c.appendChild(allBtn);
-
     const excludedBrandIds = new Set([
       'araba-karsilastirma',
       'araba-kampanyalari'
     ]);
 
     appData.brands
-      .filter(
-        b =>
-          b.show_on_homepage &&
-          !excludedBrandIds.has(b.id) &&
-          brandHasAllowedModels(b)
-      )
       .sort((a,b) => (a.order || 0) - (b.order || 0))
       .forEach(b => {
+        if (!b.show_on_homepage) return;
+        if (excludedBrandIds.has(b.id)) return;
+
         const btn = document.createElement('button');
         btn.className = 'filter-btn' + (activeFilter === b.id ? ' active' : '');
         btn.textContent = b.name;
@@ -1168,7 +1073,6 @@
           b =>
             b.show_on_homepage &&
             !['araba-karsilastirma', 'araba-kampanyalari'].includes(b.id) &&
-            brandHasAllowedModels(b) &&
             b.name.toLowerCase().includes(q)
         );
 
@@ -1319,20 +1223,6 @@
     return Math.min(...prices);
   }
 
-  function getModelCardPriceText(model) {
-    // Global anahtar: false ise tüm kart fiyatlarını gizle.
-    if (appData?.home_page_settings?.show_card_prices === false) return '';
-
-    // Model bazlı anahtar: sadece bu modeli gizle.
-    if (model?.show_starting_price === false) return '';
-
-    const manual = String(model?.starting_price_text || '').trim();
-    if (manual) return manual;
-
-    const automatic = getModelStartingPrice(model);
-    return automatic ? formatTry(automatic) : '';
-  }
-
   function formatTry(value) {
     try {
       return new Intl.NumberFormat(
@@ -1427,7 +1317,6 @@
               font-family:${style.font_family || 'Arial'};
               font-size:${style.font_size || 14}px;
               font-weight:${style.font_weight || 'normal'};
-              font-style:${style.font_style || 'normal'};
               color:${style.color || '#1A1C1E'};
               text-align:${style.text_align || 'left'};
             ">
@@ -1465,24 +1354,20 @@
 
               <div class="model-info">
                 <div class="model-name">${escapeHtml(car.name)}</div>
-                ${car.show_year
-                  ? `<div class="model-year">${escapeHtml(car.year)}</div>`
-                  : `<div class="model-year model-slot-placeholder">&nbsp;</div>`}
+                ${car.show_year ? `<div class="model-year">${escapeHtml(car.year)}</div>` : ''}
                 ${
                   car.show_description && car.card_description
-                    ? `<div class="model-desc" style="color:${escapeHtml(car.card_description_style?.color || '#2563EB')};font-size:${Number(car.card_description_style?.font_size || 12)}px;">${escapeHtml(car.card_description)}</div>`
-                    : `<div class="model-desc model-slot-placeholder">&nbsp;</div>`
+                    ? `<div class="model-desc">✨ ${escapeHtml(car.card_description)}</div>`
+                    : ''
                 }
 
                 ${
-                  getModelCardPriceText(car)
+                  getModelStartingPrice(car)
                     ? `<div class="model-starting-price">
-                        ${escapeHtml(getModelCardPriceText(car))}
+                        ${escapeHtml(formatTry(getModelStartingPrice(car)))}
                         <small>den başlayan fiyatlarla</small>
                       </div>`
-                    : `<div class="model-starting-price model-slot-placeholder">
-                        &nbsp;<small>&nbsp;</small>
-                      </div>`
+                    : ''
                 }
 
                 <button
