@@ -418,6 +418,12 @@
     color: white;
     font-weight: 800;
     cursor: pointer;
+    touch-action: manipulation;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+    z-index: 5;
   }
 
   .compare-start-btn:disabled {
@@ -1907,7 +1913,45 @@
     refreshCompareUI();
   });
 
-  $('#compare-start').addEventListener('click', openCompareModal);
+  // Android WebView'da sabit alt panelde click olayı zaman zaman yutulabildiği için
+  // pointerup + click fallback kullanıyoruz. Aynı dokunmanın iki kez çalışmasını kilit engeller.
+  const compareStartBtn = $('#compare-start');
+  let compareOpening = false;
+  let lastComparePointerUp = 0;
+
+  async function safeOpenCompare(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (compareOpening || compareSelection.length < 2) return;
+    compareOpening = true;
+
+    try {
+      await openCompareModal();
+    } catch (err) {
+      console.error('Karşılaştırma açılamadı:', err);
+    } finally {
+      setTimeout(() => { compareOpening = false; }, 300);
+    }
+  }
+
+  if (window.PointerEvent) {
+    compareStartBtn.addEventListener('pointerup', e => {
+      lastComparePointerUp = Date.now();
+      safeOpenCompare(e);
+    });
+  }
+
+  compareStartBtn.addEventListener('click', e => {
+    // pointerup sonrası üretilen sentetik click'i ikinci kez çalıştırma.
+    if (window.PointerEvent && Date.now() - lastComparePointerUp < 700) {
+      e.preventDefault();
+      return;
+    }
+    safeOpenCompare(e);
+  });
 
   $('#compare-orientation-btn').addEventListener(
     'click',
