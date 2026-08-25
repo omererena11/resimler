@@ -49,12 +49,12 @@
           "id": "corsa",
           "name": "Corsa 1.2 Edition",
           "year": 2026,
-          "thumbnail": "images/opel/corsa/thumbnail.png",
+          "thumbnail": "images/opel/corsa/thumbnail.jpg",
           "large_images": [
-            "images/opel/corsa/01.png",
-            "images/opel/corsa/02.png",
-            "images/opel/corsa/03.png",
-            "images/opel/corsa/04.png"
+            "images/opel/corsa/001.webp",
+            "images/opel/corsa/002.webp",
+            "images/opel/corsa/003.webp",
+            "images/opel/corsa/004.webp"
           ],
           "body_types": [
             "hatchback_5"
@@ -74,13 +74,11 @@
           "year": 2026,
           "thumbnail": "images/opel/astra/thumbnail.jpg",
           "large_images": [
-            "images/opel/astra/01.jpg",
-            "images/opel/astra/02.jpg",
-            "images/opel/astra/03.jpg",
-            "images/opel/astra/04.png",
-            "images/opel/astra/05.png",
-            "images/opel/astra/06.png",
-            "images/opel/astra/07.png"
+            "images/opel/astra/001.webp",
+            "images/opel/astra/002.webp",
+            "images/opel/astra/003.webp",
+            "images/opel/astra/004.webp",
+            "images/opel/astra/005.webp"
           ],
           "body_types": [
             "hatchback_5",
@@ -102,7 +100,12 @@
           "name": "Mokka",
           "year": 2026,
           "thumbnail": "images/opel/mokka/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/opel/mokka/001.webp",
+            "images/opel/mokka/002.webp",
+            "images/opel/mokka/003.webp",
+            "images/opel/mokka/004.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -121,7 +124,12 @@
           "name": "Frontera",
           "year": 2026,
           "thumbnail": "images/opel/frontera/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/opel/frontera/001.webp",
+            "images/opel/frontera/002.webp",
+            "images/opel/frontera/003.webp",
+            "images/opel/frontera/004.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -140,7 +148,12 @@
           "name": "Grandland",
           "year": 2026,
           "thumbnail": "images/opel/grandland/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/opel/grandland/001.jpg",
+            "images/opel/grandland/002.jpg",
+            "images/opel/grandland/003.jpg",
+            "images/opel/grandland/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -178,7 +191,12 @@
           "name": "Yaris",
           "year": 2026,
           "thumbnail": "images/toyota/yaris/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/toyota/yaris/001.jpg",
+            "images/toyota/yaris/002.jpg",
+            "images/toyota/yaris/003.jpg",
+            "images/toyota/yaris/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -196,7 +214,12 @@
           "name": "Yaris Cross",
           "year": 2026,
           "thumbnail": "images/toyota/yaris-cross/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/toyota/yaris-cross/001.jpg",
+            "images/toyota/yaris-cross/002.jpg",
+            "images/toyota/yaris-cross/003.jpg",
+            "images/toyota/yaris-cross/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -214,7 +237,14 @@
           "name": "Corolla",
           "year": 2026,
           "thumbnail": "images/toyota/corolla/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/toyota/corolla/001.webp",
+            "images/toyota/corolla/002.webp",
+            "images/toyota/corolla/003.webp",
+            "images/toyota/corolla/004.webp",
+            "images/toyota/corolla/005.webp",
+            "images/toyota/corolla/006.webp"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -251,7 +281,16 @@
           "name": "Corolla Cross",
           "year": 2026,
           "thumbnail": "images/toyota/corolla-cross/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/toyota/corolla-cross/001.webp",
+            "images/toyota/corolla-cross/002.webp",
+            "images/toyota/corolla-cross/003.webp",
+            "images/toyota/corolla-cross/004.webp",
+            "images/toyota/corolla-cross/005.webp",
+            "images/toyota/corolla-cross/006.webp",
+            "images/toyota/corolla-cross/007.webp",
+            "images/toyota/corolla-cross/008.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -269,7 +308,14 @@
           "name": "C-HR",
           "year": 2026,
           "thumbnail": "images/toyota/c-hr/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/toyota/c-hr/001.webp",
+            "images/toyota/c-hr/002.webp",
+            "images/toyota/c-hr/003.webp",
+            "images/toyota/c-hr/004.webp",
+            "images/toyota/c-hr/005.webp",
+            "images/toyota/c-hr/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -287,7 +333,12 @@
           "name": "RAV4",
           "year": 2026,
           "thumbnail": "images/toyota/rav4/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/toyota/rav4/001.jpg",
+            "images/toyota/rav4/002.jpg",
+            "images/toyota/rav4/003.jpg",
+            "images/toyota/rav4/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -342,7 +393,16 @@
           "name": "Clio",
           "year": 2026,
           "thumbnail": "images/renault/clio/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/renault/clio/001.webp",
+            "images/renault/clio/002.webp",
+            "images/renault/clio/003.webp",
+            "images/renault/clio/004.webp",
+            "images/renault/clio/005.webp",
+            "images/renault/clio/006.webp",
+            "images/renault/clio/007.webp",
+            "images/renault/clio/008.webp"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -379,7 +439,12 @@
           "name": "Captur",
           "year": 2026,
           "thumbnail": "images/renault/captur/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/renault/captur/001.jpg",
+            "images/renault/captur/002.jpg",
+            "images/renault/captur/003.jpg",
+            "images/renault/captur/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -398,7 +463,12 @@
           "name": "Duster",
           "year": 2026,
           "thumbnail": "images/renault/duster/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/renault/duster/001.jpg",
+            "images/renault/duster/002.jpg",
+            "images/renault/duster/003.jpg",
+            "images/renault/duster/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -417,7 +487,14 @@
           "name": "Austral",
           "year": 2026,
           "thumbnail": "images/renault/austral/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/renault/austral/001.jpg",
+            "images/renault/austral/002.jpg",
+            "images/renault/austral/003.jpg",
+            "images/renault/austral/004.jpg",
+            "images/renault/austral/005.jpg",
+            "images/renault/austral/006.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -436,7 +513,12 @@
           "name": "Rafale",
           "year": 2026,
           "thumbnail": "images/renault/rafale/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/renault/rafale/001.jpg",
+            "images/renault/rafale/002.jpg",
+            "images/renault/rafale/003.jpg",
+            "images/renault/rafale/004.jpg"
+          ],
           "body_types": [
             "suv",
             "fastback"
@@ -548,7 +630,12 @@
           "name": "Egea Cross",
           "year": 2026,
           "thumbnail": "images/fiat/egea-cross/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/fiat/egea-cross/001.jpg",
+            "images/fiat/egea-cross/002.jpg",
+            "images/fiat/egea-cross/003.jpg",
+            "images/fiat/egea-cross/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -567,7 +654,12 @@
           "name": "600",
           "year": 2026,
           "thumbnail": "images/fiat/600/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/fiat/600/001.jpg",
+            "images/fiat/600/002.jpg",
+            "images/fiat/600/003.jpg",
+            "images/fiat/600/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -586,7 +678,16 @@
           "name": "Grande Panda",
           "year": 2026,
           "thumbnail": "images/fiat/grande-panda/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/fiat/grande-panda/001.webp",
+            "images/fiat/grande-panda/002.webp",
+            "images/fiat/grande-panda/003.webp",
+            "images/fiat/grande-panda/004.webp",
+            "images/fiat/grande-panda/005.webp",
+            "images/fiat/grande-panda/006.webp",
+            "images/fiat/grande-panda/007.webp",
+            "images/fiat/grande-panda/008.webp"
+          ],
           "body_types": [
             "hatchback_5",
             "suv"
@@ -625,7 +726,13 @@
           "name": "i20",
           "year": 2026,
           "thumbnail": "images/hyundai/i20/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/i20/001.jpg",
+            "images/hyundai/i20/002.jpg",
+            "images/hyundai/i20/003.jpg",
+            "images/hyundai/i20/004.jpg",
+            "images/hyundai/i20/005.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -643,7 +750,13 @@
           "name": "i30",
           "year": 2026,
           "thumbnail": "images/hyundai/i30/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/i30/001.webp",
+            "images/hyundai/i30/002.webp",
+            "images/hyundai/i30/003.webp",
+            "images/hyundai/i30/004.webp",
+            "images/hyundai/i30/005.webp"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -662,7 +775,12 @@
           "name": "Bayon",
           "year": 2026,
           "thumbnail": "images/hyundai/bayon/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/bayon/001.jpg",
+            "images/hyundai/bayon/002.jpg",
+            "images/hyundai/bayon/003.jpg",
+            "images/hyundai/bayon/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -680,7 +798,12 @@
           "name": "Kona",
           "year": 2026,
           "thumbnail": "images/hyundai/kona/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/kona/001.jpg",
+            "images/hyundai/kona/002.jpg",
+            "images/hyundai/kona/003.jpg",
+            "images/hyundai/kona/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -716,7 +839,12 @@
           "name": "Tucson",
           "year": 2026,
           "thumbnail": "images/hyundai/tucson/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/tucson/001.webp",
+            "images/hyundai/tucson/002.webp",
+            "images/hyundai/tucson/003.webp",
+            "images/hyundai/tucson/004.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -770,7 +898,13 @@
           "name": "Inster",
           "year": 2026,
           "thumbnail": "images/hyundai/inster/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/inster/001.webp",
+            "images/hyundai/inster/002.webp",
+            "images/hyundai/inster/003.webp",
+            "images/hyundai/inster/004.webp",
+            "images/hyundai/inster/005.webp"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -788,7 +922,12 @@
           "name": "IONIQ 5",
           "year": 2026,
           "thumbnail": "images/hyundai/ioniq-5/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/ioniq-5/001.jpg",
+            "images/hyundai/ioniq-5/002.jpg",
+            "images/hyundai/ioniq-5/003.jpg",
+            "images/hyundai/ioniq-5/004.jpg"
+          ],
           "body_types": [
             "crossover"
           ],
@@ -806,7 +945,14 @@
           "name": "IONIQ 6",
           "year": 2026,
           "thumbnail": "images/hyundai/ioniq-6/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/ioniq-6/001.webp",
+            "images/hyundai/ioniq-6/002.webp",
+            "images/hyundai/ioniq-6/003.webp",
+            "images/hyundai/ioniq-6/004.webp",
+            "images/hyundai/ioniq-6/005.webp",
+            "images/hyundai/ioniq-6/006.webp"
+          ],
           "body_types": [
             "sedan",
             "fastback"
@@ -825,7 +971,15 @@
           "name": "IONIQ 9",
           "year": 2026,
           "thumbnail": "images/hyundai/ioniq-9/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/hyundai/ioniq-9/001.webp",
+            "images/hyundai/ioniq-9/002.webp",
+            "images/hyundai/ioniq-9/003.webp",
+            "images/hyundai/ioniq-9/004.webp",
+            "images/hyundai/ioniq-9/005.webp",
+            "images/hyundai/ioniq-9/006.webp",
+            "images/hyundai/ioniq-9/007.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -898,7 +1052,13 @@
           "name": "2008",
           "year": 2026,
           "thumbnail": "images/peugeot/2008/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/peugeot/2008/001.jpg",
+            "images/peugeot/2008/002.jpg",
+            "images/peugeot/2008/003.jpg",
+            "images/peugeot/2008/004.jpg",
+            "images/peugeot/2008/005.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -918,7 +1078,14 @@
           "name": "408",
           "year": 2026,
           "thumbnail": "images/peugeot/408/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/peugeot/408/001.webp",
+            "images/peugeot/408/002.webp",
+            "images/peugeot/408/003.webp",
+            "images/peugeot/408/004.webp",
+            "images/peugeot/408/005.webp",
+            "images/peugeot/408/006.webp"
+          ],
           "body_types": [
             "fastback"
           ],
@@ -936,7 +1103,13 @@
           "name": "3008",
           "year": 2026,
           "thumbnail": "images/peugeot/3008/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/peugeot/3008/001.webp",
+            "images/peugeot/3008/002.webp",
+            "images/peugeot/3008/003.webp",
+            "images/peugeot/3008/004.webp",
+            "images/peugeot/3008/005.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -955,7 +1128,13 @@
           "name": "5008",
           "year": 2026,
           "thumbnail": "images/peugeot/5008/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/peugeot/5008/001.jpg",
+            "images/peugeot/5008/002.jpg",
+            "images/peugeot/5008/003.jpg",
+            "images/peugeot/5008/004.jpg",
+            "images/peugeot/5008/005.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1012,7 +1191,13 @@
           "name": "C3 Aircross",
           "year": 2026,
           "thumbnail": "images/citroen/c3-aircross/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/citroen/c3-aircross/001.webp",
+            "images/citroen/c3-aircross/002.webp",
+            "images/citroen/c3-aircross/003.webp",
+            "images/citroen/c3-aircross/004.webp",
+            "images/citroen/c3-aircross/005.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1031,7 +1216,12 @@
           "name": "C4",
           "year": 2026,
           "thumbnail": "images/citroen/c4/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/citroen/c4/001.jpg",
+            "images/citroen/c4/002.jpg",
+            "images/citroen/c4/003.jpg",
+            "images/citroen/c4/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1050,7 +1240,12 @@
           "name": "C4 X",
           "year": 2026,
           "thumbnail": "images/citroen/c4-x/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/citroen/c4-x/001.jpg",
+            "images/citroen/c4-x/002.jpg",
+            "images/citroen/c4-x/003.jpg",
+            "images/citroen/c4-x/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "fastback"
@@ -1070,7 +1265,13 @@
           "name": "C5 Aircross",
           "year": 2026,
           "thumbnail": "images/citroen/c5-aircross/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/citroen/c5-aircross/001.webp",
+            "images/citroen/c5-aircross/002.webp",
+            "images/citroen/c5-aircross/003.webp",
+            "images/citroen/c5-aircross/004.webp",
+            "images/citroen/c5-aircross/005.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1108,7 +1309,15 @@
           "name": "Fabia",
           "year": 2026,
           "thumbnail": "images/skoda/fabia/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/fabia/001.jpg",
+            "images/skoda/fabia/002.jpg",
+            "images/skoda/fabia/003.jpg",
+            "images/skoda/fabia/004.jpg",
+            "images/skoda/fabia/005.jpg",
+            "images/skoda/fabia/006.jpg",
+            "images/skoda/fabia/007.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1126,7 +1335,12 @@
           "name": "Scala",
           "year": 2026,
           "thumbnail": "images/skoda/scala/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/scala/001.jpg",
+            "images/skoda/scala/002.jpg",
+            "images/skoda/scala/003.jpg",
+            "images/skoda/scala/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1144,7 +1358,12 @@
           "name": "Octavia",
           "year": 2026,
           "thumbnail": "images/skoda/octavia/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/octavia/001.jpg",
+            "images/skoda/octavia/002.jpg",
+            "images/skoda/octavia/003.jpg",
+            "images/skoda/octavia/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "station_wagon"
@@ -1165,7 +1384,12 @@
           "name": "Superb",
           "year": 2026,
           "thumbnail": "images/skoda/superb/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/superb/001.jpg",
+            "images/skoda/superb/002.jpg",
+            "images/skoda/superb/003.jpg",
+            "images/skoda/superb/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "station_wagon"
@@ -1186,7 +1410,12 @@
           "name": "Kamiq",
           "year": 2026,
           "thumbnail": "images/skoda/kamiq/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/kamiq/001.jpg",
+            "images/skoda/kamiq/002.jpg",
+            "images/skoda/kamiq/003.jpg",
+            "images/skoda/kamiq/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1204,7 +1433,16 @@
           "name": "Karoq",
           "year": 2026,
           "thumbnail": "images/skoda/karoq/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/karoq/001.jpg",
+            "images/skoda/karoq/002.jpg",
+            "images/skoda/karoq/003.jpg",
+            "images/skoda/karoq/004.jpg",
+            "images/skoda/karoq/005.jpg",
+            "images/skoda/karoq/006.jpg",
+            "images/skoda/karoq/007.jpg",
+            "images/skoda/karoq/008.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1223,7 +1461,12 @@
           "name": "Kodiaq",
           "year": 2026,
           "thumbnail": "images/skoda/kodiaq/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/kodiaq/001.jpg",
+            "images/skoda/kodiaq/002.jpg",
+            "images/skoda/kodiaq/003.jpg",
+            "images/skoda/kodiaq/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1243,7 +1486,14 @@
           "name": "Elroq",
           "year": 2026,
           "thumbnail": "images/skoda/elroq/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/elroq/001.webp",
+            "images/skoda/elroq/002.webp",
+            "images/skoda/elroq/003.webp",
+            "images/skoda/elroq/004.webp",
+            "images/skoda/elroq/005.webp",
+            "images/skoda/elroq/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1261,7 +1511,14 @@
           "name": "Enyaq",
           "year": 2026,
           "thumbnail": "images/skoda/enyaq/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/skoda/enyaq/001.webp",
+            "images/skoda/enyaq/002.webp",
+            "images/skoda/enyaq/003.webp",
+            "images/skoda/enyaq/004.webp",
+            "images/skoda/enyaq/005.webp",
+            "images/skoda/enyaq/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1298,7 +1555,12 @@
           "name": "Picanto",
           "year": 2026,
           "thumbnail": "images/kia/picanto/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/picanto/001.jpg",
+            "images/kia/picanto/002.jpg",
+            "images/kia/picanto/003.jpg",
+            "images/kia/picanto/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1316,7 +1578,14 @@
           "name": "Stonic",
           "year": 2026,
           "thumbnail": "images/kia/stonic/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/stonic/001.webp",
+            "images/kia/stonic/002.webp",
+            "images/kia/stonic/003.webp",
+            "images/kia/stonic/004.webp",
+            "images/kia/stonic/005.webp",
+            "images/kia/stonic/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1334,7 +1603,12 @@
           "name": "Ceed HB",
           "year": 2026,
           "thumbnail": "images/kia/ceed/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/ceed/001.jpg",
+            "images/kia/ceed/002.jpg",
+            "images/kia/ceed/003.jpg",
+            "images/kia/ceed/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1352,7 +1626,12 @@
           "name": "XCeed",
           "year": 2026,
           "thumbnail": "images/kia/xceed/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/xceed/001.jpg",
+            "images/kia/xceed/002.jpg",
+            "images/kia/xceed/003.jpg",
+            "images/kia/xceed/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1370,7 +1649,15 @@
           "name": "Sportage",
           "year": 2026,
           "thumbnail": "images/kia/sportage/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/sportage/001.webp",
+            "images/kia/sportage/002.webp",
+            "images/kia/sportage/003.webp",
+            "images/kia/sportage/004.webp",
+            "images/kia/sportage/005.webp",
+            "images/kia/sportage/006.webp",
+            "images/kia/sportage/007.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1389,7 +1676,12 @@
           "name": "Sorento",
           "year": 2026,
           "thumbnail": "images/kia/sorento/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/sorento/001.jpg",
+            "images/kia/sorento/002.jpg",
+            "images/kia/sorento/003.jpg",
+            "images/kia/sorento/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1425,7 +1717,12 @@
           "name": "EV3",
           "year": 2026,
           "thumbnail": "images/kia/ev3/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/ev3/001.jpg",
+            "images/kia/ev3/002.jpg",
+            "images/kia/ev3/003.jpg",
+            "images/kia/ev3/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1443,7 +1740,12 @@
           "name": "EV6",
           "year": 2026,
           "thumbnail": "images/kia/ev6/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/ev6/001.jpg",
+            "images/kia/ev6/002.jpg",
+            "images/kia/ev6/003.jpg",
+            "images/kia/ev6/004.jpg"
+          ],
           "body_types": [
             "crossover"
           ],
@@ -1461,7 +1763,12 @@
           "name": "EV9",
           "year": 2026,
           "thumbnail": "images/kia/ev9/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/kia/ev9/001.jpg",
+            "images/kia/ev9/002.jpg",
+            "images/kia/ev9/003.jpg",
+            "images/kia/ev9/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1498,7 +1805,12 @@
           "name": "Juke",
           "year": 2026,
           "thumbnail": "images/nissan/juke/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/nissan/juke/001.jpg",
+            "images/nissan/juke/002.jpg",
+            "images/nissan/juke/003.jpg",
+            "images/nissan/juke/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1516,7 +1828,12 @@
           "name": "Qashqai",
           "year": 2026,
           "thumbnail": "images/nissan/qashqai/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/nissan/qashqai/001.jpg",
+            "images/nissan/qashqai/002.jpg",
+            "images/nissan/qashqai/003.jpg",
+            "images/nissan/qashqai/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1535,7 +1852,14 @@
           "name": "X-Trail",
           "year": 2026,
           "thumbnail": "images/nissan/x-trail/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/nissan/x-trail/001.jpg",
+            "images/nissan/x-trail/002.jpg",
+            "images/nissan/x-trail/003.jpg",
+            "images/nissan/x-trail/004.jpg",
+            "images/nissan/x-trail/005.jpg",
+            "images/nissan/x-trail/006.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1572,7 +1896,15 @@
           "name": "Jazz e:HEV",
           "year": 2026,
           "thumbnail": "images/honda/jazz/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/honda/jazz/001.jpg",
+            "images/honda/jazz/002.jpg",
+            "images/honda/jazz/003.jpg",
+            "images/honda/jazz/004.jpg",
+            "images/honda/jazz/005.jpg",
+            "images/honda/jazz/006.jpg",
+            "images/honda/jazz/007.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1590,7 +1922,12 @@
           "name": "Civic",
           "year": 2026,
           "thumbnail": "images/honda/civic/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/honda/civic/001.webp",
+            "images/honda/civic/002.webp",
+            "images/honda/civic/003.webp",
+            "images/honda/civic/004.webp"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -1608,7 +1945,14 @@
           "name": "HR-V e:HEV",
           "year": 2026,
           "thumbnail": "images/honda/hr-v/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/honda/hr-v/001.jpg",
+            "images/honda/hr-v/002.jpg",
+            "images/honda/hr-v/003.jpg",
+            "images/honda/hr-v/004.jpg",
+            "images/honda/hr-v/005.jpg",
+            "images/honda/hr-v/006.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1626,7 +1970,12 @@
           "name": "ZR-V e:HEV",
           "year": 2026,
           "thumbnail": "images/honda/zr-v/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/honda/zr-v/001.jpg",
+            "images/honda/zr-v/002.jpg",
+            "images/honda/zr-v/003.jpg",
+            "images/honda/zr-v/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1644,7 +1993,12 @@
           "name": "CR-V e:HEV",
           "year": 2026,
           "thumbnail": "images/honda/cr-v/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/honda/cr-v/001.jpg",
+            "images/honda/cr-v/002.jpg",
+            "images/honda/cr-v/003.jpg",
+            "images/honda/cr-v/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1662,7 +2016,14 @@
           "name": "Prelude e:HEV",
           "year": 2026,
           "thumbnail": "images/honda/prelude/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/honda/prelude/001.webp",
+            "images/honda/prelude/002.webp",
+            "images/honda/prelude/003.webp",
+            "images/honda/prelude/004.webp",
+            "images/honda/prelude/005.webp",
+            "images/honda/prelude/006.webp"
+          ],
           "body_types": [
             "coupe"
           ],
@@ -1717,7 +2078,14 @@
           "name": "T10X",
           "year": 2026,
           "thumbnail": "images/togg/t10x/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/togg/t10x/001.webp",
+            "images/togg/t10x/002.webp",
+            "images/togg/t10x/003.webp",
+            "images/togg/t10x/004.webp",
+            "images/togg/t10x/005.webp",
+            "images/togg/t10x/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1735,7 +2103,13 @@
           "name": "T10F",
           "year": 2026,
           "thumbnail": "images/togg/t10f/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/togg/t10f/001.webp",
+            "images/togg/t10f/002.webp",
+            "images/togg/t10f/003.webp",
+            "images/togg/t10f/004.webp",
+            "images/togg/t10f/005.webp"
+          ],
           "body_types": [
             "fastback",
             "sedan"
@@ -1773,7 +2147,13 @@
           "name": "ATTO 2",
           "year": 2026,
           "thumbnail": "images/byd/atto-2/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/atto-2/001.webp",
+            "images/byd/atto-2/002.webp",
+            "images/byd/atto-2/003.webp",
+            "images/byd/atto-2/004.webp",
+            "images/byd/atto-2/005.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1791,7 +2171,12 @@
           "name": "DOLPHIN",
           "year": 2026,
           "thumbnail": "images/byd/dolphin/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/dolphin/001.jpg",
+            "images/byd/dolphin/002.jpg",
+            "images/byd/dolphin/003.jpg",
+            "images/byd/dolphin/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -1809,7 +2194,12 @@
           "name": "ATTO 3",
           "year": 2026,
           "thumbnail": "images/byd/atto-3/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/atto-3/001.jpg",
+            "images/byd/atto-3/002.jpg",
+            "images/byd/atto-3/003.jpg",
+            "images/byd/atto-3/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1827,7 +2217,12 @@
           "name": "SEAL U",
           "year": 2026,
           "thumbnail": "images/byd/seal-u/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/seal-u/001.jpg",
+            "images/byd/seal-u/002.jpg",
+            "images/byd/seal-u/003.jpg",
+            "images/byd/seal-u/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1846,7 +2241,12 @@
           "name": "SEAL",
           "year": 2026,
           "thumbnail": "images/byd/seal/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/seal/001.jpg",
+            "images/byd/seal/002.jpg",
+            "images/byd/seal/003.jpg",
+            "images/byd/seal/004.jpg"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -1864,7 +2264,17 @@
           "name": "SEALION 7",
           "year": 2026,
           "thumbnail": "images/byd/sealion-7/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/sealion-7/001.webp",
+            "images/byd/sealion-7/002.webp",
+            "images/byd/sealion-7/003.webp",
+            "images/byd/sealion-7/004.webp",
+            "images/byd/sealion-7/005.webp",
+            "images/byd/sealion-7/006.webp",
+            "images/byd/sealion-7/007.webp",
+            "images/byd/sealion-7/008.webp",
+            "images/byd/sealion-7/009.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1882,7 +2292,12 @@
           "name": "HAN",
           "year": 2026,
           "thumbnail": "images/byd/han/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/han/001.jpg",
+            "images/byd/han/002.jpg",
+            "images/byd/han/003.jpg",
+            "images/byd/han/004.jpg"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -1900,7 +2315,12 @@
           "name": "TANG",
           "year": 2026,
           "thumbnail": "images/byd/tang/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/byd/tang/001.webp",
+            "images/byd/tang/002.webp",
+            "images/byd/tang/003.webp",
+            "images/byd/tang/004.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1937,7 +2357,15 @@
           "name": "EX30",
           "year": 2026,
           "thumbnail": "images/volvo/ex30/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/volvo/ex30/001.webp",
+            "images/volvo/ex30/002.webp",
+            "images/volvo/ex30/003.webp",
+            "images/volvo/ex30/004.webp",
+            "images/volvo/ex30/005.webp",
+            "images/volvo/ex30/006.webp",
+            "images/volvo/ex30/007.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -1991,7 +2419,14 @@
           "name": "XC60",
           "year": 2026,
           "thumbnail": "images/volvo/xc60/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/volvo/xc60/001.webp",
+            "images/volvo/xc60/002.webp",
+            "images/volvo/xc60/003.webp",
+            "images/volvo/xc60/004.webp",
+            "images/volvo/xc60/005.webp",
+            "images/volvo/xc60/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2010,7 +2445,14 @@
           "name": "XC90",
           "year": 2026,
           "thumbnail": "images/volvo/xc90/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/volvo/xc90/001.webp",
+            "images/volvo/xc90/002.webp",
+            "images/volvo/xc90/003.webp",
+            "images/volvo/xc90/004.webp",
+            "images/volvo/xc90/005.webp",
+            "images/volvo/xc90/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2067,7 +2509,12 @@
           "name": "A3",
           "year": 2026,
           "thumbnail": "images/audi/a3/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/a3/001.jpg",
+            "images/audi/a3/002.jpg",
+            "images/audi/a3/003.jpg",
+            "images/audi/a3/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "hatchback_5"
@@ -2087,7 +2534,12 @@
           "name": "A5",
           "year": 2026,
           "thumbnail": "images/audi/a5/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/a5/001.jpg",
+            "images/audi/a5/002.jpg",
+            "images/audi/a5/003.jpg",
+            "images/audi/a5/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "station_wagon"
@@ -2108,7 +2560,12 @@
           "name": "A6",
           "year": 2026,
           "thumbnail": "images/audi/a6/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/a6/001.jpg",
+            "images/audi/a6/002.jpg",
+            "images/audi/a6/003.jpg",
+            "images/audi/a6/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "station_wagon"
@@ -2148,7 +2605,13 @@
           "name": "Q2",
           "year": 2026,
           "thumbnail": "images/audi/q2/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/q2/001.jpg",
+            "images/audi/q2/002.jpg",
+            "images/audi/q2/003.jpg",
+            "images/audi/q2/004.jpg",
+            "images/audi/q2/005.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2167,7 +2630,14 @@
           "name": "Q3",
           "year": 2026,
           "thumbnail": "images/audi/q3/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/q3/001.webp",
+            "images/audi/q3/002.webp",
+            "images/audi/q3/003.webp",
+            "images/audi/q3/004.webp",
+            "images/audi/q3/005.webp",
+            "images/audi/q3/006.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2204,7 +2674,12 @@
           "name": "Q5",
           "year": 2026,
           "thumbnail": "images/audi/q5/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/q5/001.jpg",
+            "images/audi/q5/002.jpg",
+            "images/audi/q5/003.jpg",
+            "images/audi/q5/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2242,7 +2717,12 @@
           "name": "Q7",
           "year": 2026,
           "thumbnail": "images/audi/q7/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/q7/001.jpg",
+            "images/audi/q7/002.jpg",
+            "images/audi/q7/003.jpg",
+            "images/audi/q7/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2261,7 +2741,12 @@
           "name": "Q8",
           "year": 2026,
           "thumbnail": "images/audi/q8/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/audi/q8/001.jpg",
+            "images/audi/q8/002.jpg",
+            "images/audi/q8/003.jpg",
+            "images/audi/q8/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2299,7 +2784,12 @@
           "name": "1 Serisi",
           "year": 2026,
           "thumbnail": "images/bmw/1-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/1-serisi/001.jpg",
+            "images/bmw/1-serisi/002.jpg",
+            "images/bmw/1-serisi/003.jpg",
+            "images/bmw/1-serisi/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -2318,7 +2808,12 @@
           "name": "2 Serisi",
           "year": 2026,
           "thumbnail": "images/bmw/2-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/2-serisi/001.jpg",
+            "images/bmw/2-serisi/002.jpg",
+            "images/bmw/2-serisi/003.jpg",
+            "images/bmw/2-serisi/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "coupe"
@@ -2337,7 +2832,13 @@
           "name": "3 Serisi",
           "year": 2026,
           "thumbnail": "images/bmw/3-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/3-serisi/001.jpg",
+            "images/bmw/3-serisi/002.jpg",
+            "images/bmw/3-serisi/003.jpg",
+            "images/bmw/3-serisi/004.jpg",
+            "images/bmw/3-serisi/005.jpg"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -2357,7 +2858,12 @@
           "name": "4 Serisi",
           "year": 2026,
           "thumbnail": "images/bmw/4-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/4-serisi/001.jpg",
+            "images/bmw/4-serisi/002.jpg",
+            "images/bmw/4-serisi/003.jpg",
+            "images/bmw/4-serisi/004.jpg"
+          ],
           "body_types": [
             "coupe",
             "cabrio"
@@ -2376,7 +2882,12 @@
           "name": "5 Serisi",
           "year": 2026,
           "thumbnail": "images/bmw/5-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/5-serisi/001.jpg",
+            "images/bmw/5-serisi/002.jpg",
+            "images/bmw/5-serisi/003.jpg",
+            "images/bmw/5-serisi/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "station_wagon"
@@ -2397,7 +2908,16 @@
           "name": "7 Serisi",
           "year": 2026,
           "thumbnail": "images/bmw/7-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/7-serisi/001.webp",
+            "images/bmw/7-serisi/002.webp",
+            "images/bmw/7-serisi/003.webp",
+            "images/bmw/7-serisi/004.webp",
+            "images/bmw/7-serisi/005.webp",
+            "images/bmw/7-serisi/006.webp",
+            "images/bmw/7-serisi/007.webp",
+            "images/bmw/7-serisi/008.webp"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -2417,7 +2937,13 @@
           "name": "X1",
           "year": 2026,
           "thumbnail": "images/bmw/x1/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/x1/001.jpg",
+            "images/bmw/x1/002.jpg",
+            "images/bmw/x1/003.jpg",
+            "images/bmw/x1/004.jpg",
+            "images/bmw/x1/005.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2437,7 +2963,12 @@
           "name": "X2",
           "year": 2026,
           "thumbnail": "images/bmw/x2/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/x2/001.jpg",
+            "images/bmw/x2/002.jpg",
+            "images/bmw/x2/003.jpg",
+            "images/bmw/x2/004.jpg"
+          ],
           "body_types": [
             "suv",
             "coupe"
@@ -2457,7 +2988,15 @@
           "name": "X3",
           "year": 2026,
           "thumbnail": "images/bmw/x3/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/x3/001.webp",
+            "images/bmw/x3/002.webp",
+            "images/bmw/x3/003.webp",
+            "images/bmw/x3/004.webp",
+            "images/bmw/x3/005.webp",
+            "images/bmw/x3/006.webp",
+            "images/bmw/x3/007.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2477,7 +3016,16 @@
           "name": "X5",
           "year": 2026,
           "thumbnail": "images/bmw/x5/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/x5/001.webp",
+            "images/bmw/x5/002.webp",
+            "images/bmw/x5/003.webp",
+            "images/bmw/x5/004.webp",
+            "images/bmw/x5/005.webp",
+            "images/bmw/x5/006.webp",
+            "images/bmw/x5/007.webp",
+            "images/bmw/x5/008.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2497,7 +3045,16 @@
           "name": "iX",
           "year": 2026,
           "thumbnail": "images/bmw/ix/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/bmw/ix/001.webp",
+            "images/bmw/ix/002.webp",
+            "images/bmw/ix/003.webp",
+            "images/bmw/ix/004.webp",
+            "images/bmw/ix/005.webp",
+            "images/bmw/ix/006.webp",
+            "images/bmw/ix/007.webp",
+            "images/bmw/ix/008.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2534,7 +3091,12 @@
           "name": "A-Serisi",
           "year": 2026,
           "thumbnail": "images/mercedes/a-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/a-serisi/001.jpg",
+            "images/mercedes/a-serisi/002.jpg",
+            "images/mercedes/a-serisi/003.jpg",
+            "images/mercedes/a-serisi/004.jpg"
+          ],
           "body_types": [
             "hatchback_5"
           ],
@@ -2552,7 +3114,12 @@
           "name": "C-Serisi",
           "year": 2026,
           "thumbnail": "images/mercedes/c-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/c-serisi/001.jpg",
+            "images/mercedes/c-serisi/002.jpg",
+            "images/mercedes/c-serisi/003.jpg",
+            "images/mercedes/c-serisi/004.jpg"
+          ],
           "body_types": [
             "sedan",
             "station_wagon"
@@ -2573,7 +3140,12 @@
           "name": "E-Serisi",
           "year": 2026,
           "thumbnail": "images/mercedes/e-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/e-serisi/001.jpg",
+            "images/mercedes/e-serisi/002.jpg",
+            "images/mercedes/e-serisi/003.jpg",
+            "images/mercedes/e-serisi/004.jpg"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -2593,7 +3165,12 @@
           "name": "S-Serisi",
           "year": 2026,
           "thumbnail": "images/mercedes/s-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/s-serisi/001.jpg",
+            "images/mercedes/s-serisi/002.jpg",
+            "images/mercedes/s-serisi/003.jpg",
+            "images/mercedes/s-serisi/004.jpg"
+          ],
           "body_types": [
             "sedan"
           ],
@@ -2650,7 +3227,19 @@
           "name": "GLB",
           "year": 2026,
           "thumbnail": "images/mercedes/glb/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/glb/001.webp",
+            "images/mercedes/glb/002.webp",
+            "images/mercedes/glb/003.webp",
+            "images/mercedes/glb/004.webp",
+            "images/mercedes/glb/005.webp",
+            "images/mercedes/glb/006.webp",
+            "images/mercedes/glb/007.webp",
+            "images/mercedes/glb/008.webp",
+            "images/mercedes/glb/009.webp",
+            "images/mercedes/glb/010.webp",
+            "images/mercedes/glb/011.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2669,7 +3258,12 @@
           "name": "GLC",
           "year": 2026,
           "thumbnail": "images/mercedes/glc/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/glc/001.jpg",
+            "images/mercedes/glc/002.jpg",
+            "images/mercedes/glc/003.jpg",
+            "images/mercedes/glc/004.jpg"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2708,7 +3302,17 @@
           "name": "G-Serisi",
           "year": 2026,
           "thumbnail": "images/mercedes/g-serisi/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/g-serisi/001.webp",
+            "images/mercedes/g-serisi/002.webp",
+            "images/mercedes/g-serisi/003.webp",
+            "images/mercedes/g-serisi/004.webp",
+            "images/mercedes/g-serisi/005.webp",
+            "images/mercedes/g-serisi/006.webp",
+            "images/mercedes/g-serisi/007.webp",
+            "images/mercedes/g-serisi/008.webp",
+            "images/mercedes/g-serisi/009.webp"
+          ],
           "body_types": [
             "suv"
           ],
@@ -2727,7 +3331,12 @@
           "name": "EQE",
           "year": 2026,
           "thumbnail": "images/mercedes/eqe/thumbnail.jpg",
-          "large_images": [],
+          "large_images": [
+            "images/mercedes/eqe/001.jpg",
+            "images/mercedes/eqe/002.jpg",
+            "images/mercedes/eqe/003.jpg",
+            "images/mercedes/eqe/004.jpg"
+          ],
           "body_types": [
             "sedan"
           ],
