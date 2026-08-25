@@ -1473,6 +1473,20 @@
         const logoUrl = brand.logo ? getImgUrl(brand.logo) : '';
         const singleClass = activeFilter ? ' single-brand' : '';
 
+        // Akıllı satır hizalama:
+        // Bu marka/model grubunda bir satır en az bir kartta doluysa tüm kartlarda
+        // o satır için yer korunur. Hiçbir kartta dolu değilse satır tamamen kaldırılır.
+        const showYearRow = models.some(car => car.show_year && car.year !== undefined && car.year !== null && car.year !== '');
+        const showDescRow = models.some(car => car.show_description && String(car.card_description || '').trim());
+        const showPriceRow = models.some(car => !!getModelStartingPrice(car));
+        const modelInfoRows = [
+          '40px',
+          ...(showYearRow ? ['18px'] : []),
+          ...(showDescRow ? ['42px'] : []),
+          ...(showPriceRow ? ['50px'] : []),
+          '34px'
+        ].join(' ');
+
         html += `<section class="brand-section${singleClass}">
           <div class="brand-header">
             <div class="brand-logo">${
@@ -1528,25 +1542,29 @@
 
               <div class="placeholder-img" style="display:${thumb ? 'none' : 'flex'};">🚗</div>
 
-              <div class="model-info">
+              <div class="model-info" style="grid-template-rows:${modelInfoRows};">
                 <div class="model-name">${escapeHtml(car.name)}</div>
-                ${car.show_year
-                  ? `<div class="model-year">${escapeHtml(car.year)}</div>`
-                  : `<div class="model-year model-slot-empty" aria-hidden="true">—</div>`}
-                ${
-                  car.show_description && car.card_description
-                    ? `<div class="model-desc">${escapeHtml(car.card_description)}</div>`
-                    : `<div class="model-desc model-slot-empty" aria-hidden="true">—</div>`
-                }
 
-                ${
-                  getModelStartingPrice(car)
-                    ? `<div class="model-starting-price">
-                        ${escapeHtml(formatTry(getModelStartingPrice(car)))}
-                        <small>den başlayan fiyatlarla</small>
-                      </div>`
-                    : `<div class="model-starting-price model-slot-empty" aria-hidden="true">—<small>—</small></div>`
-                }
+                ${showYearRow
+                  ? (car.show_year && car.year !== undefined && car.year !== null && car.year !== ''
+                      ? `<div class="model-year">${escapeHtml(car.year)}</div>`
+                      : `<div class="model-year model-slot-empty" aria-hidden="true">—</div>`)
+                  : ''}
+
+                ${showDescRow
+                  ? (car.show_description && String(car.card_description || '').trim()
+                      ? `<div class="model-desc">${escapeHtml(car.card_description)}</div>`
+                      : `<div class="model-desc model-slot-empty" aria-hidden="true">—</div>`)
+                  : ''}
+
+                ${showPriceRow
+                  ? (getModelStartingPrice(car)
+                      ? `<div class="model-starting-price">
+                          ${escapeHtml(formatTry(getModelStartingPrice(car)))}
+                          <small>den başlayan fiyatlarla</small>
+                        </div>`
+                      : `<div class="model-starting-price model-slot-empty" aria-hidden="true">—<small>—</small></div>`)
+                  : ''}
 
                 <button
                   class="compare-add-btn${selected ? ' selected' : ''}"
