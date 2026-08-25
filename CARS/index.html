@@ -1421,10 +1421,17 @@
   }
 
   function getModelStartingPrice(model) {
-    const versions = Array.isArray(model?.versions)
-      ? model.versions
-      : [];
+    // GUI'deki görünürlük ayarı önceliklidir.
+    if (model?.show_starting_price === false) return null;
 
+    // GUI'de elle girilmiş kart fiyatı varsa onu aynen kullan.
+    const manualText = String(model?.starting_price_text || '').trim();
+    if (manualText) {
+      return { text: manualText, numeric: null, manual: true };
+    }
+
+    // Manuel değer yoksa 2026 versiyonlarındaki en düşük geçerli fiyatı hesapla.
+    const versions = Array.isArray(model?.versions) ? model.versions : [];
     const prices = versions
       .filter(v => Number(v?.year || model?.year || 0) === 2026)
       .map(v => Number(v?.price?.numeric))
@@ -1432,7 +1439,8 @@
 
     if (!prices.length) return null;
 
-    return Math.min(...prices);
+    const numeric = Math.min(...prices);
+    return { text: formatTry(numeric), numeric, manual: false };
   }
 
   function formatTry(value) {
@@ -1594,12 +1602,15 @@
                   : ''}
 
                 ${showPriceRow
-                  ? (getModelStartingPrice(car)
-                      ? `<div class="model-starting-price">
-                          ${escapeHtml(formatTry(getModelStartingPrice(car)))}
-                          <small>den başlayan fiyatlarla</small>
-                        </div>`
-                      : `<div class="model-starting-price model-slot-empty" aria-hidden="true">—<small>—</small></div>`)
+                  ? (() => {
+                      const priceInfo = getModelStartingPrice(car);
+                      return priceInfo
+                        ? `<div class="model-starting-price">
+                            ${escapeHtml(priceInfo.text)}
+                            <small>den başlayan fiyatlarla</small>
+                          </div>`
+                        : `<div class="model-starting-price model-slot-empty" aria-hidden="true">—<small>—</small></div>`;
+                    })()
                   : ''}
 
                 <button
