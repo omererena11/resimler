@@ -591,6 +591,26 @@
     cursor: pointer;
   }
 
+  /* Android WebView: versiyon seçim ekranını ayrı ve stabil bir dokunma katmanı yap. */
+  #version-modal {
+    overscroll-behavior: contain;
+  }
+
+  #version-modal .app-modal-panel {
+    touch-action: pan-y;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  #version-options {
+    touch-action: pan-y;
+    overscroll-behavior: contain;
+  }
+
   .version-option {
     width: 100%;
     text-align: left;
@@ -600,6 +620,22 @@
     padding: 12px;
     margin-bottom: 8px;
     cursor: pointer;
+    touch-action: manipulation;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 1;
+  }
+
+  .version-option:active {
+    transform: scale(.995);
+  }
+
+  /* Versiyon modalı açıkken alttaki sabit sepet compositor/touch katmanına karışmasın. */
+  body.version-modal-open #compare-tray {
+    pointer-events: none !important;
   }
 
   .version-option strong {
@@ -1649,37 +1685,126 @@
     openVersionModal(brand, model);
   }
 
+  // =========================================================
+  // WEBVIEW-STABİL VERSİYON SEÇİM MODALI
+  // Butonlara her açılışta ayrı listener bağlamıyoruz. Modal seviyesinde
+  // event delegation + pointer/touch fallback kullanıyoruz.
+  // =========================================================
+  let versionModalSession = 0;
+  let versionSelectBusy = false;
+  let lastVersionActivation = 0;
+  let versionTouchStart = null;
+
+  function recoverVersionModalState() {
+    const modal = $('#version-modal');
+    const panel = modal?.querySelector('.app-modal-panel');
+    const box = $('#version-options');
+
+    if (!modal?.classList.contains('active')) return;
+
+    modal.style.pointerEvents = 'auto';
+    if (panel) {
+      panel.style.pointerEvents = 'auto';
+      panel.style.transform = 'translateZ(0)';
+      panel.style.webkitTransform = 'translateZ(0)';
+    }
+    if (box) box.style.pointerEvents = 'auto';
+
+    modal.querySelectorAll('.version-option').forEach(btn => {
+      btn.style.pointerEvents = 'auto';
+      btn.disabled = false;
+    });
+  }
+
   function openVersionModal(brand, model) {
+    const modal = $('#version-modal');
+    const box = $('#version-options');
+    if (!modal || !box) return;
+
+    // Önce eski/yarım kalmış modal state'ini temizle.
+    versionModalSession += 1;
+    versionSelectBusy = false;
+    lastVersionActivation = 0;
+    versionTouchStart = null;
+    modal.classList.remove('active');
+    modal.style.pointerEvents = 'none';
+    box.replaceChildren();
+
+    pendingCompareModel = { brand, model };
     $('#version-modal-title').textContent =
       `${brand.name} ${model.name} · Versiyon seç`;
 
-    const box = $('#version-options');
-    box.innerHTML = '';
-
-    (model.versions || []).forEach(version => {
+    const fragment = document.createDocumentFragment();
+    (model.versions || []).forEach((version, index) => {
       const price = version.price?.raw || 'Fiyat bilgisi yok';
-
       const button = document.createElement('button');
+      button.type = 'button';
       button.className = 'version-option';
+      button.dataset.versionIndex = String(index);
       button.innerHTML = `
         <strong>${escapeHtml(version.name || version.slug || 'Versiyon')}</strong>
         <small>${escapeHtml(version.year || model.year || '')} · ${escapeHtml(price)}</small>
       `;
-
-      button.addEventListener('click', () => {
-        addCompareItem(brand, model, version);
-        closeVersionModal();
-      });
-
-      box.appendChild(button);
+      fragment.appendChild(button);
     });
+    box.appendChild(fragment);
 
-    $('#version-modal').classList.add('active');
+    document.body.classList.add('version-modal-open');
+    modal.classList.add('active');
+    modal.style.pointerEvents = 'auto';
+
+    // WebView compositor'a bir frame verip dokunma katmanını doğrula.
+    requestAnimationFrame(() => {
+      recoverVersionModalState();
+      requestAnimationFrame(recoverVersionModalState);
+    });
   }
 
   function closeVersionModal() {
-    $('#version-modal').classList.remove('active');
+    const modal = $('#version-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      modal.style.pointerEvents = 'none';
+    }
+    document.body.classList.remove('version-modal-open');
     pendingCompareModel = null;
+    versionSelectBusy = false;
+    versionTouchStart = null;
+  }
+
+  function activateVersionOption(target, event) {
+    const modal = $('#version-modal');
+    if (!modal?.classList.contains('active')) return;
+
+    const button = target?.closest?.('.version-option');
+    if (!button || !modal.contains(button)) return;
+
+    const now = Date.now();
+    if (versionSelectBusy || now - lastVersionActivation < 450) return;
+
+    const pending = pendingCompareModel;
+    const index = Number(button.dataset.versionIndex);
+    const version = pending?.model?.versions?.[index];
+    if (!pending?.brand || !pending?.model || !version) {
+      recoverVersionModalState();
+      return;
+    }
+
+    if (event?.cancelable) event.preventDefault();
+    event?.stopPropagation?.();
+
+    lastVersionActivation = now;
+    versionSelectBusy = true;
+
+    try {
+      // Önce modalı kapat: WebView'de aynı frame içinde DOM değişimi + modal
+      // katmanı açık kalması sonucu oluşan touch deadlock'u önler.
+      closeVersionModal();
+      addCompareItem(pending.brand, pending.model, version);
+    } catch (err) {
+      console.error('Versiyon seçimi başarısız:', err);
+      versionSelectBusy = false;
+    }
   }
 
   function addCompareItem(brand, model, version) {
@@ -1952,12 +2077,69 @@
     await exitCompareLandscape();
   }
 
-  $('#version-modal-close').addEventListener('click', closeVersionModal);
+  const versionModalEl = $('#version-modal');
   $('#compare-modal-close').addEventListener('click', closeCompareModal);
 
-  $('#version-modal').addEventListener('click', e => {
-    if (e.target.id === 'version-modal') closeVersionModal();
+  // Normal click: masaüstü ve çoğu WebView için ana yol.
+  versionModalEl.addEventListener('click', e => {
+    if (e.target.closest?.('#version-modal-close')) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeVersionModal();
+      return;
+    }
+    const option = e.target.closest?.('.version-option');
+    if (option) {
+      activateVersionOption(option, e);
+      return;
+    }
+    if (e.target === versionModalEl) closeVersionModal();
+  }, true);
+
+  // Pointer fallback. Scroll hareketi seçim sayılmasın diye başlangıç/bitiş mesafesini kontrol et.
+  versionModalEl.addEventListener('pointerdown', e => {
+    if (!e.target.closest?.('.version-option')) return;
+    versionTouchStart = { x: e.clientX, y: e.clientY, id: e.pointerId };
+  }, true);
+
+  versionModalEl.addEventListener('pointerup', e => {
+    const option = e.target.closest?.('.version-option');
+    if (!option || !versionTouchStart) return;
+    const dx = Math.abs(e.clientX - versionTouchStart.x);
+    const dy = Math.abs(e.clientY - versionTouchStart.y);
+    versionTouchStart = null;
+    if (dx <= 12 && dy <= 12) activateVersionOption(option, e);
+  }, true);
+
+  versionModalEl.addEventListener('pointercancel', () => {
+    versionTouchStart = null;
+  }, true);
+
+  // Eski/uyumsuz Android WebView fallback: touchend koordinatından hedefi yeniden bul.
+  versionModalEl.addEventListener('touchstart', e => {
+    const t = e.touches?.[0];
+    if (!t || !e.target.closest?.('.version-option')) return;
+    versionTouchStart = { x: t.clientX, y: t.clientY, id: 'touch' };
+  }, { capture: true, passive: true });
+
+  versionModalEl.addEventListener('touchend', e => {
+    const t = e.changedTouches?.[0];
+    if (!t || !versionTouchStart) return;
+    const dx = Math.abs(t.clientX - versionTouchStart.x);
+    const dy = Math.abs(t.clientY - versionTouchStart.y);
+    versionTouchStart = null;
+    if (dx > 12 || dy > 12) return;
+    const el = document.elementFromPoint(t.clientX, t.clientY);
+    const option = el?.closest?.('.version-option');
+    if (option && versionModalEl.contains(option)) activateVersionOption(option, e);
+  }, { capture: true, passive: false });
+
+  // Modal açıkken WebView görünürlük/focus değişimlerinde touch state'i kendi kendine toparlasın.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(recoverVersionModalState, 30);
   });
+  window.addEventListener('focus', recoverVersionModalState);
+  window.addEventListener('pageshow', recoverVersionModalState);
 
   $('#compare-modal').addEventListener('click', e => {
     if (e.target.id === 'compare-modal') closeCompareModal();
@@ -2048,7 +2230,11 @@
 
   // Seçim değiştikçe de state'i doğrula.
   setInterval(() => {
-    if (compareSelection.length > 0) recoverCompareTouchState();
+    if ($('#version-modal')?.classList.contains('active')) {
+      recoverVersionModalState();
+    } else if (compareSelection.length > 0) {
+      recoverCompareTouchState();
+    }
   }, 2000);
 
   $('#compare-orientation-btn').addEventListener(
