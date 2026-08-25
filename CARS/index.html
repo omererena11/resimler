@@ -305,9 +305,10 @@
   }
 
   .brand-section.single-brand .model-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: 40px 18px 42px 50px 34px;
+    row-gap: 4px;
+    align-content: center;
     padding: 12px 14px;
   }
 
@@ -342,9 +343,12 @@
     border-radius: 14px;
     box-shadow: 0 8px 28px rgba(0,0,0,.18);
     padding: 10px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* Android WebView: fixed + backdrop-filter bazen dokunma katmanını kilitleyebiliyor. */
     touch-action: manipulation;
+    pointer-events: auto;
+    isolation: isolate;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
   #compare-tray.visible { display: block; }
@@ -442,7 +446,8 @@
     justify-content: center;
   }
 
-  .app-modal.active { display: flex; }
+  .app-modal { pointer-events: none; }
+  .app-modal.active { display: flex; pointer-events: auto; }
 
   .app-modal-panel {
     width: min(100%, 760px);
@@ -704,22 +709,53 @@
 
   .model-info {
     padding: 10px 14px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 40px 18px 42px 50px 34px;
+    row-gap: 4px;
     flex: 1;
+    align-content: stretch;
+  }
+
+  /* Tüm kartlarda aynı veri satırları aynı yükseklikte kalsın. */
+  .model-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    align-self: start;
+  }
+
+  .model-year {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 18px;
+    min-height: 18px;
   }
 
   .model-desc {
-    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 0.78rem;
+    line-height: 1.3;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 42px;
+    max-height: 42px;
   }
 
   .model-starting-price {
-    margin-top: 7px;
-    margin-bottom: 8px;
     font-size: 13px;
     font-weight: 800;
     color: #0F172A;
     line-height: 1.25;
+    min-height: 50px;
+    max-height: 50px;
+    overflow: hidden;
   }
 
   .model-starting-price small {
@@ -730,15 +766,14 @@
     color: #64748B;
   }
 
-  .compare-add-btn {
-    margin-top: auto !important;
+  .model-slot-empty {
+    visibility: hidden;
+    pointer-events: none;
   }
-  .model-name { font-weight: 600; font-size: 0.95rem; }
-  .model-year { color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
-  .model-desc {
-    color: var(--accent); font-size: 0.78rem; line-height: 1.3;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-    overflow: hidden; margin-top: 4px; font-weight: 500;
+
+  .compare-add-btn {
+    margin-top: 0 !important;
+    align-self: stretch;
   }
   .placeholder-img { background: #F0F1F3; display: flex; align-items: center; justify-content: center; height: var(--card-img-h); font-size: 2.5rem; color: #ADB5BD; }
   .empty-state, .loading { text-align: center; padding: 40px; color: #8E98A3; }
@@ -1495,11 +1530,13 @@
 
               <div class="model-info">
                 <div class="model-name">${escapeHtml(car.name)}</div>
-                ${car.show_year ? `<div class="model-year">${escapeHtml(car.year)}</div>` : ''}
+                ${car.show_year
+                  ? `<div class="model-year">${escapeHtml(car.year)}</div>`
+                  : `<div class="model-year model-slot-empty" aria-hidden="true">—</div>`}
                 ${
                   car.show_description && car.card_description
-                    ? `<div class="model-desc">✨ ${escapeHtml(car.card_description)}</div>`
-                    : ''
+                    ? `<div class="model-desc">${escapeHtml(car.card_description)}</div>`
+                    : `<div class="model-desc model-slot-empty" aria-hidden="true">—</div>`
                 }
 
                 ${
@@ -1508,7 +1545,7 @@
                         ${escapeHtml(formatTry(getModelStartingPrice(car)))}
                         <small>den başlayan fiyatlarla</small>
                       </div>`
-                    : ''
+                    : `<div class="model-starting-price model-slot-empty" aria-hidden="true">—<small>—</small></div>`
                 }
 
                 <button
@@ -1913,45 +1950,88 @@
     refreshCompareUI();
   });
 
-  // Android WebView'da sabit alt panelde click olayı zaman zaman yutulabildiği için
-  // pointerup + click fallback kullanıyoruz. Aynı dokunmanın iki kez çalışmasını kilit engeller.
+  // Android WebView için dayanıklı karşılaştırma açma sistemi.
+  // Listener yalnız butona bağlı değil: document capture seviyesinde de yakalanır.
+  // Böylece WebView sabit katmanda hedefi kısa süreli kaybetse bile işlem çalışır.
   const compareStartBtn = $('#compare-start');
   let compareOpening = false;
-  let lastComparePointerUp = 0;
+  let lastCompareActivation = 0;
 
-  async function safeOpenCompare(e) {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
+  function recoverCompareTouchState() {
+    const tray = $('#compare-tray');
+    const modal = $('#compare-modal');
+
+    if (tray) {
+      tray.style.pointerEvents = 'auto';
+      tray.style.transform = 'translateZ(0)';
+      tray.style.webkitTransform = 'translateZ(0)';
     }
 
+    if (compareStartBtn) {
+      compareStartBtn.style.pointerEvents = 'auto';
+      compareStartBtn.disabled = compareSelection.length < 2;
+    }
+
+    // Görünmeyen modallar dokunmayı asla tutmasın.
+    document.querySelectorAll('.app-modal:not(.active)').forEach(el => {
+      el.style.pointerEvents = 'none';
+    });
+
+    if (modal?.classList.contains('active')) {
+      modal.style.pointerEvents = 'auto';
+    }
+  }
+
+  async function safeOpenCompare(e) {
+    const now = Date.now();
+    if (now - lastCompareActivation < 450) return;
     if (compareOpening || compareSelection.length < 2) return;
+
+    if (e?.cancelable) e.preventDefault();
+    if (e) e.stopPropagation();
+
+    lastCompareActivation = now;
     compareOpening = true;
+    recoverCompareTouchState();
 
     try {
       await openCompareModal();
     } catch (err) {
       console.error('Karşılaştırma açılamadı:', err);
+      recoverCompareTouchState();
     } finally {
-      setTimeout(() => { compareOpening = false; }, 300);
+      compareOpening = false;
+      setTimeout(recoverCompareTouchState, 80);
     }
   }
 
-  if (window.PointerEvent) {
-    compareStartBtn.addEventListener('pointerup', e => {
-      lastComparePointerUp = Date.now();
-      safeOpenCompare(e);
-    });
-  }
+  // Capture listener: normal click listener kaybolsa/yutulsa bile üst seviyede yakala.
+  document.addEventListener('click', e => {
+    const target = e.target?.closest?.('#compare-start');
+    if (target) safeOpenCompare(e);
+  }, true);
 
-  compareStartBtn.addEventListener('click', e => {
-    // pointerup sonrası üretilen sentetik click'i ikinci kez çalıştırma.
-    if (window.PointerEvent && Date.now() - lastComparePointerUp < 700) {
-      e.preventDefault();
-      return;
-    }
-    safeOpenCompare(e);
+  // Android WebView fallback: parmak kaldırıldığında koordinattan butonu tekrar doğrula.
+  document.addEventListener('touchend', e => {
+    if (compareSelection.length < 2) return;
+    const touch = e.changedTouches?.[0];
+    if (!touch) return;
+
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (el?.closest?.('#compare-start')) safeOpenCompare(e);
+  }, { capture: true, passive: false });
+
+  // WebView arka plandan/uykudan döndüğünde dokunma katmanını tazele.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(recoverCompareTouchState, 50);
   });
+  window.addEventListener('pageshow', recoverCompareTouchState);
+  window.addEventListener('focus', recoverCompareTouchState);
+
+  // Seçim değiştikçe de state'i doğrula.
+  setInterval(() => {
+    if (compareSelection.length > 0) recoverCompareTouchState();
+  }, 2000);
 
   $('#compare-orientation-btn').addEventListener(
     'click',
