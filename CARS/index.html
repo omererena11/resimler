@@ -1157,9 +1157,144 @@
     $('#brand-search-results').classList.remove('visible');
   }
 
+  function normalizeFilterText(value) {
+    return String(value ?? '')
+      .trim()
+      .toLocaleLowerCase('tr-TR')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ı/g, 'i')
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ş/g, 's')
+      .replace(/ö/g, 'o')
+      .replace(/ç/g, 'c')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function collectFilterValues(car, keys) {
+    const values = [];
+
+    keys.forEach(key => {
+      const value = car?.[key];
+      if (Array.isArray(value)) values.push(...value);
+      else if (value !== undefined && value !== null && value !== '') values.push(value);
+    });
+
+    const versions = Array.isArray(car?.versions) ? car.versions : [];
+    versions.forEach(version => {
+      keys.forEach(key => {
+        const value = version?.[key];
+        if (Array.isArray(value)) values.push(...value);
+        else if (value !== undefined && value !== null && value !== '') values.push(value);
+      });
+    });
+
+    return [...new Set(values.map(normalizeFilterText).filter(Boolean))];
+  }
+
+  function bodyTypeAliases(filterValue) {
+    const aliases = {
+      cabrio: [
+        'cabrio', 'cabriolet', 'convertible', 'ust acilir', 'acilir tavan'
+      ],
+      coupe: [
+        'coupe', 'kupe', '2 kapi coupe', '2 kapili coupe', 'coupe 2 kapi'
+      ],
+      coupe_4: [
+        'coupe 4', 'coupe 4 kapi', '4 kapi coupe', '4 kapili coupe',
+        'four door coupe', '4 door coupe', 'gran coupe', 'sportback'
+      ],
+      hatchback_3: [
+        'hatchback 3', 'hatchback 3 kapi', '3 kapi hatchback',
+        '3 kapili hatchback', '3 door hatchback', 'hatchback 3 door'
+      ],
+      hatchback_5: [
+        'hatchback 5', 'hatchback 5 kapi', '5 kapi hatchback',
+        '5 kapili hatchback', '5 door hatchback', 'hatchback 5 door',
+        'hatchback'
+      ],
+      sedan: [
+        'sedan', 'saloon', '4 kapi sedan', '4 kapili sedan'
+      ],
+      station_wagon: [
+        'station wagon', 'stationwagon', 'wagon', 'estate', 'touring',
+        'sports tourer', 'sport tourer', 'variant', 'avant', 'combi', 'sw'
+      ],
+      mpv: [
+        'mpv', 'minivan', 'multi purpose vehicle', 'monovolume',
+        'compact mpv'
+      ],
+      roadster: [
+        'roadster', '2 kisilik roadster', 'two seater roadster'
+      ],
+      suv: [
+        'suv', 'crossover', 'cuv', 'sport utility vehicle', '4x4 suv',
+        'compact suv', 'mid size suv', 'large suv'
+      ]
+    };
+
+    return (aliases[filterValue] || [filterValue]).map(normalizeFilterText);
+  }
+
+  function fuelTypeAliases(filterValue) {
+    const aliases = {
+      benzin: [
+        'benzin', 'benzinli', 'petrol', 'gasoline'
+      ],
+      dizel: [
+        'dizel', 'diesel', 'motorin'
+      ],
+      hibrit: [
+        'hibrit', 'hybrid', 'mild hybrid', 'mhev', 'full hybrid',
+        'hev', 'plug in hybrid', 'plug-in hybrid', 'phev',
+        'benzin hibrit', 'dizel hibrit'
+      ],
+      elektrik: [
+        'elektrik', 'elektrikli', 'electric', 'bev', 'ev',
+        'battery electric'
+      ],
+      lpg: [
+        'lpg', 'otogaz', 'autogas', 'benzin lpg', 'benzin+lpg'
+      ]
+    };
+
+    return (aliases[filterValue] || [filterValue]).map(normalizeFilterText);
+  }
+
+  function matchesAnyAlias(values, aliases) {
+    return values.some(value =>
+      aliases.some(alias => {
+        if (!alias) return false;
+        if (value === alias) return true;
+        return value.includes(alias) || alias.includes(value);
+      })
+    );
+  }
+
   function matchesFilters(car) {
-    if (filterBodyType !== 'all' && (!car.body_types || !car.body_types.includes(filterBodyType))) return false;
-    if (filterFuelType !== 'all' && (!car.fuel_types || !car.fuel_types.includes(filterFuelType))) return false;
+    if (filterBodyType !== 'all') {
+      const bodyValues = collectFilterValues(car, [
+        'body_types', 'body_type', 'bodyType', 'body', 'kasa_tipi', 'kasaTipi'
+      ]);
+
+      if (!bodyValues.length || !matchesAnyAlias(bodyValues, bodyTypeAliases(filterBodyType))) {
+        return false;
+      }
+    }
+
+    if (filterFuelType !== 'all') {
+      const fuelValues = collectFilterValues(car, [
+        'fuel_types', 'fuel_type', 'fuelType', 'fuel', 'yakit_tipi', 'yakitTipi'
+      ]);
+
+      if (!fuelValues.length || !matchesAnyAlias(fuelValues, fuelTypeAliases(filterFuelType))) {
+        return false;
+      }
+    }
+
     return true;
   }
 
