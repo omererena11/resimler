@@ -199,7 +199,7 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "",
+          "card_description": "a",
           "versions": [
             {
               "name": "1.5 Speciale",
@@ -258,7 +258,7 @@
           "scraped_at": "2026-08-20T15:50:06",
           "card_description_style": {
             "font_size": 12,
-            "color": "#2563EB"
+            "color": "#ffffff"
           },
           "show_starting_price": true,
           "starting_price_text": "2100521"
