@@ -164,7 +164,7 @@
           "source_model_url": "https://www.arabalar.com.tr/alfa-romeo/junior",
           "scraped_at": "2026-08-20T15:50:01",
           "card_description_style": {
-            "font_size": 14,
+            "font_size": 20,
             "color": "#2563EB"
           },
           "show_starting_price": true,
