@@ -8,6 +8,7 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
 <title>Otomobil Uygulaması</title>
+<meta name="cars-index-build" content="2026-08-26-html-all-settings-fix-v2"/>
 <style>
   :root {
     --bg-color: #F5F5F5;
@@ -773,7 +774,7 @@
 
   .model-desc {
     color: var(--accent);
-    font-size: 0.78rem;
+    font-size: 12px; /* veri yoksa fallback */
     line-height: 1.3;
     font-weight: 500;
     display: -webkit-box;
@@ -955,6 +956,7 @@
   const DATA_URL = BASE_PATH + 'data.json?t=' + Date.now();
 
   let appData = null, activeFilter = null;
+  let showCardPrices = true;
   let filterBodyType = 'all';
   let filterFuelType = 'all';
   let imageCacheBuster = '';
@@ -994,6 +996,10 @@
 
   function applySettings(s) {
     if (!s) return;
+
+    // GUI: "Fiyatları Gizle / Göster"
+    showCardPrices = s.show_card_prices !== false;
+
     const r = document.documentElement.style;
     if (s.card) {
       const baseW = (s.card.width || 170) * 1.6;
@@ -1421,7 +1427,8 @@
   }
 
   function getModelStartingPrice(model) {
-    // GUI'deki görünürlük ayarı önceliklidir.
+    // Önce global GUI ayarı, sonra model bazlı görünürlük.
+    if (!showCardPrices) return null;
     if (model?.show_starting_price === false) return null;
 
     // GUI'de elle girilmiş kart fiyatı varsa onu aynen kullan.
@@ -1523,10 +1530,23 @@
         const showYearRow = models.some(car => car.show_year && car.year !== undefined && car.year !== null && car.year !== '');
         const showDescRow = models.some(car => car.show_description && String(car.card_description || '').trim());
         const showPriceRow = models.some(car => !!getModelStartingPrice(car));
+
+        const maxDescFontSize = showDescRow
+          ? Math.max(
+              8,
+              ...models.map(car => {
+                const n = Number(car?.card_description_style?.font_size || 12);
+                return Number.isFinite(n) ? Math.max(8, Math.min(40, n)) : 12;
+              })
+            )
+          : 12;
+
+        const descRowHeight = Math.max(42, Math.ceil(maxDescFontSize * 2.7));
+
         const modelInfoRows = [
           '40px',
           ...(showYearRow ? ['18px'] : []),
-          ...(showDescRow ? ['42px'] : []),
+          ...(showDescRow ? [descRowHeight + 'px'] : []),
           ...(showPriceRow ? ['50px'] : []),
           '34px'
         ].join(' ');
@@ -1551,6 +1571,7 @@
               font-family:${style.font_family || 'Arial'};
               font-size:${style.font_size || 14}px;
               font-weight:${style.font_weight || 'normal'};
+              font-style:${style.font_style || 'normal'};
               color:${style.color || '#1A1C1E'};
               text-align:${style.text_align || 'left'};
             ">
@@ -1597,7 +1618,25 @@
 
                 ${showDescRow
                   ? (car.show_description && String(car.card_description || '').trim()
-                      ? `<div class="model-desc">${escapeHtml(car.card_description)}</div>`
+                      ? (() => {
+                          const rawSize = Number(car?.card_description_style?.font_size || 12);
+                          const fontSize = Number.isFinite(rawSize)
+                            ? Math.max(8, Math.min(40, rawSize))
+                            : 12;
+                          const color = car?.card_description_style?.color || '#2563EB';
+                          const boxHeight = Math.max(42, Math.ceil(fontSize * 2.7));
+
+                          return `<div
+                            class="model-desc"
+                            style="
+                              color:${escapeHtml(color)};
+                              font-size:${fontSize}px;
+                              line-height:1.3;
+                              min-height:${boxHeight}px;
+                              max-height:${boxHeight}px;
+                            "
+                          >${escapeHtml(car.card_description)}</div>`;
+                        })()
                       : `<div class="model-desc model-slot-empty" aria-hidden="true">—</div>`)
                   : ''}
 
@@ -2378,12 +2417,5 @@
   document.addEventListener('DOMContentLoaded', loadData);
 })();
 </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
