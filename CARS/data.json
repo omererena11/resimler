@@ -110,7 +110,7 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "Hibrit (Ibrida) 6,7",
+          "card_description": "Hibrit (Ibrida) 6,8",
           "versions": [
             {
               "name": "1.2 Ibrida Speciale",
@@ -164,7 +164,7 @@
           "source_model_url": "https://www.arabalar.com.tr/alfa-romeo/junior",
           "scraped_at": "2026-08-20T15:50:01",
           "card_description_style": {
-            "font_size": 12,
+            "font_size": 14,
             "color": "#2563EB"
           },
           "show_starting_price": true,
