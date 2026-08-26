@@ -87,7 +87,7 @@
       "models": [
         {
           "id": "junior",
-          "name": "Junior",
+          "name": "Junior 2026",
           "year": 2026,
           "years": [
             2026
@@ -108,7 +108,7 @@
           ],
           "order": 1,
           "show_on_homepage": true,
-          "show_year": true,
+          "show_year": false,
           "show_description": true,
           "card_description": "Mükemmelliği Şekillendiren Yaklaşım",
           "versions": [
@@ -172,7 +172,7 @@
         },
         {
           "id": "tonale",
-          "name": "Tonale",
+          "name": "Tonale 2026",
           "year": 2026,
           "years": [
             2026
@@ -197,7 +197,7 @@
           ],
           "order": 2,
           "show_on_homepage": true,
-          "show_year": true,
+          "show_year": false,
           "show_description": true,
           "card_description": "LEASING İLE TONALE SİZİN OLSUN!",
           "versions": [
