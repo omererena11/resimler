@@ -165,7 +165,7 @@
           "source_model_url": "https://www.arabalar.com.tr/alfa-romeo/junior",
           "scraped_at": "2026-08-20T15:50:01",
           "card_description_style": {
-            "font_size": 20,
+            "font_size": 15,
             "color": "#7ca3f3"
           },
           "show_starting_price": true,
@@ -258,8 +258,8 @@
           "source_model_url": "https://www.arabalar.com.tr/alfa-romeo/tonale",
           "scraped_at": "2026-08-20T15:50:06",
           "card_description_style": {
-            "font_size": 12,
-            "color": "#000000"
+            "font_size": 15,
+            "color": "#7ca3f3"
           },
           "show_starting_price": true,
           "starting_price_text": "2.668.200TL"
@@ -471,8 +471,8 @@
           "source_model_url": "https://www.arabalar.com.tr/audi/a3",
           "scraped_at": "2026-08-20T15:50:31",
           "card_description_style": {
-            "font_size": 16,
-            "color": "#2563EB"
+            "font_size": 15,
+            "color": "#7ca3f3"
           },
           "show_starting_price": true,
           "starting_price_text": "3.614.0000 TL"
@@ -611,8 +611,8 @@
           "source_model_url": "https://www.arabalar.com.tr/audi/a5",
           "scraped_at": "2026-08-20T15:50:36",
           "card_description_style": {
-            "font_size": 12,
-            "color": "#2563EB"
+            "font_size": 15,
+            "color": "#7ca3f3"
           },
           "show_starting_price": true,
           "starting_price_text": "8.399.0000TL"
