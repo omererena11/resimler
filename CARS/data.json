@@ -104,13 +104,14 @@
           ],
           "fuel_types": [
             "benzin",
-            "hibrit"
+            "hibrit",
+            "elektrik"
           ],
           "order": 1,
           "show_on_homepage": true,
           "show_year": false,
           "show_description": false,
-          "card_description": "EREN",
+          "card_description": "Mükemmelliği Şekillendiren Yaklaşım",
           "versions": [
             {
               "name": "1.2 Ibrida Speciale",
@@ -168,7 +169,7 @@
             "color": "#7ca3f3"
           },
           "show_starting_price": true,
-          "starting_price_text": "0000"
+          "starting_price_text": "2.668.200TL"
         },
         {
           "id": "tonale",
@@ -199,7 +200,7 @@
           "show_on_homepage": true,
           "show_year": false,
           "show_description": false,
-          "card_description": "EREN",
+          "card_description": "TASARIMIN TEKNOLOJİYLE BULUŞMASI",
           "versions": [
             {
               "name": "1.5 Speciale",
@@ -261,7 +262,7 @@
             "color": "#ffffff"
           },
           "show_starting_price": true,
-          "starting_price_text": "000"
+          "starting_price_text": "2.668.200TL"
         }
       ]
     },
