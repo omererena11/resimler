@@ -8,7 +8,7 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
 <title>Otomobil Uygulaması</title>
-<meta name="cars-index-build" content="2026-08-26-html-all-settings-fix-v2"/>
+<meta name="cars-index-build" content="2026-08-27-compact-empty-rows-v3"/>
 <style>
   :root {
     --bg-color: #F5F5F5;
@@ -267,7 +267,14 @@
   .brand-highlight.fade-in { animation: fadeIn 2s ease-in-out; }
   @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-  .models-row { display: flex; overflow-x: auto; gap: var(--card-gap); padding: 8px 16px 12px; scrollbar-width: none; }
+  .models-row {
+    display: flex;
+    align-items: flex-start;
+    overflow-x: auto;
+    gap: var(--card-gap);
+    padding: 8px 16px 12px;
+    scrollbar-width: none;
+  }
   .models-row::-webkit-scrollbar { display: none; }
 
   .model-card {
@@ -307,9 +314,10 @@
 
   .brand-section.single-brand .model-info {
     display: grid;
-    grid-template-rows: 40px 18px 42px 50px 34px;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
     row-gap: 4px;
-    align-content: center;
+    align-content: start;
     padding: 12px 14px;
   }
 
@@ -742,15 +750,19 @@
   .model-card {
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+    height: auto;
   }
 
   .model-info {
     padding: 10px 14px;
     display: grid;
-    grid-template-rows: 40px 18px 42px 50px 34px;
+    /* Satırlar JS tarafından yalnızca gerçekten gerekli olan alanlar için oluşturulur. */
+    grid-template-rows: none;
+    grid-auto-rows: auto;
     row-gap: 4px;
-    flex: 1;
-    align-content: stretch;
+    flex: 0 0 auto;
+    align-content: start;
   }
 
   /* Tüm kartlarda aynı veri satırları aynı yükseklikte kalsın. */
@@ -781,8 +793,6 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 42px;
-    max-height: 42px;
   }
 
   .model-starting-price {
@@ -1527,9 +1537,24 @@
         // Akıllı satır hizalama:
         // Bu marka/model grubunda bir satır en az bir kartta doluysa tüm kartlarda
         // o satır için yer korunur. Hiçbir kartta dolu değilse satır tamamen kaldırılır.
-        const showYearRow = models.some(car => car.show_year && car.year !== undefined && car.year !== null && car.year !== '');
-        const showDescRow = models.some(car => car.show_description && String(car.card_description || '').trim());
-        const showPriceRow = models.some(car => !!getModelStartingPrice(car));
+        // Bir opsiyonel satır yalnızca görünür kart grubunda EN AZ BİR kartta
+        // gerçek içerik varsa yer kaplar. Checkbox açık ama metin boşsa içerik sayılmaz.
+        const hasVisibleYear = car =>
+          car.show_year &&
+          car.year !== undefined &&
+          car.year !== null &&
+          String(car.year).trim() !== '';
+
+        const hasVisibleDescription = car =>
+          car.show_description === true &&
+          String(car.card_description ?? '').trim().length > 0;
+
+        const hasVisiblePrice = car =>
+          !!getModelStartingPrice(car);
+
+        const showYearRow = models.some(hasVisibleYear);
+        const showDescRow = models.some(hasVisibleDescription);
+        const showPriceRow = models.some(hasVisiblePrice);
 
         const maxDescFontSize = showDescRow
           ? Math.max(
@@ -1611,13 +1636,13 @@
                 <div class="model-name">${escapeHtml(car.name)}</div>
 
                 ${showYearRow
-                  ? (car.show_year && car.year !== undefined && car.year !== null && car.year !== ''
+                  ? (hasVisibleYear(car)
                       ? `<div class="model-year">${escapeHtml(car.year)}</div>`
                       : `<div class="model-year model-slot-empty" aria-hidden="true">—</div>`)
                   : ''}
 
                 ${showDescRow
-                  ? (car.show_description && String(car.card_description || '').trim()
+                  ? (hasVisibleDescription(car)
                       ? (() => {
                           const rawSize = Number(car?.card_description_style?.font_size || 12);
                           const fontSize = Number.isFinite(rawSize)
@@ -2417,10 +2442,5 @@
   document.addEventListener('DOMContentLoaded', loadData);
 })();
 </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ab73dbea5a2c4459a77698678ec81cb5","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
