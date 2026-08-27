@@ -110,7 +110,7 @@
           "show_on_homepage": true,
           "show_year": false,
           "show_description": false,
-          "card_description": "KART AÇIKLAMA",
+          "card_description": "EREN",
           "versions": [
             {
               "name": "1.2 Ibrida Speciale",
@@ -168,7 +168,7 @@
             "color": "#7ca3f3"
           },
           "show_starting_price": true,
-          "starting_price_text": "2.474.300TL"
+          "starting_price_text": "0000"
         },
         {
           "id": "tonale",
@@ -199,7 +199,7 @@
           "show_on_homepage": true,
           "show_year": false,
           "show_description": false,
-          "card_description": "KART AÇIKLAMA",
+          "card_description": "EREN",
           "versions": [
             {
               "name": "1.5 Speciale",
@@ -261,7 +261,7 @@
             "color": "#ffffff"
           },
           "show_starting_price": true,
-          "starting_price_text": "3.773.800TL"
+          "starting_price_text": "000"
         }
       ]
     },
@@ -308,7 +308,7 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "KART AÇIKLAMA",
+          "card_description": "EREN",
           "versions": [
             {
               "name": "Allstreet 1.5 TFSI",
@@ -474,7 +474,7 @@
             "color": "#2563EB"
           },
           "show_starting_price": true,
-          "starting_price_text": ""
+          "starting_price_text": "3.614.0000 TL"
         },
         {
           "id": "a5",
@@ -500,7 +500,7 @@
           "show_on_homepage": true,
           "show_year": true,
           "show_description": true,
-          "card_description": "KART AÇIKLAMA",
+          "card_description": "EREN",
           "versions": [
             {
               "name": "Avant 2.0 TFSI",
@@ -614,7 +614,7 @@
             "color": "#2563EB"
           },
           "show_starting_price": true,
-          "starting_price_text": ""
+          "starting_price_text": "8.399.0000TL"
         },
         {
           "id": "a6",
