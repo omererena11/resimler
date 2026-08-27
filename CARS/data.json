@@ -471,7 +471,7 @@
           "source_model_url": "https://www.arabalar.com.tr/audi/a3",
           "scraped_at": "2026-08-20T15:50:31",
           "card_description_style": {
-            "font_size": 12,
+            "font_size": 16,
             "color": "#2563EB"
           },
           "show_starting_price": true,
