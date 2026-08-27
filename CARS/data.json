@@ -259,7 +259,7 @@
           "scraped_at": "2026-08-20T15:50:06",
           "card_description_style": {
             "font_size": 12,
-            "color": "#ffffff"
+            "color": "#000000"
           },
           "show_starting_price": true,
           "starting_price_text": "2.668.200TL"
