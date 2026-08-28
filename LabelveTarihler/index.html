@@ -36,26 +36,28 @@
     .ad-wrap { padding:15px 10px; border-bottom:3px solid var(--line); background:#f7f7f8; }
     .ad-slot { display:flex; width:min(300px,100%); height:250px; margin:auto; align-items:center; justify-content:center; border:1px dashed #c6c9cf; background:#fff; color:#9a9faa; font-size:12px; text-align:center; }
     .ad-slot.native-ready { border:0; color:transparent; }
-    .reader { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; background:#101216; color:#fff; }
+    .reader { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; background:radial-gradient(circle at 50% 35%,#2b3039 0,#101216 65%); color:#fff; }
     .reader[hidden] { display:none; }
     .reader-bar { display:grid; grid-template-columns:44px 1fr 44px; align-items:center; min-height:58px; padding-top:env(safe-area-inset-top); background:#181b20; }
+    .story-mode .reader-bar { background:linear-gradient(180deg,#090a0ddd,#181b20); }
     .reader-bar button { height:44px; border:0; background:transparent; color:#fff; font-size:27px; cursor:pointer; }
     .reader-title { overflow:hidden; text-align:center; font-size:16px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
     .reader-pages { display:flex; flex:1; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; touch-action:pan-x; }
     .reader-pages.zoom-lock { overflow-x:hidden; scroll-snap-type:none; touch-action:none; }
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
-    .page img { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 3px 18px #0009; transform-origin:center; will-change:transform; }
-    .story-mode .page.active img { animation:storyZoom 6s ease-out both; }
+    .page img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; box-shadow:0 5px 24px #000b; transform-origin:center; will-change:transform,opacity,filter; }
+    .story-mode .page.active img { animation:storyZoom 5s ease-out both; }
     .story-mode .page.zoomed img { animation:none; }
-    @keyframes storyZoom { from { transform:scale(1); filter:brightness(.92); } 12% { filter:brightness(1); } to { transform:scale(1.035); filter:brightness(1); } }
+    @keyframes storyZoom { from { transform:scale(.985); opacity:.35; filter:brightness(.82) blur(1px); } 10% { opacity:1; filter:brightness(1) blur(0); } to { transform:scale(1.035); opacity:1; filter:brightness(1); } }
     .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
-    .story-progress { display:flex; gap:4px; padding:7px 8px 2px; background:#181b20; }
+    .story-progress { display:flex; gap:3px; padding:8px 8px 5px; background:#181b20; filter:drop-shadow(0 2px 2px #0007); }
     .story-progress[hidden] { display:none; }
-    .story-track { flex:1; height:3px; overflow:hidden; border-radius:5px; background:#ffffff55; }
-    .story-fill { width:0; height:100%; background:#fff; }
+    .story-track { flex:1; height:4px; overflow:hidden; border-radius:8px; background:#ffffff42; box-shadow:inset 0 1px 2px #0005; }
+    .story-fill { width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; }
     .story-track.done .story-fill { width:100%; }
-    .story-track.active .story-fill { animation:storyRun 6s linear forwards; }
+    .story-track.active .story-fill { animation:storyRun 5s linear forwards; }
+    .story-mode.story-paused .story-track.active .story-fill { animation-play-state:paused; }
     @keyframes storyRun { from { width:0; } to { width:100%; } }
     .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
     @keyframes toastLife { 0%,100% { opacity:0; transform:translateY(8px); } 12%,82% { opacity:1; transform:none; } }
@@ -140,6 +142,7 @@
     let storyMarket = null;
     let storyTimer = 0;
     let currentReaderIndex = 0;
+    const STORY_DURATION = 5000;
     const zoomState = { page:null, image:null, scale:1, x:0, y:0, mode:null, startDistance:0, startScale:1, startX:0, startY:0, baseX:0, baseY:0 };
     const SEEN_KEY = 'oeapp_seen_brochures_v2';
     // v2: A101 ve ŞOK için markete özel tarih bölgeleri kullanılır.
@@ -503,14 +506,18 @@
       if (!marketCache[market].length) {
         try { marketCache[market] = await getManifest(MARKET_MANIFESTS[market]); } catch (error) { showError(error); return; }
       }
-      const urls = unseenFor(market);
-      if (!urls.length) { showToast(marketLabel(market) + ' için yeni broşür yok'); return; }
+      const unseen = unseenFor(market);
+      // Yeni içerik varsa Instagram gibi önce yeniler; tümü görüldüyse
+      // marketin mevcut broşürleri yeniden oynatılır.
+      const urls = unseen.length ? unseen : [...marketCache[market]];
+      if (!urls.length) { showToast(marketLabel(market) + ' broşürü bulunamadı'); return; }
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       storyMarket = market;
       activeReaderUrls = urls;
       currentReaderIndex = 0;
       reader.classList.add('story-mode');
+      reader.classList.remove('story-paused');
       reader.hidden = false;
       readerTitle.textContent = marketLabel(market) + ' • Yeni Broşürler';
       storyProgress.hidden = false;
@@ -529,17 +536,24 @@
 
     function activateStory(index) {
       if (!storyMarket || !activeReaderUrls.length) return;
+      reader.classList.remove('story-paused');
       currentReaderIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
       [...readerPages.children].forEach((page,i) => page.classList.toggle('active', i === currentReaderIndex));
       if (typeof readerPages.scrollTo === 'function') readerPages.scrollTo({ left:currentReaderIndex * readerPages.clientWidth, behavior:'smooth' });
       else readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
-      [...storyProgress.children].forEach((track,i) => { track.className = 'story-track' + (i < currentReaderIndex ? ' done' : i === currentReaderIndex ? ' active' : ''); });
+      const tracks = [...storyProgress.children];
+      tracks.forEach((track,i) => { track.className = 'story-track' + (i < currentReaderIndex ? ' done' : ''); });
+      // Aynı hikâyeye yeniden gelindiğinde CSS süresini sıfırdan başlatır.
+      void storyProgress.offsetWidth;
+      tracks[currentReaderIndex]?.classList.add('active');
       markSeen(storyMarket, activeReaderUrls[currentReaderIndex]);
-      readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length;
+      readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length + '  •  5 sn';
+      const nextImage = readerPages.children[currentReaderIndex + 1]?.querySelector('img');
+      if (nextImage) { nextImage.loading = 'eager'; nextImage.decode?.().catch(() => {}); }
       clearTimeout(storyTimer);
       storyTimer = setTimeout(() => {
         if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1); else closeReader();
-      }, 6000);
+      }, STORY_DURATION);
     }
 
     function closeReader() {
@@ -547,6 +561,7 @@
       resetZoom(false);
       reader.hidden = true;
       reader.classList.remove('story-mode');
+      reader.classList.remove('story-paused');
       storyProgress.hidden = true;
       readerPages.replaceChildren();
       activeReaderUrls = [];
@@ -603,6 +618,7 @@
         const image = page?.querySelector('img');
         if (!page || !image) return;
         clearTimeout(storyTimer);
+        if (storyMarket) reader.classList.add('story-paused');
         zoomState.page = page; zoomState.image = image; zoomState.mode = 'pinch';
         zoomState.startDistance = Math.max(1,touchDistance(event.touches[0],event.touches[1]));
         zoomState.startScale = zoomState.scale;
