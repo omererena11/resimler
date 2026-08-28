@@ -712,8 +712,10 @@
       }
       const unseen = unseenFor(market);
       // Yeni içerik varsa Instagram gibi önce yeniler; tümü görüldüyse
-      // marketin mevcut broşürleri yeniden oynatılır.
-      const urls = unseen.length ? unseen : [...marketCache[market]];
+      // marketin mevcut broşürleri yeniden oynatılır. Her iki durumda da
+      // bugün geçerli olanlar önce, gelecek tarihler yakından uzağa sıralanır.
+      const storySource = unseen.length ? unseen : [...marketCache[market]];
+      const urls = sortBrochuresByToday(storySource);
       if (!urls.length) { showToast(marketLabel(market) + ' broşürü bulunamadı'); return; }
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
