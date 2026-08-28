@@ -60,14 +60,15 @@
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
     .page img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; box-shadow:0 5px 24px #000b; transform-origin:center; }
+    .story-mode .reader-pages { background:#101216; }
     .story-mode .page { background:#101216; }
-    .story-mode .page img { opacity:1; filter:none; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
+    .story-mode .page img { opacity:1; filter:none; transform:translateZ(0); -webkit-backface-visibility:hidden; backface-visibility:hidden; }
     .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
     .story-progress { display:flex; gap:3px; padding:8px 8px 5px; background:#181b20; filter:drop-shadow(0 2px 2px #0007); }
     .story-progress[hidden] { display:none; }
     .story-track { flex:1; height:4px; overflow:hidden; border-radius:8px; background:#ffffff42; box-shadow:inset 0 1px 2px #0005; }
-    .story-fill { display:block; width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; will-change:width; }
-    .story-track.done .story-fill { width:100%; }
+    .story-fill { display:block; width:100%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; transform:scaleX(0); transform-origin:left center; will-change:transform; }
+    .story-track.done .story-fill { transform:scaleX(1); }
     .story-track.active .story-fill { box-shadow:0 0 7px #fff; }
     .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
     @keyframes toastLife { 0%,100% { opacity:0; transform:translateY(8px); } 12%,82% { opacity:1; transform:none; } }
@@ -158,6 +159,10 @@
     let storyElapsed = 0;
     let storyLastTick = 0;
     let storyHolding = false;
+    let storyLoadToken = 0;
+    let storyRingDirty = false;
+    let storyScrollTimer = 0;
+    let storyScrollSyncing = false;
     let longPressTimer = 0;
     let longPressActive = false;
     let longPressX = 0;
@@ -178,6 +183,7 @@
     })();
     let ocrBusy = false;
     let ocrWorkerPromise = null;
+    const ocrStartNotBefore = performance.now() + 1800;
 
     function syncMarketNavHeight() {
       const height = Math.ceil(marketNav.getBoundingClientRect().height);
@@ -201,8 +207,7 @@
     function marketLabel(market) { return market === 'BIM' ? 'BİM' : market === 'SOK' ? 'ŞOK' : 'A101'; }
 
     async function getManifest(url) {
-      const separator = url.includes('?') ? '&' : '?';
-      const response = await fetch(url + separator + '_=' + Date.now(), { cache:'no-store' });
+      const response = await fetch(url, { cache:'no-cache' });
       if (!response.ok) throw new Error('Manifest alınamadı: HTTP ' + response.status);
       const text = (await response.text()).replace(/^\uFEFF/, '');
       const urls = text.split(/\r?\n/).map(v => v.trim()).filter(v => /^https?:\/\//i.test(v));
@@ -220,7 +225,8 @@
       const image = document.createElement('img');
       image.src = url;
       image.alt = marketLabel(market) + ' aktüel ürünler broşürü';
-      image.loading = index < 5 ? 'eager' : 'lazy';
+      image.loading = index < 2 ? 'eager' : 'lazy';
+      image.fetchPriority = index < 2 ? 'high' : 'low';
       image.decoding = 'async';
       image.referrerPolicy = 'no-referrer';
       image.addEventListener('error', () => { media.style.background = '#eceef1'; image.alt = 'Görsel yüklenemedi'; });
@@ -296,11 +302,11 @@
 
     function waitForOcrIdle() {
       return new Promise(resolve => {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => resolve(), { timeout:3000 });
-        } else {
-          setTimeout(resolve,750);
-        }
+        const wait = Math.max(0,ocrStartNotBefore - performance.now());
+        setTimeout(() => {
+          if ('requestIdleCallback' in window) window.requestIdleCallback(() => resolve(), { timeout:2500 });
+          else setTimeout(resolve,350);
+        },wait);
       });
     }
 
@@ -813,14 +819,15 @@
       try { return JSON.parse(localStorage.getItem(SEEN_KEY)) || {}; } catch (_) { return {}; }
     }
 
-    function markSeen(market, url) {
+    function markSeen(market, url, deferRing=false) {
       if (!market || !url) return;
       const seen = readSeen();
       const list = new Set(Array.isArray(seen[market]) ? seen[market] : []);
       list.add(url);
       seen[market] = [...list].slice(-400);
       try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch (_) {}
-      updateStoryRing(market);
+      if (deferRing) storyRingDirty = true;
+      else updateStoryRing(market);
     }
 
     function unseenFor(market) {
@@ -864,6 +871,20 @@
       setTimeout(() => toast.remove(), 2400);
     }
 
+    function ensureStoryImage(index) {
+      const image = readerPages.children[index]?.querySelector('img');
+      if (!image) return Promise.resolve();
+      if (!image.src) {
+        image.fetchPriority = index <= currentReaderIndex + 1 ? 'high' : 'auto';
+        image.src = image.dataset.src;
+      }
+      if (image.complete) return image.naturalWidth ? image.decode?.().catch(() => {}) : Promise.resolve();
+      return new Promise(resolve => {
+        image.addEventListener('load',resolve,{ once:true });
+        image.addEventListener('error',resolve,{ once:true });
+      }).then(() => image.decode?.().catch(() => {}));
+    }
+
     async function openStory(market) {
       if (!marketCache[market].length) {
         try { marketCache[market] = await getManifest(MARKET_MANIFESTS[market]); } catch (error) { showError(error); return; }
@@ -890,28 +911,39 @@
       }));
       readerPages.replaceChildren(...urls.map((url,index) => {
         const page = document.createElement('div'); page.className = 'page';
-        const image = document.createElement('img'); image.src = url; image.alt = marketLabel(market) + ' yeni broşür ' + (index + 1); image.decoding = 'async'; image.loading = index < 2 ? 'eager' : 'lazy'; image.referrerPolicy = 'no-referrer';
+        const image = document.createElement('img'); image.src = url; image.alt = marketLabel(market) + ' yeni broşür ' + (index + 1); image.decoding = 'async'; image.loading = index < 2 ? 'eager' : 'lazy'; image.fetchPriority = index < 2 ? 'high' : 'low'; image.referrerPolicy = 'no-referrer';
         page.append(image); return page;
       }));
       readerPages.scrollLeft = 0;
-      activateStory(0);
+      await activateStory(0);
     }
 
-    function activateStory(index) {
+    async function activateStory(index, syncScroll=true) {
       if (!storyMarket || !activeReaderUrls.length) return;
+      const nextIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
+      if (nextIndex === currentReaderIndex && readerPages.children[nextIndex]?.classList.contains('active')) return;
+      const token = ++storyLoadToken;
+      pauseStoryClock();
+      await ensureStoryImage(nextIndex);
+      if (token !== storyLoadToken || !storyMarket || reader.hidden) return;
       reader.classList.remove('story-paused');
-      currentReaderIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
+      currentReaderIndex = nextIndex;
       [...readerPages.children].forEach((page,i) => page.classList.toggle('active', i === currentReaderIndex));
-      // Smooth scroll burada scroll olayını tekrar tekrar tetikleyip sayacı
-      // sıfırlıyordu. Konum anında değiştirilir; geçiş efektini görsel animasyonu verir.
-      readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
+      if (syncScroll) {
+        storyScrollSyncing = true;
+        readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
+        requestAnimationFrame(() => { storyScrollSyncing = false; });
+      }
       const tracks = [...storyProgress.children];
-      tracks.forEach((track,i) => { track.className = 'story-track' + (i < currentReaderIndex ? ' done' : ''); });
+      tracks.forEach((track,i) => {
+        track.className = 'story-track' + (i < currentReaderIndex ? ' done' : '');
+        const fill = track.querySelector('.story-fill');
+        if (fill) fill.style.transform = i < currentReaderIndex ? 'scaleX(1)' : 'scaleX(0)';
+      });
       tracks[currentReaderIndex]?.classList.add('active');
-      markSeen(storyMarket, activeReaderUrls[currentReaderIndex]);
+      markSeen(storyMarket, activeReaderUrls[currentReaderIndex], true);
       readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length;
-      const nextImage = readerPages.children[currentReaderIndex + 1]?.querySelector('img');
-      if (nextImage) { nextImage.loading = 'eager'; nextImage.decode?.().catch(() => {}); }
+      ensureStoryImage(currentReaderIndex + 1);
       startStoryClock(true);
     }
 
@@ -925,7 +957,7 @@
       storyLastTick = now;
       const fill = currentStoryFill();
       const ratio = Math.min(1,storyElapsed / STORY_DURATION);
-      if (fill) fill.style.width = (ratio * 100).toFixed(2) + '%';
+      if (fill) fill.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
       if (ratio >= 1) {
         if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1);
         else closeReader();
@@ -939,7 +971,7 @@
       const fill = currentStoryFill();
       if (!fill || !storyMarket) return;
       if (reset) storyElapsed = 0;
-      fill.style.width = (Math.min(1,storyElapsed / STORY_DURATION) * 100).toFixed(2) + '%';
+      fill.style.transform = 'scaleX(' + Math.min(1,storyElapsed / STORY_DURATION).toFixed(4) + ')';
       storyHolding = false;
       reader.classList.remove('story-paused');
       storyLastTick = performance.now();
@@ -960,6 +992,9 @@
 
     function closeReader() {
       cancelAnimationFrame(storyFrame);
+      storyLoadToken += 1;
+      clearTimeout(storyScrollTimer);
+      storyScrollSyncing = false;
       clearTimeout(longPressTimer);
       storyHolding = false;
       longPressActive = false;
@@ -970,20 +1005,36 @@
       storyProgress.hidden = true;
       readerPages.replaceChildren();
       activeReaderUrls = [];
+      const closedStoryMarket = storyMarket;
       storyMarket = null;
+      if (storyRingDirty && closedStoryMarket) updateStoryRing(closedStoryMarket);
+      storyRingDirty = false;
       document.body.style.overflow = previousOverflow;
     }
 
     function updateCounter() {
       if (zoomState.scale > 1.01) return;
       if (!activeReaderUrls.length) return;
+      if (storyMarket) return;
       const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
-      if (storyMarket) { if (index !== currentReaderIndex) activateStory(index); return; }
       readerCounter.textContent = (index + 1) + ' / ' + activeReaderUrls.length;
     }
 
     let counterFrame = 0;
     readerPages.addEventListener('scroll', () => {
+      if (storyMarket) {
+        if (storyScrollSyncing || zoomState.scale > 1.01) return;
+        pauseStoryClock();
+        clearTimeout(storyScrollTimer);
+        storyScrollTimer = setTimeout(() => {
+          if (!storyMarket || reader.hidden || zoomState.scale > 1.01 || longPressActive) return;
+          const width = Math.max(1,readerPages.clientWidth);
+          const index = Math.min(activeReaderUrls.length - 1,Math.max(0,Math.round(readerPages.scrollLeft / width)));
+          if (index !== currentReaderIndex) activateStory(index,false);
+          else resumeStoryClock();
+        },80);
+        return;
+      }
       cancelAnimationFrame(counterFrame);
       counterFrame = requestAnimationFrame(updateCounter);
     }, { passive:true });
@@ -1054,7 +1105,11 @@
     readerPages.addEventListener('touchmove', event => {
       if (event.touches.length === 1 && !longPressActive && longPressTimer) {
         const moved = Math.hypot(event.touches[0].clientX-longPressX,event.touches[0].clientY-longPressY);
-        if (moved > 10) { clearTimeout(longPressTimer); longPressTimer = 0; }
+        if (moved > 10) {
+          clearTimeout(longPressTimer);
+          longPressTimer = 0;
+          if (storyMarket) suppressStoryClickUntil = Date.now() + 500;
+        }
       }
       if (longPressActive) { event.preventDefault(); return; }
       if (zoomState.mode === 'pinch' && event.touches.length >= 2) {
@@ -1130,7 +1185,9 @@
       try {
         homeManifestUrls = await getManifest(HOME_MANIFEST);
         applyHomeFilter(selectedMarket);
-        refreshStories();
+        const refresh = () => refreshStories();
+        if ('requestIdleCallback' in window) window.requestIdleCallback(refresh,{ timeout:1800 });
+        else setTimeout(refresh,900);
       } catch (error) { showError(error); }
     }
 
