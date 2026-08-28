@@ -139,6 +139,14 @@
     let previousOverflow = '';
     let storyMarket = null;
     let storyFrame = 0;
+    let storyElapsed = 0;
+    let storyLastTick = 0;
+    let storyHolding = false;
+    let longPressTimer = 0;
+    let longPressActive = false;
+    let longPressX = 0;
+    let longPressY = 0;
+    let suppressStoryClickUntil = 0;
     let currentReaderIndex = 0;
     const STORY_DURATION = 5000;
     const zoomState = { page:null, image:null, scale:1, x:0, y:0, mode:null, startDistance:0, startScale:1, startX:0, startY:0, baseX:0, baseY:0 };
@@ -517,7 +525,7 @@
       reader.classList.add('story-mode');
       reader.classList.remove('story-paused');
       reader.hidden = false;
-      readerTitle.textContent = marketLabel(market) + ' • Yeni Broşürler';
+      readerTitle.textContent = '';
       storyProgress.hidden = false;
       storyProgress.replaceChildren(...urls.map(() => {
         const track = document.createElement('span'); track.className = 'story-track';
@@ -547,32 +555,57 @@
       readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length;
       const nextImage = readerPages.children[currentReaderIndex + 1]?.querySelector('img');
       if (nextImage) { nextImage.loading = 'eager'; nextImage.decode?.().catch(() => {}); }
-      startStoryClock();
+      startStoryClock(true);
     }
 
-    function startStoryClock() {
+    function currentStoryFill() {
+      return storyProgress.children[currentReaderIndex]?.querySelector('.story-fill') || null;
+    }
+
+    function storyTick(now) {
+      if (!storyMarket || reader.hidden || storyHolding || zoomState.scale > 1.01) return;
+      storyElapsed += Math.max(0,now - storyLastTick);
+      storyLastTick = now;
+      const fill = currentStoryFill();
+      const ratio = Math.min(1,storyElapsed / STORY_DURATION);
+      if (fill) fill.style.width = (ratio * 100).toFixed(2) + '%';
+      if (ratio >= 1) {
+        if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1);
+        else closeReader();
+        return;
+      }
+      storyFrame = requestAnimationFrame(storyTick);
+    }
+
+    function startStoryClock(reset=false) {
       cancelAnimationFrame(storyFrame);
-      const activeTrack = storyProgress.children[currentReaderIndex];
-      const fill = activeTrack?.querySelector('.story-fill');
+      const fill = currentStoryFill();
       if (!fill || !storyMarket) return;
-      fill.style.width = '0%';
-      const startedAt = performance.now();
-      const tick = now => {
-        if (!storyMarket || reader.hidden || zoomState.scale > 1.01) return;
-        const ratio = Math.min(1,(now - startedAt) / STORY_DURATION);
-        fill.style.width = (ratio * 100).toFixed(2) + '%';
-        if (ratio >= 1) {
-          if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1);
-          else closeReader();
-          return;
-        }
-        storyFrame = requestAnimationFrame(tick);
-      };
-      storyFrame = requestAnimationFrame(tick);
+      if (reset) storyElapsed = 0;
+      fill.style.width = (Math.min(1,storyElapsed / STORY_DURATION) * 100).toFixed(2) + '%';
+      storyHolding = false;
+      reader.classList.remove('story-paused');
+      storyLastTick = performance.now();
+      storyFrame = requestAnimationFrame(storyTick);
+    }
+
+    function pauseStoryClock() {
+      if (!storyMarket || storyHolding) return;
+      cancelAnimationFrame(storyFrame);
+      storyHolding = true;
+      reader.classList.add('story-paused');
+    }
+
+    function resumeStoryClock() {
+      if (!storyMarket || !storyHolding || reader.hidden || zoomState.scale > 1.01) return;
+      startStoryClock(false);
     }
 
     function closeReader() {
       cancelAnimationFrame(storyFrame);
+      clearTimeout(longPressTimer);
+      storyHolding = false;
+      longPressActive = false;
       resetZoom(false);
       reader.hidden = true;
       reader.classList.remove('story-mode');
@@ -624,31 +657,49 @@
       if (zoomState.page) zoomState.page.classList.remove('zoomed');
       zoomState.page = null; zoomState.image = null; zoomState.scale = 1; zoomState.x = 0; zoomState.y = 0; zoomState.mode = null;
       readerPages.classList.remove('zoom-lock');
-      if (restartStory && storyMarket && !reader.hidden) activateStory(currentReaderIndex);
+      if (restartStory && storyMarket && !reader.hidden) resumeStoryClock();
     }
 
     readerPages.addEventListener('touchstart', event => {
       if (event.touches.length === 2) {
+        clearTimeout(longPressTimer);
+        longPressActive = false;
         const page = activeZoomPage();
         const image = page?.querySelector('img');
         if (!page || !image) return;
-        cancelAnimationFrame(storyFrame);
-        if (storyMarket) reader.classList.add('story-paused');
+        pauseStoryClock();
         zoomState.page = page; zoomState.image = image; zoomState.mode = 'pinch';
         zoomState.startDistance = Math.max(1,touchDistance(event.touches[0],event.touches[1]));
         zoomState.startScale = zoomState.scale;
         readerPages.classList.add('zoom-lock');
         page.classList.add('zoomed');
         event.preventDefault();
-      } else if (event.touches.length === 1 && zoomState.scale > 1.01) {
-        zoomState.mode = 'pan';
-        zoomState.startX = event.touches[0].clientX; zoomState.startY = event.touches[0].clientY;
-        zoomState.baseX = zoomState.x; zoomState.baseY = zoomState.y;
-        event.preventDefault();
+      } else if (event.touches.length === 1) {
+        if (zoomState.scale > 1.01) {
+          zoomState.mode = 'pan';
+          zoomState.startX = event.touches[0].clientX; zoomState.startY = event.touches[0].clientY;
+          zoomState.baseX = zoomState.x; zoomState.baseY = zoomState.y;
+          event.preventDefault();
+        } else if (storyMarket) {
+          longPressX = event.touches[0].clientX;
+          longPressY = event.touches[0].clientY;
+          clearTimeout(longPressTimer);
+          longPressTimer = setTimeout(() => {
+            longPressActive = true;
+            suppressStoryClickUntil = Date.now() + 600;
+            pauseStoryClock();
+            try { navigator.vibrate?.(12); } catch (_) {}
+          },350);
+        }
       }
     }, { passive:false });
 
     readerPages.addEventListener('touchmove', event => {
+      if (event.touches.length === 1 && !longPressActive && longPressTimer) {
+        const moved = Math.hypot(event.touches[0].clientX-longPressX,event.touches[0].clientY-longPressY);
+        if (moved > 10) { clearTimeout(longPressTimer); longPressTimer = 0; }
+      }
+      if (longPressActive) { event.preventDefault(); return; }
       if (zoomState.mode === 'pinch' && event.touches.length >= 2) {
         zoomState.scale = Math.max(1,Math.min(4,zoomState.startScale * touchDistance(event.touches[0],event.touches[1]) / zoomState.startDistance));
         if (zoomState.scale <= 1.01) { zoomState.scale = 1; zoomState.x = 0; zoomState.y = 0; }
@@ -661,6 +712,15 @@
     }, { passive:false });
 
     readerPages.addEventListener('touchend', event => {
+      clearTimeout(longPressTimer);
+      longPressTimer = 0;
+      if (longPressActive && event.touches.length === 0) {
+        longPressActive = false;
+        suppressStoryClickUntil = Date.now() + 600;
+        resumeStoryClock();
+        event.preventDefault();
+        return;
+      }
       if (event.touches.length >= 2) return;
       if (zoomState.scale <= 1.01) resetZoom();
       else if (event.touches.length === 1) {
@@ -669,8 +729,13 @@
         zoomState.baseX = zoomState.x; zoomState.baseY = zoomState.y;
       } else zoomState.mode = null;
     }, { passive:false });
+    readerPages.addEventListener('touchcancel', () => {
+      clearTimeout(longPressTimer);
+      longPressTimer = 0;
+      if (longPressActive) { longPressActive = false; resumeStoryClock(); }
+    }, { passive:false });
     readerPages.addEventListener('click', event => {
-      if (!storyMarket || zoomState.scale > 1.01) return;
+      if (!storyMarket || zoomState.scale > 1.01 || Date.now() < suppressStoryClickUntil) return;
       const ratio = event.clientX / Math.max(1,window.innerWidth);
       if (ratio < .34) activateStory(currentReaderIndex - 1);
       else if (ratio > .66) currentReaderIndex < activeReaderUrls.length - 1 ? activateStory(currentReaderIndex + 1) : closeReader();
