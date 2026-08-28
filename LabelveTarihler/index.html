@@ -56,9 +56,7 @@
     .story-track { flex:1; height:4px; overflow:hidden; border-radius:8px; background:#ffffff42; box-shadow:inset 0 1px 2px #0005; }
     .story-fill { width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; }
     .story-track.done .story-fill { width:100%; }
-    .story-track.active .story-fill { animation:storyRun 5s linear forwards; }
-    .story-mode.story-paused .story-track.active .story-fill { animation-play-state:paused; }
-    @keyframes storyRun { from { width:0; } to { width:100%; } }
+    .story-track.active .story-fill { box-shadow:0 0 7px #fff; }
     .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
     @keyframes toastLife { 0%,100% { opacity:0; transform:translateY(8px); } 12%,82% { opacity:1; transform:none; } }
     .noscript { margin:20px; color:#b00020; }
@@ -140,7 +138,7 @@
     let activeReaderUrls = [];
     let previousOverflow = '';
     let storyMarket = null;
-    let storyTimer = 0;
+    let storyFrame = 0;
     let currentReaderIndex = 0;
     const STORY_DURATION = 5000;
     const zoomState = { page:null, image:null, scale:1, x:0, y:0, mode:null, startDistance:0, startScale:1, startX:0, startY:0, baseX:0, baseY:0 };
@@ -417,7 +415,7 @@
       reader.classList.remove('story-mode');
       storyProgress.hidden = true;
       storyMarket = null;
-      clearTimeout(storyTimer);
+      cancelAnimationFrame(storyFrame);
       readerTitle.textContent = marketLabel(market) + ' Broşürü';
       readerPages.innerHTML = '<div class="status">Broşür yükleniyor…</div>';
       readerCounter.textContent = 'Yükleniyor…';
@@ -539,25 +537,42 @@
       reader.classList.remove('story-paused');
       currentReaderIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
       [...readerPages.children].forEach((page,i) => page.classList.toggle('active', i === currentReaderIndex));
-      if (typeof readerPages.scrollTo === 'function') readerPages.scrollTo({ left:currentReaderIndex * readerPages.clientWidth, behavior:'smooth' });
-      else readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
+      // Smooth scroll burada scroll olayını tekrar tekrar tetikleyip sayacı
+      // sıfırlıyordu. Konum anında değiştirilir; geçiş efektini görsel animasyonu verir.
+      readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
       const tracks = [...storyProgress.children];
       tracks.forEach((track,i) => { track.className = 'story-track' + (i < currentReaderIndex ? ' done' : ''); });
-      // Aynı hikâyeye yeniden gelindiğinde CSS süresini sıfırdan başlatır.
-      void storyProgress.offsetWidth;
       tracks[currentReaderIndex]?.classList.add('active');
       markSeen(storyMarket, activeReaderUrls[currentReaderIndex]);
-      readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length + '  •  5 sn';
+      readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length;
       const nextImage = readerPages.children[currentReaderIndex + 1]?.querySelector('img');
       if (nextImage) { nextImage.loading = 'eager'; nextImage.decode?.().catch(() => {}); }
-      clearTimeout(storyTimer);
-      storyTimer = setTimeout(() => {
-        if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1); else closeReader();
-      }, STORY_DURATION);
+      startStoryClock();
+    }
+
+    function startStoryClock() {
+      cancelAnimationFrame(storyFrame);
+      const activeTrack = storyProgress.children[currentReaderIndex];
+      const fill = activeTrack?.querySelector('.story-fill');
+      if (!fill || !storyMarket) return;
+      fill.style.width = '0%';
+      const startedAt = performance.now();
+      const tick = now => {
+        if (!storyMarket || reader.hidden || zoomState.scale > 1.01) return;
+        const ratio = Math.min(1,(now - startedAt) / STORY_DURATION);
+        fill.style.width = (ratio * 100).toFixed(2) + '%';
+        if (ratio >= 1) {
+          if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1);
+          else closeReader();
+          return;
+        }
+        storyFrame = requestAnimationFrame(tick);
+      };
+      storyFrame = requestAnimationFrame(tick);
     }
 
     function closeReader() {
-      clearTimeout(storyTimer);
+      cancelAnimationFrame(storyFrame);
       resetZoom(false);
       reader.hidden = true;
       reader.classList.remove('story-mode');
@@ -617,7 +632,7 @@
         const page = activeZoomPage();
         const image = page?.querySelector('img');
         if (!page || !image) return;
-        clearTimeout(storyTimer);
+        cancelAnimationFrame(storyFrame);
         if (storyMarket) reader.classList.add('story-paused');
         zoomState.page = page; zoomState.image = image; zoomState.mode = 'pinch';
         zoomState.startDistance = Math.max(1,touchDistance(event.touches[0],event.touches[1]));
