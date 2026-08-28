@@ -11,23 +11,31 @@
     html,body { margin:0; min-height:100%; background:#f3f4f6; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
     button { font:inherit; }
     .topbar { position:sticky; top:0; z-index:20; padding:max(12px,env(safe-area-inset-top)) 12px 12px; background:var(--red); box-shadow:0 2px 7px #0002; }
-    .topbar h1 { margin:0 auto; width:max-content; max-width:100%; padding:13px 22px; border-radius:19px; background:var(--blue); color:#fff; font-size:17px; line-height:1; box-shadow:0 2px 5px #0003; }
+    .topbar { display:flex; justify-content:center; align-items:center; }
+    .topbar h1 { margin:0; width:max-content; max-width:100%; padding:13px 22px; border-radius:19px; background:var(--blue); color:#fff; font-size:17px; line-height:1; text-align:center; box-shadow:0 3px 8px #0004, inset 0 1px 0 #fff6; }
     .market-nav { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:10px 12px; background:#fff; border-bottom:3px solid var(--red); }
-    .market-button { min-width:0; aspect-ratio:1; max-height:92px; border:2px solid var(--red); border-radius:50%; background:#fff; font-size:22px; font-weight:900; cursor:pointer; overflow:hidden; }
+    .market-button { position:relative; min-width:0; aspect-ratio:1; max-height:92px; padding:4px; border:3px solid #d8dbe0; border-radius:50%; background:#fff; font-size:22px; font-weight:900; cursor:pointer; box-shadow:0 4px 10px #0002, inset 0 0 0 3px #fff; transition:transform .18s ease; }
+    .market-button:active { transform:scale(.94); }
+    .market-button.has-new { border-color:transparent; background:linear-gradient(#fff,#fff) padding-box, conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75) border-box; animation:ringPulse 1.8s ease-in-out infinite; }
+    .story-count { position:absolute; right:-3px; bottom:1px; display:grid; min-width:23px; height:23px; padding:0 5px; place-items:center; border:2px solid #fff; border-radius:999px; background:var(--red); color:#fff; font-size:11px; line-height:1; }
+    @keyframes ringPulse { 50% { box-shadow:0 5px 16px #d6297655, inset 0 0 0 3px #fff; } }
     .market-button[data-market=A101] { color:#12a9a4; }
     .market-button[data-market=BIM] { color:#e30613; }
     .market-button[data-market=SOK] { color:#15549a; }
     #content { max-width:760px; min-height:60vh; margin:auto; background:#fff; }
     .status { padding:48px 18px; color:var(--muted); text-align:center; }
     .retry { margin-top:14px; padding:10px 16px; border:0; border-radius:12px; background:var(--red); color:#fff; font-weight:700; }
-    .row { padding:6px 0 13px; border-bottom:3px solid var(--line); }
+    .row { padding:9px 0 16px; border-bottom:3px solid var(--line); background:linear-gradient(180deg,#fff 0%,#fafbfc 100%); }
     .row-title { margin:0 12px 6px; text-align:center; font-size:16px; font-weight:800; }
-    .strip { display:flex; gap:12px; overflow-x:auto; padding:0 12px 5px; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-inline:contain; }
+    .strip { display:flex; gap:14px; overflow-x:auto; padding:3px 14px 12px; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-inline:contain; }
     .strip::-webkit-scrollbar { display:none; }
-    .card { flex:0 0 clamp(145px,43vw,220px); margin:0; padding:0; border:0; background:#fff; color:inherit; text-align:center; cursor:pointer; scroll-snap-align:start; }
-    .card-media { position:relative; width:100%; aspect-ratio:3/4; overflow:hidden; background:#f1f2f4; border-radius:3px; box-shadow:0 1px 4px #0002; }
-    .card img { width:100%; height:100%; display:block; object-fit:cover; }
-    .card-label { display:block; min-height:36px; padding:7px 2px 0; font-size:13px; line-height:1.18; font-weight:800; }
+    .card { flex:0 0 clamp(145px,43vw,220px); margin:0; padding:7px 7px 0; border:1px solid #d8dbe1; border-radius:10px; background:linear-gradient(145deg,#fff,#eceef2); color:inherit; text-align:center; cursor:pointer; scroll-snap-align:start; box-shadow:5px 7px 12px #1d263526, -2px -2px 5px #fff, inset 0 1px 0 #fff; transform:perspective(700px) rotateY(-.7deg); transition:transform .18s ease,box-shadow .18s ease; }
+    .card:active { transform:perspective(700px) rotateY(0) translateY(2px) scale(.985); box-shadow:2px 3px 6px #1d263528; }
+    .card-media { position:relative; display:grid; width:100%; aspect-ratio:3/4; place-items:center; overflow:hidden; border:1px solid #e1e3e7; background:#fff; border-radius:6px; box-shadow:inset 0 0 12px #0000000b; }
+    .card img { width:100%; height:100%; display:block; object-fit:contain; }
+    .card-label { display:block; min-height:55px; padding:8px 2px 7px; font-size:13px; line-height:1.18; font-weight:800; text-shadow:0 1px 0 #fff; }
+    .card-date { display:block; min-height:26px; margin-top:4px; color:#343943; font-size:11px; line-height:1.18; font-weight:700; }
+    .card-date.reading { color:#858b95; font-weight:500; }
     .ad-wrap { padding:15px 10px; border-bottom:3px solid var(--line); background:#f7f7f8; }
     .ad-slot { display:flex; width:min(300px,100%); height:250px; margin:auto; align-items:center; justify-content:center; border:1px dashed #c6c9cf; background:#fff; color:#9a9faa; font-size:12px; text-align:center; }
     .ad-slot.native-ready { border:0; color:transparent; }
@@ -40,7 +48,21 @@
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
     .page img { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 3px 18px #0009; }
+    .story-mode .page.active img { animation:storyZoom 6s ease-out both; }
+    @keyframes storyZoom { from { transform:scale(1); filter:brightness(.92); } 12% { filter:brightness(1); } to { transform:scale(1.035); filter:brightness(1); } }
     .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
+    .story-progress { display:flex; gap:4px; padding:7px 8px 2px; background:#181b20; }
+    .story-progress[hidden] { display:none; }
+    .story-track { flex:1; height:3px; overflow:hidden; border-radius:5px; background:#ffffff55; }
+    .story-fill { width:0; height:100%; background:#fff; }
+    .story-track.done .story-fill { width:100%; }
+    .story-track.active .story-fill { animation:storyRun 6s linear forwards; }
+    @keyframes storyRun { from { width:0; } to { width:100%; } }
+    .story-tap { position:absolute; z-index:3; top:70px; bottom:46px; width:34%; border:0; background:transparent; color:transparent; }
+    .story-tap.prev { left:0; } .story-tap.next { right:0; }
+    .reader:not(.story-mode) .story-tap { display:none; }
+    .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
+    @keyframes toastLife { 0%,100% { opacity:0; transform:translateY(8px); } 12%,82% { opacity:1; transform:none; } }
     .noscript { margin:20px; color:#b00020; }
     @media (min-width:600px) { .market-nav { max-width:520px; margin:auto; } .card { flex-basis:205px; } }
   </style>
@@ -61,7 +83,10 @@
       <div id="readerTitle" class="reader-title">Broşür</div>
       <button id="sharePage" type="button" aria-label="Paylaş">⋮</button>
     </div>
+    <div id="storyProgress" class="story-progress" hidden></div>
     <div id="readerPages" class="reader-pages"></div>
+    <button id="storyPrev" class="story-tap prev" type="button" aria-label="Önceki hikâye">Önceki</button>
+    <button id="storyNext" class="story-tap next" type="button" aria-label="Sonraki hikâye">Sonraki</button>
     <div id="readerCounter" class="reader-footer">1 / 1</div>
   </section>
 
@@ -87,8 +112,19 @@
     const readerPages = document.querySelector('#readerPages');
     const readerTitle = document.querySelector('#readerTitle');
     const readerCounter = document.querySelector('#readerCounter');
+    const storyProgress = document.querySelector('#storyProgress');
     let activeReaderUrls = [];
     let previousOverflow = '';
+    let storyMarket = null;
+    let storyTimer = 0;
+    let currentReaderIndex = 0;
+    const SEEN_KEY = 'oeapp_seen_brochures_v2';
+    const OCR_CACHE_KEY = 'oeapp_brochure_dates_v1';
+    const TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+    const marketCache = { A101:[], BIM:[], SOK:[] };
+    const ocrQueue = [];
+    let ocrBusy = false;
+    let ocrWorkerPromise = null;
 
     function marketFromUrl(url) {
       const path = String(url).toUpperCase();
@@ -126,11 +162,144 @@
       image.addEventListener('error', () => { media.style.background = '#eceef1'; image.alt = 'Görsel yüklenemedi'; });
       const label = document.createElement('span');
       label.className = 'card-label';
-      label.textContent = marketLabel(market);
+      const marketName = document.createElement('span');
+      marketName.textContent = marketLabel(market);
+      const date = document.createElement('span');
+      date.className = 'card-date reading';
+      date.textContent = 'Tarih okunuyor…';
+      date.dataset.ocrUrl = url;
+      label.append(marketName, date);
       media.append(image);
       button.append(media, label);
       button.addEventListener('click', () => openReader(market, url));
+      observeDate(date);
       return button;
+    }
+
+    function getOcrCache() {
+      try { return JSON.parse(localStorage.getItem(OCR_CACHE_KEY)) || {}; } catch (_) { return {}; }
+    }
+
+    function saveOcrDate(url, value) {
+      const cache = getOcrCache();
+      cache[url] = value;
+      const entries = Object.entries(cache).slice(-250);
+      try { localStorage.setItem(OCR_CACHE_KEY, JSON.stringify(Object.fromEntries(entries))); } catch (_) {}
+    }
+
+    const dateObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        dateObserver.unobserve(entry.target);
+        enqueueOcr(entry.target);
+      });
+    }, { rootMargin:'220px' }) : null;
+
+    function observeDate(element) {
+      const cached = getOcrCache()[element.dataset.ocrUrl];
+      if (cached) { setDateText(element, cached); return; }
+      if (dateObserver) dateObserver.observe(element); else enqueueOcr(element);
+    }
+
+    function enqueueOcr(element) {
+      if (!element?.isConnected || element.dataset.queued) return;
+      element.dataset.queued = '1';
+      ocrQueue.push(element);
+      processOcrQueue();
+    }
+
+    async function processOcrQueue() {
+      if (ocrBusy) return;
+      ocrBusy = true;
+      while (ocrQueue.length) {
+        const element = ocrQueue.shift();
+        if (!element?.isConnected) continue;
+        const url = element.dataset.ocrUrl;
+        try {
+          const text = await recognizeBrochureDate(url);
+          const label = extractDateLabel(text) || 'Tarih belirtilmemiş';
+          saveOcrDate(url, label);
+          setDateText(element, label);
+        } catch (error) {
+          setDateText(element, 'Tarih okunamadı');
+          console.warn('Broşür tarihi okunamadı:', error);
+        }
+      }
+      ocrBusy = false;
+    }
+
+    function setDateText(element, value) {
+      element.textContent = value;
+      element.classList.remove('reading');
+    }
+
+    function loadTesseract() {
+      if (window.Tesseract) return Promise.resolve(window.Tesseract);
+      return new Promise((resolve,reject) => {
+        const old = document.querySelector('script[data-tesseract]');
+        if (old) { old.addEventListener('load', () => resolve(window.Tesseract), { once:true }); old.addEventListener('error', reject, { once:true }); return; }
+        const script = document.createElement('script');
+        script.src = TESSERACT_URL;
+        script.async = true;
+        script.dataset.tesseract = '1';
+        script.onload = () => resolve(window.Tesseract);
+        script.onerror = () => reject(new Error('OCR kütüphanesi yüklenemedi'));
+        document.head.append(script);
+      });
+    }
+
+    async function getOcrWorker() {
+      if (!ocrWorkerPromise) ocrWorkerPromise = (async () => {
+        const Tesseract = await loadTesseract();
+        return Tesseract.createWorker('tur+eng');
+      })();
+      return ocrWorkerPromise;
+    }
+
+    async function imageForOcr(url) {
+      const image = new Image();
+      image.crossOrigin = 'anonymous';
+      image.referrerPolicy = 'no-referrer';
+      image.decoding = 'async';
+      image.src = url;
+      await image.decode();
+      const sourceWidth = image.naturalWidth;
+      const sourceHeight = image.naturalHeight;
+      const targetWidth = Math.min(900, sourceWidth);
+      const scale = targetWidth / sourceWidth;
+      const cropHeight = Math.round(sourceHeight * .34);
+      const targetCropHeight = Math.round(cropHeight * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = targetWidth;
+      canvas.height = targetCropHeight * 2 + 18;
+      const ctx = canvas.getContext('2d', { alpha:false });
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(image,0,0,sourceWidth,cropHeight,0,0,targetWidth,targetCropHeight);
+      ctx.drawImage(image,0,sourceHeight-cropHeight,sourceWidth,cropHeight,0,targetCropHeight+18,targetWidth,targetCropHeight);
+      return canvas;
+    }
+
+    async function recognizeBrochureDate(url) {
+      const worker = await getOcrWorker();
+      const canvas = await imageForOcr(url);
+      const result = await worker.recognize(canvas);
+      return result?.data?.text || '';
+    }
+
+    function extractDateLabel(rawText) {
+      const months = 'OCAK|ŞUBAT|SUBAT|MART|NİSAN|NISAN|MAYIS|HAZİRAN|HAZIRAN|TEMMUZ|AĞUSTOS|AGUSTOS|EYLÜL|EYLUL|EKİM|EKIM|KASIM|ARALIK';
+      const cleaned = String(rawText).toLocaleUpperCase('tr-TR').replace(/[|]/g,'I').replace(/\s+/g,' ').trim();
+      const patterns = [
+        new RegExp('\\b\\d{1,2}\\s+(?:' + months + ')\\s*[-–—/]\\s*\\d{1,2}\\s+(?:' + months + ')(?:\\s+TARİHLERİ?\\s+ARASI)?','i'),
+        new RegExp('\\b\\d{1,2}\\s+(?:' + months + ')(?:\\s+\\d{4})?\\s+(?:TARİHİNDEN|TARİHİ|İTİBAREN)','i'),
+        new RegExp('\\b\\d{1,2}[./-]\\d{1,2}(?:[./-]\\d{2,4})?\\s*[-–—]\\s*\\d{1,2}[./-]\\d{1,2}(?:[./-]\\d{2,4})?','i'),
+        new RegExp('\\b\\d{1,2}\\s+(?:' + months + ')(?:\\s+\\d{4})?','i')
+      ];
+      for (const pattern of patterns) {
+        const match = cleaned.match(pattern);
+        if (match) return match[0].replace(/\s+/g,' ').trim();
+      }
+      return '';
     }
 
     function createAd(rowNumber, unitId) {
@@ -185,6 +354,10 @@
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       reader.hidden = false;
+      reader.classList.remove('story-mode');
+      storyProgress.hidden = true;
+      storyMarket = null;
+      clearTimeout(storyTimer);
       readerTitle.textContent = marketLabel(market) + ' Broşürü';
       readerPages.innerHTML = '<div class="status">Broşür yükleniyor…</div>';
       readerCounter.textContent = 'Yükleniyor…';
@@ -219,16 +392,114 @@
       }
     }
 
+    function readSeen() {
+      try { return JSON.parse(localStorage.getItem(SEEN_KEY)) || {}; } catch (_) { return {}; }
+    }
+
+    function markSeen(market, url) {
+      if (!market || !url) return;
+      const seen = readSeen();
+      const list = new Set(Array.isArray(seen[market]) ? seen[market] : []);
+      list.add(url);
+      seen[market] = [...list].slice(-400);
+      try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch (_) {}
+      updateStoryRing(market);
+    }
+
+    function unseenFor(market) {
+      const seen = new Set(readSeen()[market] || []);
+      return (marketCache[market] || []).filter(url => !seen.has(url));
+    }
+
+    function updateStoryRing(market) {
+      const button = document.querySelector('.market-button[data-market="' + market + '"]');
+      if (!button) return;
+      const count = unseenFor(market).length;
+      button.classList.toggle('has-new', count > 0);
+      let badge = button.querySelector('.story-count');
+      if (count > 0) {
+        if (!badge) { badge = document.createElement('span'); badge.className = 'story-count'; button.append(badge); }
+        badge.textContent = count > 99 ? '99+' : count;
+        button.setAttribute('aria-label', marketLabel(market) + ': ' + count + ' yeni broşür');
+      } else {
+        if (badge) badge.remove();
+        button.setAttribute('aria-label', marketLabel(market) + ': yeni broşür yok');
+      }
+    }
+
+    async function refreshStories() {
+      await Promise.all(Object.keys(MARKET_MANIFESTS).map(async market => {
+        try { marketCache[market] = await getManifest(MARKET_MANIFESTS[market]); updateStoryRing(market); } catch (_) {}
+      }));
+    }
+
+    function showToast(message) {
+      document.querySelector('.toast')?.remove();
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.append(toast);
+      setTimeout(() => toast.remove(), 2400);
+    }
+
+    async function openStory(market) {
+      if (!marketCache[market].length) {
+        try { marketCache[market] = await getManifest(MARKET_MANIFESTS[market]); } catch (error) { showError(error); return; }
+      }
+      const urls = unseenFor(market);
+      if (!urls.length) { showToast(marketLabel(market) + ' için yeni broşür yok'); return; }
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      storyMarket = market;
+      activeReaderUrls = urls;
+      currentReaderIndex = 0;
+      reader.classList.add('story-mode');
+      reader.hidden = false;
+      readerTitle.textContent = marketLabel(market) + ' • Yeni Broşürler';
+      storyProgress.hidden = false;
+      storyProgress.replaceChildren(...urls.map(() => {
+        const track = document.createElement('span'); track.className = 'story-track';
+        const fill = document.createElement('span'); fill.className = 'story-fill'; track.append(fill); return track;
+      }));
+      readerPages.replaceChildren(...urls.map((url,index) => {
+        const page = document.createElement('div'); page.className = 'page';
+        const image = document.createElement('img'); image.src = url; image.alt = marketLabel(market) + ' yeni broşür ' + (index + 1); image.decoding = 'async'; image.loading = index < 2 ? 'eager' : 'lazy'; image.referrerPolicy = 'no-referrer';
+        page.append(image); return page;
+      }));
+      readerPages.scrollLeft = 0;
+      activateStory(0);
+    }
+
+    function activateStory(index) {
+      if (!storyMarket || !activeReaderUrls.length) return;
+      currentReaderIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
+      [...readerPages.children].forEach((page,i) => page.classList.toggle('active', i === currentReaderIndex));
+      if (typeof readerPages.scrollTo === 'function') readerPages.scrollTo({ left:currentReaderIndex * readerPages.clientWidth, behavior:'smooth' });
+      else readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
+      [...storyProgress.children].forEach((track,i) => { track.className = 'story-track' + (i < currentReaderIndex ? ' done' : i === currentReaderIndex ? ' active' : ''); });
+      markSeen(storyMarket, activeReaderUrls[currentReaderIndex]);
+      readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length;
+      clearTimeout(storyTimer);
+      storyTimer = setTimeout(() => {
+        if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1); else closeReader();
+      }, 6000);
+    }
+
     function closeReader() {
+      clearTimeout(storyTimer);
       reader.hidden = true;
+      reader.classList.remove('story-mode');
+      storyProgress.hidden = true;
       readerPages.replaceChildren();
       activeReaderUrls = [];
+      storyMarket = null;
       document.body.style.overflow = previousOverflow;
     }
 
     function updateCounter() {
       if (!activeReaderUrls.length) return;
       const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
+      if (storyMarket) { if (index !== currentReaderIndex) activateStory(index); return; }
       readerCounter.textContent = (index + 1) + ' / ' + activeReaderUrls.length;
     }
 
@@ -244,10 +515,9 @@
       const url = activeReaderUrls[index];
       try { if (navigator.share) await navigator.share({ title:readerTitle.textContent, url }); else await navigator.clipboard.writeText(url); } catch (_) {}
     });
-    document.querySelectorAll('.market-button').forEach(button => button.addEventListener('click', async () => {
-      const market = button.dataset.market;
-      try { const urls = await getManifest(MARKET_MANIFESTS[market]); openReader(market, urls[0]); } catch (error) { showError(error); }
-    }));
+    document.querySelector('#storyPrev').addEventListener('click', () => activateStory(currentReaderIndex - 1));
+    document.querySelector('#storyNext').addEventListener('click', () => currentReaderIndex < activeReaderUrls.length - 1 ? activateStory(currentReaderIndex + 1) : closeReader());
+    document.querySelectorAll('.market-button').forEach(button => button.addEventListener('click', () => openStory(button.dataset.market)));
     window.addEventListener('popstate', () => { if (!reader.hidden) closeReader(); });
 
     function showError(error) {
@@ -267,7 +537,7 @@
 
     async function loadHome() {
       content.innerHTML = '<div class="status">Broşürler yükleniyor…</div>';
-      try { renderHome(await getManifest(HOME_MANIFEST)); } catch (error) { showError(error); }
+      try { renderHome(await getManifest(HOME_MANIFEST)); refreshStories(); } catch (error) { showError(error); }
     }
 
     loadHome();
