@@ -613,17 +613,31 @@
       return [2,Math.abs(dayDifference),index];
     }
 
-    function sortStoriesFromToday(urls) {
+    function rankedStoryItems(urls) {
       const cache = getOcrCache();
       return urls.map((url,index) => ({
         url,
         rank:storyDateRank(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url],index)
-      }))
+      })).sort((a,b) => compareBrochureRanks(a.rank,b.rank));
+    }
+
+    function sortStoriesFromToday(urls) {
+      return rankedStoryItems(urls)
         // Süresi geçmiş broşürleri hikâyeden çıkar. Tarihi henüz okunamamış
         // yeni görseller kaybolmasın diye onlar listenin sonunda korunur.
         .filter(item => item.rank[0] !== 2)
-        .sort((a,b) => compareBrochureRanks(a.rank,b.rank))
         .map(item => item.url);
+    }
+
+    function sortReaderFollowingUrls(urls) {
+      const ranked = rankedStoryItems(urls);
+      const currentOrFuture = ranked.filter(item => item.rank[0] <= 1);
+      const unknown = ranked.filter(item => item.rank[0] === 3);
+      // Bugün veya gelecek tarihli içerik varsa hikâye kuralını koru.
+      if (currentOrFuture.length) return [...currentOrFuture,...unknown].map(item => item.url);
+      // A101 örneğindeki gibi tamamı geçmişse okuyucuyu tek sayfaya düşürme;
+      // en yakın geçmiş tarihten geriye doğru bütün sayfaları göster.
+      return ranked.map(item => item.url);
     }
 
     function brochureDateRank(label,index=0) {
@@ -714,7 +728,7 @@
         const allUrls = await getManifest(MARKET_MANIFESTS[market]);
         // Kullanıcının seçtiği kart her zaman ilk açılır. Devamındaki
         // sayfalar hikâyeyle aynı tarih filtresi ve sıralamasını kullanır.
-        const orderedFollowingUrls = sortStoriesFromToday(allUrls.filter(url => url !== clickedUrl));
+        const orderedFollowingUrls = sortReaderFollowingUrls(allUrls.filter(url => url !== clickedUrl));
         activeReaderUrls = [clickedUrl, ...orderedFollowingUrls];
         readerPages.replaceChildren(...activeReaderUrls.map((url, index) => {
           const page = document.createElement('div');
