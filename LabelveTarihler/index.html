@@ -47,14 +47,14 @@
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
     .page img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; box-shadow:0 5px 24px #000b; transform-origin:center; will-change:transform,opacity,filter; }
-    .story-mode .page.active img { animation:storyZoom 5s ease-out both; }
+    .story-mode .page.active img { animation:storyAppear .38s ease-out both; }
     .story-mode .page.zoomed img { animation:none; }
-    @keyframes storyZoom { from { transform:scale(.985); opacity:.35; filter:brightness(.82) blur(1px); } 10% { opacity:1; filter:brightness(1) blur(0); } to { transform:scale(1.035); opacity:1; filter:brightness(1); } }
+    @keyframes storyAppear { from { opacity:.25; filter:brightness(.82) blur(1px); } to { opacity:1; filter:brightness(1) blur(0); } }
     .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
     .story-progress { display:flex; gap:3px; padding:8px 8px 5px; background:#181b20; filter:drop-shadow(0 2px 2px #0007); }
     .story-progress[hidden] { display:none; }
     .story-track { flex:1; height:4px; overflow:hidden; border-radius:8px; background:#ffffff42; box-shadow:inset 0 1px 2px #0005; }
-    .story-fill { width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; }
+    .story-fill { display:block; width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; will-change:width; }
     .story-track.done .story-fill { width:100%; }
     .story-track.active .story-fill { box-shadow:0 0 7px #fff; }
     .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
