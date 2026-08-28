@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#e30613">
+  <title>Güncel Market Bültenleri</title>
+  <style>
+    :root { --red:#e30613; --blue:#08a9dc; --ink:#16181d; --line:#e7e8eb; --muted:#69707c; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; min-height:100%; background:#f3f4f6; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+    button { font:inherit; }
+    .topbar { position:sticky; top:0; z-index:20; padding:max(12px,env(safe-area-inset-top)) 12px 12px; background:var(--red); box-shadow:0 2px 7px #0002; }
+    .topbar h1 { margin:0 auto; width:max-content; max-width:100%; padding:13px 22px; border-radius:19px; background:var(--blue); color:#fff; font-size:17px; line-height:1; box-shadow:0 2px 5px #0003; }
+    .market-nav { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:10px 12px; background:#fff; border-bottom:3px solid var(--red); }
+    .market-button { min-width:0; aspect-ratio:1; max-height:92px; border:2px solid var(--red); border-radius:50%; background:#fff; font-size:22px; font-weight:900; cursor:pointer; overflow:hidden; }
+    .market-button[data-market=A101] { color:#12a9a4; }
+    .market-button[data-market=BIM] { color:#e30613; }
+    .market-button[data-market=SOK] { color:#15549a; }
+    #content { max-width:760px; min-height:60vh; margin:auto; background:#fff; }
+    .status { padding:48px 18px; color:var(--muted); text-align:center; }
+    .retry { margin-top:14px; padding:10px 16px; border:0; border-radius:12px; background:var(--red); color:#fff; font-weight:700; }
+    .row { padding:6px 0 13px; border-bottom:3px solid var(--line); }
+    .row-title { margin:0 12px 6px; text-align:center; font-size:16px; font-weight:800; }
+    .strip { display:flex; gap:12px; overflow-x:auto; padding:0 12px 5px; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-inline:contain; }
+    .strip::-webkit-scrollbar { display:none; }
+    .card { flex:0 0 clamp(145px,43vw,220px); margin:0; padding:0; border:0; background:#fff; color:inherit; text-align:center; cursor:pointer; scroll-snap-align:start; }
+    .card-media { position:relative; width:100%; aspect-ratio:3/4; overflow:hidden; background:#f1f2f4; border-radius:3px; box-shadow:0 1px 4px #0002; }
+    .card img { width:100%; height:100%; display:block; object-fit:cover; }
+    .card-label { display:block; min-height:36px; padding:7px 2px 0; font-size:13px; line-height:1.18; font-weight:800; }
+    .ad-wrap { padding:15px 10px; border-bottom:3px solid var(--line); background:#f7f7f8; }
+    .ad-slot { display:flex; width:min(300px,100%); height:250px; margin:auto; align-items:center; justify-content:center; border:1px dashed #c6c9cf; background:#fff; color:#9a9faa; font-size:12px; text-align:center; }
+    .ad-slot.native-ready { border:0; color:transparent; }
+    .reader { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; background:#101216; color:#fff; }
+    .reader[hidden] { display:none; }
+    .reader-bar { display:grid; grid-template-columns:44px 1fr 44px; align-items:center; min-height:58px; padding-top:env(safe-area-inset-top); background:#181b20; }
+    .reader-bar button { height:44px; border:0; background:transparent; color:#fff; font-size:27px; cursor:pointer; }
+    .reader-title { overflow:hidden; text-align:center; font-size:16px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
+    .reader-pages { display:flex; flex:1; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+    .reader-pages::-webkit-scrollbar { display:none; }
+    .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
+    .page img { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 3px 18px #0009; }
+    .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
+    .noscript { margin:20px; color:#b00020; }
+    @media (min-width:600px) { .market-nav { max-width:520px; margin:auto; } .card { flex-basis:205px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar"><h1>TÜM MARKETLER</h1></header>
+  <nav class="market-nav" aria-label="Marketler">
+    <button class="market-button" data-market="A101" aria-label="A101 broşürleri">A·101</button>
+    <button class="market-button" data-market="BIM" aria-label="BİM broşürleri">BİM</button>
+    <button class="market-button" data-market="SOK" aria-label="ŞOK broşürleri">ŞOK</button>
+  </nav>
+  <main id="content"><div class="status">Broşürler yükleniyor…</div></main>
+  <noscript><p class="noscript">Broşürleri görüntülemek için JavaScript açık olmalıdır.</p></noscript>
+
+  <section id="reader" class="reader" hidden aria-label="Broşür okuyucu">
+    <div class="reader-bar">
+      <button id="closeReader" type="button" aria-label="Kapat">‹</button>
+      <div id="readerTitle" class="reader-title">Broşür</div>
+      <button id="sharePage" type="button" aria-label="Paylaş">⋮</button>
+    </div>
+    <div id="readerPages" class="reader-pages"></div>
+    <div id="readerCounter" class="reader-footer">1 / 1</div>
+  </section>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const HOME_MANIFEST = 'https://oeappstudio.com/Brochures/Manifest/manifest.txt';
+    const MARKET_MANIFESTS = Object.freeze({
+      A101: 'https://oeappstudio.com/Brochures/Brochures/A101/manifest.txt',
+      BIM:  'https://oeappstudio.com/Brochures/Brochures/BIM/manifest.txt',
+      SOK:  'https://oeappstudio.com/Brochures/Brochures/SOK/manifest.txt'
+    });
+    const ADS_AFTER_ROWS = Object.freeze({
+      2: 'ca-app-pub-3899323845108149/3459393464',
+      4: 'ca-app-pub-3899323845108149/9961222634',
+      5: 'ca-app-pub-3899323845108149/2704632847'
+    });
+    const ITEMS_PER_ROW = 5;
+
+    const content = document.querySelector('#content');
+    const reader = document.querySelector('#reader');
+    const readerPages = document.querySelector('#readerPages');
+    const readerTitle = document.querySelector('#readerTitle');
+    const readerCounter = document.querySelector('#readerCounter');
+    let activeReaderUrls = [];
+    let previousOverflow = '';
+
+    function marketFromUrl(url) {
+      const path = String(url).toUpperCase();
+      if (path.includes('/A101/')) return 'A101';
+      if (path.includes('/BIM/')) return 'BIM';
+      if (path.includes('/SOK/')) return 'SOK';
+      return null;
+    }
+
+    function marketLabel(market) { return market === 'BIM' ? 'BİM' : market === 'SOK' ? 'ŞOK' : 'A101'; }
+
+    async function getManifest(url) {
+      const separator = url.includes('?') ? '&' : '?';
+      const response = await fetch(url + separator + '_=' + Date.now(), { cache:'no-store' });
+      if (!response.ok) throw new Error('Manifest alınamadı: HTTP ' + response.status);
+      const text = (await response.text()).replace(/^\uFEFF/, '');
+      const urls = text.split(/\r?\n/).map(v => v.trim()).filter(v => /^https?:\/\//i.test(v));
+      if (!urls.length) throw new Error('Manifestte geçerli görsel bağlantısı yok.');
+      return [...new Set(urls)];
+    }
+
+    function createCard(url, market, index) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'card';
+      button.setAttribute('aria-label', marketLabel(market) + ' broşürünü aç');
+      const media = document.createElement('span');
+      media.className = 'card-media';
+      const image = document.createElement('img');
+      image.src = url;
+      image.alt = marketLabel(market) + ' aktüel ürünler broşürü';
+      image.loading = index < 5 ? 'eager' : 'lazy';
+      image.decoding = 'async';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', () => { media.style.background = '#eceef1'; image.alt = 'Görsel yüklenemedi'; });
+      const label = document.createElement('span');
+      label.className = 'card-label';
+      label.textContent = marketLabel(market);
+      media.append(image);
+      button.append(media, label);
+      button.addEventListener('click', () => openReader(market, url));
+      return button;
+    }
+
+    function createAd(rowNumber, unitId) {
+      const wrap = document.createElement('section');
+      wrap.className = 'ad-wrap';
+      const slot = document.createElement('div');
+      slot.className = 'ad-slot';
+      slot.id = 'ad-slot-' + rowNumber;
+      slot.dataset.adUnitId = unitId;
+      slot.dataset.adSize = 'MEDIUM_RECTANGLE';
+      slot.textContent = 'Reklam';
+      wrap.append(slot);
+      requestAnimationFrame(() => announceAdSlot(slot, rowNumber));
+      return wrap;
+    }
+
+    function announceAdSlot(slot, rowNumber) {
+      const detail = { action:'SHOW_AD', slotId:slot.id, row:rowNumber, adUnitId:slot.dataset.adUnitId, size:'MEDIUM_RECTANGLE' };
+      window.dispatchEvent(new CustomEvent('oeapp:ad-slot-ready', { detail }));
+      try {
+        if (window.AppInventor && typeof window.AppInventor.setWebViewString === 'function') {
+          window.AppInventor.setWebViewString(JSON.stringify(detail));
+          slot.classList.add('native-ready');
+        }
+      } catch (_) { /* Tarayıcı önizlemesinde native köprü bulunmaz. */ }
+    }
+
+    function renderHome(urls) {
+      content.replaceChildren();
+      const rows = [];
+      for (let start = 0; start < urls.length; start += ITEMS_PER_ROW) rows.push(urls.slice(start, start + ITEMS_PER_ROW));
+
+      rows.forEach((rowUrls, rowIndex) => {
+        const market = marketFromUrl(rowUrls[0]);
+        const section = document.createElement('section');
+        section.className = 'row';
+        const title = document.createElement('h2');
+        title.className = 'row-title';
+        title.textContent = market ? marketLabel(market) : 'Güncel Broşürler';
+        const strip = document.createElement('div');
+        strip.className = 'strip';
+        rowUrls.forEach((url, itemIndex) => strip.append(createCard(url, marketFromUrl(url) || market || 'A101', rowIndex * ITEMS_PER_ROW + itemIndex)));
+        section.append(title, strip);
+        content.append(section);
+        const rowNumber = rowIndex + 1;
+        if (ADS_AFTER_ROWS[rowNumber]) content.append(createAd(rowNumber, ADS_AFTER_ROWS[rowNumber]));
+      });
+    }
+
+    async function openReader(market, clickedUrl) {
+      if (!MARKET_MANIFESTS[market]) return;
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      reader.hidden = false;
+      readerTitle.textContent = marketLabel(market) + ' Broşürü';
+      readerPages.innerHTML = '<div class="status">Broşür yükleniyor…</div>';
+      readerCounter.textContent = 'Yükleniyor…';
+      try {
+        const allUrls = await getManifest(MARKET_MANIFESTS[market]);
+        activeReaderUrls = [clickedUrl, ...allUrls.filter(url => url !== clickedUrl)];
+        readerPages.replaceChildren(...activeReaderUrls.map((url, index) => {
+          const page = document.createElement('div');
+          page.className = 'page';
+          const image = document.createElement('img');
+          image.src = url;
+          image.alt = marketLabel(market) + ' broşür sayfası ' + (index + 1);
+          image.loading = index < 2 ? 'eager' : 'lazy';
+          image.decoding = 'async';
+          image.referrerPolicy = 'no-referrer';
+          page.append(image);
+          return page;
+        }));
+        readerPages.scrollLeft = 0;
+        updateCounter();
+      } catch (error) {
+        activeReaderUrls = [clickedUrl];
+        readerPages.replaceChildren();
+        const page = document.createElement('div');
+        page.className = 'page';
+        const image = document.createElement('img');
+        image.src = clickedUrl;
+        image.alt = marketLabel(market) + ' broşürü';
+        page.append(image);
+        readerPages.append(page);
+        readerCounter.textContent = '1 / 1';
+      }
+    }
+
+    function closeReader() {
+      reader.hidden = true;
+      readerPages.replaceChildren();
+      activeReaderUrls = [];
+      document.body.style.overflow = previousOverflow;
+    }
+
+    function updateCounter() {
+      if (!activeReaderUrls.length) return;
+      const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
+      readerCounter.textContent = (index + 1) + ' / ' + activeReaderUrls.length;
+    }
+
+    let counterFrame = 0;
+    readerPages.addEventListener('scroll', () => {
+      cancelAnimationFrame(counterFrame);
+      counterFrame = requestAnimationFrame(updateCounter);
+    }, { passive:true });
+    document.querySelector('#closeReader').addEventListener('click', closeReader);
+    document.querySelector('#sharePage').addEventListener('click', async () => {
+      if (!activeReaderUrls.length) return;
+      const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
+      const url = activeReaderUrls[index];
+      try { if (navigator.share) await navigator.share({ title:readerTitle.textContent, url }); else await navigator.clipboard.writeText(url); } catch (_) {}
+    });
+    document.querySelectorAll('.market-button').forEach(button => button.addEventListener('click', async () => {
+      const market = button.dataset.market;
+      try { const urls = await getManifest(MARKET_MANIFESTS[market]); openReader(market, urls[0]); } catch (error) { showError(error); }
+    }));
+    window.addEventListener('popstate', () => { if (!reader.hidden) closeReader(); });
+
+    function showError(error) {
+      content.innerHTML = '';
+      const status = document.createElement('div');
+      status.className = 'status';
+      status.append(document.createTextNode('Broşürler yüklenemedi. İnternet bağlantınızı kontrol edin.'));
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.className = 'retry';
+      retry.textContent = 'Tekrar Dene';
+      retry.addEventListener('click', loadHome);
+      status.append(document.createElement('br'), retry);
+      content.append(status);
+      console.error(error);
+    }
+
+    async function loadHome() {
+      content.innerHTML = '<div class="status">Broşürler yükleniyor…</div>';
+      try { renderHome(await getManifest(HOME_MANIFEST)); } catch (error) { showError(error); }
+    }
+
+    loadHome();
+  })();
+  </script>
+</body>
+</html>
