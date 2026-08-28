@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#e30613">
   <title>Güncel Market Bültenleri</title>
   <style>
-    :root { --red:#e30613; --blue:#08a9dc; --ink:#16181d; --line:#e7e8eb; --muted:#69707c; }
+    :root { --red:#e30613; --blue:#08a9dc; --ink:#16181d; --line:#e7e8eb; --muted:#69707c; --market-nav-height:154px; }
     * { box-sizing:border-box; }
-    html,body { margin:0; min-height:100%; overflow-x:hidden; background:#f3f4f6; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+    html,body { margin:0; min-height:100%; overflow-x:clip; background:#f3f4f6; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+    body { padding-top:var(--market-nav-height); }
     button { font:inherit; }
-    .market-nav { position:sticky; top:0; z-index:30; display:grid; grid-template-columns:repeat(3,1fr); gap:9px 10px; padding:max(9px,env(safe-area-inset-top)) 12px 10px; background:#fffffff2; border-bottom:3px solid var(--red); box-shadow:0 4px 12px #0002; backdrop-filter:blur(10px); }
+    .market-nav { position:fixed; top:0; right:0; left:0; z-index:80; display:grid; width:100%; grid-template-columns:repeat(3,1fr); gap:9px 10px; padding:max(9px,env(safe-area-inset-top)) 12px 10px; background:#fffffff2; border-bottom:3px solid var(--red); box-shadow:0 4px 12px #0002; backdrop-filter:blur(10px); }
     .all-markets-button { grid-column:1/-1; justify-self:center; min-width:190px; padding:9px 22px; border:1px solid #078db8; border-radius:999px; background:linear-gradient(145deg,#12b9eb,#079dce); color:#fff; font-size:13px; font-weight:900; letter-spacing:.35px; cursor:pointer; box-shadow:0 4px 9px #078db842,inset 0 1px 0 #ffffff80; transition:transform .16s ease,box-shadow .16s ease; }
     .all-markets-button:active { transform:translateY(1px) scale(.98); }
     .all-markets-button.active { border-color:#056f93; box-shadow:0 0 0 3px #0aafd526,0 4px 10px #078db84d,inset 0 1px 0 #ffffff90; }
@@ -143,6 +144,7 @@
     const readerTitle = document.querySelector('#readerTitle');
     const readerCounter = document.querySelector('#readerCounter');
     const storyProgress = document.querySelector('#storyProgress');
+    const marketNav = document.querySelector('.market-nav');
     let activeReaderUrls = [];
     let homeManifestUrls = [];
     let selectedMarket = null;
@@ -168,6 +170,14 @@
     const ocrQueue = [];
     let ocrBusy = false;
     let ocrWorkerPromise = null;
+
+    function syncMarketNavHeight() {
+      const height = Math.ceil(marketNav.getBoundingClientRect().height);
+      if (height > 0) document.documentElement.style.setProperty('--market-nav-height',height + 'px');
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(syncMarketNavHeight).observe(marketNav);
+    window.addEventListener('resize',syncMarketNavHeight,{ passive:true });
+    requestAnimationFrame(syncMarketNavHeight);
 
     function marketFromUrl(url) {
       const path = String(url).toUpperCase();
