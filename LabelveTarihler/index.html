@@ -103,6 +103,7 @@
     'use strict';
 
     const HOME_MANIFEST = 'https://oeappstudio.com/Brochures/Manifest/manifest.txt';
+    const DATES_MANIFEST = 'https://oeappstudio.com/Brochures/Manifest/dates.json';
     const MARKET_MANIFESTS = Object.freeze({
       A101: 'https://oeappstudio.com/Brochures/Brochures/A101/manifest.txt',
       BIM:  'https://oeappstudio.com/Brochures/Brochures/BIM/manifest.txt',
@@ -177,6 +178,8 @@
     const OCR_CACHE_KEY = 'oeapp_brochure_dates_v2';
     const TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
     const marketCache = { A101:[], BIM:[], SOK:[] };
+    let remoteDates = Object.create(null);
+    let homeSortMode = 'date';
     const ocrQueue = [];
     let ocrCache = (() => {
       try { return JSON.parse(localStorage.getItem(OCR_CACHE_KEY)) || {}; }
@@ -214,6 +217,19 @@
       const urls = text.split(/\r?\n/).map(v => v.trim()).filter(v => /^https?:\/\//i.test(v));
       if (!urls.length) throw new Error('Manifestte geçerli görsel bağlantısı yok.');
       return [...new Set(urls)];
+    }
+
+    async function loadRemoteDates() {
+      try {
+        const response = await fetch(DATES_MANIFEST, { cache:'no-cache' });
+        if (!response.ok) return;
+        const data = await response.json();
+        const dates = data && typeof data.dates === 'object' ? data.dates : data;
+        if (dates && typeof dates === 'object') remoteDates = dates;
+        homeSortMode = data?.home_sort_mode === 'manual' ? 'manual' : 'date';
+      } catch (_) {
+        // dates.json henüz sunucuda yoksa gömülü tarih verileri kullanılmaya devam eder.
+      }
     }
 
     function createCard(url, market, index) {
@@ -266,7 +282,7 @@
     }, { rootMargin:'220px' }) : null;
 
     function observeDate(element) {
-      const instant = INSTANT_DATES[element.dataset.ocrUrl] || currentManifestDateHint(element.dataset.ocrUrl);
+      const instant = remoteDates[element.dataset.ocrUrl] || INSTANT_DATES[element.dataset.ocrUrl] || currentManifestDateHint(element.dataset.ocrUrl);
       if (instant) { setDateText(element, instant); return; }
       const cached = getOcrCache()[element.dataset.ocrUrl];
       if (cached) { setDateText(element, cached); return; }
@@ -544,15 +560,39 @@
 
     function currentManifestDateHint(url) {
       const value = String(url);
-      const a101Date24 = ['AVgpiegES1','BUlnj66AW5','JVLWkYH2Zn','WINNP1lkhl','cLuh93dqIE','rceSANCkKx','uS0r3R8V5r'];
-      const a101Date27 = ['0n7NWJJsvD','6qFn0nf55N','CSSN2qgVln','GrpnKM0cTp','HrOkfNrByO','JWbeYM8sQh','JwgUy6hxFG','PqcZhp76su','dFSO-PxVCg','ehxYTMKgnX','fCt2yigPhl','iB4lBUkbny','nspgzdKHN2','qxn9vnNgYg'];
-      if (a101Date24.some(key => value.includes(key))) return '24 AĞUSTOS';
+      // 28.08.2026 tarihli manifestteki 82 dosyanın görsel olarak
+      // doğrulanmış tarihleri. Ürün detay görselleri aynı kampanyanın
+      // tarihini devralır; bu kayıtlar için telefonda OCR çalıştırılmaz.
+      const a101Date24 = ['AVgpiegES1','Qec0IE-B7r','TWv3JDYL9s','XWNZnlQw8o','Z27j2X1hJd','hROkg4rFiR','twe9j1KGWf'];
+      const a101Date27 = ['0n7NWJJsvD','224oVkfdyc','6qFn0nf55N','9VcIDfxGHZ','AKpUcW4o9p','ApTzO5DOLk','CSSN2qgVln','DnT1lj3cxp','GrpnKM0cTp','HrOkfNrByO','JWbeYM8sQh','JwgUy6hxFG','NXnn422wrI','PqcZhp76su','dFSO-PxVCg','ehxYTMKgnX','fCt2yigPhl','iIY68af0S6','j1N8cmLaKA','nspgzdKHN2','qxn9vnNgYg','s7VvsIYaOD','aldin-aldin-bu-hafta_1.webp','aldin-aldin-bu-hafta_3.webp','w-fit-bluetoothlu-uygulamali-uzaktan-kumandali-kosu-bandi','xiaomi-portable-blender'];
+      if (a101Date24.some(key => value.includes(key))) return '24 AĞUSTOS’TAN İTİBAREN';
       if (a101Date27.some(key => value.includes(key))) return '27 AĞUSTOS PERŞEMBE';
+      if (value.includes('iB4lBUkbny')) return '22 AĞUSTOS – 4 EYLÜL';
 
       if (value.includes('2026082011013148569_p')) {
         const page = Number(value.match(/_p(\d+)\.webp/i)?.[1]);
         if (page === 1 || page === 2) return '19 – 25 AĞUSTOS 2026';
-        if (page >= 3 && page <= 24) return '22 AĞUSTOS – 15 EYLÜL 2026';
+        if (page >= 3 && page <= 23) return '22 AĞUSTOS – 15 EYLÜL 2026';
+        if (page === 24) return '15 – 18 AĞUSTOS 2026';
+      }
+
+      if (value.includes('v=20260828204601')) {
+        const page = value.match(/_(\d{3})\.webp/i)?.[1];
+        const bimDates = {
+          '024':'4 EYLÜL’DEN İTİBAREN','023':'2 – 31 AĞUSTOS',
+          '022':'28 – 31 AĞUSTOS','021':'22 – 28 AĞUSTOS',
+          '020':'4 EYLÜL’DEN İTİBAREN','019':'28 AĞUSTOS’TAN İTİBAREN',
+          '018':'28 – 31 AĞUSTOS','017':'30 AĞUSTOS’TAN İTİBAREN',
+          '016':'2 – 31 AĞUSTOS','015':'24 MART – 31 ARALIK',
+          '014':'28 – 31 AĞUSTOS','013':'22 – 28 AĞUSTOS',
+          '012':'28 – 31 AĞUSTOS','011':'1 EYLÜL’DEN İTİBAREN',
+          '010':'1 EYLÜL’DEN İTİBAREN','009':'30 AĞUSTOS’TAN İTİBAREN',
+          '008':'28 AĞUSTOS’TAN İTİBAREN','007':'4 – 31 AĞUSTOS',
+          '006':'2 EYLÜL’DEN İTİBAREN','005':'4 EYLÜL’DEN İTİBAREN',
+          '004':'30 AĞUSTOS’TAN İTİBAREN','003':'1 EYLÜL’DEN İTİBAREN',
+          '002':'2 – 31 AĞUSTOS','001':'28 – 31 AĞUSTOS'
+        };
+        if (page && bimDates[page]) return bimDates[page];
       }
 
       if (value.includes('v=20260825122353')) {
@@ -575,7 +615,7 @@
     }
 
     function brochureLabelForUrl(url) {
-      return INSTANT_DATES[url] || currentManifestDateHint(url) || getOcrCache()[url] || '';
+      return remoteDates[url] || INSTANT_DATES[url] || currentManifestDateHint(url) || getOcrCache()[url] || '';
     }
 
     function rankedBrochureItems(urls) {
@@ -734,13 +774,15 @@
     }
 
     function sortHomeManifestByMarketDate(urls) {
-      const cache = getOcrCache();
+      if (homeSortMode === 'manual') return [...urls];
       const referenceDate = new Date();
       const marketBuckets = {};
       urls.forEach((url,index) => {
         const market = marketFromUrl(url) || 'OTHER';
         if (!marketBuckets[market]) marketBuckets[market] = [];
-        const label = INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url];
+        // Ana sayfa bütün cihazlarda aynı olmalı. Cihaza özel OCR önbelleği
+        // burada kullanılmaz; ortak dates.json ve doğrulanmış ipuçları esastır.
+        const label = remoteDates[url] || INSTANT_DATES[url] || currentManifestDateHint(url);
         marketBuckets[market].push({ url,rank:brochureDateRank(label,index,market,referenceDate) });
       });
       Object.values(marketBuckets).forEach(items => items.sort((a,b) => compareBrochureRanks(a.rank,b.rank)));
@@ -1184,7 +1226,8 @@
     async function loadHome() {
       content.innerHTML = '<div class="status">Broşürler yükleniyor…</div>';
       try {
-        homeManifestUrls = await getManifest(HOME_MANIFEST);
+        const [manifestUrls] = await Promise.all([getManifest(HOME_MANIFEST),loadRemoteDates()]);
+        homeManifestUrls = manifestUrls;
         applyHomeFilter(selectedMarket);
         const refresh = () => refreshStories();
         if ('requestIdleCallback' in window) window.requestIdleCallback(refresh,{ timeout:1800 });
