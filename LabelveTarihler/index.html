@@ -105,6 +105,35 @@
       4: 'ca-app-pub-3899323845108149/9961222634',
       5: 'ca-app-pub-3899323845108149/2704632847'
     });
+    // Ana manifestteki doğrulanmış broşür tarihleri. Bu görsellerde tarih
+    // kart oluşturulurken anında gösterilir; telefonda OCR beklenmez.
+    const INSTANT_DATES = Object.freeze({
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_6qFn0nf55N_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_GrpnKM0cTp_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_qxn9vnNgYg_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_BUlnj66AW5_2048x2048.webp':'24 AĞUSTOS',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_ehxYTMKgnX_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_004.webp?v=20260825122353':'1 EYLÜL’DEN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_017.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_011.webp?v=20260825122353':'25 AĞUSTOS’TAN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_020.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_019.webp?v=20260825122353':'28 AĞUSTOS’TAN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p13.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
+      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p15.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
+      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p18.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
+      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p09.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
+      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p01.webp':'19 – 25 AĞUSTOS 2026',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_002.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_018.webp?v=20260825122353':'25 AĞUSTOS’TAN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_005.webp?v=20260825122353':'22 – 28 AĞUSTOS',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_007.webp?v=20260825122353':'1 EYLÜL’DEN İTİBAREN',
+      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_009.webp?v=20260825122353':'4 – 31 AĞUSTOS',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_fCt2yigPhl_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_uS0r3R8V5r_2048x2048.webp':'24 AĞUSTOS',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_JVLWkYH2Zn_2048x2048.webp':'24 AĞUSTOS',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_HrOkfNrByO_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
+      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_PqcZhp76su_2048x2048.webp':'27 AĞUSTOS PERŞEMBE'
+    });
     const ITEMS_PER_ROW = 5;
 
     const content = document.querySelector('#content');
@@ -119,7 +148,8 @@
     let storyTimer = 0;
     let currentReaderIndex = 0;
     const SEEN_KEY = 'oeapp_seen_brochures_v2';
-    const OCR_CACHE_KEY = 'oeapp_brochure_dates_v1';
+    // v2: A101 ve ŞOK için markete özel tarih bölgeleri kullanılır.
+    const OCR_CACHE_KEY = 'oeapp_brochure_dates_v2';
     const TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
     const marketCache = { A101:[], BIM:[], SOK:[] };
     const ocrQueue = [];
@@ -196,6 +226,8 @@
     }, { rootMargin:'220px' }) : null;
 
     function observeDate(element) {
+      const instant = INSTANT_DATES[element.dataset.ocrUrl];
+      if (instant) { setDateText(element, instant); return; }
       const cached = getOcrCache()[element.dataset.ocrUrl];
       if (cached) { setDateText(element, cached); return; }
       if (dateObserver) dateObserver.observe(element); else enqueueOcr(element);
@@ -217,9 +249,9 @@
         const url = element.dataset.ocrUrl;
         try {
           const text = await recognizeBrochureDate(url);
-          const label = extractDateLabel(text) || 'Tarih belirtilmemiş';
-          saveOcrDate(url, label);
-          setDateText(element, label);
+          const label = extractDateLabel(text);
+          if (label) saveOcrDate(url, label);
+          setDateText(element, label || 'Tarih okunamadı');
         } catch (error) {
           setDateText(element, 'Tarih okunamadı');
           console.warn('Broşür tarihi okunamadı:', error);
@@ -251,7 +283,9 @@
     async function getOcrWorker() {
       if (!ocrWorkerPromise) ocrWorkerPromise = (async () => {
         const Tesseract = await loadTesseract();
-        return Tesseract.createWorker('tur+eng');
+        // Tarihler rakam ve ay adlarından oluştuğu için hafif İngilizce model
+        // yeterlidir; Türkçe karakterlerin aksansız biçimleri de eşleştirilir.
+        return Tesseract.createWorker('eng');
       })();
       return ocrWorkerPromise;
     }
@@ -265,17 +299,46 @@
       await image.decode();
       const sourceWidth = image.naturalWidth;
       const sourceHeight = image.naturalHeight;
-      const targetWidth = Math.min(900, sourceWidth);
-      const scale = targetWidth / sourceWidth;
-      const cropHeight = Math.round(sourceHeight * .34);
-      const targetCropHeight = Math.round(cropHeight * scale);
+      const market = marketFromUrl(url);
+      let regions;
+
+      if (market === 'A101') {
+        // A101 tarih bilgisi broşürün sağ üst bölümünde bulunur.
+        regions = [{ x:.42, y:0, w:.58, h:.34 }];
+      } else if (market === 'SOK') {
+        // ŞOK tarih bilgisi broşürün üst-orta bölümünde bulunur.
+        regions = [{ x:.08, y:0, w:.84, h:.30 }];
+      } else {
+        // BİM'de mevcut çalışan yöntem: üst ve alt başlık alanları.
+        regions = [
+          { x:0, y:0, w:1, h:.34 },
+          { x:0, y:.66, w:1, h:.34 }
+        ];
+      }
+
+      const widestSource = Math.max(...regions.map(r => sourceWidth * r.w));
+      const targetWidth = Math.min(820, Math.round(widestSource));
+      const gap = regions.length > 1 ? 14 : 0;
+      const scaledHeights = regions.map(r => Math.max(1, Math.round(sourceHeight * r.h * targetWidth / (sourceWidth * r.w))));
       const canvas = document.createElement('canvas');
       canvas.width = targetWidth;
-      canvas.height = targetCropHeight * 2 + 18;
+      canvas.height = scaledHeights.reduce((total,height) => total + height,0) + gap;
       const ctx = canvas.getContext('2d', { alpha:false });
       ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.drawImage(image,0,0,sourceWidth,cropHeight,0,0,targetWidth,targetCropHeight);
-      ctx.drawImage(image,0,sourceHeight-cropHeight,sourceWidth,cropHeight,0,targetCropHeight+18,targetWidth,targetCropHeight);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.filter = 'grayscale(1) contrast(1.45)';
+      let targetY = 0;
+      regions.forEach((region,index) => {
+        const height = scaledHeights[index];
+        ctx.drawImage(
+          image,
+          Math.round(sourceWidth * region.x), Math.round(sourceHeight * region.y),
+          Math.round(sourceWidth * region.w), Math.round(sourceHeight * region.h),
+          0, targetY, targetWidth, height
+        );
+        targetY += height + gap;
+      });
       return canvas;
     }
 
