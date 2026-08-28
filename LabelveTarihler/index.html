@@ -536,6 +536,60 @@
         .map(item => item.url);
     }
 
+    // Hikâyede tarih aralığının hâlâ devam ediyor olması başlangıç tarihini
+    // "bugün" yapmaz. Kartta yazan ilk tarih esas alınır: bugün ve gelecek
+    // tarihler önce, geçmiş tarihler daha sonra gösterilir.
+    function brochureStartDate(label,referenceDate=new Date()) {
+      const text = normalizedDateText(label);
+      if (!text) return null;
+      const months = { OCAK:0,SUBAT:1,MART:2,NISAN:3,MAYIS:4,HAZIRAN:5,TEMMUZ:6,AGUSTOS:7,EYLUL:8,EKIM:9,KASIM:10,ARALIK:11 };
+      const monthPattern = Object.keys(months).join('|');
+      const today = new Date(referenceDate);
+      today.setHours(0,0,0,0);
+
+      const makeDate = (day,month,yearValue) => {
+        const numericDay = Number(day);
+        let year = yearValue ? Number(yearValue) : today.getFullYear();
+        if (yearValue && year < 100) year += 2000;
+        let date = new Date(year,month,numericDay);
+        if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== numericDay) return null;
+        // Yıl broşürde yazmıyorsa aralık sonundaki Ocak/Şubat tarihini
+        // bir sonraki yıl olarak değerlendir.
+        if (!yearValue && today.getMonth() >= 10 && month <= 1 && date < today) {
+          date = new Date(year + 1,month,numericDay);
+        }
+        return date;
+      };
+
+      let match = text.match(new RegExp('\\b(\\d{1,2})\\s*[-–—]\\s*\\d{1,2}\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
+      if (match) return makeDate(match[1],months[match[2]],match[3]);
+
+      match = text.match(new RegExp('\\b(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
+      if (match) return makeDate(match[1],months[match[2]],match[3]);
+
+      match = text.match(/\b(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?/);
+      if (match) return makeDate(match[1],Number(match[2]) - 1,match[3]);
+      return null;
+    }
+
+    function storyDateRank(label,index=0) {
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const start = brochureStartDate(label,today);
+      if (!start) return [2,Number.POSITIVE_INFINITY,index];
+      const dayDifference = Math.round((start - today) / 86400000);
+      if (dayDifference >= 0) return [0,dayDifference,index];
+      return [1,Math.abs(dayDifference),index];
+    }
+
+    function sortStoriesFromToday(urls) {
+      const cache = getOcrCache();
+      return urls.map((url,index) => ({
+        url,
+        rank:storyDateRank(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url],index)
+      })).sort((a,b) => compareBrochureRanks(a.rank,b.rank)).map(item => item.url);
+    }
+
     function brochureDateRank(label,index=0) {
       const text = normalizedDateText(label);
       if (!text) return [3,Number.POSITIVE_INFINITY,index];
@@ -715,7 +769,7 @@
       // marketin mevcut broşürleri yeniden oynatılır. Her iki durumda da
       // bugün geçerli olanlar önce, gelecek tarihler yakından uzağa sıralanır.
       const storySource = unseen.length ? unseen : [...marketCache[market]];
-      const urls = sortBrochuresByToday(storySource);
+      const urls = sortStoriesFromToday(storySource);
       if (!urls.length) { showToast(marketLabel(market) + ' broşürü bulunamadı'); return; }
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
