@@ -28,9 +28,12 @@
     .retry { margin-top:14px; padding:10px 16px; border:0; border-radius:12px; background:var(--red); color:#fff; font-weight:700; }
     .row { padding:9px 0 16px; border-bottom:3px solid var(--line); background:linear-gradient(180deg,#fff 0%,#fafbfc 100%); }
     .row-title { margin:0 12px 6px; text-align:center; font-size:16px; font-weight:800; }
-    .strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(142px,1fr)); gap:14px 11px; overflow:visible; padding:3px 12px 13px; }
-    .strip > .ad-wrap { grid-column:1/-1; width:100%; margin:2px 0; }
-    .card { width:100%; min-width:0; margin:0; padding:7px 7px 0; border:1px solid #d8dbe1; border-radius:10px; background:linear-gradient(145deg,#fff,#eceef2); color:inherit; text-align:center; cursor:pointer; box-shadow:5px 7px 12px #1d263526, -2px -2px 5px #fff, inset 0 1px 0 #fff; transform:perspective(700px) rotateY(-.7deg); transition:transform .18s ease,box-shadow .18s ease; }
+    .strip { display:flex; gap:14px; overflow-x:auto; padding:3px 14px 12px; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-inline:contain; }
+    .strip::-webkit-scrollbar { display:none; }
+    .card { flex:0 0 clamp(145px,43vw,220px); min-width:0; margin:0; padding:7px 7px 0; border:1px solid #d8dbe1; border-radius:10px; background:linear-gradient(145deg,#fff,#eceef2); color:inherit; text-align:center; cursor:pointer; scroll-snap-align:start; box-shadow:5px 7px 12px #1d263526, -2px -2px 5px #fff, inset 0 1px 0 #fff; transform:perspective(700px) rotateY(-.7deg); transition:transform .18s ease,box-shadow .18s ease; }
+    #content.filtered-view .strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(142px,1fr)); gap:14px 11px; overflow:visible; padding:3px 12px 13px; scroll-snap-type:none; }
+    #content.filtered-view .strip > .ad-wrap { grid-column:1/-1; width:100%; margin:2px 0; }
+    #content.filtered-view .card { width:100%; min-width:0; flex:none; scroll-snap-align:none; }
     .card:active { transform:perspective(700px) rotateY(0) translateY(2px) scale(.985); box-shadow:2px 3px 6px #1d263528; }
     .card-media { position:relative; display:grid; width:100%; aspect-ratio:3/4; place-items:center; overflow:hidden; border:1px solid #e1e3e7; background:#fff; border-radius:6px; box-shadow:inset 0 0 12px #0000000b; }
     .card img { width:100%; height:100%; display:block; object-fit:contain; }
@@ -502,16 +505,72 @@
 
     function sortBrochuresByToday(urls) {
       const cache = getOcrCache();
-      return urls.map((url,index) => ({ url,index,score:brochureDateDistance(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url]) }))
-        .sort((a,b) => a.score - b.score || a.index - b.index)
+      return urls.map((url,index) => ({ url,index,rank:brochureDateRank(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url],index) }))
+        .sort((a,b) => compareBrochureRanks(a.rank,b.rank))
         .map(item => item.url);
+    }
+
+    function brochureDateRank(label,index=0) {
+      const text = normalizedDateText(label);
+      if (!text) return [3,Number.POSITIVE_INFINITY,index];
+      const months = { OCAK:0,SUBAT:1,MART:2,NISAN:3,MAYIS:4,HAZIRAN:5,TEMMUZ:6,AGUSTOS:7,EYLUL:8,EKIM:9,KASIM:10,ARALIK:11 };
+      const monthPattern = Object.keys(months).join('|');
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const makeDate = (day,month,year) => new Date(Number(year || today.getFullYear()),months[month],Number(day));
+      let start = null;
+      let end = null;
+      let match = text.match(new RegExp('\\b(\\d{1,2})\\s*[-–—]\\s*(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
+      if (match) {
+        start = makeDate(match[1],match[3],match[4]);
+        end = makeDate(match[2],match[3],match[4]);
+      } else {
+        const expression = new RegExp('\\b(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?','g');
+        const found = [...text.matchAll(expression)];
+        if (found.length) start = makeDate(found[0][1],found[0][2],found[0][3]);
+        if (found.length > 1) {
+          end = makeDate(found[1][1],found[1][2],found[1][3] || found[0][3]);
+          if (end < start && !found[1][3]) end.setFullYear(end.getFullYear() + 1);
+        }
+      }
+      if (!start || Number.isNaN(start.getTime())) return [3,Number.POSITIVE_INFINITY,index];
+      const oneDay = 86400000;
+      if (end && !Number.isNaN(end.getTime()) && today >= start && today <= end) return [0,0,index];
+      if (!end && start.getTime() === today.getTime()) return [0,0,index];
+      if (start > today) return [1,(start-today)/oneDay,index];
+      const pastReference = end && !Number.isNaN(end.getTime()) ? end : start;
+      return [2,Math.max(0,(today-pastReference)/oneDay),index];
+    }
+
+    function compareBrochureRanks(a,b) {
+      return a[0]-b[0] || a[1]-b[1] || a[2]-b[2];
+    }
+
+    function sortHomeManifestByMarketDate(urls) {
+      const cache = getOcrCache();
+      const marketBuckets = {};
+      urls.forEach((url,index) => {
+        const market = marketFromUrl(url) || 'OTHER';
+        if (!marketBuckets[market]) marketBuckets[market] = [];
+        const label = INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url];
+        marketBuckets[market].push({ url,rank:brochureDateRank(label,index) });
+      });
+      Object.values(marketBuckets).forEach(items => items.sort((a,b) => compareBrochureRanks(a.rank,b.rank)));
+      const cursors = {};
+      return urls.map(originalUrl => {
+        const market = marketFromUrl(originalUrl) || 'OTHER';
+        const position = cursors[market] || 0;
+        cursors[market] = position + 1;
+        return marketBuckets[market][position].url;
+      });
     }
 
     function applyHomeFilter(market=null) {
       selectedMarket = market;
+      content.classList.toggle('filtered-view', Boolean(market));
       // Tek market görünümünde ana sayfanın seçilmiş 5/10 görseli değil,
       // marketin kendi manifestindeki broşürlerin tamamı gösterilir.
-      const urls = market ? sortBrochuresByToday(marketCache[market] || []) : homeManifestUrls;
+      const urls = market ? sortBrochuresByToday(marketCache[market] || []) : sortHomeManifestByMarketDate(homeManifestUrls);
       renderHome(urls);
       const allButton = document.querySelector('#showAllMarkets');
       allButton.classList.toggle('active', !market);
