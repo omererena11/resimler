@@ -35,7 +35,7 @@
     #content.filtered-view .strip > .ad-wrap { grid-column:1/-1; width:100%; margin:2px 0; }
     #content.filtered-view .card { width:100%; min-width:0; flex:none; scroll-snap-align:none; }
     .card:active { transform:translateY(2px) scale(.985); box-shadow:2px 3px 6px #1d263528; }
-    .card-media { position:relative; display:grid; width:100%; aspect-ratio:3/4; place-items:center; overflow:hidden; border:1px solid #e1e3e7; background:#fff; border-radius:6px; box-shadow:inset 0 0 12px #0000000b; }
+    .card-media { position:relative; display:grid; width:100%; aspect-ratio:var(--row-media-ratio,3/4); place-items:center; overflow:hidden; border:1px solid #e1e3e7; background:#fff; border-radius:6px; box-shadow:inset 0 0 12px #0000000b; }
     .card img { width:100%; height:100%; display:block; object-fit:contain; }
     .card-label { display:block; min-height:55px; padding:8px 2px 7px; font-size:13px; line-height:1.18; font-weight:800; text-shadow:0 1px 0 #fff; }
     .card-date { display:block; min-height:26px; margin-top:4px; color:#343943; font-size:11px; line-height:1.18; font-weight:700; }
@@ -429,6 +429,32 @@
       } catch (_) { /* Tarayıcı önizlemesinde native köprü bulunmaz. */ }
     }
 
+    const rowRatioFrames = new WeakMap();
+
+    function scheduleRowMediaRatio(section) {
+      if (!section?.isConnected || rowRatioFrames.has(section)) return;
+      const frame = requestAnimationFrame(() => {
+        rowRatioFrames.delete(section);
+        if (!section.isConnected) return;
+        const ratios = [...section.querySelectorAll('.card img')]
+          .filter(image => image.naturalWidth > 0 && image.naturalHeight > 0)
+          .map(image => image.naturalWidth / image.naturalHeight);
+        if (!ratios.length) return;
+        // Satırdaki en uzun görselin oranı bütün kartlara uygulanır.
+        // Böylece görseller kırpılmaz ve aynı satırda kart boyları eşit kalır.
+        const sharedRatio = Math.max(.52,Math.min(.96,Math.min(...ratios)));
+        section.style.setProperty('--row-media-ratio',sharedRatio.toFixed(4));
+      });
+      rowRatioFrames.set(section,frame);
+    }
+
+    function bindRowMediaRatio(section) {
+      section.querySelectorAll('.card img').forEach(image => {
+        if (image.complete && image.naturalWidth) scheduleRowMediaRatio(section);
+        else image.addEventListener('load',() => scheduleRowMediaRatio(section),{ once:true });
+      });
+    }
+
     function renderHome(urls) {
       content.replaceChildren();
       const rows = [];
@@ -453,6 +479,7 @@
         });
         section.append(title, strip);
         content.append(section);
+        bindRowMediaRatio(section);
         const rowNumber = rowIndex + 1;
         if (!selectedMarket && ADS_AFTER_ROWS[rowNumber]) content.append(createAd(rowNumber, ADS_AFTER_ROWS[rowNumber]));
       });
@@ -573,13 +600,17 @@
     }
 
     function storyDateRank(label,index=0) {
+      const standardRank = brochureDateRank(label,index);
+      // Bugün devam eden tarih aralıkları ve doğrudan bugünün tarihini
+      // taşıyan broşürler hikâyenin ilk grubudur.
+      if (standardRank[0] === 0) return [0,0,index];
       const today = new Date();
       today.setHours(0,0,0,0);
       const start = brochureStartDate(label,today);
-      if (!start) return [2,Number.POSITIVE_INFINITY,index];
+      if (!start) return [3,Number.POSITIVE_INFINITY,index];
       const dayDifference = Math.round((start - today) / 86400000);
-      if (dayDifference >= 0) return [0,dayDifference,index];
-      return [1,Math.abs(dayDifference),index];
+      if (dayDifference >= 0) return [1,dayDifference,index];
+      return [2,Math.abs(dayDifference),index];
     }
 
     function sortStoriesFromToday(urls) {
@@ -587,7 +618,12 @@
       return urls.map((url,index) => ({
         url,
         rank:storyDateRank(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url],index)
-      })).sort((a,b) => compareBrochureRanks(a.rank,b.rank)).map(item => item.url);
+      }))
+        // Süresi geçmiş broşürleri hikâyeden çıkar. Tarihi henüz okunamamış
+        // yeni görseller kaybolmasın diye onlar listenin sonunda korunur.
+        .filter(item => item.rank[0] !== 2)
+        .sort((a,b) => compareBrochureRanks(a.rank,b.rank))
+        .map(item => item.url);
     }
 
     function brochureDateRank(label,index=0) {
@@ -721,7 +757,7 @@
 
     function unseenFor(market) {
       const seen = new Set(readSeen()[market] || []);
-      return (marketCache[market] || []).filter(url => !seen.has(url));
+      return sortStoriesFromToday(marketCache[market] || []).filter(url => !seen.has(url));
     }
 
     function updateStoryRing(market) {
@@ -766,11 +802,10 @@
       }
       const unseen = unseenFor(market);
       // Yeni içerik varsa Instagram gibi önce yeniler; tümü görüldüyse
-      // marketin mevcut broşürleri yeniden oynatılır. Her iki durumda da
-      // bugün geçerli olanlar önce, gelecek tarihler yakından uzağa sıralanır.
+      // marketin bugün geçerli ve gelecek tarihli broşürleri yeniden oynatılır.
       const storySource = unseen.length ? unseen : [...marketCache[market]];
       const urls = sortStoriesFromToday(storySource);
-      if (!urls.length) { showToast(marketLabel(market) + ' broşürü bulunamadı'); return; }
+      if (!urls.length) { showToast(marketLabel(market) + ': bugün veya sonrası için broşür bulunamadı'); return; }
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       storyMarket = market;
