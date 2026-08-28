@@ -11,31 +11,30 @@
     html,body { margin:0; min-height:100%; overflow-x:clip; background:#f3f4f6; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
     body { padding-top:var(--market-nav-height); }
     button { font:inherit; }
-    .market-nav { position:fixed; top:0; right:0; left:0; z-index:80; display:grid; width:100%; grid-template-columns:repeat(3,1fr); gap:9px 10px; padding:max(9px,env(safe-area-inset-top)) 12px 10px; background:#fffffff2; border-bottom:3px solid var(--red); box-shadow:0 4px 12px #0002; backdrop-filter:blur(10px); }
+    .market-nav { position:fixed; top:0; right:0; left:0; z-index:80; display:grid; width:100%; grid-template-columns:repeat(3,1fr); gap:9px 10px; padding:max(9px,env(safe-area-inset-top)) 12px 10px; background:#fff; border-bottom:3px solid var(--red); box-shadow:0 4px 12px #0002; contain:layout paint; transform:translateZ(0); }
     .all-markets-button { grid-column:1/-1; justify-self:center; min-width:190px; padding:9px 22px; border:1px solid #078db8; border-radius:999px; background:linear-gradient(145deg,#12b9eb,#079dce); color:#fff; font-size:13px; font-weight:900; letter-spacing:.35px; cursor:pointer; box-shadow:0 4px 9px #078db842,inset 0 1px 0 #ffffff80; transition:transform .16s ease,box-shadow .16s ease; }
     .all-markets-button:active { transform:translateY(1px) scale(.98); }
     .all-markets-button.active { border-color:#056f93; box-shadow:0 0 0 3px #0aafd526,0 4px 10px #078db84d,inset 0 1px 0 #ffffff90; }
     .market-button { position:relative; min-width:0; aspect-ratio:1; max-height:92px; padding:4px; border:3px solid #d8dbe0; border-radius:50%; background:#fff; font-size:22px; font-weight:900; cursor:pointer; box-shadow:0 4px 10px #0002, inset 0 0 0 3px #fff; transition:transform .18s ease; }
     .market-button:active { transform:scale(.94); }
     .market-button.selected { border-color:var(--red); outline:3px solid #e30613; outline-offset:2px; box-shadow:0 0 0 3px #e3061324,0 5px 14px #0003,inset 0 0 0 3px #fff; }
-    .market-button.has-new { border-color:transparent; background:linear-gradient(#fff,#fff) padding-box, conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75) border-box; animation:ringPulse 1.8s ease-in-out infinite; }
+    .market-button.has-new { border-color:transparent; background:linear-gradient(#fff,#fff) padding-box, conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75) border-box; }
     .story-count { position:absolute; right:-3px; bottom:1px; display:grid; min-width:23px; height:23px; padding:0 5px; place-items:center; border:2px solid #fff; border-radius:999px; background:var(--red); color:#fff; font-size:11px; line-height:1; }
-    @keyframes ringPulse { 50% { box-shadow:0 5px 16px #d6297655, inset 0 0 0 3px #fff; } }
     .market-button[data-market=A101] { color:#12a9a4; }
     .market-button[data-market=BIM] { color:#e30613; }
     .market-button[data-market=SOK] { color:#15549a; }
     #content { max-width:760px; min-height:60vh; margin:auto; background:#fff; }
     .status { padding:48px 18px; color:var(--muted); text-align:center; }
     .retry { margin-top:14px; padding:10px 16px; border:0; border-radius:12px; background:var(--red); color:#fff; font-weight:700; }
-    .row { padding:9px 0 16px; border-bottom:3px solid var(--line); background:linear-gradient(180deg,#fff 0%,#fafbfc 100%); }
+    .row { padding:9px 0 16px; border-bottom:3px solid var(--line); background:linear-gradient(180deg,#fff 0%,#fafbfc 100%); content-visibility:auto; contain-intrinsic-size:auto 390px; }
     .row-title { margin:0 12px 6px; text-align:center; font-size:16px; font-weight:800; }
     .strip { display:flex; gap:14px; overflow-x:auto; padding:3px 14px 12px; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-inline:contain; }
     .strip::-webkit-scrollbar { display:none; }
-    .card { flex:0 0 clamp(145px,43vw,220px); min-width:0; margin:0; padding:7px 7px 0; border:1px solid #d8dbe1; border-radius:10px; background:linear-gradient(145deg,#fff,#eceef2); color:inherit; text-align:center; cursor:pointer; scroll-snap-align:start; box-shadow:5px 7px 12px #1d263526, -2px -2px 5px #fff, inset 0 1px 0 #fff; transform:perspective(700px) rotateY(-.7deg); transition:transform .18s ease,box-shadow .18s ease; }
+    .card { flex:0 0 clamp(145px,43vw,220px); min-width:0; margin:0; padding:7px 7px 0; border:1px solid #d8dbe1; border-radius:10px; background:linear-gradient(145deg,#fff,#eceef2); color:inherit; text-align:center; cursor:pointer; scroll-snap-align:start; box-shadow:5px 7px 12px #1d263526, -2px -2px 5px #fff, inset 0 1px 0 #fff; transition:box-shadow .18s ease; content-visibility:auto; contain-intrinsic-size:180px 320px; }
     #content.filtered-view .strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(142px,1fr)); gap:14px 11px; overflow:visible; padding:3px 12px 13px; scroll-snap-type:none; }
     #content.filtered-view .strip > .ad-wrap { grid-column:1/-1; width:100%; margin:2px 0; }
     #content.filtered-view .card { width:100%; min-width:0; flex:none; scroll-snap-align:none; }
-    .card:active { transform:perspective(700px) rotateY(0) translateY(2px) scale(.985); box-shadow:2px 3px 6px #1d263528; }
+    .card:active { transform:translateY(2px) scale(.985); box-shadow:2px 3px 6px #1d263528; }
     .card-media { position:relative; display:grid; width:100%; aspect-ratio:3/4; place-items:center; overflow:hidden; border:1px solid #e1e3e7; background:#fff; border-radius:6px; box-shadow:inset 0 0 12px #0000000b; }
     .card img { width:100%; height:100%; display:block; object-fit:contain; }
     .card-label { display:block; min-height:55px; padding:8px 2px 7px; font-size:13px; line-height:1.18; font-weight:800; text-shadow:0 1px 0 #fff; }
@@ -54,7 +53,7 @@
     .reader-pages.zoom-lock { overflow-x:hidden; scroll-snap-type:none; touch-action:none; }
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
-    .page img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; box-shadow:0 5px 24px #000b; transform-origin:center; will-change:transform,opacity,filter; }
+    .page img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; box-shadow:0 5px 24px #000b; transform-origin:center; }
     .story-mode .page.active img { animation:storyAppear .38s ease-out both; }
     .story-mode .page.zoomed img { animation:none; }
     @keyframes storyAppear { from { opacity:.25; filter:brightness(.82) blur(1px); } to { opacity:1; filter:brightness(1) blur(0); } }
@@ -168,6 +167,10 @@
     const TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
     const marketCache = { A101:[], BIM:[], SOK:[] };
     const ocrQueue = [];
+    let ocrCache = (() => {
+      try { return JSON.parse(localStorage.getItem(OCR_CACHE_KEY)) || {}; }
+      catch (_) { return {}; }
+    })();
     let ocrBusy = false;
     let ocrWorkerPromise = null;
 
@@ -175,8 +178,11 @@
       const height = Math.ceil(marketNav.getBoundingClientRect().height);
       if (height > 0) document.documentElement.style.setProperty('--market-nav-height',height + 'px');
     }
-    if ('ResizeObserver' in window) new ResizeObserver(syncMarketNavHeight).observe(marketNav);
-    window.addEventListener('resize',syncMarketNavHeight,{ passive:true });
+    let navMeasureTimer = 0;
+    window.addEventListener('orientationchange',() => {
+      clearTimeout(navMeasureTimer);
+      navMeasureTimer = setTimeout(syncMarketNavHeight,250);
+    },{ passive:true });
     requestAnimationFrame(syncMarketNavHeight);
 
     function marketFromUrl(url) {
@@ -230,14 +236,13 @@
     }
 
     function getOcrCache() {
-      try { return JSON.parse(localStorage.getItem(OCR_CACHE_KEY)) || {}; } catch (_) { return {}; }
+      return ocrCache;
     }
 
     function saveOcrDate(url, value) {
-      const cache = getOcrCache();
-      cache[url] = value;
-      const entries = Object.entries(cache).slice(-250);
-      try { localStorage.setItem(OCR_CACHE_KEY, JSON.stringify(Object.fromEntries(entries))); } catch (_) {}
+      ocrCache[url] = value;
+      ocrCache = Object.fromEntries(Object.entries(ocrCache).slice(-250));
+      try { localStorage.setItem(OCR_CACHE_KEY, JSON.stringify(ocrCache)); } catch (_) {}
     }
 
     const dateObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
@@ -267,6 +272,7 @@
       if (ocrBusy) return;
       ocrBusy = true;
       while (ocrQueue.length) {
+        await waitForOcrIdle();
         const element = ocrQueue.shift();
         if (!element?.isConnected) continue;
         const url = element.dataset.ocrUrl;
@@ -281,6 +287,16 @@
         }
       }
       ocrBusy = false;
+    }
+
+    function waitForOcrIdle() {
+      return new Promise(resolve => {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(() => resolve(), { timeout:3000 });
+        } else {
+          setTimeout(resolve,750);
+        }
+      });
     }
 
     function setDateText(element, value) {
