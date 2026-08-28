@@ -10,10 +10,7 @@
     * { box-sizing:border-box; }
     html,body { margin:0; min-height:100%; background:#f3f4f6; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
     button { font:inherit; }
-    .topbar { position:sticky; top:0; z-index:20; padding:max(12px,env(safe-area-inset-top)) 12px 12px; background:var(--red); box-shadow:0 2px 7px #0002; }
-    .topbar { display:flex; justify-content:center; align-items:center; }
-    .topbar h1 { margin:0; width:max-content; max-width:100%; padding:13px 22px; border-radius:19px; background:var(--blue); color:#fff; font-size:17px; line-height:1; text-align:center; box-shadow:0 3px 8px #0004, inset 0 1px 0 #fff6; }
-    .market-nav { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:10px 12px; background:#fff; border-bottom:3px solid var(--red); }
+    .market-nav { position:sticky; top:0; z-index:30; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:max(10px,env(safe-area-inset-top)) 12px 10px; background:#fffffff2; border-bottom:3px solid var(--red); box-shadow:0 4px 12px #0002; backdrop-filter:blur(10px); }
     .market-button { position:relative; min-width:0; aspect-ratio:1; max-height:92px; padding:4px; border:3px solid #d8dbe0; border-radius:50%; background:#fff; font-size:22px; font-weight:900; cursor:pointer; box-shadow:0 4px 10px #0002, inset 0 0 0 3px #fff; transition:transform .18s ease; }
     .market-button:active { transform:scale(.94); }
     .market-button.has-new { border-color:transparent; background:linear-gradient(#fff,#fff) padding-box, conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75) border-box; animation:ringPulse 1.8s ease-in-out infinite; }
@@ -44,11 +41,13 @@
     .reader-bar { display:grid; grid-template-columns:44px 1fr 44px; align-items:center; min-height:58px; padding-top:env(safe-area-inset-top); background:#181b20; }
     .reader-bar button { height:44px; border:0; background:transparent; color:#fff; font-size:27px; cursor:pointer; }
     .reader-title { overflow:hidden; text-align:center; font-size:16px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
-    .reader-pages { display:flex; flex:1; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+    .reader-pages { display:flex; flex:1; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; touch-action:pan-x; }
+    .reader-pages.zoom-lock { overflow-x:hidden; scroll-snap-type:none; touch-action:none; }
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
-    .page img { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 3px 18px #0009; }
+    .page img { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 3px 18px #0009; transform-origin:center; will-change:transform; }
     .story-mode .page.active img { animation:storyZoom 6s ease-out both; }
+    .story-mode .page.zoomed img { animation:none; }
     @keyframes storyZoom { from { transform:scale(1); filter:brightness(.92); } 12% { filter:brightness(1); } to { transform:scale(1.035); filter:brightness(1); } }
     .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
     .story-progress { display:flex; gap:4px; padding:7px 8px 2px; background:#181b20; }
@@ -58,9 +57,6 @@
     .story-track.done .story-fill { width:100%; }
     .story-track.active .story-fill { animation:storyRun 6s linear forwards; }
     @keyframes storyRun { from { width:0; } to { width:100%; } }
-    .story-tap { position:absolute; z-index:3; top:70px; bottom:46px; width:34%; border:0; background:transparent; color:transparent; }
-    .story-tap.prev { left:0; } .story-tap.next { right:0; }
-    .reader:not(.story-mode) .story-tap { display:none; }
     .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
     @keyframes toastLife { 0%,100% { opacity:0; transform:translateY(8px); } 12%,82% { opacity:1; transform:none; } }
     .noscript { margin:20px; color:#b00020; }
@@ -68,7 +64,6 @@
   </style>
 </head>
 <body>
-  <header class="topbar"><h1>TÜM MARKETLER</h1></header>
   <nav class="market-nav" aria-label="Marketler">
     <button class="market-button" data-market="A101" aria-label="A101 broşürleri">A·101</button>
     <button class="market-button" data-market="BIM" aria-label="BİM broşürleri">BİM</button>
@@ -81,12 +76,10 @@
     <div class="reader-bar">
       <button id="closeReader" type="button" aria-label="Kapat">‹</button>
       <div id="readerTitle" class="reader-title">Broşür</div>
-      <button id="sharePage" type="button" aria-label="Paylaş">⋮</button>
+      <div aria-hidden="true"></div>
     </div>
     <div id="storyProgress" class="story-progress" hidden></div>
     <div id="readerPages" class="reader-pages"></div>
-    <button id="storyPrev" class="story-tap prev" type="button" aria-label="Önceki hikâye">Önceki</button>
-    <button id="storyNext" class="story-tap next" type="button" aria-label="Sonraki hikâye">Sonraki</button>
     <div id="readerCounter" class="reader-footer">1 / 1</div>
   </section>
 
@@ -147,6 +140,7 @@
     let storyMarket = null;
     let storyTimer = 0;
     let currentReaderIndex = 0;
+    const zoomState = { page:null, image:null, scale:1, x:0, y:0, mode:null, startDistance:0, startScale:1, startX:0, startY:0, baseX:0, baseY:0 };
     const SEEN_KEY = 'oeapp_seen_brochures_v2';
     // v2: A101 ve ŞOK için markete özel tarih bölgeleri kullanılır.
     const OCR_CACHE_KEY = 'oeapp_brochure_dates_v2';
@@ -550,6 +544,7 @@
 
     function closeReader() {
       clearTimeout(storyTimer);
+      resetZoom(false);
       reader.hidden = true;
       reader.classList.remove('story-mode');
       storyProgress.hidden = true;
@@ -560,6 +555,7 @@
     }
 
     function updateCounter() {
+      if (zoomState.scale > 1.01) return;
       if (!activeReaderUrls.length) return;
       const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
       if (storyMarket) { if (index !== currentReaderIndex) activateStory(index); return; }
@@ -572,14 +568,82 @@
       counterFrame = requestAnimationFrame(updateCounter);
     }, { passive:true });
     document.querySelector('#closeReader').addEventListener('click', closeReader);
-    document.querySelector('#sharePage').addEventListener('click', async () => {
-      if (!activeReaderUrls.length) return;
-      const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
-      const url = activeReaderUrls[index];
-      try { if (navigator.share) await navigator.share({ title:readerTitle.textContent, url }); else await navigator.clipboard.writeText(url); } catch (_) {}
+
+    function touchDistance(a,b) { return Math.hypot(b.clientX-a.clientX,b.clientY-a.clientY); }
+
+    function activeZoomPage() {
+      const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / Math.max(1,readerPages.clientWidth))));
+      return readerPages.children[index] || null;
+    }
+
+    function applyZoom() {
+      if (!zoomState.image) return;
+      zoomState.image.style.transform = 'translate3d(' + zoomState.x + 'px,' + zoomState.y + 'px,0) scale(' + zoomState.scale + ')';
+    }
+
+    function clampPan() {
+      if (!zoomState.page || !zoomState.image) return;
+      const maxX = Math.max(0,(zoomState.image.clientWidth * zoomState.scale - zoomState.page.clientWidth) / 2);
+      const maxY = Math.max(0,(zoomState.image.clientHeight * zoomState.scale - zoomState.page.clientHeight) / 2);
+      zoomState.x = Math.max(-maxX,Math.min(maxX,zoomState.x));
+      zoomState.y = Math.max(-maxY,Math.min(maxY,zoomState.y));
+    }
+
+    function resetZoom(restartStory=true) {
+      if (zoomState.image) zoomState.image.style.transform = '';
+      if (zoomState.page) zoomState.page.classList.remove('zoomed');
+      zoomState.page = null; zoomState.image = null; zoomState.scale = 1; zoomState.x = 0; zoomState.y = 0; zoomState.mode = null;
+      readerPages.classList.remove('zoom-lock');
+      if (restartStory && storyMarket && !reader.hidden) activateStory(currentReaderIndex);
+    }
+
+    readerPages.addEventListener('touchstart', event => {
+      if (event.touches.length === 2) {
+        const page = activeZoomPage();
+        const image = page?.querySelector('img');
+        if (!page || !image) return;
+        clearTimeout(storyTimer);
+        zoomState.page = page; zoomState.image = image; zoomState.mode = 'pinch';
+        zoomState.startDistance = Math.max(1,touchDistance(event.touches[0],event.touches[1]));
+        zoomState.startScale = zoomState.scale;
+        readerPages.classList.add('zoom-lock');
+        page.classList.add('zoomed');
+        event.preventDefault();
+      } else if (event.touches.length === 1 && zoomState.scale > 1.01) {
+        zoomState.mode = 'pan';
+        zoomState.startX = event.touches[0].clientX; zoomState.startY = event.touches[0].clientY;
+        zoomState.baseX = zoomState.x; zoomState.baseY = zoomState.y;
+        event.preventDefault();
+      }
+    }, { passive:false });
+
+    readerPages.addEventListener('touchmove', event => {
+      if (zoomState.mode === 'pinch' && event.touches.length >= 2) {
+        zoomState.scale = Math.max(1,Math.min(4,zoomState.startScale * touchDistance(event.touches[0],event.touches[1]) / zoomState.startDistance));
+        if (zoomState.scale <= 1.01) { zoomState.scale = 1; zoomState.x = 0; zoomState.y = 0; }
+        clampPan(); applyZoom(); event.preventDefault();
+      } else if (zoomState.scale > 1.01 && event.touches.length === 1) {
+        zoomState.x = zoomState.baseX + event.touches[0].clientX - zoomState.startX;
+        zoomState.y = zoomState.baseY + event.touches[0].clientY - zoomState.startY;
+        clampPan(); applyZoom(); event.preventDefault();
+      }
+    }, { passive:false });
+
+    readerPages.addEventListener('touchend', event => {
+      if (event.touches.length >= 2) return;
+      if (zoomState.scale <= 1.01) resetZoom();
+      else if (event.touches.length === 1) {
+        zoomState.mode = 'pan';
+        zoomState.startX = event.touches[0].clientX; zoomState.startY = event.touches[0].clientY;
+        zoomState.baseX = zoomState.x; zoomState.baseY = zoomState.y;
+      } else zoomState.mode = null;
+    }, { passive:false });
+    readerPages.addEventListener('click', event => {
+      if (!storyMarket || zoomState.scale > 1.01) return;
+      const ratio = event.clientX / Math.max(1,window.innerWidth);
+      if (ratio < .34) activateStory(currentReaderIndex - 1);
+      else if (ratio > .66) currentReaderIndex < activeReaderUrls.length - 1 ? activateStory(currentReaderIndex + 1) : closeReader();
     });
-    document.querySelector('#storyPrev').addEventListener('click', () => activateStory(currentReaderIndex - 1));
-    document.querySelector('#storyNext').addEventListener('click', () => currentReaderIndex < activeReaderUrls.length - 1 ? activateStory(currentReaderIndex + 1) : closeReader());
     document.querySelectorAll('.market-button').forEach(button => button.addEventListener('click', () => openStory(button.dataset.market)));
     window.addEventListener('popstate', () => { if (!reader.hidden) closeReader(); });
 
