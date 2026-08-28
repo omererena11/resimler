@@ -712,7 +712,10 @@
       readerCounter.textContent = 'Yükleniyor…';
       try {
         const allUrls = await getManifest(MARKET_MANIFESTS[market]);
-        activeReaderUrls = [clickedUrl, ...allUrls.filter(url => url !== clickedUrl)];
+        // Kullanıcının seçtiği kart her zaman ilk açılır. Devamındaki
+        // sayfalar hikâyeyle aynı tarih filtresi ve sıralamasını kullanır.
+        const orderedFollowingUrls = sortStoriesFromToday(allUrls.filter(url => url !== clickedUrl));
+        activeReaderUrls = [clickedUrl, ...orderedFollowingUrls];
         readerPages.replaceChildren(...activeReaderUrls.map((url, index) => {
           const page = document.createElement('div');
           page.className = 'page';
