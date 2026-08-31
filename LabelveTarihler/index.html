@@ -34,6 +34,12 @@
     #content.filtered-view .strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(142px,1fr)); gap:14px 11px; overflow:visible; padding:3px 12px 13px; scroll-snap-type:none; }
     #content.filtered-view .strip > .ad-wrap { grid-column:1/-1; width:100%; margin:2px 0; }
     #content.filtered-view .card { width:100%; min-width:0; flex:none; scroll-snap-align:none; }
+    #content.filtered-view .selected-date-section { padding-top:12px; }
+    #content.filtered-view .selected-date-section .row-title { margin:0 12px 10px; padding:10px 12px; border:1px solid #dfe4e8; border-radius:10px; background:#fff; text-align:left; box-shadow:0 2px 7px #1d263512; }
+    #content.filtered-view .current-brochures .row-title { border-color:#b9e4d0; background:#f0fbf6; color:#087345; }
+    #content.filtered-view .past-brochures { background:#f7f8fa; }
+    #content.filtered-view .past-brochures .row-title { color:#5e6570; }
+    #content.filtered-view .unknown-brochures .row-title { border-color:#f0d9a7; background:#fff9eb; color:#8a5b00; }
     .card:active { transform:translateY(2px) scale(.985); box-shadow:2px 3px 6px #1d263528; }
     .card-media { position:relative; display:grid; width:100%; aspect-ratio:var(--row-media-ratio,3/4); place-items:center; overflow:hidden; border:1px solid #e1e3e7; background:#fff; border-radius:6px; box-shadow:inset 0 0 12px #0000000b; }
     .card img { width:100%; height:100%; display:block; object-fit:contain; }
@@ -45,24 +51,25 @@
     .ad-slot.native-ready { border:0; color:transparent; }
     .reader { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; background:radial-gradient(circle at 50% 35%,#2b3039 0,#101216 65%); color:#fff; }
     .reader[hidden] { display:none; }
-    .reader-bar { display:grid; grid-template-columns:44px 1fr 44px; align-items:center; min-height:58px; padding-top:env(safe-area-inset-top); background:#181b20; }
+    .reader-bar { display:grid; grid-template-columns:52px 1fr 52px; align-items:center; min-height:64px; padding:env(safe-area-inset-top) 4px 0; background:#181b20; }
     .story-mode .reader-bar { background:linear-gradient(180deg,#090a0ddd,#181b20); }
-    .reader-bar button { height:44px; border:0; background:transparent; color:#fff; font-size:27px; cursor:pointer; }
+    .reader-bar button { display:grid; width:52px; height:52px; padding:0; place-items:center; border:0; border-radius:14px; background:transparent; color:#fff; font-size:36px; line-height:1; cursor:pointer; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+    .reader-bar button:active { background:#ffffff18; transform:scale(.94); }
     .reader-title { overflow:hidden; text-align:center; font-size:16px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
     .reader-pages { display:flex; flex:1; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; touch-action:pan-x; }
     .reader-pages.zoom-lock { overflow-x:hidden; scroll-snap-type:none; touch-action:none; }
     .reader-pages::-webkit-scrollbar { display:none; }
     .page { flex:0 0 100%; display:grid; place-items:center; padding:8px; scroll-snap-align:start; scroll-snap-stop:always; }
     .page img { max-width:100%; max-height:100%; object-fit:contain; border-radius:4px; box-shadow:0 5px 24px #000b; transform-origin:center; }
-    .story-mode .page.active img { animation:storyAppear .38s ease-out both; }
-    .story-mode .page.zoomed img { animation:none; }
-    @keyframes storyAppear { from { opacity:.25; filter:brightness(.82) blur(1px); } to { opacity:1; filter:brightness(1) blur(0); } }
+    .story-mode .reader-pages { background:#101216; }
+    .story-mode .page { background:#101216; }
+    .story-mode .page img { opacity:1; filter:none; transform:translateZ(0); -webkit-backface-visibility:hidden; backface-visibility:hidden; }
     .reader-footer { min-height:42px; padding:11px 12px max(11px,env(safe-area-inset-bottom)); background:#181b20; color:#e5e7eb; text-align:center; font-size:14px; }
     .story-progress { display:flex; gap:3px; padding:8px 8px 5px; background:#181b20; filter:drop-shadow(0 2px 2px #0007); }
     .story-progress[hidden] { display:none; }
     .story-track { flex:1; height:4px; overflow:hidden; border-radius:8px; background:#ffffff42; box-shadow:inset 0 1px 2px #0005; }
-    .story-fill { display:block; width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; will-change:width; }
-    .story-track.done .story-fill { width:100%; }
+    .story-fill { display:block; width:100%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#fff,#f2f2f2); box-shadow:0 0 5px #fff9; transform:scaleX(0); transform-origin:left center; will-change:transform; }
+    .story-track.done .story-fill { transform:scaleX(1); }
     .story-track.active .story-fill { box-shadow:0 0 7px #fff; }
     .toast { position:fixed; z-index:150; left:50%; bottom:28px; translate:-50% 0; padding:11px 16px; border-radius:99px; background:#16181de8; color:#fff; font-size:13px; box-shadow:0 4px 15px #0005; animation:toastLife 2.3s both; }
     @keyframes toastLife { 0%,100% { opacity:0; transform:translateY(8px); } 12%,82% { opacity:1; transform:none; } }
@@ -96,6 +103,7 @@
     'use strict';
 
     const HOME_MANIFEST = 'https://oeappstudio.com/Brochures/Manifest/manifest.txt';
+    const DATES_MANIFEST = 'https://oeappstudio.com/Brochures/Manifest/dates.json';
     const MARKET_MANIFESTS = Object.freeze({
       A101: 'https://oeappstudio.com/Brochures/Brochures/A101/manifest.txt',
       BIM:  'https://oeappstudio.com/Brochures/Brochures/BIM/manifest.txt',
@@ -105,35 +113,6 @@
       2: 'ca-app-pub-3899323845108149/3459393464',
       4: 'ca-app-pub-3899323845108149/9961222634',
       5: 'ca-app-pub-3899323845108149/2704632847'
-    });
-    // Ana manifestteki doğrulanmış broşür tarihleri. Bu görsellerde tarih
-    // kart oluşturulurken anında gösterilir; telefonda OCR beklenmez.
-    const INSTANT_DATES = Object.freeze({
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_6qFn0nf55N_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_GrpnKM0cTp_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_qxn9vnNgYg_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_BUlnj66AW5_2048x2048.webp':'24 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_ehxYTMKgnX_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_004.webp?v=20260825122353':'1 EYLÜL’DEN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_017.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_011.webp?v=20260825122353':'25 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_020.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_019.webp?v=20260825122353':'28 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p13.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p15.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p18.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p09.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p01.webp':'19 – 25 AĞUSTOS 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_002.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_018.webp?v=20260825122353':'25 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_005.webp?v=20260825122353':'22 – 28 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_007.webp?v=20260825122353':'1 EYLÜL’DEN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_009.webp?v=20260825122353':'4 – 31 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_fCt2yigPhl_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_uS0r3R8V5r_2048x2048.webp':'24 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_JVLWkYH2Zn_2048x2048.webp':'24 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_HrOkfNrByO_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_PqcZhp76su_2048x2048.webp':'27 AĞUSTOS PERŞEMBE'
     });
     const ITEMS_PER_ROW = 5;
 
@@ -153,6 +132,10 @@
     let storyElapsed = 0;
     let storyLastTick = 0;
     let storyHolding = false;
+    let storyLoadToken = 0;
+    let storyRingDirty = false;
+    let storyScrollTimer = 0;
+    let storyScrollSyncing = false;
     let longPressTimer = 0;
     let longPressActive = false;
     let longPressX = 0;
@@ -161,18 +144,12 @@
     let currentReaderIndex = 0;
     const STORY_DURATION = 5000;
     const zoomState = { page:null, image:null, scale:1, x:0, y:0, mode:null, startDistance:0, startScale:1, startX:0, startY:0, baseX:0, baseY:0 };
-    const SEEN_KEY = 'oeapp_seen_brochures_v2';
-    // v2: A101 ve ŞOK için markete özel tarih bölgeleri kullanılır.
-    const OCR_CACHE_KEY = 'oeapp_brochure_dates_v2';
-    const TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+    const SEEN_KEY = 'oeapp_seen_brochures_v3';
     const marketCache = { A101:[], BIM:[], SOK:[] };
-    const ocrQueue = [];
-    let ocrCache = (() => {
-      try { return JSON.parse(localStorage.getItem(OCR_CACHE_KEY)) || {}; }
-      catch (_) { return {}; }
-    })();
-    let ocrBusy = false;
-    let ocrWorkerPromise = null;
+    let remoteDates = Object.create(null);
+    let remoteMetadata = Object.create(null);
+    let remoteInventoryUrls = [];
+    let homeSortMode = 'date';
 
     function syncMarketNavHeight() {
       const height = Math.ceil(marketNav.getBoundingClientRect().height);
@@ -195,14 +172,86 @@
 
     function marketLabel(market) { return market === 'BIM' ? 'BİM' : market === 'SOK' ? 'ŞOK' : 'A101'; }
 
+    function brochureUrlKey(url) {
+      try {
+        return new URL(String(url || ''),location.href).pathname.replace(/\/{2,}/g,'/');
+      } catch (_) {
+        return String(url || '').split(/[?#]/,1)[0];
+      }
+    }
+
+    function brochureRecordForUrl(url) {
+      return remoteMetadata[url] || remoteMetadata[brochureUrlKey(url)] || null;
+    }
+
     async function getManifest(url) {
-      const separator = url.includes('?') ? '&' : '?';
-      const response = await fetch(url + separator + '_=' + Date.now(), { cache:'no-store' });
+      const response = await fetch(url, { cache:'no-cache' });
       if (!response.ok) throw new Error('Manifest alınamadı: HTTP ' + response.status);
       const text = (await response.text()).replace(/^\uFEFF/, '');
       const urls = text.split(/\r?\n/).map(v => v.trim()).filter(v => /^https?:\/\//i.test(v));
       if (!urls.length) throw new Error('Manifestte geçerli görsel bağlantısı yok.');
       return [...new Set(urls)];
+    }
+
+    function fallbackMarketUrls(market) {
+      // Yayın sırasında market manifesti kısa süreliğine boş kalırsa,
+      // doğrulanmış dates.json envanteri tam listeyi korur. O da yoksa ana
+      // manifestteki ilgili market kartları son güvenli seçenek olur.
+      const verified = remoteInventoryUrls.filter(url => marketFromUrl(url) === market);
+      if (verified.length) return verified;
+      return homeManifestUrls.filter(url => marketFromUrl(url) === market);
+    }
+
+    async function getMarketManifest(market) {
+      try {
+        return await getManifest(MARKET_MANIFESTS[market]);
+      } catch (error) {
+        const fallback = fallbackMarketUrls(market);
+        if (fallback.length) return fallback;
+        throw error;
+      }
+    }
+
+    async function loadRemoteDates() {
+      try {
+        const response = await fetch(DATES_MANIFEST, { cache:'no-cache' });
+        if (!response.ok) return;
+        const data = await response.json();
+        const dates = data && typeof data.dates === 'object' ? data.dates : data;
+        remoteDates = Object.create(null);
+        remoteMetadata = Object.create(null);
+        remoteInventoryUrls = [];
+
+        if (dates && typeof dates === 'object' && !Array.isArray(dates)) {
+          Object.entries(dates).forEach(([url,label]) => {
+            if (typeof label !== 'string') return;
+            remoteDates[url] = label;
+            remoteDates[brochureUrlKey(url)] = label;
+          });
+        }
+
+        const rawItems = Array.isArray(data?.items)
+          ? data.items
+          : (data?.items && typeof data.items === 'object' ? Object.values(data.items) : []);
+        const seenInventory = new Set();
+        rawItems.forEach(item => {
+          if (!item || typeof item !== 'object' || typeof item.url !== 'string') return;
+          const key = brochureUrlKey(item.url_key || item.url);
+          remoteMetadata[item.url] = item;
+          remoteMetadata[key] = item;
+          if (typeof item.label === 'string' && item.label.trim()) {
+            remoteDates[item.url] = item.label.trim();
+            remoteDates[key] = item.label.trim();
+          }
+          if (!seenInventory.has(item.url)) {
+            seenInventory.add(item.url);
+            remoteInventoryUrls.push(item.url);
+          }
+        });
+        homeSortMode = data?.home_sort_mode === 'manual' ? 'manual' : 'date';
+      } catch (_) {
+        // Manifest yüklenemezse görseller gösterilir, tarih alanı belirtilmemiş kalır.
+      }
     }
 
     function createCard(url, market, index) {
@@ -215,7 +264,8 @@
       const image = document.createElement('img');
       image.src = url;
       image.alt = marketLabel(market) + ' aktüel ürünler broşürü';
-      image.loading = index < 5 ? 'eager' : 'lazy';
+      image.loading = index < 2 ? 'eager' : 'lazy';
+      image.fetchPriority = index < 2 ? 'high' : 'low';
       image.decoding = 'async';
       image.referrerPolicy = 'no-referrer';
       image.addEventListener('error', () => { media.style.background = '#eceef1'; image.alt = 'Görsel yüklenemedi'; });
@@ -224,185 +274,15 @@
       const marketName = document.createElement('span');
       marketName.textContent = marketLabel(market);
       const date = document.createElement('span');
-      date.className = 'card-date reading';
-      date.textContent = 'Tarih okunuyor…';
-      date.dataset.ocrUrl = url;
+      date.className = 'card-date';
+      date.textContent = brochureLabelForUrl(url) || 'Tarih belirtilmemiş';
       label.append(marketName, date);
       media.append(image);
       button.append(media, label);
       button.addEventListener('click', () => openReader(market, url));
-      observeDate(date);
       return button;
     }
 
-    function getOcrCache() {
-      return ocrCache;
-    }
-
-    function saveOcrDate(url, value) {
-      ocrCache[url] = value;
-      ocrCache = Object.fromEntries(Object.entries(ocrCache).slice(-250));
-      try { localStorage.setItem(OCR_CACHE_KEY, JSON.stringify(ocrCache)); } catch (_) {}
-    }
-
-    const dateObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        dateObserver.unobserve(entry.target);
-        enqueueOcr(entry.target);
-      });
-    }, { rootMargin:'220px' }) : null;
-
-    function observeDate(element) {
-      const instant = INSTANT_DATES[element.dataset.ocrUrl] || currentManifestDateHint(element.dataset.ocrUrl);
-      if (instant) { setDateText(element, instant); return; }
-      const cached = getOcrCache()[element.dataset.ocrUrl];
-      if (cached) { setDateText(element, cached); return; }
-      if (dateObserver) dateObserver.observe(element); else enqueueOcr(element);
-    }
-
-    function enqueueOcr(element) {
-      if (!element?.isConnected || element.dataset.queued) return;
-      element.dataset.queued = '1';
-      ocrQueue.push(element);
-      processOcrQueue();
-    }
-
-    async function processOcrQueue() {
-      if (ocrBusy) return;
-      ocrBusy = true;
-      while (ocrQueue.length) {
-        await waitForOcrIdle();
-        const element = ocrQueue.shift();
-        if (!element?.isConnected) continue;
-        const url = element.dataset.ocrUrl;
-        try {
-          const text = await recognizeBrochureDate(url);
-          const label = extractDateLabel(text);
-          if (label) saveOcrDate(url, label);
-          setDateText(element, label || 'Tarih okunamadı');
-        } catch (error) {
-          setDateText(element, 'Tarih okunamadı');
-          console.warn('Broşür tarihi okunamadı:', error);
-        }
-      }
-      ocrBusy = false;
-    }
-
-    function waitForOcrIdle() {
-      return new Promise(resolve => {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => resolve(), { timeout:3000 });
-        } else {
-          setTimeout(resolve,750);
-        }
-      });
-    }
-
-    function setDateText(element, value) {
-      element.textContent = value;
-      element.classList.remove('reading');
-    }
-
-    function loadTesseract() {
-      if (window.Tesseract) return Promise.resolve(window.Tesseract);
-      return new Promise((resolve,reject) => {
-        const old = document.querySelector('script[data-tesseract]');
-        if (old) { old.addEventListener('load', () => resolve(window.Tesseract), { once:true }); old.addEventListener('error', reject, { once:true }); return; }
-        const script = document.createElement('script');
-        script.src = TESSERACT_URL;
-        script.async = true;
-        script.dataset.tesseract = '1';
-        script.onload = () => resolve(window.Tesseract);
-        script.onerror = () => reject(new Error('OCR kütüphanesi yüklenemedi'));
-        document.head.append(script);
-      });
-    }
-
-    async function getOcrWorker() {
-      if (!ocrWorkerPromise) ocrWorkerPromise = (async () => {
-        const Tesseract = await loadTesseract();
-        // Tarihler rakam ve ay adlarından oluştuğu için hafif İngilizce model
-        // yeterlidir; Türkçe karakterlerin aksansız biçimleri de eşleştirilir.
-        return Tesseract.createWorker('eng');
-      })();
-      return ocrWorkerPromise;
-    }
-
-    async function imageForOcr(url) {
-      const image = new Image();
-      image.crossOrigin = 'anonymous';
-      image.referrerPolicy = 'no-referrer';
-      image.decoding = 'async';
-      image.src = url;
-      await image.decode();
-      const sourceWidth = image.naturalWidth;
-      const sourceHeight = image.naturalHeight;
-      const market = marketFromUrl(url);
-      let regions;
-
-      if (market === 'A101') {
-        // A101 tarih bilgisi broşürün sağ üst bölümünde bulunur.
-        regions = [{ x:.42, y:0, w:.58, h:.34 }];
-      } else if (market === 'SOK') {
-        // ŞOK tarih bilgisi broşürün üst-orta bölümünde bulunur.
-        regions = [{ x:.08, y:0, w:.84, h:.30 }];
-      } else {
-        // BİM'de mevcut çalışan yöntem: üst ve alt başlık alanları.
-        regions = [
-          { x:0, y:0, w:1, h:.34 },
-          { x:0, y:.66, w:1, h:.34 }
-        ];
-      }
-
-      const widestSource = Math.max(...regions.map(r => sourceWidth * r.w));
-      const targetWidth = Math.min(820, Math.round(widestSource));
-      const gap = regions.length > 1 ? 14 : 0;
-      const scaledHeights = regions.map(r => Math.max(1, Math.round(sourceHeight * r.h * targetWidth / (sourceWidth * r.w))));
-      const canvas = document.createElement('canvas');
-      canvas.width = targetWidth;
-      canvas.height = scaledHeights.reduce((total,height) => total + height,0) + gap;
-      const ctx = canvas.getContext('2d', { alpha:false });
-      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.filter = 'grayscale(1) contrast(1.45)';
-      let targetY = 0;
-      regions.forEach((region,index) => {
-        const height = scaledHeights[index];
-        ctx.drawImage(
-          image,
-          Math.round(sourceWidth * region.x), Math.round(sourceHeight * region.y),
-          Math.round(sourceWidth * region.w), Math.round(sourceHeight * region.h),
-          0, targetY, targetWidth, height
-        );
-        targetY += height + gap;
-      });
-      return canvas;
-    }
-
-    async function recognizeBrochureDate(url) {
-      const worker = await getOcrWorker();
-      const canvas = await imageForOcr(url);
-      const result = await worker.recognize(canvas);
-      return result?.data?.text || '';
-    }
-
-    function extractDateLabel(rawText) {
-      const months = 'OCAK|ŞUBAT|SUBAT|MART|NİSAN|NISAN|MAYIS|HAZİRAN|HAZIRAN|TEMMUZ|AĞUSTOS|AGUSTOS|EYLÜL|EYLUL|EKİM|EKIM|KASIM|ARALIK';
-      const cleaned = String(rawText).toLocaleUpperCase('tr-TR').replace(/[|]/g,'I').replace(/\s+/g,' ').trim();
-      const patterns = [
-        new RegExp('\\b\\d{1,2}\\s+(?:' + months + ')\\s*[-–—/]\\s*\\d{1,2}\\s+(?:' + months + ')(?:\\s+TARİHLERİ?\\s+ARASI)?','i'),
-        new RegExp('\\b\\d{1,2}\\s+(?:' + months + ')(?:\\s+\\d{4})?\\s+(?:TARİHİNDEN|TARİHİ|İTİBAREN)','i'),
-        new RegExp('\\b\\d{1,2}[./-]\\d{1,2}(?:[./-]\\d{2,4})?\\s*[-–—]\\s*\\d{1,2}[./-]\\d{1,2}(?:[./-]\\d{2,4})?','i'),
-        new RegExp('\\b\\d{1,2}\\s+(?:' + months + ')(?:\\s+\\d{4})?','i')
-      ];
-      for (const pattern of patterns) {
-        const match = cleaned.match(pattern);
-        if (match) return match[0].replace(/\s+/g,' ').trim();
-      }
-      return '';
-    }
 
     function createAd(rowNumber, unitId) {
       const wrap = document.createElement('section');
@@ -455,11 +335,54 @@
       });
     }
 
+    function renderSelectedMarket(urls) {
+      content.replaceChildren();
+      const groups = groupBrochuresByStatus(urls);
+      const definitions = [
+        { key:'current',title:'Güncel ve Yaklaşan Broşürler',className:'current-brochures' },
+        { key:'past',title:'Geçmiş Broşürler',className:'past-brochures' },
+        { key:'unknown',title:'Tarihi Belirlenemeyen Broşürler',className:'unknown-brochures' }
+      ];
+      let logicalRow = 0;
+      let globalCardIndex = 0;
+
+      definitions.forEach(definition => {
+        const groupUrls = groups[definition.key];
+        if (!groupUrls.length) return;
+        const section = document.createElement('section');
+        section.className = 'row selected-date-section ' + definition.className;
+        const title = document.createElement('h2');
+        title.className = 'row-title';
+        title.textContent = definition.title + ' (' + groupUrls.length + ')';
+        const strip = document.createElement('div');
+        strip.className = 'strip';
+
+        groupUrls.forEach((url,itemIndex) => {
+          strip.append(createCard(url,selectedMarket || marketFromUrl(url) || 'A101',globalCardIndex++));
+          const rowFinished = (itemIndex + 1) % ITEMS_PER_ROW === 0;
+          const groupFinished = itemIndex === groupUrls.length - 1;
+          if (rowFinished || groupFinished) {
+            logicalRow += 1;
+            if (ADS_AFTER_ROWS[logicalRow]) strip.append(createAd(logicalRow,ADS_AFTER_ROWS[logicalRow]));
+          }
+        });
+
+        section.append(title,strip);
+        content.append(section);
+        bindRowMediaRatio(section);
+      });
+
+      if (!content.children.length) content.innerHTML = '<div class="status">Bu market için broşür bulunamadı.</div>';
+    }
+
     function renderHome(urls) {
+      if (selectedMarket) {
+        renderSelectedMarket(urls);
+        return;
+      }
       content.replaceChildren();
       const rows = [];
-      if (selectedMarket) rows.push(urls);
-      else for (let start = 0; start < urls.length; start += ITEMS_PER_ROW) rows.push(urls.slice(start, start + ITEMS_PER_ROW));
+      for (let start = 0; start < urls.length; start += ITEMS_PER_ROW) rows.push(urls.slice(start, start + ITEMS_PER_ROW));
 
       rows.forEach((rowUrls, rowIndex) => {
         const market = marketFromUrl(rowUrls[0]);
@@ -472,10 +395,6 @@
         strip.className = 'strip';
         rowUrls.forEach((url, itemIndex) => {
           strip.append(createCard(url, marketFromUrl(url) || market || 'A101', rowIndex * ITEMS_PER_ROW + itemIndex));
-          if (selectedMarket && (itemIndex + 1) % ITEMS_PER_ROW === 0) {
-            const logicalRow = (itemIndex + 1) / ITEMS_PER_ROW;
-            if (ADS_AFTER_ROWS[logicalRow]) strip.append(createAd(logicalRow, ADS_AFTER_ROWS[logicalRow]));
-          }
         });
         section.append(title, strip);
         content.append(section);
@@ -491,141 +410,75 @@
         .replace(/[’']/g,' ').replace(/\s+/g,' ').trim();
     }
 
-    function currentManifestDateHint(url) {
-      const value = String(url);
-      const a101Date24 = ['AVgpiegES1','BUlnj66AW5','JVLWkYH2Zn','WINNP1lkhl','cLuh93dqIE','rceSANCkKx','uS0r3R8V5r'];
-      const a101Date27 = ['0n7NWJJsvD','6qFn0nf55N','CSSN2qgVln','GrpnKM0cTp','HrOkfNrByO','JWbeYM8sQh','JwgUy6hxFG','PqcZhp76su','dFSO-PxVCg','ehxYTMKgnX','fCt2yigPhl','iB4lBUkbny','nspgzdKHN2','qxn9vnNgYg'];
-      if (a101Date24.some(key => value.includes(key))) return '24 AĞUSTOS';
-      if (a101Date27.some(key => value.includes(key))) return '27 AĞUSTOS PERŞEMBE';
 
-      if (value.includes('2026082011013148569_p')) {
-        const page = Number(value.match(/_p(\d+)\.webp/i)?.[1]);
-        if (page === 1 || page === 2) return '19 – 25 AĞUSTOS 2026';
-        if (page >= 3 && page <= 24) return '22 AĞUSTOS – 15 EYLÜL 2026';
-      }
-
-      if (value.includes('v=20260825122353')) {
-        const page = value.match(/_(\d{3})\.webp/i)?.[1];
-        const bimDates = {
-          '020':'30 AĞUSTOS’TAN İTİBAREN','019':'28 AĞUSTOS’TAN İTİBAREN',
-          '018':'25 AĞUSTOS’TAN İTİBAREN','017':'30 AĞUSTOS’TAN İTİBAREN',
-          '016':'25 AĞUSTOS’TAN İTİBAREN','015':'25 AĞUSTOS’TAN İTİBAREN',
-          '014':'22 – 28 AĞUSTOS','013':'28 AĞUSTOS’TAN İTİBAREN',
-          '012':'26 AĞUSTOS’TAN İTİBAREN','011':'25 AĞUSTOS’TAN İTİBAREN',
-          '010':'2 – 31 AĞUSTOS','009':'4 – 31 AĞUSTOS',
-          '008':'24 MART – 31 ARALIK','007':'1 EYLÜL’DEN İTİBAREN',
-          '006':'2 – 31 AĞUSTOS','005':'22 – 28 AĞUSTOS',
-          '004':'1 EYLÜL’DEN İTİBAREN','003':'2 – 31 AĞUSTOS',
-          '002':'30 AĞUSTOS’TAN İTİBAREN','001':'2 EYLÜL’DEN İTİBAREN'
-        };
-        if (page && bimDates[page]) return bimDates[page];
-      }
-      return '';
+    function brochureLabelForUrl(url) {
+      const record = brochureRecordForUrl(url);
+      return String(record?.label || remoteDates[url] || remoteDates[brochureUrlKey(url)] || '').trim();
     }
 
-    function brochureDateDistance(label) {
-      const text = normalizedDateText(label);
-      if (!text) return Number.POSITIVE_INFINITY;
-      const months = { OCAK:0,SUBAT:1,MART:2,NISAN:3,MAYIS:4,HAZIRAN:5,TEMMUZ:6,AGUSTOS:7,EYLUL:8,EKIM:9,KASIM:10,ARALIK:11 };
-      const monthPattern = Object.keys(months).join('|');
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const makeDate = (day,month,year) => new Date(Number(year || today.getFullYear()),months[month],Number(day));
-      let start = null;
-      let end = null;
+    function brochureIsoDate(value) {
+      const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return null;
+      const result = new Date(Number(match[1]),Number(match[2])-1,Number(match[3]));
+      return Number.isNaN(result.getTime()) ? null : result;
+    }
 
-      let match = text.match(new RegExp('\\b(\\d{1,2})\\s*[-–—]\\s*(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
-      if (match) {
-        start = makeDate(match[1],match[3],match[4]);
-        end = makeDate(match[2],match[3],match[4]);
-      } else {
-        const expression = new RegExp('\\b(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?','g');
-        const found = [...text.matchAll(expression)];
-        if (found.length) start = makeDate(found[0][1],found[0][2],found[0][3]);
-        if (found.length > 1) {
-          end = makeDate(found[1][1],found[1][2],found[1][3] || found[0][3]);
-          if (end < start && !found[1][3]) end.setFullYear(end.getFullYear() + 1);
-        }
+    function brochureDateMetaForUrl(url,index=0,referenceDate=new Date()) {
+      const record = brochureRecordForUrl(url);
+      const today = brochureMidnight(referenceDate);
+      const start = brochureIsoDate(record?.start);
+      const end = brochureIsoDate(record?.end);
+      if (!start) {
+        return brochureDateMeta(
+          brochureLabelForUrl(url),index,today,marketFromUrl(url)
+        );
       }
-      if (!start || Number.isNaN(start.getTime())) return Number.POSITIVE_INFINITY;
-      const oneDay = 86400000;
-      if (end && !Number.isNaN(end.getTime())) {
-        if (today >= start && today <= end) return 0;
-        return Math.min(Math.abs(today-start),Math.abs(today-end)) / oneDay;
+      if (end && today >= start && today <= end) {
+        return { status:'active',start,end,rank:[0,Math.max(0,brochureDayDifference(today,end)),index] };
       }
-      return Math.abs(today-start) / oneDay;
+      if (!end && start.getTime() === today.getTime()) {
+        return { status:'active',start,end:null,rank:[0,0,index] };
+      }
+      if (!end && record?.kind === 'from' && start <= today) {
+        return { status:'active',start,end:null,rank:[0,brochureDayDifference(start,today),index] };
+      }
+      if (start > today) {
+        return { status:'upcoming',start,end,rank:[1,brochureDayDifference(today,start),index] };
+      }
+      const pastReference = end || start;
+      return { status:'past',start,end,rank:[2,Math.max(0,brochureDayDifference(pastReference,today)),index] };
     }
 
-    function sortBrochuresByToday(urls) {
-      const cache = getOcrCache();
-      return urls.map((url,index) => ({ url,index,rank:brochureDateRank(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url],index) }))
-        .sort((a,b) => compareBrochureRanks(a.rank,b.rank))
-        .map(item => item.url);
-    }
-
-    // Hikâyede tarih aralığının hâlâ devam ediyor olması başlangıç tarihini
-    // "bugün" yapmaz. Kartta yazan ilk tarih esas alınır: bugün ve gelecek
-    // tarihler önce, geçmiş tarihler daha sonra gösterilir.
-    function brochureStartDate(label,referenceDate=new Date()) {
-      const text = normalizedDateText(label);
-      if (!text) return null;
-      const months = { OCAK:0,SUBAT:1,MART:2,NISAN:3,MAYIS:4,HAZIRAN:5,TEMMUZ:6,AGUSTOS:7,EYLUL:8,EKIM:9,KASIM:10,ARALIK:11 };
-      const monthPattern = Object.keys(months).join('|');
-      const today = new Date(referenceDate);
-      today.setHours(0,0,0,0);
-
-      const makeDate = (day,month,yearValue) => {
-        const numericDay = Number(day);
-        let year = yearValue ? Number(yearValue) : today.getFullYear();
-        if (yearValue && year < 100) year += 2000;
-        let date = new Date(year,month,numericDay);
-        if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== numericDay) return null;
-        // Yıl broşürde yazmıyorsa aralık sonundaki Ocak/Şubat tarihini
-        // bir sonraki yıl olarak değerlendir.
-        if (!yearValue && today.getMonth() >= 10 && month <= 1 && date < today) {
-          date = new Date(year + 1,month,numericDay);
-        }
-        return date;
-      };
-
-      let match = text.match(new RegExp('\\b(\\d{1,2})\\s*[-–—]\\s*\\d{1,2}\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
-      if (match) return makeDate(match[1],months[match[2]],match[3]);
-
-      match = text.match(new RegExp('\\b(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
-      if (match) return makeDate(match[1],months[match[2]],match[3]);
-
-      match = text.match(/\b(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?/);
-      if (match) return makeDate(match[1],Number(match[2]) - 1,match[3]);
-      return null;
-    }
-
-    function storyDateRank(label,index=0) {
-      const standardRank = brochureDateRank(label,index);
-      // Bugün devam eden tarih aralıkları ve doğrudan bugünün tarihini
-      // taşıyan broşürler hikâyenin ilk grubudur.
-      if (standardRank[0] === 0) return [0,0,index];
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const start = brochureStartDate(label,today);
-      if (!start) return [3,Number.POSITIVE_INFINITY,index];
-      const dayDifference = Math.round((start - today) / 86400000);
-      if (dayDifference >= 0) return [1,dayDifference,index];
-      return [2,Math.abs(dayDifference),index];
+    function rankedBrochureItems(urls) {
+      const referenceDate = new Date();
+      return urls.map((url,index) => ({
+        url,
+        meta:brochureDateMetaForUrl(url,index,referenceDate)
+      })).map(item => ({ ...item,rank:item.meta.rank }))
+        .sort((a,b) => compareBrochureRanks(a.rank,b.rank));
     }
 
     function rankedStoryItems(urls) {
-      const cache = getOcrCache();
-      return urls.map((url,index) => ({
-        url,
-        rank:storyDateRank(INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url],index)
-      })).sort((a,b) => compareBrochureRanks(a.rank,b.rank));
+      return rankedBrochureItems(urls).map(item => ({ url:item.url,rank:item.rank }));
+    }
+
+    function groupBrochuresByStatus(urls) {
+      const groups = { current:[],past:[],unknown:[] };
+      rankedBrochureItems(urls).forEach(item => {
+        if (item.meta.status === 'active' || item.meta.status === 'upcoming') groups.current.push(item.url);
+        else if (item.meta.status === 'past') groups.past.push(item.url);
+        else groups.unknown.push(item.url);
+      });
+      return groups;
     }
 
     function sortStoriesFromToday(urls) {
-      return rankedStoryItems(urls)
-        // Süresi geçmiş broşürleri hikâyeden çıkar. Tarihi henüz okunamamış
-        // yeni görseller kaybolmasın diye onlar listenin sonunda korunur.
-        .filter(item => item.rank[0] !== 2)
+      const ranked = rankedStoryItems(urls);
+      const currentOrFutureExists = ranked.some(item => item.rank[0] <= 1);
+      // Güncel/gelecek içerik varsa ileri tarih düzeni korunur ve geçmiş
+      // karıştırılmaz. Hiç yoksa hikâye boş kalmasın: en yakın geçmişten
+      // daha eskiye doğru mevcut görsellerin tamamı gösterilir.
+      return (currentOrFutureExists ? ranked.filter(item => item.rank[0] !== 2) : ranked)
         .map(item => item.url);
     }
 
@@ -640,36 +493,107 @@
       return ranked.map(item => item.url);
     }
 
-    function brochureDateRank(label,index=0) {
+    const BROCHURE_MONTHS = Object.freeze({
+      OCAK:0,SUBAT:1,MART:2,NISAN:3,MAYIS:4,HAZIRAN:5,
+      TEMMUZ:6,AGUSTOS:7,EYLUL:8,EKIM:9,KASIM:10,ARALIK:11
+    });
+    const BROCHURE_MONTH_PATTERN = Object.keys(BROCHURE_MONTHS).join('|');
+    const ONE_DAY = 86400000;
+
+    function brochureMidnight(value=new Date()) {
+      const date = new Date(value);
+      date.setHours(0,0,0,0);
+      return date;
+    }
+
+    function brochureDayDifference(fromDate,toDate) {
+      const from = Date.UTC(fromDate.getFullYear(),fromDate.getMonth(),fromDate.getDate());
+      const to = Date.UTC(toDate.getFullYear(),toDate.getMonth(),toDate.getDate());
+      return (to-from)/ONE_DAY;
+    }
+
+    function makeBrochureDate(day,month,yearValue,referenceDate) {
+      const numericDay = Number(day);
+      const numericMonth = Number(month);
+      let year = yearValue ? Number(yearValue) : referenceDate.getFullYear();
+      if (yearValue && year < 100) year += 2000;
+      let date = new Date(year,numericMonth,numericDay);
+      if (date.getFullYear() !== year || date.getMonth() !== numericMonth || date.getDate() !== numericDay) return null;
+      // Yıl yazmayan Aralık → Ocak/Şubat geçişlerini yeni yıl kabul et.
+      if (!yearValue && referenceDate.getMonth() >= 10 && numericMonth <= 1 && date < referenceDate) {
+        date = new Date(year + 1,numericMonth,numericDay);
+      }
+      return date;
+    }
+
+    function brochureDateWindow(label,referenceDate=new Date()) {
       const text = normalizedDateText(label);
-      if (!text) return [3,Number.POSITIVE_INFINITY,index];
-      const months = { OCAK:0,SUBAT:1,MART:2,NISAN:3,MAYIS:4,HAZIRAN:5,TEMMUZ:6,AGUSTOS:7,EYLUL:8,EKIM:9,KASIM:10,ARALIK:11 };
-      const monthPattern = Object.keys(months).join('|');
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const makeDate = (day,month,year) => new Date(Number(year || today.getFullYear()),months[month],Number(day));
+      if (!text) return { start:null,end:null };
+      const today = brochureMidnight(referenceDate);
       let start = null;
       let end = null;
-      let match = text.match(new RegExp('\\b(\\d{1,2})\\s*[-–—]\\s*(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?'));
+
+      // 10.01.2027 – 15.01.2027 gibi sayısal tarih aralıkları.
+      let match = text.match(/\b(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?\s*[-–—]\s*(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?/);
       if (match) {
-        start = makeDate(match[1],match[3],match[4]);
-        end = makeDate(match[2],match[3],match[4]);
-      } else {
-        const expression = new RegExp('\\b(\\d{1,2})\\s+(' + monthPattern + ')(?:\\s+(\\d{4}))?','g');
-        const found = [...text.matchAll(expression)];
-        if (found.length) start = makeDate(found[0][1],found[0][2],found[0][3]);
-        if (found.length > 1) {
-          end = makeDate(found[1][1],found[1][2],found[1][3] || found[0][3]);
-          if (end < start && !found[1][3]) end.setFullYear(end.getFullYear() + 1);
+        const sharedYear = match[3] || match[6];
+        start = makeBrochureDate(match[1],Number(match[2])-1,match[3] || sharedYear,today);
+        end = makeBrochureDate(match[4],Number(match[5])-1,match[6] || sharedYear,today);
+      }
+
+      // 22 – 28 Ağustos 2026 gibi ayın yalnızca bir kez yazıldığı aralıklar.
+      if (!start) {
+        match = text.match(new RegExp('\\b(\\d{1,2})\\s*[-–—]\\s*(\\d{1,2})\\s+(' + BROCHURE_MONTH_PATTERN + ')(?:\\s+(\\d{4}))?'));
+        if (match) {
+          start = makeBrochureDate(match[1],BROCHURE_MONTHS[match[3]],match[4],today);
+          end = makeBrochureDate(match[2],BROCHURE_MONTHS[match[3]],match[4],today);
         }
       }
-      if (!start || Number.isNaN(start.getTime())) return [3,Number.POSITIVE_INFINITY,index];
-      const oneDay = 86400000;
-      if (end && !Number.isNaN(end.getTime()) && today >= start && today <= end) return [0,0,index];
-      if (!end && start.getTime() === today.getTime()) return [0,0,index];
-      if (start > today) return [1,(start-today)/oneDay,index];
-      const pastReference = end && !Number.isNaN(end.getTime()) ? end : start;
-      return [2,Math.max(0,(today-pastReference)/oneDay),index];
+
+      // 22 Ağustos – 15 Eylül 2026 ve 24 Mart – 31 Aralık gibi aralıklar.
+      if (!start) {
+        const expression = new RegExp('\\b(\\d{1,2})\\s+(' + BROCHURE_MONTH_PATTERN + ')(?:\\s+(\\d{4}))?','g');
+        const found = [...text.matchAll(expression)];
+        if (found.length) {
+          const sharedYear = found[0][3] || found[1]?.[3];
+          start = makeBrochureDate(found[0][1],BROCHURE_MONTHS[found[0][2]],found[0][3] || sharedYear,today);
+          if (found.length > 1) {
+            end = makeBrochureDate(found[1][1],BROCHURE_MONTHS[found[1][2]],found[1][3] || sharedYear,today);
+          }
+        }
+      }
+
+      // 10.01.2027 gibi tek sayısal tarih.
+      if (!start) {
+        match = text.match(/\b(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?/);
+        if (match) start = makeBrochureDate(match[1],Number(match[2])-1,match[3],today);
+      }
+
+      if (start && end && end < start) end.setFullYear(start.getFullYear() + 1);
+      return { start,end };
+    }
+
+    function brochureDateMeta(label,index=0,referenceDate=new Date(),market=null) {
+      const today = brochureMidnight(referenceDate);
+      const { start,end } = brochureDateWindow(label,today);
+      if (!start) return { status:'unknown',start:null,end:null,rank:[3,Number.POSITIVE_INFINITY,index] };
+
+      if (end && today >= start && today <= end) {
+        return { status:'active',start,end,rank:[0,Math.max(0,brochureDayDifference(today,end)),index] };
+      }
+      if (!end && start.getTime() === today.getTime()) {
+        return { status:'active',start,end:null,rank:[0,0,index] };
+      }
+      // A101 afişlerindeki tek tarih, kampanyanın başladığı günü belirtir.
+      // Örneğin "27 Ağustos Perşembe", 27 Ağustos'tan itibaren geçerlidir.
+      if (market === 'A101' && !end && start <= today) {
+        return { status:'active',start,end:null,rank:[0,brochureDayDifference(start,today),index] };
+      }
+      if (start > today) {
+        return { status:'upcoming',start,end,rank:[1,brochureDayDifference(today,start),index] };
+      }
+      const pastReference = end || start;
+      return { status:'past',start,end,rank:[2,Math.max(0,brochureDayDifference(pastReference,today)),index] };
     }
 
     function compareBrochureRanks(a,b) {
@@ -677,13 +601,16 @@
     }
 
     function sortHomeManifestByMarketDate(urls) {
-      const cache = getOcrCache();
+      if (homeSortMode === 'manual') return [...urls];
+      const referenceDate = new Date();
       const marketBuckets = {};
       urls.forEach((url,index) => {
         const market = marketFromUrl(url) || 'OTHER';
         if (!marketBuckets[market]) marketBuckets[market] = [];
-        const label = INSTANT_DATES[url] || currentManifestDateHint(url) || cache[url];
-        marketBuckets[market].push({ url,rank:brochureDateRank(label,index) });
+        marketBuckets[market].push({
+          url,
+          rank:brochureDateMetaForUrl(url,index,referenceDate).rank
+        });
       });
       Object.values(marketBuckets).forEach(items => items.sort((a,b) => compareBrochureRanks(a.rank,b.rank)));
       const cursors = {};
@@ -700,7 +627,7 @@
       content.classList.toggle('filtered-view', Boolean(market));
       // Tek market görünümünde ana sayfanın seçilmiş 5/10 görseli değil,
       // marketin kendi manifestindeki broşürlerin tamamı gösterilir.
-      const urls = market ? sortBrochuresByToday(marketCache[market] || []) : sortHomeManifestByMarketDate(homeManifestUrls);
+      const urls = market ? [...(marketCache[market] || [])] : sortHomeManifestByMarketDate(homeManifestUrls);
       renderHome(urls);
       const allButton = document.querySelector('#showAllMarkets');
       allButton.classList.toggle('active', !market);
@@ -725,7 +652,7 @@
       readerPages.innerHTML = '<div class="status">Broşür yükleniyor…</div>';
       readerCounter.textContent = 'Yükleniyor…';
       try {
-        const allUrls = await getManifest(MARKET_MANIFESTS[market]);
+        const allUrls = await getMarketManifest(market);
         // Kullanıcının seçtiği kart her zaman ilk açılır. Devamındaki
         // sayfalar hikâyeyle aynı tarih filtresi ve sıralamasını kullanır.
         const orderedFollowingUrls = sortReaderFollowingUrls(allUrls.filter(url => url !== clickedUrl));
@@ -762,14 +689,15 @@
       try { return JSON.parse(localStorage.getItem(SEEN_KEY)) || {}; } catch (_) { return {}; }
     }
 
-    function markSeen(market, url) {
+    function markSeen(market, url, deferRing=false) {
       if (!market || !url) return;
       const seen = readSeen();
       const list = new Set(Array.isArray(seen[market]) ? seen[market] : []);
       list.add(url);
       seen[market] = [...list].slice(-400);
       try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch (_) {}
-      updateStoryRing(market);
+      if (deferRing) storyRingDirty = true;
+      else updateStoryRing(market);
     }
 
     function unseenFor(market) {
@@ -796,7 +724,7 @@
     async function refreshStories() {
       await Promise.all(Object.keys(MARKET_MANIFESTS).map(async market => {
         try {
-          marketCache[market] = await getManifest(MARKET_MANIFESTS[market]);
+          marketCache[market] = await getMarketManifest(market);
           updateStoryRing(market);
           // Kullanıcı bu marketi seçmişse arka plandaki tam listeyi de yenile.
           if (selectedMarket === market) applyHomeFilter(market);
@@ -813,16 +741,30 @@
       setTimeout(() => toast.remove(), 2400);
     }
 
+    function ensureStoryImage(index) {
+      const image = readerPages.children[index]?.querySelector('img');
+      if (!image) return Promise.resolve();
+      if (!image.src) {
+        image.fetchPriority = index <= currentReaderIndex + 1 ? 'high' : 'auto';
+        image.src = image.dataset.src;
+      }
+      if (image.complete) return image.naturalWidth ? image.decode?.().catch(() => {}) : Promise.resolve();
+      return new Promise(resolve => {
+        image.addEventListener('load',resolve,{ once:true });
+        image.addEventListener('error',resolve,{ once:true });
+      }).then(() => image.decode?.().catch(() => {}));
+    }
+
     async function openStory(market) {
       if (!marketCache[market].length) {
-        try { marketCache[market] = await getManifest(MARKET_MANIFESTS[market]); } catch (error) { showError(error); return; }
+        try { marketCache[market] = await getMarketManifest(market); } catch (error) { showError(error); return; }
       }
       const unseen = unseenFor(market);
       // Yeni içerik varsa Instagram gibi önce yeniler; tümü görüldüyse
       // marketin bugün geçerli ve gelecek tarihli broşürleri yeniden oynatılır.
       const storySource = unseen.length ? unseen : [...marketCache[market]];
       const urls = sortStoriesFromToday(storySource);
-      if (!urls.length) { showToast(marketLabel(market) + ': bugün veya sonrası için broşür bulunamadı'); return; }
+      if (!urls.length) { showToast(marketLabel(market) + ' broşürü bulunamadı'); return; }
       previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       storyMarket = market;
@@ -839,28 +781,39 @@
       }));
       readerPages.replaceChildren(...urls.map((url,index) => {
         const page = document.createElement('div'); page.className = 'page';
-        const image = document.createElement('img'); image.src = url; image.alt = marketLabel(market) + ' yeni broşür ' + (index + 1); image.decoding = 'async'; image.loading = index < 2 ? 'eager' : 'lazy'; image.referrerPolicy = 'no-referrer';
+        const image = document.createElement('img'); image.src = url; image.alt = marketLabel(market) + ' yeni broşür ' + (index + 1); image.decoding = 'async'; image.loading = index < 2 ? 'eager' : 'lazy'; image.fetchPriority = index < 2 ? 'high' : 'low'; image.referrerPolicy = 'no-referrer';
         page.append(image); return page;
       }));
       readerPages.scrollLeft = 0;
-      activateStory(0);
+      await activateStory(0);
     }
 
-    function activateStory(index) {
+    async function activateStory(index, syncScroll=true) {
       if (!storyMarket || !activeReaderUrls.length) return;
+      const nextIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
+      if (nextIndex === currentReaderIndex && readerPages.children[nextIndex]?.classList.contains('active')) return;
+      const token = ++storyLoadToken;
+      pauseStoryClock();
+      await ensureStoryImage(nextIndex);
+      if (token !== storyLoadToken || !storyMarket || reader.hidden) return;
       reader.classList.remove('story-paused');
-      currentReaderIndex = Math.max(0, Math.min(index, activeReaderUrls.length - 1));
+      currentReaderIndex = nextIndex;
       [...readerPages.children].forEach((page,i) => page.classList.toggle('active', i === currentReaderIndex));
-      // Smooth scroll burada scroll olayını tekrar tekrar tetikleyip sayacı
-      // sıfırlıyordu. Konum anında değiştirilir; geçiş efektini görsel animasyonu verir.
-      readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
+      if (syncScroll) {
+        storyScrollSyncing = true;
+        readerPages.scrollLeft = currentReaderIndex * readerPages.clientWidth;
+        requestAnimationFrame(() => { storyScrollSyncing = false; });
+      }
       const tracks = [...storyProgress.children];
-      tracks.forEach((track,i) => { track.className = 'story-track' + (i < currentReaderIndex ? ' done' : ''); });
+      tracks.forEach((track,i) => {
+        track.className = 'story-track' + (i < currentReaderIndex ? ' done' : '');
+        const fill = track.querySelector('.story-fill');
+        if (fill) fill.style.transform = i < currentReaderIndex ? 'scaleX(1)' : 'scaleX(0)';
+      });
       tracks[currentReaderIndex]?.classList.add('active');
-      markSeen(storyMarket, activeReaderUrls[currentReaderIndex]);
+      markSeen(storyMarket, activeReaderUrls[currentReaderIndex], true);
       readerCounter.textContent = (currentReaderIndex + 1) + ' / ' + activeReaderUrls.length;
-      const nextImage = readerPages.children[currentReaderIndex + 1]?.querySelector('img');
-      if (nextImage) { nextImage.loading = 'eager'; nextImage.decode?.().catch(() => {}); }
+      ensureStoryImage(currentReaderIndex + 1);
       startStoryClock(true);
     }
 
@@ -874,7 +827,7 @@
       storyLastTick = now;
       const fill = currentStoryFill();
       const ratio = Math.min(1,storyElapsed / STORY_DURATION);
-      if (fill) fill.style.width = (ratio * 100).toFixed(2) + '%';
+      if (fill) fill.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
       if (ratio >= 1) {
         if (currentReaderIndex < activeReaderUrls.length - 1) activateStory(currentReaderIndex + 1);
         else closeReader();
@@ -888,7 +841,7 @@
       const fill = currentStoryFill();
       if (!fill || !storyMarket) return;
       if (reset) storyElapsed = 0;
-      fill.style.width = (Math.min(1,storyElapsed / STORY_DURATION) * 100).toFixed(2) + '%';
+      fill.style.transform = 'scaleX(' + Math.min(1,storyElapsed / STORY_DURATION).toFixed(4) + ')';
       storyHolding = false;
       reader.classList.remove('story-paused');
       storyLastTick = performance.now();
@@ -909,6 +862,9 @@
 
     function closeReader() {
       cancelAnimationFrame(storyFrame);
+      storyLoadToken += 1;
+      clearTimeout(storyScrollTimer);
+      storyScrollSyncing = false;
       clearTimeout(longPressTimer);
       storyHolding = false;
       longPressActive = false;
@@ -919,20 +875,36 @@
       storyProgress.hidden = true;
       readerPages.replaceChildren();
       activeReaderUrls = [];
+      const closedStoryMarket = storyMarket;
       storyMarket = null;
+      if (storyRingDirty && closedStoryMarket) updateStoryRing(closedStoryMarket);
+      storyRingDirty = false;
       document.body.style.overflow = previousOverflow;
     }
 
     function updateCounter() {
       if (zoomState.scale > 1.01) return;
       if (!activeReaderUrls.length) return;
+      if (storyMarket) return;
       const index = Math.min(activeReaderUrls.length - 1, Math.max(0, Math.round(readerPages.scrollLeft / readerPages.clientWidth)));
-      if (storyMarket) { if (index !== currentReaderIndex) activateStory(index); return; }
       readerCounter.textContent = (index + 1) + ' / ' + activeReaderUrls.length;
     }
 
     let counterFrame = 0;
     readerPages.addEventListener('scroll', () => {
+      if (storyMarket) {
+        if (storyScrollSyncing || zoomState.scale > 1.01) return;
+        pauseStoryClock();
+        clearTimeout(storyScrollTimer);
+        storyScrollTimer = setTimeout(() => {
+          if (!storyMarket || reader.hidden || zoomState.scale > 1.01 || longPressActive) return;
+          const width = Math.max(1,readerPages.clientWidth);
+          const index = Math.min(activeReaderUrls.length - 1,Math.max(0,Math.round(readerPages.scrollLeft / width)));
+          if (index !== currentReaderIndex) activateStory(index,false);
+          else resumeStoryClock();
+        },80);
+        return;
+      }
       cancelAnimationFrame(counterFrame);
       counterFrame = requestAnimationFrame(updateCounter);
     }, { passive:true });
@@ -1003,7 +975,11 @@
     readerPages.addEventListener('touchmove', event => {
       if (event.touches.length === 1 && !longPressActive && longPressTimer) {
         const moved = Math.hypot(event.touches[0].clientX-longPressX,event.touches[0].clientY-longPressY);
-        if (moved > 10) { clearTimeout(longPressTimer); longPressTimer = 0; }
+        if (moved > 10) {
+          clearTimeout(longPressTimer);
+          longPressTimer = 0;
+          if (storyMarket) suppressStoryClickUntil = Date.now() + 500;
+        }
       }
       if (longPressActive) { event.preventDefault(); return; }
       if (zoomState.mode === 'pinch' && event.touches.length >= 2) {
@@ -1051,7 +1027,7 @@
       const market = button.dataset.market;
       if (!marketCache[market].length) {
         content.innerHTML = '<div class="status">' + marketLabel(market) + ' broşürleri yükleniyor…</div>';
-        try { marketCache[market] = await getManifest(MARKET_MANIFESTS[market]); }
+        try { marketCache[market] = await getMarketManifest(market); }
         catch (error) { showError(error); return; }
       }
       applyHomeFilter(market);
@@ -1077,9 +1053,12 @@
     async function loadHome() {
       content.innerHTML = '<div class="status">Broşürler yükleniyor…</div>';
       try {
-        homeManifestUrls = await getManifest(HOME_MANIFEST);
+        const [manifestUrls] = await Promise.all([getManifest(HOME_MANIFEST),loadRemoteDates()]);
+        homeManifestUrls = manifestUrls;
         applyHomeFilter(selectedMarket);
-        refreshStories();
+        const refresh = () => refreshStories();
+        if ('requestIdleCallback' in window) window.requestIdleCallback(refresh,{ timeout:1800 });
+        else setTimeout(refresh,900);
       } catch (error) { showError(error); }
     }
 
