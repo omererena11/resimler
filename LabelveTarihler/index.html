@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#e30613">
   <title>Güncel Market Bültenleri</title>
+  <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3899323845108149"
+          crossorigin="anonymous"></script>
   <style>
     :root { --red:#e30613; --blue:#08a9dc; --ink:#16181d; --line:#e7e8eb; --muted:#69707c; --market-nav-height:154px; }
     * { box-sizing:border-box; }
@@ -114,35 +117,6 @@
       4: 'ca-app-pub-3899323845108149/9961222634',
       5: 'ca-app-pub-3899323845108149/2704632847'
     });
-    // Ana manifestteki doğrulanmış broşür tarihleri. Bu görsellerde tarih
-    // kart oluşturulurken anında gösterilir; telefonda OCR beklenmez.
-    const INSTANT_DATES = Object.freeze({
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_6qFn0nf55N_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_GrpnKM0cTp_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_qxn9vnNgYg_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_BUlnj66AW5_2048x2048.webp':'24 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_ehxYTMKgnX_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_004.webp?v=20260825122353':'1 EYLÜL’DEN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_017.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_011.webp?v=20260825122353':'25 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_020.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_019.webp?v=20260825122353':'28 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p13.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p15.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p18.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p09.webp':'22 AĞUSTOS – 15 EYLÜL 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/SOK/TARIHSIZ/2026082011013148569_p01.webp':'19 – 25 AĞUSTOS 2026',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_002.webp?v=20260825122353':'30 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_018.webp?v=20260825122353':'25 AĞUSTOS’TAN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_005.webp?v=20260825122353':'22 – 28 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_007.webp?v=20260825122353':'1 EYLÜL’DEN İTİBAREN',
-      'https://www.oeappstudio.com/Brochures/Brochures/BIM/afisler.aspxtop1Bim_AfisKey992_009.webp?v=20260825122353':'4 – 31 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_fCt2yigPhl_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_uS0r3R8V5r_2048x2048.webp':'24 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_JVLWkYH2Zn_2048x2048.webp':'24 AĞUSTOS',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_HrOkfNrByO_2048x2048.webp':'27 AĞUSTOS PERŞEMBE',
-      'https://www.oeappstudio.com/Brochures/Brochures/A101/yedek_aldin-aldin-gelecek-hafta/aldin-aldin-gelecek-hafta_PqcZhp76su_2048x2048.webp':'27 AĞUSTOS PERŞEMBE'
-    });
     const ITEMS_PER_ROW = 5;
 
     const content = document.querySelector('#content');
@@ -173,21 +147,12 @@
     let currentReaderIndex = 0;
     const STORY_DURATION = 5000;
     const zoomState = { page:null, image:null, scale:1, x:0, y:0, mode:null, startDistance:0, startScale:1, startX:0, startY:0, baseX:0, baseY:0 };
-    const SEEN_KEY = 'oeapp_seen_brochures_v2';
-    // v2: A101 ve ŞOK için markete özel tarih bölgeleri kullanılır.
-    const OCR_CACHE_KEY = 'oeapp_brochure_dates_v2';
-    const TESSERACT_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+    const SEEN_KEY = 'oeapp_seen_brochures_v3';
     const marketCache = { A101:[], BIM:[], SOK:[] };
     let remoteDates = Object.create(null);
+    let remoteMetadata = Object.create(null);
+    let remoteInventoryUrls = [];
     let homeSortMode = 'date';
-    const ocrQueue = [];
-    let ocrCache = (() => {
-      try { return JSON.parse(localStorage.getItem(OCR_CACHE_KEY)) || {}; }
-      catch (_) { return {}; }
-    })();
-    let ocrBusy = false;
-    let ocrWorkerPromise = null;
-    const ocrStartNotBefore = performance.now() + 1800;
 
     function syncMarketNavHeight() {
       const height = Math.ceil(marketNav.getBoundingClientRect().height);
@@ -210,6 +175,18 @@
 
     function marketLabel(market) { return market === 'BIM' ? 'BİM' : market === 'SOK' ? 'ŞOK' : 'A101'; }
 
+    function brochureUrlKey(url) {
+      try {
+        return new URL(String(url || ''),location.href).pathname.replace(/\/{2,}/g,'/');
+      } catch (_) {
+        return String(url || '').split(/[?#]/,1)[0];
+      }
+    }
+
+    function brochureRecordForUrl(url) {
+      return remoteMetadata[url] || remoteMetadata[brochureUrlKey(url)] || null;
+    }
+
     async function getManifest(url) {
       const response = await fetch(url, { cache:'no-cache' });
       if (!response.ok) throw new Error('Manifest alınamadı: HTTP ' + response.status);
@@ -223,7 +200,7 @@
       // Yayın sırasında market manifesti kısa süreliğine boş kalırsa,
       // doğrulanmış dates.json envanteri tam listeyi korur. O da yoksa ana
       // manifestteki ilgili market kartları son güvenli seçenek olur.
-      const verified = Object.keys(remoteDates).filter(url => marketFromUrl(url) === market);
+      const verified = remoteInventoryUrls.filter(url => marketFromUrl(url) === market);
       if (verified.length) return verified;
       return homeManifestUrls.filter(url => marketFromUrl(url) === market);
     }
@@ -244,10 +221,39 @@
         if (!response.ok) return;
         const data = await response.json();
         const dates = data && typeof data.dates === 'object' ? data.dates : data;
-        if (dates && typeof dates === 'object') remoteDates = dates;
+        remoteDates = Object.create(null);
+        remoteMetadata = Object.create(null);
+        remoteInventoryUrls = [];
+
+        if (dates && typeof dates === 'object' && !Array.isArray(dates)) {
+          Object.entries(dates).forEach(([url,label]) => {
+            if (typeof label !== 'string') return;
+            remoteDates[url] = label;
+            remoteDates[brochureUrlKey(url)] = label;
+          });
+        }
+
+        const rawItems = Array.isArray(data?.items)
+          ? data.items
+          : (data?.items && typeof data.items === 'object' ? Object.values(data.items) : []);
+        const seenInventory = new Set();
+        rawItems.forEach(item => {
+          if (!item || typeof item !== 'object' || typeof item.url !== 'string') return;
+          const key = brochureUrlKey(item.url_key || item.url);
+          remoteMetadata[item.url] = item;
+          remoteMetadata[key] = item;
+          if (typeof item.label === 'string' && item.label.trim()) {
+            remoteDates[item.url] = item.label.trim();
+            remoteDates[key] = item.label.trim();
+          }
+          if (!seenInventory.has(item.url)) {
+            seenInventory.add(item.url);
+            remoteInventoryUrls.push(item.url);
+          }
+        });
         homeSortMode = data?.home_sort_mode === 'manual' ? 'manual' : 'date';
       } catch (_) {
-        // dates.json henüz sunucuda yoksa gömülü tarih verileri kullanılmaya devam eder.
+        // Manifest yüklenemezse görseller gösterilir, tarih alanı belirtilmemiş kalır.
       }
     }
 
@@ -271,253 +277,15 @@
       const marketName = document.createElement('span');
       marketName.textContent = marketLabel(market);
       const date = document.createElement('span');
-      date.className = 'card-date reading';
-      date.textContent = 'Tarih okunuyor…';
-      date.dataset.ocrUrl = url;
+      date.className = 'card-date';
+      date.textContent = brochureLabelForUrl(url) || 'Tarih belirtilmemiş';
       label.append(marketName, date);
       media.append(image);
       button.append(media, label);
       button.addEventListener('click', () => openReader(market, url));
-      observeDate(date);
       return button;
     }
 
-    function getOcrCache() {
-      return ocrCache;
-    }
-
-    function saveOcrDate(url, value) {
-      ocrCache[url] = value;
-      ocrCache = Object.fromEntries(Object.entries(ocrCache).slice(-250));
-      try { localStorage.setItem(OCR_CACHE_KEY, JSON.stringify(ocrCache)); } catch (_) {}
-    }
-
-    const dateObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        dateObserver.unobserve(entry.target);
-        enqueueOcr(entry.target);
-      });
-    }, { rootMargin:'220px' }) : null;
-
-    function observeDate(element) {
-      const instant = remoteDates[element.dataset.ocrUrl] || INSTANT_DATES[element.dataset.ocrUrl] || currentManifestDateHint(element.dataset.ocrUrl);
-      if (instant) { setDateText(element, instant); return; }
-      const cached = getOcrCache()[element.dataset.ocrUrl];
-      if (cached) { setDateText(element, cached); return; }
-      if (dateObserver) dateObserver.observe(element); else enqueueOcr(element);
-    }
-
-    function enqueueOcr(element) {
-      if (!element?.isConnected || element.dataset.queued) return;
-      element.dataset.queued = '1';
-      ocrQueue.push(element);
-      processOcrQueue();
-    }
-
-    async function processOcrQueue() {
-      if (ocrBusy) return;
-      ocrBusy = true;
-      while (ocrQueue.length) {
-        await waitForOcrIdle();
-        const element = ocrQueue.shift();
-        if (!element?.isConnected) continue;
-        const url = element.dataset.ocrUrl;
-        try {
-          const text = await recognizeBrochureDate(url);
-          const label = extractDateLabel(text);
-          if (label) saveOcrDate(url, label);
-          setDateText(element, label || 'Tarih okunamadı');
-        } catch (error) {
-          setDateText(element, 'Tarih okunamadı');
-          console.warn('Broşür tarihi okunamadı:', error);
-        }
-      }
-      ocrBusy = false;
-    }
-
-    function waitForOcrIdle() {
-      return new Promise(resolve => {
-        const wait = Math.max(0,ocrStartNotBefore - performance.now());
-        setTimeout(() => {
-          if ('requestIdleCallback' in window) window.requestIdleCallback(() => resolve(), { timeout:2500 });
-          else setTimeout(resolve,350);
-        },wait);
-      });
-    }
-
-    function setDateText(element, value) {
-      element.textContent = value;
-      element.classList.remove('reading');
-    }
-
-    function loadTesseract() {
-      if (window.Tesseract) return Promise.resolve(window.Tesseract);
-      return new Promise((resolve,reject) => {
-        const old = document.querySelector('script[data-tesseract]');
-        if (old) { old.addEventListener('load', () => resolve(window.Tesseract), { once:true }); old.addEventListener('error', reject, { once:true }); return; }
-        const script = document.createElement('script');
-        script.src = TESSERACT_URL;
-        script.async = true;
-        script.dataset.tesseract = '1';
-        script.onload = () => resolve(window.Tesseract);
-        script.onerror = () => reject(new Error('OCR kütüphanesi yüklenemedi'));
-        document.head.append(script);
-      });
-    }
-
-    async function getOcrWorker() {
-      if (!ocrWorkerPromise) ocrWorkerPromise = (async () => {
-        const Tesseract = await loadTesseract();
-        // Tarihler rakam ve ay adlarından oluştuğu için hafif İngilizce model
-        // yeterlidir; Türkçe karakterlerin aksansız biçimleri de eşleştirilir.
-        const worker = await Tesseract.createWorker('eng');
-        await worker.setParameters({
-          tessedit_pageseg_mode:String(Tesseract.PSM?.SPARSE_TEXT || 11),
-          preserve_interword_spaces:'1',
-          user_defined_dpi:'180'
-        });
-        return worker;
-      })();
-      return ocrWorkerPromise;
-    }
-
-    function createOcrCanvas(image, region, targetWidth=1080) {
-      const sourceWidth = image.naturalWidth;
-      const sourceHeight = image.naturalHeight;
-      const cropWidth = Math.max(1,Math.round(sourceWidth * region.w));
-      const cropHeight = Math.max(1,Math.round(sourceHeight * region.h));
-      const width = Math.min(targetWidth,cropWidth);
-      const height = Math.max(1,Math.round(cropHeight * width / cropWidth));
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d', { alpha:false,willReadFrequently:false });
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0,0,width,height);
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.filter = 'grayscale(1) contrast(1.55)';
-      ctx.drawImage(
-        image,
-        Math.round(sourceWidth * region.x),Math.round(sourceHeight * region.y),
-        cropWidth,cropHeight,
-        0,0,width,height
-      );
-      return canvas;
-    }
-
-    async function imagesForOcr(url) {
-      const image = new Image();
-      image.crossOrigin = 'anonymous';
-      image.referrerPolicy = 'no-referrer';
-      image.decoding = 'async';
-      image.src = url;
-      await image.decode();
-      const market = marketFromUrl(url);
-      let regions;
-
-      if (market === 'A101') {
-        // Önce tarih rozetinin bulunduğu sağ üst alan, sonra daha geniş üst
-        // başlık denenir. İkinci geçiş yalnız ilk okuma sonuçsuzsa çalışır.
-        regions = [
-          { x:.48,y:0,w:.52,h:.25 },
-          { x:0,y:0,w:1,h:.32 }
-        ];
-      } else if (market === 'SOK') {
-        // ŞOK'ta haftalık başlık üst-ortada, bazı kampanya tarihleri ise
-        // alt dipnotta bulunabildiği için üç hedefli bölge kullanılır.
-        regions = [
-          { x:.06,y:0,w:.88,h:.23 },
-          { x:0,y:0,w:1,h:.34 },
-          { x:0,y:.72,w:1,h:.28 }
-        ];
-      } else {
-        // BİM afişlerinde tarih çoğunlukla üst şeritte, bazı sayfalarda alt
-        // geçerlilik notundadır. Alanları ayrı okumak OCR karmaşasını azaltır.
-        regions = [
-          { x:0,y:0,w:1,h:.22 },
-          { x:0,y:.68,w:1,h:.32 },
-          { x:0,y:0,w:1,h:.36 }
-        ];
-      }
-      return regions.map(region => createOcrCanvas(image,region));
-    }
-
-    async function recognizeBrochureDate(url) {
-      const worker = await getOcrWorker();
-      const canvases = await imagesForOcr(url);
-      let collected = '';
-      for (const canvas of canvases) {
-        const result = await worker.recognize(canvas);
-        collected += '\n' + (result?.data?.text || '');
-        if (extractDateLabel(collected)) break;
-      }
-      return collected;
-    }
-
-    function extractDateLabel(rawText) {
-      const monthLabels = {
-        OCAK:'OCAK',SUBAT:'ŞUBAT',MART:'MART',NISAN:'NİSAN',MAYIS:'MAYIS',
-        HAZIRAN:'HAZİRAN',TEMMUZ:'TEMMUZ',AGUSTOS:'AĞUSTOS',EYLUL:'EYLÜL',
-        EKIM:'EKİM',KASIM:'KASIM',ARALIK:'ARALIK'
-      };
-      const monthSuffixes = {
-        OCAK:'’TAN',SUBAT:'’TAN',MART:'’TAN',NISAN:'’DAN',MAYIS:'’TAN',
-        HAZIRAN:'’DAN',TEMMUZ:'’DAN',AGUSTOS:'’TAN',EYLUL:'’DEN',
-        EKIM:'’DEN',KASIM:'’DAN',ARALIK:'’TAN'
-      };
-      const months = Object.keys(monthLabels).join('|');
-      const dayLabels = {
-        PAZARTESI:'PAZARTESİ',SALI:'SALI',CARSAMBA:'ÇARŞAMBA',
-        PERSEMBE:'PERŞEMBE',CUMA:'CUMA',CUMARTESI:'CUMARTESİ',PAZAR:'PAZAR'
-      };
-      const dayPattern = Object.keys(dayLabels).join('|');
-      const cleaned = String(rawText).toLocaleUpperCase('tr-TR')
-        .replace(/Ş/g,'S').replace(/İ/g,'I').replace(/Ğ/g,'G')
-        .replace(/Ü/g,'U').replace(/Ö/g,'O').replace(/Ç/g,'C')
-        .replace(/[|!]/g,'I').replace(/[’'`´*]/g,' ')
-        .replace(/A[6GQ]UST[O0]S/g,'AGUSTOS')
-        .replace(/E[YV]L[UOI]L/g,'EYLUL')
-        .replace(/HAZ[I1]RAN/g,'HAZIRAN')
-        .replace(/N[I1]SAN/g,'NISAN')
-        .replace(/EK[I1]M/g,'EKIM')
-        .replace(/ARAL[I1]K/g,'ARALIK')
-        .replace(/(^|\s)[OQ](?=\d)/g,'$10')
-        .replace(/\s+/g,' ').trim();
-      const pretty = key => monthLabels[key] || key;
-
-      let match = cleaned.match(/\b(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?\s*[-–—]\s*(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?/);
-      if (match) {
-        const left = [match[1],match[2],match[3]].filter(Boolean).join('.');
-        const right = [match[4],match[5],match[6]].filter(Boolean).join('.');
-        return left + ' – ' + right;
-      }
-
-      match = cleaned.match(new RegExp('\\b(\\d{1,2})\\s+(' + months + ')(?:\\s+(\\d{4}))?\\s*[-–—/]\\s*(\\d{1,2})\\s+(' + months + ')(?:\\s+(\\d{4}))?'));
-      if (match) {
-        const year = match[6] || match[3] || '';
-        return `${Number(match[1])} ${pretty(match[2])} – ${Number(match[4])} ${pretty(match[5])}${year ? ' ' + year : ''}`;
-      }
-
-      match = cleaned.match(new RegExp('\\b(\\d{1,2})\\s*[-–—/]\\s*(\\d{1,2})\\s+(' + months + ')(?:\\s+(\\d{4}))?'));
-      if (match) {
-        return `${Number(match[1])} – ${Number(match[2])} ${pretty(match[3])}${match[4] ? ' ' + match[4] : ''}`;
-      }
-
-      match = cleaned.match(new RegExp('\\b(\\d{1,2})\\s+(' + months + ')(?:\\s+(\\d{4}))?'));
-      if (match) {
-        const tail = cleaned.slice(match.index + match[0].length,match.index + match[0].length + 70);
-        const day = Number(match[1]);
-        const month = pretty(match[2]);
-        const year = match[3] ? ' ' + match[3] : '';
-        if (/ITIBAREN|TARIHINDEN/.test(tail)) return `${day} ${month}${monthSuffixes[match[2]]} İTİBAREN${year}`;
-        const dayName = tail.match(new RegExp('\\b(' + dayPattern + ')\\b'));
-        if (dayName) return `${day} ${month}${year} ${dayLabels[dayName[1]]}`;
-        return `${day} ${month}${year}`;
-      }
-      return '';
-    }
 
     function createAd(rowNumber, unitId) {
       const wrap = document.createElement('section');
@@ -645,71 +413,50 @@
         .replace(/[’']/g,' ').replace(/\s+/g,' ').trim();
     }
 
-    function currentManifestDateHint(url) {
-      const value = String(url);
-      // 28.08.2026 tarihli manifestteki 82 dosyanın görsel olarak
-      // doğrulanmış tarihleri. Ürün detay görselleri aynı kampanyanın
-      // tarihini devralır; bu kayıtlar için telefonda OCR çalıştırılmaz.
-      const a101Date24 = ['AVgpiegES1','Qec0IE-B7r','TWv3JDYL9s','XWNZnlQw8o','Z27j2X1hJd','hROkg4rFiR','twe9j1KGWf'];
-      const a101Date27 = ['0n7NWJJsvD','224oVkfdyc','6qFn0nf55N','9VcIDfxGHZ','AKpUcW4o9p','ApTzO5DOLk','CSSN2qgVln','DnT1lj3cxp','GrpnKM0cTp','HrOkfNrByO','JWbeYM8sQh','JwgUy6hxFG','NXnn422wrI','PqcZhp76su','dFSO-PxVCg','ehxYTMKgnX','fCt2yigPhl','iIY68af0S6','j1N8cmLaKA','nspgzdKHN2','qxn9vnNgYg','s7VvsIYaOD','aldin-aldin-bu-hafta_1.webp','aldin-aldin-bu-hafta_3.webp','w-fit-bluetoothlu-uygulamali-uzaktan-kumandali-kosu-bandi','xiaomi-portable-blender'];
-      if (a101Date24.some(key => value.includes(key))) return '24 AĞUSTOS’TAN İTİBAREN';
-      if (a101Date27.some(key => value.includes(key))) return '27 AĞUSTOS PERŞEMBE';
-      if (value.includes('iB4lBUkbny')) return '22 AĞUSTOS – 4 EYLÜL';
-
-      if (value.includes('2026082011013148569_p')) {
-        const page = Number(value.match(/_p(\d+)\.webp/i)?.[1]);
-        if (page === 1 || page === 2) return '19 – 25 AĞUSTOS 2026';
-        if (page >= 3 && page <= 23) return '22 AĞUSTOS – 15 EYLÜL 2026';
-        if (page === 24) return '15 – 18 AĞUSTOS 2026';
-      }
-
-      if (value.includes('v=20260828222554')) {
-        const page = value.match(/_(\d{3})\.webp/i)?.[1];
-        const bimDates = {
-          '024':'4 EYLÜL’DEN İTİBAREN','023':'30 AĞUSTOS’TAN İTİBAREN',
-          '022':'2 – 31 AĞUSTOS','021':'4 EYLÜL’DEN İTİBAREN',
-          '020':'2 EYLÜL’DEN İTİBAREN','019':'22 – 28 AĞUSTOS',
-          '018':'28 – 31 AĞUSTOS','017':'30 AĞUSTOS’TAN İTİBAREN',
-          '016':'1 EYLÜL’DEN İTİBAREN','015':'1 EYLÜL’DEN İTİBAREN',
-          '014':'28 – 31 AĞUSTOS','013':'2 – 31 AĞUSTOS',
-          '012':'28 – 31 AĞUSTOS','011':'4 EYLÜL’DEN İTİBAREN',
-          '010':'28 AĞUSTOS’TAN İTİBAREN','009':'24 MART – 31 ARALIK',
-          '008':'1 EYLÜL’DEN İTİBAREN','007':'22 – 28 AĞUSTOS',
-          '006':'30 AĞUSTOS’TAN İTİBAREN','005':'28 AĞUSTOS’TAN İTİBAREN',
-          '004':'28 – 31 AĞUSTOS','003':'28 – 31 AĞUSTOS',
-          '002':'4 – 31 AĞUSTOS','001':'2 – 31 AĞUSTOS'
-        };
-        if (page && bimDates[page]) return bimDates[page];
-      }
-
-      if (value.includes('v=20260825122353')) {
-        const page = value.match(/_(\d{3})\.webp/i)?.[1];
-        const bimDates = {
-          '020':'30 AĞUSTOS’TAN İTİBAREN','019':'28 AĞUSTOS’TAN İTİBAREN',
-          '018':'25 AĞUSTOS’TAN İTİBAREN','017':'30 AĞUSTOS’TAN İTİBAREN',
-          '016':'25 AĞUSTOS’TAN İTİBAREN','015':'25 AĞUSTOS’TAN İTİBAREN',
-          '014':'22 – 28 AĞUSTOS','013':'28 AĞUSTOS’TAN İTİBAREN',
-          '012':'26 AĞUSTOS’TAN İTİBAREN','011':'25 AĞUSTOS’TAN İTİBAREN',
-          '010':'2 – 31 AĞUSTOS','009':'4 – 31 AĞUSTOS',
-          '008':'24 MART – 31 ARALIK','007':'1 EYLÜL’DEN İTİBAREN',
-          '006':'2 – 31 AĞUSTOS','005':'22 – 28 AĞUSTOS',
-          '004':'1 EYLÜL’DEN İTİBAREN','003':'2 – 31 AĞUSTOS',
-          '002':'30 AĞUSTOS’TAN İTİBAREN','001':'2 EYLÜL’DEN İTİBAREN'
-        };
-        if (page && bimDates[page]) return bimDates[page];
-      }
-      return '';
-    }
 
     function brochureLabelForUrl(url) {
-      return remoteDates[url] || INSTANT_DATES[url] || currentManifestDateHint(url) || getOcrCache()[url] || '';
+      const record = brochureRecordForUrl(url);
+      return String(record?.label || remoteDates[url] || remoteDates[brochureUrlKey(url)] || '').trim();
+    }
+
+    function brochureIsoDate(value) {
+      const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return null;
+      const result = new Date(Number(match[1]),Number(match[2])-1,Number(match[3]));
+      return Number.isNaN(result.getTime()) ? null : result;
+    }
+
+    function brochureDateMetaForUrl(url,index=0,referenceDate=new Date()) {
+      const record = brochureRecordForUrl(url);
+      const today = brochureMidnight(referenceDate);
+      const start = brochureIsoDate(record?.start);
+      const end = brochureIsoDate(record?.end);
+      if (!start) {
+        return brochureDateMeta(
+          brochureLabelForUrl(url),index,today,marketFromUrl(url)
+        );
+      }
+      if (end && today >= start && today <= end) {
+        return { status:'active',start,end,rank:[0,Math.max(0,brochureDayDifference(today,end)),index] };
+      }
+      if (!end && start.getTime() === today.getTime()) {
+        return { status:'active',start,end:null,rank:[0,0,index] };
+      }
+      if (!end && record?.kind === 'from' && start <= today) {
+        return { status:'active',start,end:null,rank:[0,brochureDayDifference(start,today),index] };
+      }
+      if (start > today) {
+        return { status:'upcoming',start,end,rank:[1,brochureDayDifference(today,start),index] };
+      }
+      const pastReference = end || start;
+      return { status:'past',start,end,rank:[2,Math.max(0,brochureDayDifference(pastReference,today)),index] };
     }
 
     function rankedBrochureItems(urls) {
       const referenceDate = new Date();
       return urls.map((url,index) => ({
         url,
-        meta:brochureDateMeta(brochureLabelForUrl(url),index,referenceDate,marketFromUrl(url))
+        meta:brochureDateMetaForUrl(url,index,referenceDate)
       })).map(item => ({ ...item,rank:item.meta.rank }))
         .sort((a,b) => compareBrochureRanks(a.rank,b.rank));
     }
@@ -852,10 +599,6 @@
       return { status:'past',start,end,rank:[2,Math.max(0,brochureDayDifference(pastReference,today)),index] };
     }
 
-    function brochureDateRank(label,index=0,market=null,referenceDate=new Date()) {
-      return brochureDateMeta(label,index,referenceDate,market).rank;
-    }
-
     function compareBrochureRanks(a,b) {
       return a[0]-b[0] || a[1]-b[1] || a[2]-b[2];
     }
@@ -867,10 +610,10 @@
       urls.forEach((url,index) => {
         const market = marketFromUrl(url) || 'OTHER';
         if (!marketBuckets[market]) marketBuckets[market] = [];
-        // Ana sayfa bütün cihazlarda aynı olmalı. Cihaza özel OCR önbelleği
-        // burada kullanılmaz; ortak dates.json ve doğrulanmış ipuçları esastır.
-        const label = remoteDates[url] || INSTANT_DATES[url] || currentManifestDateHint(url);
-        marketBuckets[market].push({ url,rank:brochureDateRank(label,index,market,referenceDate) });
+        marketBuckets[market].push({
+          url,
+          rank:brochureDateMetaForUrl(url,index,referenceDate).rank
+        });
       });
       Object.values(marketBuckets).forEach(items => items.sort((a,b) => compareBrochureRanks(a.rank,b.rank)));
       const cursors = {};
